@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+	  <typeAlias alias="Ask" type="com.bookshop.vo.Ask"/>
+	  <typeAlias alias="AskReply" type="com.bookshop.vo.AskReply"/>
+	  <typeAlias alias="Book" type="com.bookshop.vo.Book"/>
+	  <typeAlias alias="Cart" type="com.bookshop.vo.Cart"/>
+	  <typeAlias alias="Delivery" type="com.bookshop.vo.Delivery"/>
+	  <typeAlias alias="OrderList" type="com.bookshop.vo.OrderList"/>
+	  <typeAlias alias="Orders" type="com.bookshop.vo.Orders"/>
+	  <typeAlias alias="Record" type="com.bookshop.vo.Record"/>
+	  <typeAlias alias="Review" type="com.bookshop.vo.Review"/>
+	  <typeAlias alias="Users" type="com.bookshop.vo.Users"/>
+	</typeAliases>
+</configuration>
