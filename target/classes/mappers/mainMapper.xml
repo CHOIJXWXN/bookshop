@@ -4,4 +4,32 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bookshop.mappers.main">
+
+<!-- 아이디 중복 확인 SQL -->
+<select id="checkId" resultType="String">
+	SELECT * 
+	FROM USERS
+	WHERE user_id = #{user_id}
+
+</select>
+
+<!-- 회원가입 SQL -->
+<insert id ="joinSuccess">
+	ISNERT INTO USERS
+	VLAUES(#{user_id}, #{user_pw}, #{user_name}, #{user_birth}, #{user_nickname}, #{user_email}, #{user_phone}, #{user_addr}, #{user_point}, #{user_admin}, #{user_init_genre})
+</insert>
+
+<!-- 로그인 SQL -->
+<select id="login" resultType="Users">
+	SELECT *
+	FROM USERS
+	WHERE user_id = #{user_id}
+	AND user_pw = #{user_pw}
+</select>
+
+<!-- 아이디 찾기 (휴대폰번호) SQL -->
+
+
+
+
 </mapper>

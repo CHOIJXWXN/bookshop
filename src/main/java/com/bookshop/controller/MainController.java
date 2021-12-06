@@ -9,6 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.bookshop.vo.Users;
 
 @Controller
 public class MainController {
@@ -18,23 +21,27 @@ public class MainController {
 	// 메인 페이지
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String main(Model model) throws Exception {
-		return "";
+		return "main";
 	}
 	
 	// 로그인 페이지
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model) throws Exception {
-		return "";
+		return "login";
 	}
 	
 	// 로그인 실행 기능 (Ajax)
 	@RequestMapping(value = "/loginAction", method = RequestMethod.GET)
 	@ResponseBody
-	public String loginAction(Users user, HttpSession session) throws Exception {
+	public String loginAction(Users user, HttpSession session, RedirectAttributes ra) throws Exception {
 		// 유저 아이디/비밀번호 확인
 		// 맞으면 return 0	view에서 data == 0이면  location.href 써서 메인 페이지로
 		// 틀리면 return -1	view에서 data == -1이면 정보 불일치 띄우기
-		return "";
+		String url = null;
+		
+		
+		
+		return url;
 	}
 	
 	
@@ -54,6 +61,21 @@ public class MainController {
 		return "";
 	}
 	
+	// 아이디 찾기 기능
+	@RequestMapping(value = "/find_id_Action", method = RequestMethod.GET)
+	public String find_id_Action() throws Exception {
+		
+		return "/find_id_Action";
+	}
+	
+	// 비밀번호 찾기 기능
+	@RequestMapping(value = "/find_pw_Action", method = RequestMethod.GET)
+	public String find_pw_Action() throws Exception {
+		
+		return "/find_pw_Action";
+	}
+	
+	
 	// 회원가입 약관 페이지
 	@RequestMapping(value = "/joinTerm", method = RequestMethod.GET)
 	public String joinTerm(Model model) throws Exception {
@@ -63,7 +85,7 @@ public class MainController {
 	// 회원가입 페이지
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String join(Model model) throws Exception {
-		return "";
+		return "join";
 	}
 	
 	// 아이디 중복 확인 기능 (Ajax)
@@ -89,6 +111,29 @@ public class MainController {
 	// 마이페이지
 	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
 	public String myPage(Model model) throws Exception {
+		return "mypage";
+	}
+	
+	// 회원정보수정
+	@RequestMapping(value = "/update_mypage", method = RequestMethod.GET)
+	@ResponseBody
+	public String update_mypage() throws Exception {
+		
+		return "redirect:/mypage";
+	}
+	
+	// 배송조회
+	@RequestMapping(value = "/derivery", method = RequestMethod.GET)
+	public String derivery() throws Exception {
+		
+		return "";
+	}
+	
+	// 주문목록
+	@RequestMapping(value = "/orderlist", method = RequestMethod.GET)
+	public String orderlist() throws Exception {
+		// 주문한 상품 리스트 받아오기
+		// List<order>
 		return "";
 	}
 
