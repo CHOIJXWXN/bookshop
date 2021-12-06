@@ -5,12 +5,3 @@
 
 <mapper namespace="com.bookshop.mappers.main">
 </mapper>
-
-<mapper namespace="com.bookshop.mappers.book">
-</mapper>
-
-<mapper namespace="com.bookshop.mappers.order">
-</mapper>
-
-<mapper namesapce="com.bookshop.mappers.admin">
-</mapper>

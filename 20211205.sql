@@ -38,8 +38,7 @@ CREATE TABLE cart (
 );
 
 CREATE TABLE orders (
-	order_id	    INT 		PRIMARY KEY 	AUTO_INCREMENT,     # 형식상 PK
-    order_num       TEXT        NOT NULL,                           # 실제 주문 번호
+    order_num       TEXT        PRIMARY KEY,
     user_id		    VARCHAR(20) NOT NULL,
     order_name      VARCHAR(20) NOT NULL,
     order_addr      TEXT        NOT NULL,
@@ -49,18 +48,19 @@ CREATE TABLE orders (
     final_cost	    INT,
     comments	    TEXT,
     order_date	    DATE        NOT NULL,
-    order_cancel    INT         DEFAULT 0
+    order_status    INT         DEFAULT 1
+    # 0 : 입금 전 / 1 : 결제 완료 / 2 : 취소 / 3 : 배송중 / 4 : 배송완료 / 5 : 교환처리중 / 6 : 환불처리중 / 7 : 교환완료 / 8 : 환불완료
 );
 
 CREATE TABLE orderlist (
-	order_id 	INT,
+	order_num   TEXT,
     book_id 	INT,
     book_cnt 	INT 	NOT NULL,
     PRIMARY KEY (order_id, book_id)
 );
 
 CREATE TABLE delivery (
-	order_id 		INT		PRIMARY KEY,
+	order_num       TEXT		PRIMARY KEY,
     tracking_num 	INT
 );
 
@@ -128,3 +128,4 @@ BEGIN
     RETURN order_num;
 END $$
 DELIMITER ;
+INSERT INTO orders (order_num) VALUES (get_order_num());
