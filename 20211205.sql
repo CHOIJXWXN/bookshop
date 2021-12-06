@@ -82,12 +82,12 @@ CREATE TABLE askreply (
 );
 
 CREATE TABLE review (
+	review_id			INT			PRIMARY KEY		AUTO_INCREMENT,
     user_id             VARCHAR(20),
     book_id             INT,    
     review_score        INT         NOT NULL,
     review_contents     TEXT        NOT NULL,
-    review_date         DATE        NOT NULL,
-    PRIMARY KEY (user_id, book_id)
+    review_date         DATE        NOT NULL
 );
 
 CREATE TABLE record (
@@ -129,5 +129,3 @@ BEGIN
 END $$
 DELIMITER ;
 INSERT INTO orders (order_num) VALUES (get_order_num());
-
-SELECT book_id FROM book ORDER BY book_sell_tot DESC LIMIT ( 1 - 1 ) * 16, 16;
