@@ -4,4 +4,33 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bookshop.mappers.book">
+
+	<!-- 판매량 순으로 16개  -->
+	<select id="getFirstBook_id_sell" resultType="Book">
+		SELECT *
+		FROM book
+		ORDER BY book_sell_tot DESC
+		LIMIT (#{pageNum} - 1) * 16, 16;
+	</select>
+	<!-- 신규출간 순으로 16개  -->
+	<select id="getFirstBook_id_new" resultType="_int">
+		SELECT *
+		FROM book
+		ORDER BY book_date DESC
+		LIMIT (#{pageNum} - 1) * 16, 16;
+	</select>
+	<!-- 리뷰 순으로 16개  -->
+	<select id="getFirstBook_id_review" resultType="_int">
+		SELECT *
+		FROM book
+		ORDER BY (SELECT AVG(review_score) FROM review) DESC
+		LIMIT (#{pageNum} - 1) * 16, 16;
+	</select>
+	<!-- 특정 책의 리뷰 평균 평점  -->
+	<select id="getBookScore" resultType="_int">
+		SELECT AVG(review_score)
+		FROM review
+		WHERE book_id = #{book_id}
+	</select>
+
 </mapper>

@@ -129,3 +129,5 @@ BEGIN
 END $$
 DELIMITER ;
 INSERT INTO orders (order_num) VALUES (get_order_num());
+
+SELECT book_id FROM book ORDER BY book_sell_tot DESC LIMIT ( 1 - 1 ) * 16, 16;

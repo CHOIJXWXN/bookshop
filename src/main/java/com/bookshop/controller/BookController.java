@@ -1,5 +1,6 @@
 package com.bookshop.controller;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -10,9 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bookshop.service.BookService;
+
 @Controller
 @RequestMapping(value = "/book/*")
 public class BookController {
+	
+	@Inject
+	BookService bookService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(BookController.class);
 	
@@ -22,8 +28,7 @@ public class BookController {
 		if (pageNum == null) {
 			pageNum = 1;
 		}
-		// (판매순으로 List<Book> + 페이징) HashMap 가져오기
-		model.addAttribute("map", map);
+		model.addAttribute("map", bookService.book("판매량순", pageNum));
 		return "";
 	}
 	
@@ -33,8 +38,7 @@ public class BookController {
 		if (pageNum == null) {
 			pageNum = 1;
 		}
-		// (신규순으로 List<Book> + 페이징) HashMap 가져오기
-		model.addAttribute("map", map);
+		model.addAttribute("map", bookService.book("신규출간순", pageNum));
 		return "";
 	}
 	
@@ -44,8 +48,7 @@ public class BookController {
 		if (pageNum == null) {
 			pageNum = 1;
 		}
-		// (리뷰순으로 List<Book> + 페이징) HashMap 가져오기
-		model.addAttribute("map", map);
+		model.addAttribute("map", bookService.book("리뷰순", pageNum));
 		return "";
 	}	
 
