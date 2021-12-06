@@ -4,4 +4,133 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bookshop.mappers.book">
+
+	<!-- 전체 책 개수 -->
+	<select id="getBookCnt" resultType="_int">
+		SELECT COUNT(*)
+		FROM book
+	</select>
+	
+	<!-- 판매량 순으로 16개  -->
+	<select id="getFirstBook_id_sell" resultType="Book">
+		SELECT *
+		FROM book
+		ORDER BY book_sell_tot DESC
+		LIMIT #{start}, 16
+	</select>
+	
+	<!-- 신규출간 순으로 16개  -->
+	<select id="getFirstBook_id_new" resultType="Book">
+		SELECT book_id
+		FROM book
+		ORDER BY book_date DESC
+		LIMIT #{start}, 16
+	</select>
+	
+	<!-- 리뷰 순으로 16개  -->
+	<select id="getFirstBook_id_review" resultType="Book">
+		SELECT A.book_id, A.book_title, A.book_cover, A.book_price
+		FROM book A LEFT JOIN review B 
+		ON A.book_id = B.book_id 
+		GROUP BY A.book_id 
+		ORDER BY COUNT(B.review_id) DESC 
+		LIMIT #{start}, 16
+	</select>
+	
+	<!-- 특정 책의 리뷰 평균 평점  -->
+	<select id="getBookScore" resultType="_int">
+		SELECT AVG(review_score)
+		FROM review
+		WHERE book_id = #{book_id}
+	</select>
+	
+	<!-- 키워드 검색 -->
+	<select id="searchBook" resultType="Book">
+		SELECT *
+		FROM book
+		WHERE book_title  LIKE '%'+#{keyword}+'%'
+		   OR book_writer LIKE '%'+#{keyword}+'%'
+	</select>
+	
+	<!-- 베스트 셀러 리스트 -->
+	<select id="getBestSeller" resultType="_int">
+		SELECT B.book_id
+		FROM orders A, orderlist B
+		WHERE A.order_num = B.order_num
+		AND DATE_DIFF(NOW() - A.order_date) <![CDATA[<=]]> 30
+		GROUP BY B.book_id
+		ORDER BY SUM(B.book_cnt)
+		LIMIT 0, 8
+	</select>
+	
+	<!-- 초기 흥미 장르 -->
+	<select id="getInitGenre" resultType="string">
+		SELECT user_init_genre
+		FROM user
+		WHERE user_id = #{user_id}
+	</select>
+	
+	<!-- 리뷰 기반 추천 장르 -->
+	<select id="getGenreRecomm" resultType="string">
+		SELECT B.book_genre
+		FROM review A, book B
+		WHERE A.user_id = #{user_id}
+		  AND A.book_id = B.book_id
+		  AND A.review_score <![CDATA[>=]]> 3
+		GROUP BY B.book_genre
+		ORDER BY COUNT(B.book_id) DESC
+		LIMIT 1
+	</select>
+	<!-- 장르 상위 4개 -->
+	<select id="getGenreRecommFour" resultType="Book">
+		SELECT *
+		FROM book
+		WHERE book_genre = #{book_genre}
+		ORDER BY RAND()
+		LIMIT 4
+	</select>
+	
+	<!-- 리뷰 기반 추천 작가 -->
+	<select id="getWriterRecomm" resultType="string">
+		SELECT B.book_writer
+		FROM review A, book B
+		WHERE A.user_id = #{user_id}
+		  AND A.book_id = B.book_id
+		  AND A.review_score <![CDATA[>=]]> 3
+		GROUP BY B.book_writer
+		ORDER BY COUNT(B.book_id) DESC
+		LIMIT 1
+	</select>
+	<!-- 작가 상위 2개 -->
+	<select id="getWriterRecommTwo" resultType="Book">
+		SELECT *
+		FROM book
+		WHERE book_writer = #{book_writer}
+		ORDER BY RAND()
+		LIMIT 2
+	</select>
+	
+	<!-- 책 아이디로 책 가져오기 -->
+	<select id="getBook" resultType="Book">
+		SELECT *
+		FROM book
+		WHERE book_id = #{book_id}
+	</select>
+	
+	<!-- 책 아이디로 리뷰 3개씩 -->
+	<select id="getReview" resultType="Review">
+		SELECT *
+		FROM review
+		WHERE book_id = #{book_id}
+		ORDER BY review_date DESC
+		LIMIT #{start}, 3
+	</select>
+	
+	<!-- 특정 책의 리뷰 개수 -->
+	<select id="getReviewCnt" resultType="_int">
+		SELECT COUNT(*)
+		FROM review
+		WHERE book_id = #{book_id}
+	</select>
+
 </mapper>
