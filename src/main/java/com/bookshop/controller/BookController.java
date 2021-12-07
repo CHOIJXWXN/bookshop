@@ -1,5 +1,9 @@
 package com.bookshop.controller;
 
+import java.util.HashMap;
+import java.util.List;
+
+import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -10,9 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bookshop.service.BookService;
+import com.bookshop.vo.Book;
+
 @Controller
 @RequestMapping(value = "/book/*")
 public class BookController {
+	
+	@Inject
+	BookService bookService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(BookController.class);
 	
@@ -22,8 +32,7 @@ public class BookController {
 		if (pageNum == null) {
 			pageNum = 1;
 		}
-		// (판매순으로 List<Book> + 페이징) HashMap 가져오기
-		model.addAttribute("map", map);
+		model.addAttribute("map", bookService.book("판매량순", pageNum));
 		return "";
 	}
 	
@@ -33,8 +42,7 @@ public class BookController {
 		if (pageNum == null) {
 			pageNum = 1;
 		}
-		// (신규순으로 List<Book> + 페이징) HashMap 가져오기
-		model.addAttribute("map", map);
+		model.addAttribute("map", bookService.book("신규출간순", pageNum));
 		return "";
 	}
 	
@@ -44,46 +52,41 @@ public class BookController {
 		if (pageNum == null) {
 			pageNum = 1;
 		}
-		// (리뷰순으로 List<Book> + 페이징) HashMap 가져오기
-		model.addAttribute("map", map);
+		model.addAttribute("map", bookService.book("리뷰순", pageNum));
 		return "";
 	}	
 
 	// 책 검색 기능 (Ajax)
 	@RequestMapping(value = "/searchBook", method = RequestMethod.GET)
 	@ResponseBody
-	public String searchBook(String keyword) throws Exception {
-		// 키워드 받아서 책 검색
-		// List<Book> 전송
-		// view에서 data == null이면 검색 결과 없다고 띄움
-		// view에서 else면 전송 데이터 띄움
-		return "";
+	public List<Book> searchBook(String keyword) throws Exception {
+		return bookService.searchBook(keyword);
 	}	
 	
 	// 책 베스트셀러 페이지
 	@RequestMapping(value = "/best", method = RequestMethod.GET)
 	public String best(HttpSession session, Model model) throws Exception {
-		// (정해진 기간의 베스트 셀러 List<Book> + 유저 기반 추천 도서 List<Book>) HashMap 가져오기 
-		model.addAttribute("map", map);
+		// (정해진 기간의 베스트 셀러 List<Book> + 유저 기반 추천 도서 List<Book>) HashMap 가져오기
+		String user_id = (String) session.getAttribute("user_id");
+		model.addAttribute("map", bookService.best(user_id));
 		return "";
 	}
 	
 	// 책 상세 페이지
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String detail(Integer book_id, Model model) throws Exception {
-		// book_id로 Book 인스턴스 가져오기
-		model.addAttribute("book", book);
+	public String detail(int book_id, Model model) throws Exception {
+		model.addAttribute("book", bookService.view(book_id));
 		return "";
 	}
 	
 	// 책 리뷰 탭 기능 (Ajax)
 	@RequestMapping(value = "/showReview", method = RequestMethod.GET)
 	@ResponseBody
-	public String showReview(Integer book_id, Model model) throws Exception {
-		// book_id로 List<Review> 전송
-		// view에서 data == null이면 첫 리뷰를 작성해보세요! 같은 거 띄우기
-		// view에서 else면 전송 데이터 띄움
-		return "";
+	public HashMap<String, Object> showReview(int book_id, Integer pageNum) throws Exception {
+		if (pageNum == null) {
+			pageNum = 1;
+		}
+		return bookService.showReview(book_id, pageNum);
 	}
 	
 	// 책 리뷰 추가 기능
