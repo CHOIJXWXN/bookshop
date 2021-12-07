@@ -1,12 +1,36 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
+<html lang="ko">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Shop</title>
+    <link rel="stylesheet" href="${path }/resources/css/reset.css" />
+    <link rel="stylesheet" href="${path }/resources/css/style.css" />
+  </head>
+  <body>
+    <div id="wrap">
+      <jsp:include page="../mainNav.jsp" />
+      <section id="main">
+        <!-- 대표 메뉴 -->
+        <ul class="q_mn">
+          <li><a href="#">diary 독서기록</a></li>
+          <li><a href="#">book shop 책 쇼핑몰</a></li>
+        </ul>
+        <!-- 배경 요소-->
+        <h1 class="bg_msg">
+        READ<br>
+        AND WRITE
+        </h1>
+        <div class="bg_line"></div>
+      </section>
+      <!-- 푸터 -->
+      <footer id="footer">
+        푸터영역
+      </footer>
+    </div>
+  </body>
 </html>
+    

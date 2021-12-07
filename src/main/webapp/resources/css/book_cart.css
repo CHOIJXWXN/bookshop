@@ -1,0 +1,393 @@
+@charset "utf-8";
+/* 폰트 */
+@import url("https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy&display=swap");
+/* 프리텐다드 */
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+/* Goudy Bookletter */
+@import url("https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&display=swap");
+/* 본명조 */
+@font-face {
+  font-family: 'NotoSerifKR';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NotoSerifKR.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+/* 마루부리 */
+@font-face {
+  font-family: 'MaruBuri-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/MaruBuri-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* prata */
+@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+/* playfair */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@700&display=swap');
+/* 대한체 bold */
+@font-face {
+  font-family: 'Daehan-Bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Daehan-Bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+/* 리디바탕 */
+@font-face {
+  font-family: 'RIDIBatang';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#wrap {
+  width: 100%;
+}
+/* [1] 헤더 */
+#header {
+  float: left;
+  width: 100%;
+  height: 85px;
+  /* background-color: aquamarine; */
+  backdrop-filter: blur(3px);
+  position: fixed;
+  z-index: 9999;
+}
+/* 헤더 틀 */
+.header_wrap {
+  margin: 0 auto;
+  width: 1500px;
+  height: 85px;
+  /* background-color: whitesmoke;   */
+  position: relative;
+}
+/* 로고 */
+.header_wrap .logo {
+  float: left;
+  width: 110px;
+  height: 48px;
+  border: 1px solid #707070;
+  margin: 16px 0 0 10px;
+  font-family: 'Prata', serif;
+  font-size: 24px;
+  line-height: 48px;
+  text-align: center;
+}
+/* 네비메뉴 */
+#header nav {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  width: 441px;
+  height: 80px;
+  margin-left: -220.5px;
+}
+/* (1) 메인 네비 */
+#header .main_nav {
+  width: 100%;
+  height: 80px;
+  /* background-color: lightskyblue; */
+
+}
+#header .main_nav li {
+  float: left;
+  width: 147px;
+  height: 80px;
+  /* background-color: wheat; */
+  
+}
+#header .main_nav li a {  
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  font-family: 'Goudy Bookletter 1911', serif;
+  font-size: 20px;
+  line-height: 32px;
+  color: #1C1A1A;
+  text-align: center;
+  /* background-color: royalblue; */
+  padding-top: 22px;
+  position: relative
+}
+#header .main_nav li a::after {
+  content: "";
+  display: inline-block;
+  width: 0px;
+  height: 1px;
+  background-color: #1C1A1A;
+  position: absolute;
+  transform-origin: left top;
+  top: 55px;
+  left: 50%;
+  margin-left: -18px;
+}
+#header .main_nav li a:hover:after {
+  width: 36px;
+  transition: all 0.15s ease;
+}
+/* BOOKS HOVER : 서브메뉴 보이기 */
+#header .books_sub_mn {
+  position: absolute;
+  top: 75px;
+  left: 50%;
+  margin-left: -192px;
+  width: 90px;
+  height: 60px;
+  /* background-color: pink; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#header .books_sub_mn li {
+  width: 100%;
+  height: 24px;
+  border: 0.4px solid #1C1A1A;
+  border-radius: 13px;
+  text-align: center; 
+  overflow: hidden;
+}
+#header .books_sub_mn li a {
+  display: block;
+  font-family: 'Goudy Bookletter 1911', serif;
+  font-size: 13px;
+  line-height: 24px;
+  color: #1C1A1A;
+}
+#header .books_sub_mn a:hover {
+  background-color: #1C1A1A;
+  color: white;
+}
+/* 인포메뉴 */
+#header .info_mn{
+  float: right;
+  display: block;
+  width: 200px;
+  height: 85px;
+  /* background-color: lightgreen;   */
+}
+#header .info_mn span {
+  float: right;
+  font-family: 'Goudy Bookletter 1911', serif;
+  font-size: 18px;
+  line-height: 85px;
+  color: #1C1A1A;
+  padding-right: 10px;
+
+}
+#header .info_mn img {
+  float: right;
+}
+/* [2]메인화면*/
+#book_order {
+  float: left;
+  width: 100%;
+  background-image: url("../images/main_bg_4.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+/* [2-1] 제목*/
+#book_order .order_ttl {
+    width: 100%;
+    height: 240px;
+    margin-top: 190px;
+}
+#book_order .order_ttl h2 {
+    text-align: center;
+    font-family: 'Goudy Bookletter 1911', serif;
+    font-size: 40px;
+    line-height: 85px;
+    color: #1C1A1A;
+}
+#book_order .order_ttl .process {
+    width: 100%;
+    height: 155px;
+    position: relative;
+    /* background-color: yellow; */
+}
+#book_order .order_ttl .process img {
+    position: absolute;
+    top: 45px;
+    left: 50%;
+    margin-left: -333px;
+}
+/* [2-2] 주문 상세내역 */
+/* 소제목 */
+#order_detail .ttl {
+    margin: 0 auto;
+    width: 1300px;
+    height: 35px;
+    /* background-color: lightgreen; */
+}
+
+/* 주문 상세내역 표 */
+/* 나중에 높이 지우기 */
+#order_detail .container {
+    margin: 0 auto;
+    width: 1300px;
+}
+#order_detail .container table {
+  width: 100%;
+  background-color: #FAFAF8;
+}
+#order_detail .container table th {
+  height: 70px;
+  background-color: rgba(28, 26, 26, 0.75);
+  border-top: 1px solid #707070;
+  border-bottom: 1px solid #707070;
+  font-family: 'NotoSerifKR';
+  font-size: 20px;
+  line-height: 70px;
+  color: #FAFAF8;
+}
+#order_detail .container table td {
+  text-align: center;
+  height: 120px;
+  font-family: "Pretendard-Regular";
+  font-size: 20px;
+  line-height: 120px;
+  color: rgba(46, 45, 45, 1);
+  border-bottom: 0.5px solid #707070; 
+}
+/* 작동안함 물어보기 */
+/* #order_detail .container table td.hidden_col {
+  display: none;
+} */
+/* 상품/옵션 정보 스타일 다르게 맞추기 */
+#order_detail .container table .book_name {
+  position: relative;
+}
+#order_detail .container table .book_name img {
+  width: 80px;
+  margin-right: 5px;
+  position: absolute;
+  top: 8px;
+  left: 15px;
+}
+#order_detail .container .book_name span {
+  padding-left: 135px;
+}
+/* 셀렉트박스 커스텀 */
+select {
+  width: 70px;
+  padding: .6em .5em;
+  border: 1px solid #999;
+  font-family: "Pretendard-Regular";
+  font-size: 18px;
+  color: rgba(46, 45, 45, 1);
+  background: url(../images/order_num_dropdown.png) no-repeat 90% 50%;
+  border-radius: 0px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  }
+/* 체크박스 크기 조정 */
+input[type=checkbox] {
+  width: 17px;
+  height: 17px;
+}
+/* [2-3] 선택상품 삭제 버튼 */
+#order_detail .container .chk_delete {
+    float: left;
+    display: block;
+    width: 140px;
+    height: 33px;
+    border: 1px solid #707070;
+    text-align: center;
+    font-family: 'NotoSerifKR';
+    font-size: 15px;
+    line-height: 33px;
+    color: rgba(46, 45, 45, 1);
+    margin-top: 18px;
+}
+#order_detail .container .chk_delete:hover {
+    background-color: rgba(28, 26, 26, 0.75);
+    color: whitesmoke;
+    transition: 0.3s;
+}
+/* [2-4] 장바구니 합계 (주문 넘기기전 상태) */
+.order_prev_check_wrap {
+    float: right;
+}
+#order_detail .container .cart_tot {
+    width: 720px;
+    height: 300px;
+    /* background: url(../images/cart_tot_2.png) no-repeat 0 50%; */
+    background-color: white;
+    margin-top: 60px;
+}
+#order_detail .container .cart_tot ul {
+    margin: 0 auto;
+    width: 640px;
+    height: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+#order_detail .container .cart_tot li.plus,
+#order_detail .container .cart_tot li.equal {
+  margin-top: 92px;
+}
+#order_detail .container .cart_tot h4 {
+    font-family: 'NotoSerifKR';
+    font-size: 18px;
+    line-height: 33px;
+    color: #2E2D2D;
+    margin-top: 60px;
+    text-align: center;
+}
+
+#order_detail .container .cart_tot span {
+    display: inline-block;
+    font-family: 'NotoSerifKR';
+    font-size: 31px;
+    line-height: 47px;
+    color: #2E2D2D;
+    padding-top: 40px;
+    text-align: center;
+}
+#order_detail .container .cart_tot p {
+    float: right;
+    font-family: 'NotoSerifKR';
+    font-size: 18px;
+    line-height: 25px;
+    color: #5A5656F0;
+    padding-right: 40px;
+}
+/* [2-5] 주문 버튼 */
+#order_detail .container .order_btns_wrap {
+    float: right;
+    width: 460px;
+    height: 70px;
+    margin-top: 18px;
+    margin-bottom: 300px;
+}
+.order_btns_wrap li {
+    float: left;
+    width: 225px;
+    height:60px;
+    border: 1px solid #1C1A1A;
+    box-sizing: border-box;
+    margin-right: 10px;
+}
+.order_btns_wrap li.all {
+    margin-right: 0;
+    background-color: #1C1A1A;;
+}
+.order_btns_wrap li a {
+    display: block;
+    text-align: center;
+    font-family: 'NotoSerifKR';
+    font-size: 22px;
+    line-height: 60px;
+    color: #1C1A1A;
+    
+}
+.order_btns_wrap li.all a {
+  color: whitesmoke;
+  font-weight: lighter;
+}

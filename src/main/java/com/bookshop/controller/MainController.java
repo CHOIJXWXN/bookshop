@@ -20,7 +20,7 @@ public class MainController {
 	// 메인 페이지
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String main(Model model) throws Exception {
-		return "";
+		return "main/main";
 	}
 	
 	// 로그인 페이지
