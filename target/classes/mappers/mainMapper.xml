@@ -6,7 +6,7 @@
 <mapper namespace="com.bookshop.mappers.main">
 
 <!-- 아이디 중복 확인 SQL -->
-<select id="checkId" resultType="String">
+<select id="checkId" resultType="string">
 	SELECT * 
 	FROM USERS
 	WHERE user_id = #{user_id}
@@ -27,8 +27,16 @@
 	AND user_pw = #{user_pw}
 </select>
 
-<!-- 아이디 찾기 (휴대폰번호) SQL -->
+<!-- 아이디 찾기 (휴대폰번호) or (이메일) SQL -->
+<select id="getuser_id" resultType="string">
+	SELECT user_id
+	FROM USERS
+	WHERE user_phone = #{user_phone}
+	OR user_email = #{user_email}
+</select>
 
+<!-- 비밀번호 찾기(아이디) -->
+<select id=""></select>
 
 
 

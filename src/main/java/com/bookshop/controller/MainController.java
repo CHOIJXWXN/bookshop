@@ -17,14 +17,17 @@ import com.bookshop.vo.Users;
 public class MainController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
-
+	
+	
 	// 메인 페이지
+	// url 패턴이 'path/ '
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String main(Model model) throws Exception {
 		return "main";
 	}
 	
 	// 로그인 페이지
+	// url 패턴이 'path/login'
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model) throws Exception {
 		return "login";
@@ -39,15 +42,23 @@ public class MainController {
 		// 틀리면 return -1	view에서 data == -1이면 정보 불일치 띄우기
 		String url = null;
 		
-		
-		
+		// 로그인 성공
+		if (result == 0) {
+			
+		}
+		// 로그인 실패
+		else {
+			
+			url = "redirect:/logim";
+		}
 		return url;
 	}
 	
 	
 	// 로그아웃 기능
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpSession session) throws Exception {
+	@ResponseBody
+	public String logout(HttpSession session, RedirectAttributes ra) throws Exception {
 		session.invalidate();
 		return "redirect:/";
 	}
@@ -58,19 +69,20 @@ public class MainController {
 	// 아이디/비밀번호 찾기 페이지
 	@RequestMapping(value = "/help", method = RequestMethod.GET)
 	public String help(Model model) throws Exception {
-		return "";
+		return "help";
 	}
 	
+	
 	// 아이디 찾기 기능
-	@RequestMapping(value = "/find_id_Action", method = RequestMethod.GET)
+	@RequestMapping(value = "/find_idAction", method = RequestMethod.GET)
 	public String find_id_Action() throws Exception {
-		
+		// 
 		return "/find_id_Action";
 	}
 	
 	// 비밀번호 찾기 기능
 	@RequestMapping(value = "/find_pw_Action", method = RequestMethod.GET)
-	public String find_pw_Action() throws Exception {
+	public String find_pwAction() throws Exception {
 		
 		return "/find_pw_Action";
 	}
@@ -99,42 +111,12 @@ public class MainController {
 	}
 	
 	// 회원가입 완료 페이지
-	@RequestMapping(value = "/joinSuccess", method = RequestMethod.GET)
-	public String joinSuccess(Users user) throws Exception {
+	@RequestMapping(value = "/joinAction", method = RequestMethod.GET)
+	public String joinAction(Users user) throws Exception {
 		// users 테이블에 삽입
 		return "";
 	}
 
-	/*
-	 * 매핑 더 필요함 (회원정보수정, 배송조회, 주문취소, 주문목록 등등) 
-	 */
-	// 마이페이지
-	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
-	public String myPage(Model model) throws Exception {
-		return "mypage";
-	}
 	
-	// 회원정보수정
-	@RequestMapping(value = "/update_mypage", method = RequestMethod.GET)
-	@ResponseBody
-	public String update_mypage() throws Exception {
-		
-		return "redirect:/mypage";
-	}
-	
-	// 배송조회
-	@RequestMapping(value = "/derivery", method = RequestMethod.GET)
-	public String derivery() throws Exception {
-		
-		return "";
-	}
-	
-	// 주문목록
-	@RequestMapping(value = "/orderlist", method = RequestMethod.GET)
-	public String orderlist() throws Exception {
-		// 주문한 상품 리스트 받아오기
-		// List<order>
-		return "";
-	}
 
 }

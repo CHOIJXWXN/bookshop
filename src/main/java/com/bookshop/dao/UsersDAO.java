@@ -13,7 +13,9 @@ public interface UsersDAO {
 	// 로그인 (vo -user bean 이용)
 	public Users login(Users users) throws Exception;
 	
-	// 
+	// 아이디 찾기
+	public String find_id(Users users) throws Exception;
+	
 	
 	
 }
