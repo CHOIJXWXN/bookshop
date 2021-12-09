@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bookshop.vo.Users;
+
 @Controller
 public class MainController {
 	
@@ -18,13 +20,15 @@ public class MainController {
 	// 메인 페이지
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String main(Model model) throws Exception {
-		return "";
+		
+		return "main/main";
 	}
 	
 	// 로그인 페이지
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model) throws Exception {
-		return "";
+		
+		return "main/login";
 	}
 	
 	// 로그인 실행 기능 (Ajax)
@@ -49,21 +53,21 @@ public class MainController {
 	 * 매핑 더 필요함 (아이디 찾기 기능 / 비밀번호 찾기 기능)
 	 */
 	// 아이디/비밀번호 찾기 페이지
-	@RequestMapping(value = "/help", method = RequestMethod.GET)
+	@RequestMapping(value = "/find", method = RequestMethod.GET)
 	public String help(Model model) throws Exception {
-		return "";
+		return "main/find";
 	}
 	
 	// 회원가입 약관 페이지
 	@RequestMapping(value = "/joinTerm", method = RequestMethod.GET)
 	public String joinTerm(Model model) throws Exception {
-		return "";
+		return "main/joinTerm";
 	}
 	
 	// 회원가입 페이지
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String join(Model model) throws Exception {
-		return "";
+		return "main/join";
 	}
 	
 	// 아이디 중복 확인 기능 (Ajax)
@@ -87,9 +91,9 @@ public class MainController {
 	 * 매핑 더 필요함 (회원정보수정, 배송조회, 주문취소, 주문목록 등등) 
 	 */
 	// 마이페이지
-	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
-	public String myPage(Model model) throws Exception {
-		return "";
-	}
+//	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
+//	public String myPage(Model model) throws Exception {
+//		return "member/myPage";
+//	}
 
 }
