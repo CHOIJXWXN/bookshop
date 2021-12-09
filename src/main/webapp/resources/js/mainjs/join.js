@@ -18,15 +18,18 @@ $(function(){
 
         $("#chk_all").prop("checked", is_checked);  
     });
-    //약관동의 체크안한 채로 next 클릭
-    $("#next").click(function(){
     
-    	if($("#chk_all").prop("checked")==false) {
+    //약관동의 모두 체크했는지 검증하는 함수
+    
+   $('#next').click(function() {
+		var ck = $("#chk_all").prop("checked");
+        if(!ck) {
             alert("모든 약관 동의 후 회원가입 가능합니다.");
             return;
+        } else {
+            location.href = "../join";
         }
-        
-    });
+	});
     
     // [2] 아이디 중복 확인
 	

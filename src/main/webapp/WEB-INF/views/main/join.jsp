@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="${path }/resources/css/join.css" />
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <%-- <script src="${path }/resource/js/jquery.js"></script> --%>
-    <script src="${path }/resource/js/join.js" charset="UTF-8"></script>
+    <script src="${path }/resources/js/mainjs/join.js" charset="UTF-8"></script>
   </head>
 	<body>
     <div id="wrap">
