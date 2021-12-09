@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="${path }/resources/css/joinTerm.css" />
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <%-- <script src="${path }/resources/js/jquery.js"></script> --%>
-    <script src="${path }/resources/js/join.js" charset="UTF-8"></script>
+    <script src="${path }/resources/js/mainjs/join.js" charset="UTF-8"></script>
   </head>
 <body>
     <div id="wrap">
@@ -46,7 +46,7 @@
       </div>
         
         <!-- 다음버튼 -->
-        <a href="${path }/join" id="next">NEXT</a>
+        <button id="next">NEXT</button>
       </section>
     </div>
   </body>
