@@ -19,9 +19,9 @@ public class MemberController {
 	
 	// 마이페이지
 	// url 패턴이 'path/mypage/'
-	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String mypage(Model model) throws Exception {
-		return "redirect:/maypage";
+		return "member/mypage";
 	}
 	
 	// 회원정보수정 page
@@ -29,7 +29,7 @@ public class MemberController {
 	@RequestMapping(value = "/profileUpdate", method = RequestMethod.GET)
 	public String profileUpdate() throws Exception {
 		
-		return "";
+		return "member/myInfo";
 	}
 	
 	// 회원정보 수정 완료
@@ -37,21 +37,21 @@ public class MemberController {
 	@RequestMapping(value = "/profileUpdateAction", method = RequestMethod.GET)
 	public String profileUpdateAction() throws Exception {
 		
-		return "";
+		return "redirect:/profileUpdate";
 	}
 	
 	// 주문 배송 조회 page 
-	// url 패턴이 'path/member/orderstatus'
+	// url 패턴이 'path/mypage/orderstatus'
 	@RequestMapping(value = "/orderstatus", method = RequestMethod.GET)
 	public String orderstatus() throws Exception{
 		
-		return "/주문페이지";
+		return "member/orderList";
 	}
 	
 	
 	// 배송 조회
-	@RequestMapping(value = "/derivery", method = RequestMethod.GET)
-	public String derivery() throws Exception {
+	@RequestMapping(value = "/delivery", method = RequestMethod.GET)
+	public String delivery() throws Exception {
 		
 		return "";
 	}

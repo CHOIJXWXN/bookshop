@@ -1,0 +1,368 @@
+
+#wrap {
+    width: 100%;
+  }
+  /* [1] 헤더 */
+  #header {
+    float: left;
+    width: 100%;
+    height: 85px;
+    /* background-color: aquamarine; */
+    backdrop-filter: blur(3px);
+    position: fixed;
+    z-index: 9999;
+  }
+  /* 헤더 틀 */
+  .header_wrap {
+    margin: 0 auto;
+    width: 1500px;
+    height: 85px;
+    /* background-color: whitesmoke;   */
+    position: relative;
+  }
+  /* 로고 */
+  .header_wrap .logo {
+    float: left;
+    width: 110px;
+    height: 48px;
+    border: 1px solid #707070;
+    margin: 16px 0 0 10px;
+    font-family: 'Prata', serif;
+    font-size: 24px;
+    line-height: 48px;
+    text-align: center;
+  }
+  /* 네비메뉴 */
+  #header nav {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    width: 441px;
+    height: 80px;
+    margin-left: -220.5px;
+  }
+  /* (1) 메인 네비 */
+  #header .main_nav {
+    width: 100%;
+    height: 80px;
+    /* background-color: lightskyblue; */
+  
+  }
+  #header .main_nav li {
+    float: left;
+    width: 147px;
+    height: 80px;
+    /* background-color: wheat; */
+    
+  }
+  #header .main_nav li a {  
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-family: 'Goudy Bookletter 1911', serif;
+    font-size: 20px;
+    line-height: 32px;
+    color: #1C1A1A;
+    text-align: center;
+    /* background-color: royalblue; */
+    padding-top: 22px;
+    position: relative
+  }
+  #header .main_nav li a::after {
+    content: "";
+    display: inline-block;
+    width: 0px;
+    height: 1px;
+    background-color: #1C1A1A;
+    position: absolute;
+    transform-origin: left top;
+    top: 55px;
+    left: 50%;
+    margin-left: -18px;
+  }
+  #header .main_nav li a:hover:after {
+    width: 36px;
+    transition: all 0.15s ease;
+  }
+  /* BOOKS HOVER : 서브메뉴 보이기 */
+  #header .books_sub_mn {
+    position: absolute;
+    top: 75px;
+    left: 50%;
+    margin-left: -192px;
+    width: 90px;
+    height: 60px;
+    /* background-color: pink; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  #header .books_sub_mn li {
+    width: 100%;
+    height: 24px;
+    border: 0.4px solid #1C1A1A;
+    border-radius: 13px;
+    text-align: center; 
+    overflow: hidden;
+  }
+  #header .books_sub_mn li a {
+    display: block;
+    font-family: 'Goudy Bookletter 1911', serif;
+    font-size: 13px;
+    line-height: 24px;
+    color: #1C1A1A;
+  }
+  #header .books_sub_mn a:hover {
+    background-color: #1C1A1A;
+    color: white;
+  }
+  /* 인포메뉴 */
+  #header .info_mn{
+    float: right;
+    display: block;
+    width: 200px;
+    height: 85px;
+    /* background-color: lightgreen;   */
+  }
+  #header .info_mn span {
+    float: right;
+    font-family: 'Goudy Bookletter 1911', serif;
+    font-size: 18px;
+    line-height: 85px;
+    color: #1C1A1A;
+    padding-right: 10px;
+  
+  }
+  #header .info_mn img {
+    float: right;
+  }
+  /* [2]메인화면*/
+section {
+    float: left;
+    width: 100%;
+    height: 160vh;
+    background-image: url("../images/main_bg_4.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+  /* 사이드바 퀵메뉴 */
+  #sidebar {
+    width: 180px;
+    height: 200px;
+    margin-top: 250px;
+    margin-left: 250px;
+    /* background-color: lightgoldenrodyellow; */
+}
+#nav_title {
+    width: 180px;
+    height: 50px;
+    font-size: 25px;
+    margin-bottom: 0;
+    line-height: 50px;
+    border-bottom: 1px #1C1A1A solid;
+    box-sizing: border-box;
+    font-family: 'Goudy Bookletter 1911', serif;
+    padding-left: 5px;
+}
+#sidebar a {
+    display: block;
+    width: 180px;
+    height: 50px;
+    border-bottom: 0.5px solid #707070; 
+}
+#sidebar span {
+    font-family: "Pretendard-Regular";
+    font-size: 15px;
+    line-height: 50px;
+    color: #B5B1B1;;
+}
+#sidebar a:hover span{
+    padding-left: 10px;
+    font-size: 17px;
+    color: #1C1A1A;
+}
+#sidebar a:hover span::after {
+    content: ">";
+}
+
+/* 회원정보 수정 */
+/* 필수입력사항 가이드메시지 */
+.guide_msg {
+    width: 1100px;
+    height: 30px;
+    position: absolute;
+    top: 290px;
+    left: 530px;
+  }
+  .guide_msg p {
+    float: right;
+    font-family: "Pretendard-Regular";
+    font-size: 15px;
+    color: #5A5656;
+    line-height: 30px;
+    letter-spacing: 200%;
+  }
+  /* 회원가입폼 전체 영역 */
+  #join_form {
+    width: 1100px;
+    position: absolute;
+    top: 320px;
+    left: 530px;
+  }
+  
+  /* ****입력칸 스타일 공통***** */
+  
+  .container .row {
+    width: 100%;
+    height: 66px;
+    background-color: white;
+    border-top: 0.05px solid #707070;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    background-clip: content-box;
+  }
+  .container .row_msg {
+    width: 100%;
+    height: 96px;
+    background-color: white;
+    border-top: 0.05px solid #707070;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    background-clip: content-box;
+    position: relative;
+  }
+  .container .row_3 {
+    width: 100%;
+    height: 216px;
+    background-color: white;
+    border-top: 0.05px solid #707070;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    background-clip: content-box;
+  }
+  /* 첫번째 행의 보더 탑 굵게 */
+  /* 스타일 적용안됨 물어보기 */
+  .container .row:first-child {
+   border-top: 1.5px solid #707070;
+  }
+  /* 마지막 행의 보더 바텀 굵게 */
+  .container .row:last-child {
+   border-bottom: 1.5px solid #707070;
+  }
+  /* label 크기 */
+  .row label {
+    display: inline-block;
+    width: 250px;
+    height: 66px;
+    background-color: rgba(28, 26, 26, 0.05);  
+    font-family: 'NotoSerifKR';
+    font-size: 19px;
+    color: #2E2D2D;
+    line-height: 66px;
+    padding-left: 15px;
+    vertical-align: middle;
+  }
+  .row_msg label {
+    display: inline-block;
+    width: 250px;
+    height: 96px;
+    background-color: rgba(28, 26, 26, 0.05);  
+    font-family: 'NotoSerifKR';
+    font-size: 19px;
+    color: #2E2D2D;
+    line-height: 66px;
+    padding-left: 15px;
+  }
+  .row_3 label {
+    display: inline-block;
+    width: 250px;
+    height: 216px;
+    background-color: rgba(28, 26, 26, 0.05);  
+    font-family: 'NotoSerifKR';
+    font-size: 19px;
+    color: #2E2D2D;
+    line-height: 216px;
+    padding-left: 15px;
+  }
+  /* 입력칸 크기 */
+  .row input {
+    width: 390px;
+    height: 45px;
+    padding-left: 15px;
+    font-family: "Pretendard-Regular";
+  }
+  .row_msg input {
+    width: 390px;
+    height: 45px;
+    padding-left: 15px;
+    font-family: "Pretendard-Regular";
+  }
+  .row_3 input {
+    width: 150px;
+    height: 45px;
+    padding-left: 15px;
+    font-family: "Pretendard-Regular";
+  }
+  .row input[type="radio"] {
+    width: 30px;
+    height: 15px;
+    padding-left: 15px;
+    font-family: "Pretendard-Regular";
+  }
+  /* read_only 입력칸 스타일 */
+  input:-moz-read-only {background-color: #EFEFEF; border:0.5px solid #707070;} 
+  input:read-only {background-color: #EFEFEF; border:0.5px solid #707070;}  
+
+  /* 중복알림 메시지 */
+  .row_msg p.fail {
+    
+    display: inline-block;
+    font-family: "Pretendard-Regular";
+    font-size: 12px;
+    line-height: 20px;
+    color: #FF2704;
+    position: absolute;
+    top: 70px;
+    left: 280px;
+  }
+  .row_msg p.pass {
+    display: none;
+    color: #134C0B;
+  }
+  /* 셀렉트박스 커스텀 */
+  select {
+    width: 150px;
+    height: 45px;
+    padding: .6em .5em;
+    border: 1px solid #999;
+    font-family: "Pretendard-Regular";
+    font-size: 15px;
+    color: rgba(46, 45, 45, 1);
+    background: url(../images/order_num_dropdown.png) no-repeat 90% 50%;
+    border-radius: 0px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    }
+    .final {
+      border-bottom: 1px solid #707070;
+    }
+    /* 회원가입 버튼 */
+    .submit_btn {
+      width: 100%;
+      height: 50px;
+      margin-top: 100px;
+     text-align: center;
+    }
+    input[type="submit"] {
+      width: 370px;
+      height: 50px;
+      background-color: #1C1A1A;
+      color: #F8F5F5;
+      font-family: "Pretendard-Regular";
+      font-size: 16px;
+      line-height: 50px;
+      color: #F8F5F5; 
+      cursor: pointer;
+    }
