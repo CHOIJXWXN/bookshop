@@ -1,49 +1,4 @@
 @charset "utf-8";
-/* 폰트 */
-@import url("https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy&display=swap");
-/* 프리텐다드 */
-@font-face {
-  font-family: "Pretendard-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
-    format("woff");
-  font-weight: 400;
-  font-style: normal;
-}
-/* Goudy Bookletter */
-@import url("https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&display=swap");
-/* 본명조 */
-@font-face {
-  font-family: 'NotoSerifKR';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NotoSerifKR.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-/* 마루부리 */
-@font-face {
-  font-family: 'MaruBuri-Regular';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/MaruBuri-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-/* J송명 */
-@font-face {
-  font-family: 'JSongMyung-Regular-KO';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/JSongMyung-Regular-KO.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
-/* 을유 */
-@font-face {
-  font-family: 'Eulyoo1945-SemiBold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2102-01@1.0/Eulyoo1945-SemiBold.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-/* prata */
-@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
-/* playfair */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@700&display=swap');
-
 
 #wrap {
   width: 100%;
@@ -73,14 +28,10 @@
   height: 48px;
   border: 1px solid #707070;
   margin: 16px 0 0 10px;
-  text-align: center;
-}
-.header_wrap .logo a{
-  display: block;
   font-family: 'Prata', serif;
   font-size: 24px;
   line-height: 48px;
-  color: #1C1A1A;
+  text-align: center;
 }
 /* 네비메뉴 */
 #header nav {
@@ -186,22 +137,8 @@
 #header .info_mn img {
   float: right;
 }
-/* 로그아웃 */
-.logout {
-  display: block;
-  width: 75px;
-  height: 20px;
-  font-family: 'Goudy Bookletter 1911', serif;
-  font-size: 15px;
-  line-height: 20px;
-  color: #1C1A1A;
-  background-color: white;
-  position: absolute;
-  top: 60px;
-  right: 0;
-}
-/* [2]메인화면 */
-#main {
+/* [2]메인화면*/
+section {
   float: left;
   width: 100%;
   height: 100vh;
@@ -209,49 +146,69 @@
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-#main .q_mn {
-  float: right;
-  width: 640px;
-  height: 430px;
-  margin: 245px 290px 0 0;
+/* [2-1] 제목*/
+section .join1_header {
+    width: 100%;
+    height: 240px;
+    margin-top: 190px;
+}
+section .join1_header h2 {
+    text-align: center;
+    font-family: 'Goudy Bookletter 1911', serif;
+    font-size: 40px;
+    line-height: 85px;
+    color: #1C1A1A;
+}
+section .join1_header .process {
+    width: 100%;
+    height: 155px;
+    position: relative;
+    /* background-color: yellow; */
+}
+section .join1_header .process img {
+    position: absolute;
+    top: 45px;
+    left: 50%;
+    margin-left: -333px;
+}
+/* [2-2] 약관동의 박스 */
+#term_box {
+  margin: 0 auto;
+  width: 810px;
+  height: 360px;
   display: flex;
   justify-content: space-between;
 }
-#main .q_mn li {
-  width: 300px;
-  height: 100%;
-  border: 1px solid #1C1A1A;
-  box-sizing: border-box;
+#term_box li {
+  width: 388px;
+  height: 360px;
+  border: 1px solid #858585;
 }
-#main .q_mn li a {
+.agree_chk {
+  width: 100%;
+  margin-top: 33px;
+  text-align: center;
+}
+/* 다음 버튼 */
+#next {
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 350px;
+  height: 50px;
+  margin-top: 30px;
+  font-family: 'Goudy Bookletter 1911', serif;
+  font-size: 18px;
+  line-height: 50px;
+  color: #1C1A1A;
+  border: 1px solid #707070;
+  text-align: center;
 }
-/* 배경 요소 */
-#main .bg_msg {
-  font-family: 'Playfair Display SC', serif;
-  font-size: 164px;
-  line-height: 218px;
-  color: #2D2B2B;
-  position: absolute;
-  top: 575px;
-  left: 50px;
-}
-#main .bg_line {
-  width: 50%;
-  height: 1.2px;
+#next:hover {
+  color: whitesmoke;
   background-color: #1C1A1A;
-  position: absolute;
-  top: 960px;
-  right:0;
 }
-/* 푸터 */
-#footer {
-  float: left;
-  width: 100%;
-  height: 20vh;
-  background: #1C1A1A;
-  opacity: 0.47;
-}
+
+

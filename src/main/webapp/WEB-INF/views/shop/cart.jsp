@@ -152,8 +152,3 @@
     </div>
   
 </html>
-
-
-<!-- <div class="form-group">
-    <input type="text" class="form-control" placeholder="아이디" name="userId" maxlength="20">					
-</div> -->

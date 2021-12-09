@@ -84,7 +84,7 @@
             <span>정세랑</span>
           </header>
           <!-- (2) 책 상세설명 이미지 불러오기 -->
-          <img class="book_detail_img" src="images/book_detail_img_temp.gif" alt="">
+          <img class="book_detail_img" src="../../resources/images/book_detail_img_temp.gif" alt="">
         </article>
         <!-- [2-3] 책 탭메뉴 영역 -->
         <article id="book_tab_mn">

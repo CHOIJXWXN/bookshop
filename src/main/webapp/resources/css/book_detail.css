@@ -1,49 +1,4 @@
 @charset "utf-8";
-/* 폰트 */
-@import url("https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy&display=swap");
-/* 프리텐다드 */
-@font-face {
-  font-family: "Pretendard-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
-    format("woff");
-  font-weight: 400;
-  font-style: normal;
-}
-/* Goudy Bookletter */
-@import url("https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&display=swap");
-/* 본명조 */
-@font-face {
-  font-family: 'NotoSerifKR';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NotoSerifKR.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-/* 마루부리 */
-@font-face {
-  font-family: 'MaruBuri-Regular';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/MaruBuri-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-/* prata */
-@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
-/* playfair */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@700&display=swap');
-/* 대한체 bold */
-@font-face {
-  font-family: 'Daehan-Bold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Daehan-Bold.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-/* 리디바탕 */
-@font-face {
-  font-family: 'RIDIBatang';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
 
 #wrap {
   width: 100%;
@@ -73,10 +28,14 @@
   height: 48px;
   border: 1px solid #707070;
   margin: 16px 0 0 10px;
+  text-align: center;
+}
+.header_wrap .logo a{
+  display: block;
   font-family: 'Prata', serif;
   font-size: 24px;
   line-height: 48px;
-  text-align: center;
+  color: #1C1A1A;
 }
 /* 네비메뉴 */
 #header nav {

@@ -16,8 +16,8 @@
       <section id="main">
         <!-- 대표 메뉴 -->
         <ul class="q_mn">
-          <li><a href="#">diary 독서기록</a></li>
-          <li><a href="#">book shop 책 쇼핑몰</a></li>
+          <li><a href="${path }/record">diary 독서기록</a></li>
+          <li><a href="${path }/shop">book shop 책 쇼핑몰</a></li>
         </ul>
         <!-- 배경 요소-->
         <h1 class="bg_msg">

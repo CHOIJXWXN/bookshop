@@ -53,27 +53,27 @@
          <article class="book_list">
            <ul class="book_prod_wrap">
              <li><a href="#">
-               <img class="book_cover" src="images/book_cover_temp1.gif" alt="">
+               <img class="book_cover" src="../../resources/images/book_cover_temp1.gif" alt="">
                <h4 class="book_ttl">보잘 것 없는 오늘이 행복이에요</h4>
                <span class="book_price">15,000원</span>
              </a></li>
              <li><a href="#">
-              <img class="book_cover" src="images/book_cover_temp2.gif" alt="">
+              <img class="book_cover" src="../../resources/images/book_cover_temp2.gif" alt="">
               <h4 class="book_ttl">시선으로부터</h4>
               <span class="book_price">18,000원</span>
              </a></li>
              <li><a href="#">
-              <img class="book_cover" src="images/book_cover_temp3.gif" alt="">
+              <img class="book_cover" src="../../resources/images/book_cover_temp3.gif" alt="">
               <h4 class="book_ttl">나태주 연필화 시집</h4>
               <span class="book_price">12,000원</span>
              </a></li>
              <li><a href="#">
-              <img class="book_cover" src="images/book_cover_temp4.gif" alt="">
+              <img class="book_cover" src="../../resources/images/book_cover_temp4.gif" alt="">
               <h4 class="book_ttl">눈먼 자들의 도시</h4>
               <span class="book_price">23,000원</span>
              </a></li>
              <li><a href="#">
-              <img class="book_cover" src="images/book_cover_temp2.gif" alt="">
+              <img class="book_cover" src="../../resources/images/book_cover_temp2.gif" alt="">
               <h4 class="book_ttl">시선으로부터</h4>
               <span class="book_price">18,000원</span>
              </a></li>
@@ -101,7 +101,7 @@
                <li><a href="#">3</a><div class="page_icon"></div></li>
                <li><a href="#">4</a><div class="page_icon"></div></li>
                <li><a href="#">5</a><div class="page_icon"></div></li>
-               <li><a href="#"><img src="images/page_next.png" alt=""></a></li>
+               <li><a href="#"><img src="../../resources/images/page_next.png" alt=""></a></li>
              </ul>
            </div>
          </article>

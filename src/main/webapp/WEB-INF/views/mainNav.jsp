@@ -5,41 +5,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
-	<!-- [1] 헤더 -->
+	<!-- [1] 헤더(메인 네비게이션) -->
       <header id="header">
-        <!-- 로고 -->
+        <!-- (1) 로고 -->
         <div class="header_wrap">
-          <h2 class="logo">LOGO</h2>
-          <!-- 네비 메뉴 -->
+          <h2 class="logo">
+            <a href="${path }/">LOGO</a>            
+          </h2>
+          <!-- (2) 네비 메뉴 -->
           <nav>
             <ul class="main_nav">
-              <li class="nav_1"><a href="#">Books</a></li>
-              <li class="nav_2"><a href="#">Diary</a></li>
-              <li class="nav_3"><a href="#">Board</a></li>
+              <li class="nav_1"><a href="${path }/shop">Books</a></li>
+              <li class="nav_2"><a href="${path }/record">Diary</a></li>
+              <li class="nav_3"><a href="${path }/ask">Board</a></li>
             </ul>
             <!-- BOOKS HOVER : 서브메뉴 보이기 -->
             <ul class="books_sub_mn">
-              <li><a href="#">ALL</a></li>
-              <li><a href="#">FOR U</a></li>
+              <li><a href="${path }/shop">ALL</a></li>
+              <li><a href="${path }/bookbest">BEST</a></li>
             </ul>
           </nav>
-          <!-- 인포메뉴 -->
+          <!-- (3) 인포메뉴 -->
           <!-- case1) 로그아웃 상태 -->
-          <!-- <a href="#" class="info_mn">
-            <img src="images/login.png" alt="">
+          <c:if test="${empty user_id }">
+          <a href="${path }/login" class="info_mn login">
+            <img src="../resources/images/login.png" alt="">
             <span>Log In</span>
-          </a> -->
+          </a>
+          </c:if>
           <!-- case2) 로그인 상태 -->
-          <a href="#" class="info_mn">
-            <img src="images/mypage.png" alt="">
+         <c:if test="${not empty user_id }">
+          <a href="${path }/mypage" class="info_mn mypage">
+            <img src="../resources/images/mypage.png" alt="">
             <span>My Page</span>
           </a>
-        </div>
-        
+           <a href="${path }/logout" class="logout">or&nbsp;&nbsp;Log Out</a>
+          </c:if>
+        </div>        
       </header>
+      <!-- 네비게이션 메뉴 종료 -->
 </body>
 </html>
