@@ -9,6 +9,7 @@
 	  <typeAlias alias="AskReply" type="com.bookshop.vo.AskReply"/>
 	  <typeAlias alias="Book" type="com.bookshop.vo.Book"/>
 	  <typeAlias alias="Cart" type="com.bookshop.vo.Cart"/>
+	  <typeAlias alias="CartPlus" type="com.bookshop.vo.CartPlus"/>
 	  <typeAlias alias="Delivery" type="com.bookshop.vo.Delivery"/>
 	  <typeAlias alias="OrderList" type="com.bookshop.vo.OrderList"/>
 	  <typeAlias alias="Orders" type="com.bookshop.vo.Orders"/>

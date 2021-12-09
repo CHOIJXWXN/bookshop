@@ -76,16 +76,24 @@ public class BookServiceImpl implements BookService {
 	public Book view(int book_id) throws Exception {
 		return dao.getBook(book_id);
 	}
+	
+   @Override
+   public HashMap<String, Object> showReview(int book_id, int pageNum) throws Exception {
+      HashMap<String, Object> map = new HashMap<String, Object>();
+      int reviewCnt = dao.getReviewCnt(book_id);
+      List<Review> list = dao.getReview(book_id, pageNum);
+      Paging paging = new Paging(pageNum, reviewCnt);
+      int avgScore = dao.getBookScore(book_id);
+      map.put("list", list);
+      map.put("paging", paging);
+      map.put("cnt", reviewCnt);
+      map.put("score", avgScore);
+      return map;
+   }
 
-	@Override
-	public HashMap<String, Object> showReview(int book_id, int pageNum) throws Exception {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		int reviewCnt = dao.getReviewCnt(book_id);
-		List<Review> list = dao.getReview(book_id, pageNum);
-		Paging paging = new Paging(pageNum, reviewCnt);
-		map.put("list", list);
-		map.put("paging", paging);
-		return map;
-	}
+   @Override
+   public void addReview(Review review) throws Exception {
+      dao.addReview(review);
+   }
 
 }
