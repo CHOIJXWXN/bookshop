@@ -1,48 +1,4 @@
 @charset "utf-8";
-/* 폰트 */
-@import url("https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy&display=swap");
-/* 프리텐다드 */
-@font-face {
-  font-family: "Pretendard-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
-    format("woff");
-  font-weight: 400;
-  font-style: normal;
-}
-/* Goudy Bookletter */
-@import url("https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&display=swap");
-/* 본명조 */
-@font-face {
-  font-family: 'NotoSerifKR';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NotoSerifKR.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-/* 마루부리 */
-@font-face {
-  font-family: 'MaruBuri-Regular';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/MaruBuri-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-/* J송명 */
-@font-face {
-  font-family: 'JSongMyung-Regular-KO';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/JSongMyung-Regular-KO.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
-/* 을유 */
-@font-face {
-  font-family: 'Eulyoo1945-SemiBold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2102-01@1.0/Eulyoo1945-SemiBold.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-/* prata */
-@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
-/* playfair */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@700&display=swap');
 
 
 #wrap {
@@ -61,7 +17,7 @@
 /* 헤더 틀 */
 .header_wrap {
   margin: 0 auto;
-  width: 1500px;
+  width: 78%;
   height: 85px;
   /* background-color: whitesmoke;   */
   position: relative;
