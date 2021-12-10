@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 // Mypage 관련 Controller
 
 @Controller
-@RequestMapping(value = "mypage/*")
+@RequestMapping(value = "/mypage/*")
 public class MemberController {
 	
 	/*

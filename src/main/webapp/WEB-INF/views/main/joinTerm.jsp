@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Shop</title>
     <link rel="stylesheet" href="${path }/resources/css/reset.css" />
+    <link rel="stylesheet" href="${path }/resources/css/mainNav.css" />
     <link rel="stylesheet" href="${path }/resources/css/joinTerm.css" />
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <%-- <script src="${path }/resources/js/jquery.js"></script> --%>
