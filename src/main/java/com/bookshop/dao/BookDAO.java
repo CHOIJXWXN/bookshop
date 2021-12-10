@@ -21,5 +21,7 @@ public interface BookDAO {
 	public Book getBook(int book_id) throws Exception;
 	public List<Review> getReview(int book_id, int pageNum) throws Exception;
 	public int getReviewCnt(int book_id) throws Exception;
+	public int getBookScore(int book_id) throws Exception;
+	public void addReview(Review review) throws Exception;
 	
 }

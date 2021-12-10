@@ -37,13 +37,6 @@
 		LIMIT #{start}, 16
 	</select>
 	
-	<!-- 특정 책의 리뷰 평균 평점  -->
-	<select id="getBookScore" resultType="_int">
-		SELECT AVG(review_score)
-		FROM review
-		WHERE book_id = #{book_id}
-	</select>
-	
 	<!-- 키워드 검색 -->
 	<select id="searchBook" resultType="Book">
 		SELECT *
@@ -132,5 +125,18 @@
 		FROM review
 		WHERE book_id = #{book_id}
 	</select>
-
+	
+	<!-- 특정 책의 리뷰 평균 평점  -->
+   	<select id="getBookScore" resultType="_int">
+   		SELECT AVG(review_score)
+      	FROM review
+      	WHERE book_id = #{book_id}
+   	</select>
+   
+ 	<!-- 리뷰 추가 -->
+   	<insert id="addReview">
+      	INSERT INTO review (user_id, book_id, review_score, review_contents, review_date)
+      	VALUES (#{user_id}, #{book_id}, #{review_score}, #{review_contents}, NOW())
+   	</insert>
+	
 </mapper>
