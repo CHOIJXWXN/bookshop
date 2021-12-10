@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bookshop.service.BookService;
 import com.bookshop.vo.Book;
+import com.bookshop.vo.Review;
 
 @Controller
 @RequestMapping(value = "/book/*")
@@ -89,13 +90,15 @@ public class BookController {
 		return bookService.showReview(book_id, pageNum);
 	}
 	
-	// 책 리뷰 추가 기능
-	/*
-	 * https://walbatrossw.github.io/spring-mvc/2018/03/13/12-spring-mvc-board-ajax-reply-presentation.html
-	 */
-	@RequestMapping(value = "/addReview", method = RequestMethod.GET)
-	public String addReview(Model model) throws Exception {
-		return "";
-	}
+   // 책 리뷰 추가 기능 (ajax)
+   @RequestMapping(value = "/addReview", method = RequestMethod.GET)
+   @ResponseBody
+   public HashMap<String, Object> addReview(Review review, Integer pageNum) throws Exception {
+      if (pageNum == null) {
+         pageNum = 1;
+      }
+      bookService.addReview(review);
+      return bookService.showReview(review.getBook_id(), pageNum);
+   }
 
 }

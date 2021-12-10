@@ -93,4 +93,14 @@ public class BookDAOImpl implements BookDAO {
 	public int getReviewCnt(int book_id) throws Exception {
 		return sqlSession.selectOne(SESSION + ".getReviewCnt", book_id);
 	}
+	
+   @Override
+   public int getBookScore(int book_id) throws Exception {
+      return sqlSession.selectOne(SESSION + ".getBookScore", book_id);
+   }
+
+   @Override
+   public void addReview(Review review) throws Exception {
+      sqlSession.insert(SESSION + ".addReview", review);
+   }
 }

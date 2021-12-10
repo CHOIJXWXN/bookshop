@@ -4,4 +4,24 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bookshop.mappers.order">
+
+	<!-- 특정 유저 장바구니 -->
+   	<select id="getCartPlus" resultType="CartPlus">
+   		SELECT B.book_cover, B.book_title, B.book_writer, A.book_cnt, B.book_price FROM cart A, book B
+     	WHERE user_id = #{user_id}
+     	AND A.book_id = B.book_id
+   	</select>
+   	
+   	<!-- 상품을 장바구니에 추가 -->
+   	<insert id="addCart">
+   		INSERT INTO cart
+   		VALUES (#{user_id}, #{book_id}, #{book_cnt})
+   	</insert>
+   	
+   	<!-- 상품을 장바구니에서 삭제 -->
+   	<delete id="deleteCart">
+   		DELETE FROM cart
+   		WHERE user_id = #{user_id} AND book_id = #{book_id}
+   	</delete>
+   
 </mapper>

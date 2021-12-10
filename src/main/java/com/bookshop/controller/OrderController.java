@@ -1,5 +1,8 @@
 package com.bookshop.controller;
 
+import java.util.List;
+
+import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -10,20 +13,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bookshop.service.OrderService;
+import com.bookshop.vo.Book;
 import com.bookshop.vo.Cart;
+import com.bookshop.vo.CartPlus;
 
 @Controller
 @RequestMapping(value = "/order/*")
 public class OrderController {
 	
+	@Inject
+	OrderService orderService;
+	
 	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 	
 	// 주문 페이지
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String order(HttpSession session) throws Exception {
-		// 책 상세 페이지에서 바로 주문한 경우
-		// 장바구니 선택 상품 주문
-		// 장바구니 전체 상품 주문
+	public String order(CartPlus cartPlus, Model model) throws Exception {
+		model.addAttribute("cartPlus", cartPlus);
 		return "";
 	}
 	
@@ -32,8 +39,8 @@ public class OrderController {
 	 */
 	// 장바구니 상품 추가 기능
 	@RequestMapping(value = "/addCart", method = RequestMethod.GET)
-	public String addCart(String user_id, Integer book_id) throws Exception {
-		// 카트에 추가
+	public String addCart(Cart cart) throws Exception {
+		orderService.addCart(cart);
 		return "";
 	}
 	
@@ -43,31 +50,35 @@ public class OrderController {
 	// 장바구니 상품 삭제 기능 (Ajax)
 	@RequestMapping(value = "/deleteCart", method = RequestMethod.GET)
 	@ResponseBody
-	public String deleteCart(String user_id, Cart cart) throws Exception {
-		// 체크된 상품을 장바구니에서 삭제
-		// 아무것도 return 안 해줘도 됨
-		return "";
+	public String deleteCart(Cart cart) throws Exception {
+		if (cart.book_title == null) {
+			return "-1"; // 아무 것도 선택하지 않고 삭제 버튼을 누르면 -1 반환
+		} else {
+			orderService.deleteCart(cart);
+			return "0";  // 삭제했으면 0 반환
+		}
 	}
 	
 	// 장바구니 페이지
 	@RequestMapping(value = "/cart", method = RequestMethod.GET)
 	public String cart(HttpSession session, Model model) throws Exception {
 		// (해당 유저의 List<Cart>, List<Book>) HashMap
-		model.addAttribute("map", map);
+		String user_id = (String) session.getAttribute("user_id");
+		model.addAttribute("cartPlus", orderService.viewCart(user_id));
 		return "";
 	}
 	
-	// 선택 상품 주문 기능 (그냥 바로 /로 옮겨도 될 거 같음)
+	// 선택 상품 주문 기능
 	@RequestMapping(value = "/getOrderSelect", method = RequestMethod.GET)
-	public String getOrderSelect(Model model) throws Exception {
+	public String getOrderSelect(CartPlus cartPlus, Model model) throws Exception {
+		model.addAttribute("cartPlus", cartPlus);
 		return "redirect:/";
 	}
 	
 	// 전체 상품 주문 기능
 	@RequestMapping(value = "/getOrderAll", method = RequestMethod.GET)
 	public String getOrderAll(String user_id, Model model) throws Exception {
-		// (해당 유저의 List<Cart>, List<Book>) HashMap
-		model.addAttribute("map", map);
+		model.addAttribute("cartPlus", orderService.viewCart(user_id));
 		return "redirect:/";
 	}
 
