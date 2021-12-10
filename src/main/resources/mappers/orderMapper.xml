@@ -11,5 +11,17 @@
      	WHERE user_id = #{user_id}
      	AND A.book_id = B.book_id
    	</select>
+   	
+   	<!-- 상품을 장바구니에 추가 -->
+   	<insert id="addCart">
+   		INSERT INTO cart
+   		VALUES (#{user_id}, #{book_id}, #{book_cnt})
+   	</insert>
+   	
+   	<!-- 상품을 장바구니에서 삭제 -->
+   	<delete id="deleteCart">
+   		DELETE FROM cart
+   		WHERE user_id = #{user_id} AND book_id = #{book_id}
+   	</delete>
    
 </mapper>
