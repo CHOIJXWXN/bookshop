@@ -8,20 +8,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Shop</title>
     <link rel="stylesheet" href="${path }/resources/css/reset.css" />
-    <link rel="stylesheet" href="${path }/resources/css/book_detail.css" />
+    <link rel="stylesheet" href="${path }/resources/css/mainNav.css" />
+    <link rel="stylesheet" href="${path }/resources/css/bookDetail.css" />
   </head>
   <body>
     <div id="wrap">
       <!-- [1] 네비게이션 -->
       <jsp:include page="../mainNav.jsp">
       <!-- [2] 메인화면 -->
+       <!-- [2] 메인화면 -->
       <section id="book_detail">
         <!-- [2-1] 책 썸네일 & 가격정보 -->
         <article id="book_info">
           <!-- 책 썸네일 -->
           <div class="book_img_box">
             <div class="book_thum">
-              <img src="images/book_cover_big_temp1.gif" alt="">
+              <img src="../../resources/images/book_cover_big_temp1.gif" alt="">
               <!-- 확대버튼 -->
               <a href="#" class="zoom_btn">확대</a>
             </div>
@@ -97,19 +99,121 @@
             <input type="radio" id="tab3" name="tab" checked />
 
               <!-- 탭 내용 영역 -->
-              <section class="delivery">delivery</section>
-              <section class="change">change</section>
-              <section class="review">review</section>
-          </div>
-          
-        </article>
-         
-               
-      </section>
-      <!-- [3] 푸터 -->
-      <footer id="footer">
-        푸터영역
-       </footer> 
+              <section class="delivery">delivery
+                <!-- 빈공간 -->
+                <div class="blank"></div>
+              </section>
+              <section class="change">change
+                <!-- 빈공간 -->
+                <div class="blank"></div>
+              </section>
+              <!-- **탭메뉴-3**리뷰페이지 -->
+              <section class="review">
+                <!-- 리뷰 입력 박스 -->
+                <form method="POST" action="/writeReview">
+                  <div class="write_form">
+                    <!-- 리뷰 입력 박스 헤더 -->
+                    <header class="form_ttl">
+                      <!-- 책 사진 -->
+                      <div class="book_img">
+                        <img src="../../resources/images/book_cover_temp2.gif" alt="">
+                      </div>
+                      <!-- 책 요약 -->
+                      <ul class="book_info">
+                        <li>책제목</li>
+                        <li>작가</li>
+                        <li>출판사</li>
+                      </ul>
+                      <!-- 리뷰 title -->
+                      <div class="review_msg">
+                        <h3>이 책 어떠셨나요?</h3>
+                        <div class="review_score">
+                          <i class="far fa-star fa-2x"></i>
+                          <i class="far fa-star fa-2x"></i>
+                          <i class="far fa-star fa-2x"></i>
+                          <i class="far fa-star fa-2x"></i>
+                          <i class="far fa-star fa-2x"></i>
+                        </div>
+                      </div>
+                    </header>
+                    <!-- 리뷰 입력칸 -->
+                    <input type="textarea" name="write_review" id="write_review_box" placeholder="로그인 후 리뷰등록 가능합니다." />
+                   
+                    <!-- 리뷰 등록 버튼 -->
+                    <input type="submit" id="upload_review" value="리뷰 등록하기" />
+                  </div>
+                </form>
+                <!-- 등록된 리뷰수, 평점 평균 -->
+                <div class="review_status">
+                  <span>등록된 리뷰 수 : 45개</span>
+                  <span>&nbsp;&nbsp;평점 평균 : 3.5점</span>
+                </div>
+                <!-- 등록된 리뷰 리스트 3개씩  -->
+                <div class="review_row">
+                  <div class="review_writer">
+                    <span>user_nickname</span>
+                    <span>2021-12-10</span>
+                  </div>
+                  <div class="review_star">                  
+                      <i class="far fa-star"></i>
+                      <i class="far fa-star"></i>
+                      <i class="far fa-star"></i>
+                      <i class="far fa-star"></i>
+                      <i class="far fa-star"></i>                   
+                  </div>
+                  <div class="view_review">
+                    <p>꼭 나이가 많은 사람만 읽어야할 책이 아니다. '나는 누구인가?', '앞으로 살아갈 동안 무엇을 해야하는가? 등 삶에 대한 질문에 유리
+                      한 답을 내어줄 수 있을 진정한 어른의 조언같은 책, 선물용으로 좋을 것 같다.꼭 나이가 많은 사람만 읽어야할 책이 아니다. '나는 누구인가?', '앞으로 살아갈 동안 무엇을 해야하는가? 등 삶에 대한 질문에 유리
+                      한 답을 내어줄 수 있을 진정한 어른의 조언같은 책, 선물용으로 좋을 것 같다.</p>
+                  </div>
+                </div>
+                <div class="review_row">
+                  <div class="review_writer">
+                    <span>user_nickname</span>
+                    <span>2021-12-10</span>
+                  </div>
+                  <div class="review_star">
+                    <i class="far fa-star"></i>
+                      <i class="far fa-star"></i>
+                      <i class="far fa-star"></i>
+                      <i class="far fa-star"></i>
+                      <i class="far fa-star"></i> 
+                  </div>
+                  <div class="view_review">
+                    <p>꼭 나이가 많은 사람만 읽어야할 책이 아니다. '나는 누구인가?', '앞으로 살아갈 동안 무엇을 해야하는가? 등 삶에 대한 질문에 유리
+                      한 답을 내어줄 수 있을 진정한 어른의 조언같은 책, 선물용으로 좋을 것 같다.</p>
+                  </div>
+                </div>
+                <div class="review_row">
+                  <div class="review_writer">
+                    <span>user_nickname</span>
+                    <span>2021-12-10</span>
+                  </div>
+                  <div class="review_star">
+                    <i class="far fa-star"></i>
+                      <i class="far fa-star"></i>
+                      <i class="far fa-star"></i>
+                      <i class="far fa-star"></i>
+                      <i class="far fa-star"></i> 
+                  </div>
+                  <div class="view_review">
+                    <p>꼭 나이가 많은 사람만 읽어야할 책이 아니다. '나는 누구인가?', '앞으로 살아갈 동안 무엇을 해야하는가? 등 삶에 대한 질문에 유리
+                      한 답을 내어줄 수 있을 진정한 어른의 조언같은 책, 선물용으로 좋을 것 같다.꼭 나이가 많은 사람만 읽어야할 책이 아니다. '나는 누구인가?', '앞으로 살아갈 동안 무엇을 해야하는가? 등 삶에 대한 질문에 유리
+                      한 답을 내어줄 수 있을 진정한 어른의 조언같은 책, 선물용으로 좋을 것 같다.꼭 나이가 많은 사람만 읽어야할 책이 아니다. '나는 누구인가?', '앞으로 살아갈 동안 무엇을 해야하는가? 등 삶에 대한 질문에 유리
+                      한 답을 내어줄 수 있을 진정한 어른의 조언같은 책, 선물용으로 좋을 것 같다.</p>
+                  </div>
+                </div>
+                <!-- 페이징처리 -->
+                <ul class="page_num">
+                  <li><a href="#">prev</a></li>
+                  <li><a href="#">next</a></li>
+                </ul>
+                <!-- 빈공간 -->
+                <div class="blank"></div>
+              </section>             
+          </div>         
+        </article>              
+      </section> 
       
     </div>
   </body>

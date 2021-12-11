@@ -58,6 +58,21 @@ public class MainController {
 		return "main/find";
 	}
 	
+//	@RequestMapping(value = "/findIdP", method = RequestMethod.GET)
+//	public String helpIdP(Model model) throws Exception {
+//		return "main/findIdP";
+//	}
+	
+//	@RequestMapping(value = "/findIdE", method = RequestMethod.GET)
+//	public String helpIdE(Model model) throws Exception {
+//		return "main/findIdE";
+//	}
+	
+//	@RequestMapping(value = "/findPwP", method = RequestMethod.GET)
+//	public String helpPwP(Model model) throws Exception {
+//		return "main/findPwP";
+//	}
+	
 	// 회원가입 약관 페이지
 	@RequestMapping(value = "/joinTerm", method = RequestMethod.GET)
 	public String joinTerm(Model model) throws Exception {

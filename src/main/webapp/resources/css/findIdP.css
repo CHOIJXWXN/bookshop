@@ -1,0 +1,77 @@
+@charset "utf-8";
+
+
+#wrap {
+  width: 100%;
+  
+}
+
+/* [2]메인화면*/
+#findIdP {
+  float: left;
+  width: 100%;
+  height: 100vh;
+  background-image: url("../images/main_bg_4.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.findId_success {
+    width: 500px;
+    height: 350px;
+    /* background-color: lemonchiffon; */
+}
+.findId_success h2 {
+    text-align: center;
+    font-family: 'NotoSerifKR';
+    font-size: 25px;
+    line-height: 40px;
+    color: #1C1A1A;
+}
+.findId_success p {
+    text-align: center;
+    font-family: 'NotoSerifKR';
+    font-size: 19px;
+    line-height: 50px;
+    color: #1C1A1A;
+}
+.findId_success .row {
+    width: 100%;    
+    height: 60px;
+    /* background-color: lightseagreen; */
+    margin-top: 60px;
+}
+.findId_success .row input {
+    margin-left: 30%;
+}
+.findId_success .row > label {
+    text-align: center;
+    font-family: "Pretendard-Regular";
+    font-size: 15px;
+    line-height: 60px;
+    color: #1C1A1A;
+}
+.findId_success .btns_wrap {
+    width: 100%;
+    height: 60px;
+    /* background-color: lightgreen; */
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-between;
+}
+.findId_success .btns_wrap li {
+    width: 49.5%;
+    height: 100%;
+    background-color: #1C1A1A;
+}
+.findId_success .btns_wrap li a {
+    text-align: center;
+    display: block;
+    font-family: 'NotoSerifKR';
+  font-size: 18px;
+  line-height: 60px;
+  color: #f8f5f5;
+}

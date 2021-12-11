@@ -1,0 +1,215 @@
+@charset "utf-8";
+
+
+#wrap {
+  width: 100%;
+}
+
+/* [2]메인화면*/
+#find {
+  float: left;
+  width: 100%;
+  height: 100vh;
+  background-image: url("../images/main_bg_4.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+/* 아이디/비밀번호찾기 감싸는 전체 틀 */
+#findwrap {
+  margin: 0 auto;
+  width: 70%;
+  height: 600px;
+  /* background-color: aquamarine; */
+  margin-top: 250px;
+  display: flex;
+}
+/* 아이디찾기, 비밀번호 찾기 각 박스들(스타일 공통) */
+#findwrap li {
+  width: 50%;
+  height: 100%;
+  border-right: 1px solid #707070;
+}
+#findwrap li:last-child {
+  border-right: 0;
+}
+/* 소제목 */
+#findwrap li h2 {
+  text-align: center;
+  width: 100%;
+  height: 50px;
+  font-family: 'Goudy Bookletter 1911', serif;
+  font-size: 40px;
+  line-height: 50px;
+  color: #1C1A1A;
+  padding-top: 50px;
+  padding-bottom: 110px;
+}
+/* (1) findId */
+#findId_tab_box {
+  width: 100%;
+  height: 390px;
+  /* background-color: lightsalmon; */
+  position: relative;
+}
+/* 아이디/이메일로 찾기 선택 */
+input[type="radio"] {
+  display: none;
+}
+#findId_tab_box > label {
+  display: block;
+  float: left;
+  width: 30%;
+  height: 50px;
+  font-family: "Pretendard-Regular";
+  font-size: 15px;
+  line-height: 50px;
+  color: #1C1A1A;
+  text-align: center;
+  cursor: pointer;
+  border: 0.6px solid #858585;
+  border-radius: 47%;
+  position: relative;
+}
+#findId_tab_box > label:first-child {
+  margin: 0 6% 0 17%;
+}
+#findId_tab_box > label > img {
+  margin-right: 2px;
+  display: none;
+}
+#findId_tab_box > label:hover > img {
+  display: inline-block;
+}
+/* 아이디, 이름, 이메일, 휴대폰번호 정보 입력 폼 */
+#findId_tab_box section {
+  width: 100%;
+  height: 300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 90px;
+  display: none;
+}
+#findId_tab_box .email {
+  z-index: 9000;
+  /* background-color: whitesmoke; */
+}
+#findId_tab_box .phone {
+  z-index: 8000;
+  /* background-color: whitesmoke; */
+}
+#findId_tab_box #tab1:checked ~ .email {
+  display: block;
+}
+#findId_tab_box #tab2:checked ~ .phone {
+  display: block;
+}
+/* 탭박스 회원 정보 입력하는 부분 */
+#findId_tab_box .row,
+#findId_tab_box .row_tel {
+  width: 100%;
+  height: 60px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+  background-clip: content-box;
+}
+#findId_tab_box .row label,
+#findId_tab_box .row_tel label {
+  display: inline-block;
+  width: 100px;
+  height: 60px;
+  /* background-color: rgba(28, 26, 26, 0.05);   */
+  font-family: 'NotoSerifKR';
+  font-size: 19px;
+  color: #2E2D2D;
+  line-height: 60px;
+  margin-left: 10%;
+  vertical-align: center;
+}
+.row input[type="text"] {
+  width: 325px;
+  height: 45px;
+  padding-left: 15px;
+  margin-left: 80px;
+  align-items: center;
+}
+.row_tel input[type="text"] {
+  width: 90px;
+  height: 45px;
+  padding-left: 15px;
+  align-items: center;
+}
+.row_tel .tel1 {
+  margin-left: 80px;
+}
+input[type="submit"] {
+  width: 80%;
+  height: 50px;
+  background-color: #1C1A1A;
+  margin-top: 50px;
+  font-family: 'NotoSerifKR';
+  font-size: 18px;
+  color: #fbf5f5;
+  line-height: 50px;
+  margin-left: 10%;
+}
+/* (2)findPW(나머지는 위와 스타일 공통) */
+#findId_tab_box .pw_email {
+  z-index: 6000;
+  /* background-color: whitesmoke; */
+}
+#findId_tab_box .pw_phone {
+  z-index: 5000;
+  /* background-color: whitesmoke; */
+}
+#findId_tab_box #pw_tab1:checked ~ .pw_email {
+  display: block;
+}
+#findId_tab_box #pw_tab2:checked ~ .pw_phone {
+  display: block;
+}
+
+/* --------------모달---------------- */
+#not_exist_msg {
+  position: absolute;
+  top: 350px;
+  left: 50%;
+  width: 500px;
+  height: 270px;
+  margin-left: -250px;
+  background-color: rgba(28, 26, 26, 0.84);
+  z-index: 9999;
+  border-radius: 57px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+#not_exist_msg h3 {
+  text-align: center;
+  font-family: 'NotoSerifKR';
+  font-size: 20px;
+  color: #fbf5f5;
+  line-height: 43px; 
+}
+#not_exist_msg a {
+  text-align: center;
+  display: block;
+  width: 160px;
+  height: 50px;
+  font-family: 'NotoSerifKR';
+  font-size: 20px;
+  color: #fbf5f5;
+  line-height: 50px;
+  border: 1px solid #efefef;
+  border-radius: 30px;
+}
+#not_exist_msg a:hover {
+  background-color: #efefef;
+  color: #1C1A1A;
+}
+
+
+
+
