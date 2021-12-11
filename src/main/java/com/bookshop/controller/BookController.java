@@ -29,12 +29,12 @@ public class BookController {
 	
 	// 책 메인 페이지 (all, 판매량순)
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String book(Integer pageNum, Model model) throws Exception {
+	public String book(Integer pageNum, Model model, int book_genre) throws Exception {
 		if (pageNum == null) {
 			pageNum = 1;
 		}
 		model.addAttribute("map", bookService.book("판매량순", pageNum));
-		return "";
+		return "shop/books";
 	}
 	
 	// 책 메인 페이지 (all, 신규출간순)
@@ -44,7 +44,7 @@ public class BookController {
 			pageNum = 1;
 		}
 		model.addAttribute("map", bookService.book("신규출간순", pageNum));
-		return "";
+		return "shop/books";
 	}
 	
 	// 책 메인 페이지 (all, 리뷰순)
@@ -54,14 +54,19 @@ public class BookController {
 			pageNum = 1;
 		}
 		model.addAttribute("map", bookService.book("리뷰순", pageNum));
-		return "";
-	}	
+		return "shop/books";
+	}
+	
+	// 시 소설 에세이 카테고리별 페이지 추가
 
 	// 책 검색 기능 (Ajax)
-	@RequestMapping(value = "/searchBook", method = RequestMethod.GET)
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Book> searchBook(String keyword) throws Exception {
-		return bookService.searchBook(keyword);
+	public HashMap<String, Object> search(String keyword, Integer pageNum) throws Exception {
+		if (pageNum == null) {
+			pageNum = 1;
+		}
+		return bookService.searchBook(keyword, pageNum);
 	}	
 	
 	// 책 베스트셀러 페이지
@@ -70,20 +75,20 @@ public class BookController {
 		// (정해진 기간의 베스트 셀러 List<Book> + 유저 기반 추천 도서 List<Book>) HashMap 가져오기
 		String user_id = (String) session.getAttribute("user_id");
 		model.addAttribute("map", bookService.best(user_id));
-		return "";
+		return "shop/booksBest";
 	}
 	
 	// 책 상세 페이지
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String detail(int book_id, Model model) throws Exception {
+	public String detail(String book_id, Model model) throws Exception {
 		model.addAttribute("book", bookService.view(book_id));
-		return "";
+		return "shop/bookDetail";
 	}
 	
 	// 책 리뷰 탭 기능 (Ajax)
-	@RequestMapping(value = "/showReview", method = RequestMethod.GET)
+	@RequestMapping(value = "/review", method = RequestMethod.GET)
 	@ResponseBody
-	public HashMap<String, Object> showReview(int book_id, Integer pageNum) throws Exception {
+	public HashMap<String, Object> review(String book_id, Integer pageNum) throws Exception {
 		if (pageNum == null) {
 			pageNum = 1;
 		}

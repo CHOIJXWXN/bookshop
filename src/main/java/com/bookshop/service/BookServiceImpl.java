@@ -35,8 +35,13 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public List<Book> searchBook(String keyword) throws Exception {
-		return dao.searchBook(keyword);
+	public HashMap<String, Object> searchBook(String keyword, int pageNum) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int bookCnt = dao.getSearchBookCnt(keyword);
+		Paging paging = new Paging(pageNum, bookCnt);
+		map.put("searchList", dao.searchBook(keyword, pageNum));
+		map.put("searchPaging", paging);
+		return map;
 	}
 	
 	/*
@@ -48,7 +53,7 @@ public class BookServiceImpl implements BookService {
 	public HashMap<String, Object> best(String user_id) throws Exception {
 		int flag;
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		List<Integer> idList = dao.getBestSeller();
+		List<String> idList = dao.getBestSeller();
 		List<Book> bookList = new ArrayList<Book>();
 		for (int i = 0; i < idList.size(); i++) {
 			bookList.add(dao.getBook(idList.get(i)));
@@ -73,12 +78,12 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public Book view(int book_id) throws Exception {
+	public Book view(String book_id) throws Exception {
 		return dao.getBook(book_id);
 	}
 	
    @Override
-   public HashMap<String, Object> showReview(int book_id, int pageNum) throws Exception {
+   public HashMap<String, Object> showReview(String book_id, int pageNum) throws Exception {
       HashMap<String, Object> map = new HashMap<String, Object>();
       int reviewCnt = dao.getReviewCnt(book_id);
       List<Review> list = dao.getReview(book_id, pageNum);

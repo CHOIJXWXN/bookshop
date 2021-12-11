@@ -21,7 +21,7 @@
 	
 	<!-- 신규출간 순으로 16개  -->
 	<select id="getFirstBook_id_new" resultType="Book">
-		SELECT book_id
+		SELECT *
 		FROM book
 		ORDER BY book_date DESC
 		LIMIT #{start}, 16
@@ -38,8 +38,17 @@
 	</select>
 	
 	<!-- 키워드 검색 -->
-	<select id="searchBook" resultType="Book">
+	<select id="searchBook" parameterType="map" resultType="Book">
 		SELECT *
+		FROM book
+		WHERE book_title  LIKE '%'+#{keyword}+'%'
+		   OR book_writer LIKE '%'+#{keyword}+'%'
+		LIMIT #{start}, 16
+	</select>
+	
+	<!-- 검색된 책 개수 -->
+	<select id="getSearchBookCnt" resultType="_int">
+		SELECT COUNT(*)
 		FROM book
 		WHERE book_title  LIKE '%'+#{keyword}+'%'
 		   OR book_writer LIKE '%'+#{keyword}+'%'
@@ -52,7 +61,7 @@
 		WHERE A.order_num = B.order_num
 		AND DATE_DIFF(NOW() - A.order_date) <![CDATA[<=]]> 30
 		GROUP BY B.book_id
-		ORDER BY SUM(B.book_cnt)
+		ORDER BY SUM(B.book_cnt) DESC
 		LIMIT 0, 8
 	</select>
 	
