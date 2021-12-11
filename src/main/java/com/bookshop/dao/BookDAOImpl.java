@@ -42,12 +42,21 @@ public class BookDAOImpl implements BookDAO {
 	}
 
 	@Override
-	public List<Book> searchBook(String keyword) throws Exception {
-		return sqlSession.selectList(SESSION + ".searchBook", keyword);
+	public List<Book> searchBook(String keyword, int pageNum) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int start = (pageNum - 1) * 16;
+		map.put("keyword", keyword);
+		map.put("start", start);
+		return sqlSession.selectList(SESSION + ".searchBook", map);
 	}
 
 	@Override
-	public List<Integer> getBestSeller() throws Exception {
+	public int getSearchBookCnt(String keyword) throws Exception {
+		return sqlSession.selectOne("SESSION" + ".getSearchBookCnt", keyword);
+	}
+	
+	@Override
+	public List<String> getBestSeller() throws Exception {
 		return sqlSession.selectList(SESSION + ".getBestSeller");
 	}
 	@Override
@@ -76,26 +85,26 @@ public class BookDAOImpl implements BookDAO {
 	}
 
 	@Override
-	public Book getBook(int book_id) throws Exception {
+	public Book getBook(String book_id) throws Exception {
 		return sqlSession.selectOne(SESSION + ".getBook", book_id);
 	}
 
 	@Override
-	public List<Review> getReview(int book_id, int pageNum) throws Exception {
+	public List<Review> getReview(String book_id, int pageNum) throws Exception {
 		int start = (pageNum - 1) * 3;
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("book_id", book_id);
 		map.put("start", start);
 		return sqlSession.selectList(SESSION + ".getReview", map);
 	}
 
 	@Override
-	public int getReviewCnt(int book_id) throws Exception {
+	public int getReviewCnt(String book_id) throws Exception {
 		return sqlSession.selectOne(SESSION + ".getReviewCnt", book_id);
 	}
 	
    @Override
-   public int getBookScore(int book_id) throws Exception {
+   public int getBookScore(String book_id) throws Exception {
       return sqlSession.selectOne(SESSION + ".getBookScore", book_id);
    }
 

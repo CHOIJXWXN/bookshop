@@ -16,7 +16,7 @@ public class AdminController {
 	// 관리자 메인 페이지
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String admin(Model model) throws Exception {
-		return "";
+		return "admin/admin";
 	}
 	
 	// 상품 관리 페이지
@@ -46,7 +46,7 @@ public class AdminController {
 	// 주문 관리 페이지
 	@RequestMapping(value = "/order", method = RequestMethod.GET)
 	public String order(Model model) throws Exception {
-		return "";
+		return "admin/order";
 	}
 
 }

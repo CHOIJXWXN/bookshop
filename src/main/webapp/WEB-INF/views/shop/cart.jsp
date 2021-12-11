@@ -6,9 +6,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Book Shop</title>
-    <link rel="stylesheet" href="${path }/resources/css/reset.css" />
-    <link rel="stylesheet" href="${path }/resources/css/book_cart.css" />
+    <title>장바구니</title>
+    <link rel="stylesheet" href="${path}/resources/css/reset.css" />
+    <link rel="stylesheet" href="${path}/resources/css/book_cart.css" />
   </head>
   <body>
     <div id="wrap">
@@ -43,70 +43,34 @@
                 </tr>
                 </thead>
                 <tbody>
+                  <c:forEach var="item" items="${cartPlus}">
                   <tr class="row_style">
                     <td>
                       <input type="checkbox" name="order_check">
                     </td>
                     <td class="hidden_col"><!--book_id--></td>
                     <td class="book_name" style="text-align: left;">
-                        <img src="images/book_cover_temp1.gif" alt="">
-                        <span>책 제목&nbsp;|&nbsp;작가</span>
+                        <img src="images/book_cover_temp1.gif" alt="book_cover">
+                        <span>${item.book_title}&nbsp;|&nbsp;${item.book_writer}</span>
                     </td>
                     <td> 
-                        <select name="book_num" class="book_num">
-                            <option value="1" selected="selected">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
+	                    <select name="book_cnt" class="book_num">
+	                      <c:forEach var="i" begin="1" end="5" step="1">
+	                      <c:if test="${item.book_cnt} == ${i}">
+	                        <option value="${i}" selected="selected">${i}</option>
+	                      </c:if>
+	                      <c:if test="${item.book_cnt} != ${i}">
+	                        <option value="${i}">${i}</option>
+	     				  </c:if>
+						  </c:forEach>
+	                    </select>
                     </td>
-                    <td>14,000원</td>
+                    <td>${item.book_price}</td>
                     <td>5% 적립</td>
-                    <td>14,000원</td>
-                    <td rowspan="3" style="border-left: 0.5px solid #707070;">3,000원</td>
-                </tr>
-                <tr class="row_style">
-                  <td><input type="checkbox" name="order_check"></td>
-                  <td class="hidden_col"><!--book_id--></td>
-                  <td class="book_name" style="text-align: left;">
-                      <img src="images/book_cover_temp1.gif" alt="">
-                      <span>책 제목&nbsp;|&nbsp;작가</span>
-                  </td>
-                  <td> 
-                      <select name="book_num" class="book_num">
-                          <option value="1" selected="selected">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                      </select>
-                  </td>
-                  <td>14,000원</td>
-                  <td>5% 적립</td>
-                  <td>14,000원</td>
-              </tr>
-              
-              <tr class="row_style">
-                <td><input type="checkbox" name="order_check"></td>
-                <td class="hidden_col"><!--book_id--></td>
-                <td class="book_name" style="text-align: left;">
-                    <img src="images/book_cover_temp1.gif" alt="">
-                    <span>책 제목&nbsp;|&nbsp;작가</span>
-                </td>
-                <td> 
-                    <select name="book_num" class="book_num">
-                        <option value="1" selected="selected">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                </td>
-                <td>14,000원</td>
-                <td>5% 적립</td>
-                <td>14,000원</td>
-            </tr>
+                    <td>14,000원</td> <!-- 개수 * 가격 -->
+                    <td rowspan="3" style="border-left: 0.5px solid #707070;">3,000원</td> <!-- 배송비 --> 
+                  </tr>
+                  </c:forEach>
                 </tbody>
               </table>
                <!-- [2-3] 선택상품 삭제 -->
