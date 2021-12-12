@@ -8,6 +8,6 @@ public interface OrderDAO {
 	
 	public List<CartPlus> getCartPlus(String user_id);
 	public void addCart(Cart cart);
-	public void deleteCart(Cart cart);
+	public void deleteCart(CartPlus cartPlus);
 
 }

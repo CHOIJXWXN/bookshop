@@ -18,9 +18,32 @@ $(document).ready(function() {
 						var list = data.get("list");		// 리뷰 리스트
 						var paging = data.get("paging");	// 리뷰 페이징
 						var cnt = data.get("cnt");			// 리뷰 총 개수
-						var score = data.get("score");		// 리뷰 평균 점수
+						var score = data.get("score")/10;		// 리뷰 평균 점수
+						
+						var str1 = '';
+						str1 += '<span>등록된 리뷰 수 : ' + cnt + '개</span>';
+						str1 += '<span>&nbsp;&nbsp;평점 평균 : ' + score + '점</span>';
+						$('.review_status').append(str1);
+						
 						for (var i = 0; i < list.length; i++) {
-							var str = '';
+							var str2 = '';
+							str2 += '<div class="review_row">';
+							str2 += '<div class="review_writer">';
+							str2 += '<span>' + list.user_id + '</span>';
+							str2 += '<span>' + list.review_date + '</span>';
+							str2 += '</div>';
+							str2 += '<div class="review_star">;
+							str2 += '<i class="far fa-star"></i>';
+							str2 += '<i class="far fa-star"></i>';
+							str2 += '<i class="far fa-star"></i>';
+							str2 += '<i class="far fa-star"></i>';
+							str2 += '<i class="far fa-star"></i>';
+							str2 += '</div>';
+							str2 += '<div class="view_review">';
+							str2 += '<p>' + list.review_contents + '</p>';
+							str2 += '</div>';
+							str2 += '</div>';
+							
 						}
 					}
 				},

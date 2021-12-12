@@ -17,20 +17,37 @@ public class BookServiceImpl implements BookService {
 	BookDAO dao;
 
 	@Override
-	public HashMap<String, Object> book(String order, int pageNum) throws Exception {
+	public HashMap<String, Object> book(String order, String genre, int pageNum) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		int bookCnt = dao.getBookCnt();
-		Paging paging = new Paging(pageNum, bookCnt);
-		if (order.equals("판매량순")) {
-			map.put("list", dao.getBookListSell(pageNum));
+		if (genre.equals("-1")) {
+			int bookCnt = dao.getBookCnt();
+			Paging paging = new Paging(pageNum, bookCnt);
+			if (order.equals("판매량순")) {
+				map.put("list", dao.getBookListSell(pageNum));
+				map.put("paging", paging);
+			} else if (order.equals("신규출간순")) {
+				map.put("list", dao.getBookListNew(pageNum));
+				map.put("paging", paging);
+			} else if (order.equals("리뷰순")) {
+				map.put("list", dao.getBookListReview(pageNum));
+				map.put("paging", paging);
+			}	
+		} else if (genre.equals("0")) {
+			int bookCnt = dao.getBookCntNovel();
+			Paging paging = new Paging(pageNum, bookCnt);
+			map.put("list", dao.getBookListNovel(pageNum));
 			map.put("paging", paging);
-		} else if (order.equals("신규출간순")) {
-			map.put("list", dao.getBookListNew(pageNum));
+		} else if (genre.equals("1")) {
+			int bookCnt = dao.getBookCntPoem();
+			Paging paging = new Paging(pageNum, bookCnt);
+			map.put("list", dao.getBookListPoem(pageNum));
 			map.put("paging", paging);
-		} else if (order.equals("리뷰순")) {
-			map.put("list", dao.getBookListReview(pageNum));
+		} else if (genre.equals("2")) {
+			int bookCnt = dao.getBookCntTravel();
+			Paging paging = new Paging(pageNum, bookCnt);
+			map.put("list", dao.getBookListTravel(pageNum));
 			map.put("paging", paging);
-		}	
+		}		
 		return map;
 	}
 
