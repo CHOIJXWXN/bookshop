@@ -8,7 +8,7 @@ import com.bookshop.vo.Review;
 
 public interface BookService {
 	
-	public HashMap<String, Object> book(String order, int pageNum) throws Exception;
+	public HashMap<String, Object> book(String order, String genre, int pageNum) throws Exception;
 	public HashMap<String, Object> searchBook(String keyword, int pageNum) throws Exception;
 	public HashMap<String, Object> best(String user_id) throws Exception;
 	public Book view(String book_id) throws Exception;

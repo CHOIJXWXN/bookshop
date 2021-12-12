@@ -7,9 +7,15 @@ import com.bookshop.vo.Review;
 public interface BookDAO {
 	
 	public int getBookCnt() throws Exception;
+	public int getBookCntNovel() throws Exception;
+	public int getBookCntPoem() throws Exception;
+	public int getBookCntTravel() throws Exception;
 	public List<Book> getBookListSell(int pageNum) throws Exception;
 	public List<Book> getBookListNew(int pageNum) throws Exception;
 	public List<Book> getBookListReview(int pageNum) throws Exception;
+	public List<Book> getBookListNovel(int pageNum) throws Exception;
+	public List<Book> getBookListPoem(int pageNum) throws Exception;
+	public List<Book> getBookListTravel(int pageNum) throws Exception;
 	public List<Book> searchBook(String keyword, int pageNum) throws Exception;
 	public int getSearchBookCnt(String keyword) throws Exception;
 	public List<String> getBestSeller() throws Exception;

@@ -24,21 +24,54 @@ public class BookDAOImpl implements BookDAO {
 	}
 	
 	@Override
+	public int getBookCntNovel() throws Exception {
+		return sqlSession.selectOne(SESSION + ".getBookCntNovel");
+	}
+
+	@Override
+	public int getBookCntPoem() throws Exception {
+		return sqlSession.selectOne(SESSION + ".getBookCntPoem");
+	}
+
+	@Override
+	public int getBookCntTravel() throws Exception {
+		return sqlSession.selectOne(SESSION + ".getBookCntTravel");
+	}
+	
+	@Override
 	public List<Book> getBookListSell(int pageNum) throws Exception {
 		int start = (pageNum - 1) * 16;
-		return sqlSession.selectList(SESSION + ".getFirstBook_id_sell", start);
+		return sqlSession.selectList(SESSION + ".getBookListSell", start);
 	}
 	
 	@Override
 	public List<Book> getBookListNew(int pageNum) throws Exception {
 		int start = (pageNum - 1) * 16;
-		return sqlSession.selectList(SESSION + ".getFirstBook_id_new", start);
+		return sqlSession.selectList(SESSION + ".getBookListNew", start);
 	}
 	
 	@Override
 	public List<Book> getBookListReview(int pageNum) throws Exception {
 		int start = (pageNum - 1) * 16;
-		return sqlSession.selectList(SESSION + ".getFirstBook_id_review", start);
+		return sqlSession.selectList(SESSION + ".getBookListReview", start);
+	}
+	
+	@Override
+	public List<Book> getBookListNovel(int pageNum) throws Exception {
+		int start = (pageNum - 1) * 16;
+		return sqlSession.selectList(SESSION + ".getBookListNovel", start);
+	}
+
+	@Override
+	public List<Book> getBookListPoem(int pageNum) throws Exception {
+		int start = (pageNum - 1) * 16;
+		return sqlSession.selectList(SESSION + ".getBookListPoem", start);
+	}
+
+	@Override
+	public List<Book> getBookListTravel(int pageNum) throws Exception {
+		int start = (pageNum - 1) * 16;
+		return sqlSession.selectList(SESSION + ".getBookListTravel", start);
 	}
 
 	@Override
@@ -112,4 +145,6 @@ public class BookDAOImpl implements BookDAO {
    public void addReview(Review review) throws Exception {
       sqlSession.insert(SESSION + ".addReview", review);
    }
+
+
 }

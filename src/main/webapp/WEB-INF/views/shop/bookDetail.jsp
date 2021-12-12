@@ -7,10 +7,10 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Book Shop</title>
-    <link rel="stylesheet" href="${path }/resources/css/reset.css" />
-    <link rel="stylesheet" href="${path }/resources/css/mainNav.css" />
-    <link rel="stylesheet" href="${path }/resources/css/bookDetail.css" />
+    <title>상세 페이지</title>
+    <link rel="stylesheet" href="${path}/resources/css/reset.css" />
+    <link rel="stylesheet" href="${path}/resources/css/mainNav.css" />
+    <link rel="stylesheet" href="${path}/resources/css/bookDetail.css" />
     <script src="${path}/resources/js/bookjs/detail.js"></script>
    
 
@@ -132,9 +132,9 @@
                       </div>
                       <!-- 책 요약 -->
                       <ul class="book_info">
-                        <li>책제목</li>
-                        <li>작가</li>
-                        <li>출판사</li>
+                        <li>${book.book_title}</li>
+                        <li>${book.book_writer}</li>
+                        <li>${book.book_pub}</li>
                       </ul>
                       <!-- 리뷰 title -->
                       <div class="review_msg">
@@ -157,64 +157,8 @@
                 </form>
                 <!-- 등록된 리뷰수, 평점 평균 -->
                 <div class="review_status">
-                  <span>등록된 리뷰 수 : 45개</span>
-                  <span>&nbsp;&nbsp;평점 평균 : 3.5점</span>
                 </div>
                 <!-- 등록된 리뷰 리스트 3개씩  -->
-                <div class="review_row">
-                  <div class="review_writer">
-                    <span>user_nickname</span>
-                    <span>2021-12-10</span>
-                  </div>
-                  <div class="review_star">                  
-                      <i class="far fa-star"></i>
-                      <i class="far fa-star"></i>
-                      <i class="far fa-star"></i>
-                      <i class="far fa-star"></i>
-                      <i class="far fa-star"></i>                   
-                  </div>
-                  <div class="view_review">
-                    <p>꼭 나이가 많은 사람만 읽어야할 책이 아니다. '나는 누구인가?', '앞으로 살아갈 동안 무엇을 해야하는가? 등 삶에 대한 질문에 유리
-                      한 답을 내어줄 수 있을 진정한 어른의 조언같은 책, 선물용으로 좋을 것 같다.꼭 나이가 많은 사람만 읽어야할 책이 아니다. '나는 누구인가?', '앞으로 살아갈 동안 무엇을 해야하는가? 등 삶에 대한 질문에 유리
-                      한 답을 내어줄 수 있을 진정한 어른의 조언같은 책, 선물용으로 좋을 것 같다.</p>
-                  </div>
-                </div>
-                <div class="review_row">
-                  <div class="review_writer">
-                    <span>user_nickname</span>
-                    <span>2021-12-10</span>
-                  </div>
-                  <div class="review_star">
-                    <i class="far fa-star"></i>
-                      <i class="far fa-star"></i>
-                      <i class="far fa-star"></i>
-                      <i class="far fa-star"></i>
-                      <i class="far fa-star"></i> 
-                  </div>
-                  <div class="view_review">
-                    <p>꼭 나이가 많은 사람만 읽어야할 책이 아니다. '나는 누구인가?', '앞으로 살아갈 동안 무엇을 해야하는가? 등 삶에 대한 질문에 유리
-                      한 답을 내어줄 수 있을 진정한 어른의 조언같은 책, 선물용으로 좋을 것 같다.</p>
-                  </div>
-                </div>
-                <div class="review_row">
-                  <div class="review_writer">
-                    <span>user_nickname</span>
-                    <span>2021-12-10</span>
-                  </div>
-                  <div class="review_star">
-                    <i class="far fa-star"></i>
-                      <i class="far fa-star"></i>
-                      <i class="far fa-star"></i>
-                      <i class="far fa-star"></i>
-                      <i class="far fa-star"></i> 
-                  </div>
-                  <div class="view_review">
-                    <p>꼭 나이가 많은 사람만 읽어야할 책이 아니다. '나는 누구인가?', '앞으로 살아갈 동안 무엇을 해야하는가? 등 삶에 대한 질문에 유리
-                      한 답을 내어줄 수 있을 진정한 어른의 조언같은 책, 선물용으로 좋을 것 같다.꼭 나이가 많은 사람만 읽어야할 책이 아니다. '나는 누구인가?', '앞으로 살아갈 동안 무엇을 해야하는가? 등 삶에 대한 질문에 유리
-                      한 답을 내어줄 수 있을 진정한 어른의 조언같은 책, 선물용으로 좋을 것 같다.꼭 나이가 많은 사람만 읽어야할 책이 아니다. '나는 누구인가?', '앞으로 살아갈 동안 무엇을 해야하는가? 등 삶에 대한 질문에 유리
-                      한 답을 내어줄 수 있을 진정한 어른의 조언같은 책, 선물용으로 좋을 것 같다.</p>
-                  </div>
-                </div>
                 <!-- 페이징처리 -->
                 <ul class="page_num">
                   <li><a href="#">prev</a></li>

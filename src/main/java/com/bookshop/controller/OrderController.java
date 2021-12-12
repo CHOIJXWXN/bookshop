@@ -31,7 +31,7 @@ public class OrderController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String order(CartPlus cartPlus, Model model) throws Exception {
 		model.addAttribute("cartPlus", cartPlus);
-		return "";
+		return "shop/order";
 	}
 	
 	/*
@@ -50,11 +50,11 @@ public class OrderController {
 	// 장바구니 상품 삭제 기능 (Ajax)
 	@RequestMapping(value = "/deleteCart", method = RequestMethod.GET)
 	@ResponseBody
-	public String deleteCart(Cart cart) throws Exception {
-		if (cart.book_title == null) {
+	public String deleteCart(CartPlus cartPlus) throws Exception {
+		if (cartPlus.getBook_title() == null) {
 			return "-1"; // 아무 것도 선택하지 않고 삭제 버튼을 누르면 -1 반환
 		} else {
-			orderService.deleteCart(cart);
+			orderService.deleteCart(cartPlus);
 			return "0";  // 삭제했으면 0 반환
 		}
 	}

@@ -1,7 +1,6 @@
 package com.bookshop.controller;
 
 import java.util.HashMap;
-import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -28,12 +27,29 @@ public class BookController {
 	private static final Logger logger = LoggerFactory.getLogger(BookController.class);
 	
 	// 책 메인 페이지 (all, 판매량순)
+	/*
+	 * book_genre { -1 : 전체
+	 * 				 0 : 소설
+	 * 				 1 : 시/에세이
+	 * 				 2 : 여행		  }
+	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String book(Integer pageNum, Model model, int book_genre) throws Exception {
+	public String book(Integer pageNum, Model model, String book_genre) throws Exception {
 		if (pageNum == null) {
 			pageNum = 1;
 		}
-		model.addAttribute("map", bookService.book("판매량순", pageNum));
+		if (book_genre == null) {
+			book_genre = "-1";
+		}
+		if (book_genre.equals("-1")) {
+			model.addAttribute("map", bookService.book("판매량순", "-1", pageNum));
+		} else if (book_genre.equals("0")) {
+			model.addAttribute("map", bookService.book("판매량순", "0", pageNum));
+		} else if (book_genre.equals("1")) {
+			model.addAttribute("map", bookService.book("판매량순", "1", pageNum));
+		} else if (book_genre.equals("2")) {
+			model.addAttribute("map", bookService.book("판매량순", "2", pageNum));
+		}
 		return "shop/books";
 	}
 	
@@ -43,7 +59,7 @@ public class BookController {
 		if (pageNum == null) {
 			pageNum = 1;
 		}
-		model.addAttribute("map", bookService.book("신규출간순", pageNum));
+		model.addAttribute("map", bookService.book("신규출간순", "-1", pageNum));
 		return "shop/books";
 	}
 	
@@ -53,7 +69,7 @@ public class BookController {
 		if (pageNum == null) {
 			pageNum = 1;
 		}
-		model.addAttribute("map", bookService.book("리뷰순", pageNum));
+		model.addAttribute("map", bookService.book("리뷰순", "-1", pageNum));
 		return "shop/books";
 	}
 	

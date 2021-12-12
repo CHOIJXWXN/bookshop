@@ -9,6 +9,6 @@ public interface OrderService {
 	
 	public List<CartPlus> viewCart(String user_id) throws Exception;
 	public void addCart(Cart cart) throws Exception;
-	public void deleteCart(Cart cart) throws Exception;
+	public void deleteCart(CartPlus cartPlus) throws Exception;
 
 }

@@ -11,8 +11,29 @@
 		FROM book
 	</select>
 	
+	<!-- 소설 책 개수 -->
+	<select id="getBookCntNovel" resultType="_int">
+		SELECT COUNT(*)
+		FROM book
+		WHERE book_genre = '소설'
+	</select>
+	
+	<!-- 시/에세이 책 개수 -->
+	<select id="getBookCntPoem" resultType="_int">
+		SELECT COUNT(*)
+		FROM book
+		WHERE book_genre = '시/에세이'
+	</select>
+	
+	<!-- 여행 책 개수 -->
+	<select id="getBookCntTravel" resultType="_int">
+		SELECT COUNT(*)
+		FROM book
+		WHERE book_genre = '여행'
+	</select>
+	
 	<!-- 판매량 순으로 16개  -->
-	<select id="getFirstBook_id_sell" resultType="Book">
+	<select id="getBookListSell" resultType="Book">
 		SELECT *
 		FROM book
 		ORDER BY book_sell_tot DESC
@@ -20,7 +41,7 @@
 	</select>
 	
 	<!-- 신규출간 순으로 16개  -->
-	<select id="getFirstBook_id_new" resultType="Book">
+	<select id="getBookListNew" resultType="Book">
 		SELECT *
 		FROM book
 		ORDER BY book_date DESC
@@ -28,12 +49,39 @@
 	</select>
 	
 	<!-- 리뷰 순으로 16개  -->
-	<select id="getFirstBook_id_review" resultType="Book">
+	<select id="getBookListReview" resultType="Book">
 		SELECT A.book_id, A.book_title, A.book_cover, A.book_price
 		FROM book A LEFT JOIN review B 
 		ON A.book_id = B.book_id 
 		GROUP BY A.book_id 
 		ORDER BY COUNT(B.review_id) DESC 
+		LIMIT #{start}, 16
+	</select>
+	
+	<!-- 장르별 판매량 순으로 16개 (1) -->
+	<select id="getBookListNovel" resultType="Book">
+		SELECT * 
+		FROM book
+		WHERE book_genre = '소설' 
+		ORDER BY book_sell_tot DESC
+		LIMIT #{start}, 16
+	</select>
+	
+	<!-- 장르별 판매량 순으로 16개 (2) -->
+	<select id="getBookListPoem" resultType="Book">
+		SELECT * 
+		FROM book
+		WHERE book_genre = '시/에세이' 
+		ORDER BY book_sell_tot DESC
+		LIMIT #{start}, 16
+	</select>
+	
+	<!-- 장르별 판매량 순으로 16개 (3) -->
+	<select id="getBookListTravel" resultType="Book">
+		SELECT * 
+		FROM book
+		WHERE book_genre = '여행' 
+		ORDER BY book_sell_tot DESC
 		LIMIT #{start}, 16
 	</select>
 	
@@ -137,7 +185,7 @@
 	
 	<!-- 특정 책의 리뷰 평균 평점  -->
    	<select id="getBookScore" resultType="_int">
-   		SELECT AVG(review_score)
+   		SELECT AVG(review_score) * 10
       	FROM review
       	WHERE book_id = #{book_id}
    	</select>
