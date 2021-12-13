@@ -23,8 +23,8 @@
             </ul>
             <!-- BOOKS HOVER : 서브메뉴 보이기 -->
             <ul class="books_sub_mn">
-              <li><a href="${path }/shop">ALL</a></li>
-              <li><a href="${path }/bookbest">BEST</a></li>
+              <li><a href="${path }/book">ALL</a></li>
+              <li><a href="${path }/book/best">BEST</a></li>
             </ul>
           </nav>
           <!-- (3) 인포메뉴 -->

@@ -11,14 +11,14 @@
     <link rel="stylesheet" href="${path}/resources/css/reset.css" />
     <link rel="stylesheet" href="${path}/resources/css/mainNav.css" />
     <link rel="stylesheet" href="${path}/resources/css/bookDetail.css" />
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="${path}/resources/js/bookjs/detail.js"></script>
-   
 
   </head>
   <body>
     <div id="wrap">
       <!-- [1] 네비게이션 -->
-      <jsp:include page="../mainNav.jsp">
+      <jsp:include page="../mainNav.jsp"/>
       <!-- [2] 메인화면 -->
        <!-- [2] 메인화면 -->
       <section id="book_detail">
@@ -28,7 +28,7 @@
           <div class="book_img_box">
             <div class="book_thum">
 
-              <img src="../../resources/images/book_cover_big_temp1.gif" alt="">
+              <img src="../../resources/images/bookcover/${book.book_id}.jpg" alt="">
 
            
 
@@ -46,7 +46,7 @@
             <ul class="book_price_info">
               <li>
                 <h4>판매가</h4>
-                <p id="price">${book.book_price}원</p>
+                <p id="price">${book.book_price} 원</p>
               </li>
               <li>
                 <h4>구매혜택</h4>
@@ -128,7 +128,7 @@
                     <header class="form_ttl">
                       <!-- 책 사진 -->
                       <div class="book_img">
-                        <img src="../../resources/images/book_cover_temp2.gif" alt="">
+                        <img src="../../resources/images/bookcover/${book.book_id}.jpg" alt="">
                       </div>
                       <!-- 책 요약 -->
                       <ul class="book_info">

@@ -15,10 +15,10 @@ $(document).ready(function() {
 						alert('리뷰가 없습니다');
 						return;
 					} else {
-						var list = data.get("list");		// 리뷰 리스트
-						var paging = data.get("paging");	// 리뷰 페이징
-						var cnt = data.get("cnt");			// 리뷰 총 개수
-						var score = data.get("score")/10;		// 리뷰 평균 점수
+						var list = data.list;			// 리뷰 리스트
+						var paging = data.paging;		// 리뷰 페이징
+						var cnt = data.cnt;				// 리뷰 총 개수
+						var score = data.score / 10;	// 리뷰 평균 점수
 						
 						var str1 = '';
 						str1 += '<span>등록된 리뷰 수 : ' + cnt + '개</span>';
@@ -32,7 +32,7 @@ $(document).ready(function() {
 							str2 += '<span>' + list.user_id + '</span>';
 							str2 += '<span>' + list.review_date + '</span>';
 							str2 += '</div>';
-							str2 += '<div class="review_star">;
+							str2 += '<div class="review_star">';
 							str2 += '<i class="far fa-star"></i>';
 							str2 += '<i class="far fa-star"></i>';
 							str2 += '<i class="far fa-star"></i>';
@@ -55,7 +55,7 @@ $(document).ready(function() {
 	});
 	
 	// 리뷰 추가하기
-	$('#ㅁㅁㅁ').onclick(function() {
+	$('#ㅁㅁㅁ').click(function() {
 		var review_contents = $('#ㅇㅇㅇ').val();
 		var review_score = $('#').val();
 		$.ajax({
@@ -69,10 +69,10 @@ $(document).ready(function() {
 			},
 			dataType : "json",
 			success : function(data) {
-				var list = data.get("list");		// 리뷰 리스트
-				var paging = data.get("paging");	// 리뷰 페이징
-				var cnt = data.get("cnt");			// 리뷰 총 개수
-				var score = data.get("score");		// 리뷰 평균 점수
+				var list = data.list;		// 리뷰 리스트
+				var paging = data.paging;	// 리뷰 페이징
+				var cnt = data.cnt;			// 리뷰 총 개수
+				var score = data.score;		// 리뷰 평균 점수
 				for (var i = 0; i < list.length; i++) {
 					var str = '';
 				}
@@ -85,27 +85,29 @@ $(document).ready(function() {
 	
 	// 수량에 따른 가격/포인트/배송비/총가격 변화
 	var price = parseInt($('#price').text());
+	var shippingCost = 3000;
 	$('#book_price').text(price + '원');
 	$('#point').text('포인트 +' + price * 0.05 + '원(5%)');
 	if (price >= 20000) {
 		$('#shippingCost').text('무료배송');
+		shippingCost = 0;
 	} else {
 		$('#shippingCost').text('3000원 (20000원 이상 구매시 배송비 무료)');
 	}
-	var shippingCost = parseInt($('#shippingCost').text());
 	$('#book_total_price').text(price + shippingCost + '원');
 	
-	$('#book_cnt').change(function() {
-		var cnt = parseInt($('#book_cnt').val());
+	$('.book_num').change(function() {
+		var cnt = parseInt($('.book_num').val());
+		var shippingCost = 3000;
 		$('#book_price').text(price * cnt + '원');
 		$('#point').text('포인트 +' + price * cnt * 0.05 + '원(5%)');
 		if (price * cnt >= 20000) {
 			$('#shippingCost').text('무료배송');
+			shippingCost = 0;
 		} else {
 			$('#shippingCost').text('3000원 (20000원 이상 구매시 배송비 무료)');
 		}
-		var shippingCost = parseInt($('#shippingCost').text());
-		$('#book_total_price').text(book_price + shippingCost + '원');
+		$('#book_total_price').text(price * cnt + shippingCost + '원');
 	});
 	
 });
