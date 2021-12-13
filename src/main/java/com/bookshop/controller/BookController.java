@@ -86,6 +86,19 @@ public class BookController {
 		return "shop/bookDetail";
 	}
 	
+	// 책 장바구니에 추가 버튼 (수정 필요)
+	@RequestMapping(value = "/detailAction", method = RequestMethod.POST, params="addCart")
+	public String addCart(String book_id, Model model) throws Exception {
+		
+		return "shop/bookDetail";
+	}
+	
+	// 책 바로 주문 버튼 (수정 필요)
+	@RequestMapping(value = "/detailAction", method = RequestMethod.POST, params="buyNow")
+	public String buyNow(String book_id, Model model) throws Exception {
+		return "shop/bookDetail";
+	}
+	
 	// 책 리뷰 탭 기능 (Ajax)
 	@RequestMapping(value = "/review", method = RequestMethod.GET)
 	@ResponseBody

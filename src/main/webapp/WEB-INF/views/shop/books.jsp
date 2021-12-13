@@ -42,13 +42,13 @@
        <!-- [2-3] 정렬 버튼 영역 -->
        <div class="order_btns_wrap">
          <ul class="category">
-           <li><a href="${path}/book?book_genre=0">시</a></li>
-           <li><a href="${path}/book?book_genre=1">소설</a></li>
-           <li><a href="${path}/book?book_genre=2">에세이</a></li>
+           <li><a href="${path}/book?book_genre=0">소설</a></li>
+           <li><a href="${path}/book?book_genre=1">시/에세이</a></li>
+           <li><a href="${path}/book?book_genre=2">여행</a></li>
          </ul>
          
          <!-- 시/소설/에세이 카테고리를 선택하면 띄우지 않음 -->
-         <c:if test="${empty book_genre}">
+         <c:if test="${book_genre < 0}">
          <ul class="order_by">
           <li><a href="${path}/book">판매량순</a></li>
           <li><a href="${path}/book/recentTop">신규출간순</a></li>

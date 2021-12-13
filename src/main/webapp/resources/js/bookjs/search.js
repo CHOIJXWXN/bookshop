@@ -6,7 +6,7 @@ $(document).ready(function() {
 		if (event.keyCode == 13) {
 			$.ajax({
 				type : "GET",
-				url : "./book/search",
+				url : "../book/search",
 				data : {
 					keyword : keyword
 				},
@@ -20,7 +20,7 @@ $(document).ready(function() {
 						var searchList = data.searchList;
 						for (var i = 0; i < searchList.length; i++) {
 							var str = '';
-							str += '<li><a href="${path}/book/detail?book_id=' + searchList[i].book_id + '">';
+							str += '<li><a href="/book/detail?book_id=' + searchList[i].book_id + '">';
 							str += '<img class="book_cover" src="../../resources/images/bookcover/' + searchList[i].book_id + '.jpg" alt="book_cover">';
 							str += '<h4 class="book_ttl">' + searchList[i].book_title + '</h4>';
 							str += '<span class="book_price">' + searchList[i].book_price + '원</span>';
@@ -38,7 +38,7 @@ $(document).ready(function() {
 		var keyword = $('#book_keyword').val();
 		$.ajax({
 			type : "GET",
-			url : "./book/search",
+			url : "../book/search",
 			data : {
 				keyword : keyword
 			},

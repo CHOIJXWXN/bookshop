@@ -211,6 +211,7 @@ public class MainController {
 		} else if (book_genre.equals("2")) {
 			model.addAttribute("map", bookService.book("판매량순", "2", pageNum));
 		}
+		model.addAttribute("book_genre", book_genre);
 		return "shop/books";
 	}
 	
