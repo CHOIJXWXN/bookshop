@@ -138,13 +138,15 @@ section .join1_header .process img {
   padding-left: 15px;
 }
 /* 입력칸 크기 */
-.row input[type="text"] {
+.row input[type="text"],
+.row input[type="password"] {
   width: 390px;
   height: 45px;
   padding-left: 15px;
   font-family: "Pretendard-Regular";
 }
-.row_msg input[type="text"] {
+.row_msg input[type="text"],
+.row_msg input[type="password"] {
   width: 390px;
   height: 45px;
   padding-left: 15px;
@@ -158,9 +160,8 @@ section .join1_header .process img {
 }
 
 /* 중복알림 메시지 */
-.row_msg p.fail {
-  
-  display: inline-block;
+.row_msg p { 
+  /* display: none; */
   font-family: "Pretendard-Regular";
   font-size: 12px;
   line-height: 20px;
@@ -170,9 +171,11 @@ section .join1_header .process img {
   left: 280px;
 }
 .row_msg p.pass {
-  display: none;
   color: #134C0B;
 }
+/* .row_msg p.on {
+ display: inline-block;
+} */
 /* 셀렉트박스 커스텀 */
 select {
   width: 150px;
