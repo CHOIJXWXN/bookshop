@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bookshop.vo.Users;
-import com.bookshop.service.UsersService;
+import com.bookshop.service.MemberService;
 
 // Mypage 관련 Controller
 
@@ -20,8 +20,7 @@ import com.bookshop.service.UsersService;
 public class MemberController {
 	
 	@Inject
-	UsersService usersService;
-	Users users;
+	MemberService memberService;
 
 	// mypage - login 되어 있어야지 보임
 	
@@ -31,10 +30,10 @@ public class MemberController {
 	public String mypage(RedirectAttributes ra, HttpSession session) throws Exception {
 		
 		// 1) 로그인이 되어있지 않으면 로그인 페이지로 이동시키고 로그인이 필요하다고 알려줌
-		if(session.getAttribute("user_id") == null) {
-			ra.addFlashAttribute("msg", "로그인이 필요합니다.");
-			return "redirect:/login";
-		}
+//		if(session.getAttribute("user_id") == null) {
+//			ra.addFlashAttribute("msg", "로그인이 필요합니다.");
+//			return "redirect:/login";
+//		}
 		// 2) 로그인이 되어있으면 마이페이지 메인화면 출력
 		return "member/myPage";
 		
@@ -45,7 +44,8 @@ public class MemberController {
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String profile(Model model, RedirectAttributes ra, HttpSession session) throws Exception {
 		
-		String user_id = (String) session.getAttribute("user_id");
+		String user_id = "lsumin1127";
+//		String user_id = (String) session.getAttribute("user_id");
 		
 		//1) 로그인이 되어있지 않으면 로그인 페이지로 이동시키고 로그인이필요하다고 알려줌
 		if(user_id == null) {
@@ -53,10 +53,9 @@ public class MemberController {
 			return "redirect:/login";
 		}
 		//2) 로그인이 되어있으면 유저 아이디에 일치하는 정보를 불러옴
-		usersService.getUserInfo(user_id);
 		
 		//3) 받아온 users 객체를 회원 정보 수정페이지 값 넘겨줌
-		model.addAttribute("users", users);
+		model.addAttribute("users", memberService.getUserInfo(user_id));
 		
 		
 		return "member/profile";
@@ -82,7 +81,7 @@ public class MemberController {
 		}
 		//3) 일치한다면 프로필 업데이트 실행
 		users.setUser_addr(addr1 + " " + addr2 + " " + addr3);
-		usersService.updateProfile(users);
+		memberService.updateProfile(users);
 		// +) 필수 입력값을 다 입력했는지는 검증(ajax)
 		
 		
