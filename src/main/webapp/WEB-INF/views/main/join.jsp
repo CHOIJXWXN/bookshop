@@ -89,7 +89,7 @@
               </select>
              	<p class="pass" id="email_pass">사용가능한 이메일입니다.</p>
                	<p class="fail" id="email_fail">이미 존재하는 이메일입니다.</p>
-                <button class="checkEmail" id="checkEmail">중복확인</button>
+                <button type="button" class="checkEmail" id="checkEmail">중복확인</button>
               </div>
               <!-- 휴대폰번호 -->
               <div class="row">
@@ -106,14 +106,24 @@
                 <input type="text" id="addr_3" name="addr_3" placeholder="상세 주소 입력">
               </div> --> 
               
-              <!-- 주소 (카카오 연동)-->  
+              <!-- 주소 (카카오 연동) 
               <div class="row_3">
                 <label >*&nbsp;주소</label>
                 <input type="text" id="addr_1" name="addr_1" placeholder="우편번호">  
                 <button type="button" onclick="execDaumPostcode()">우편번호 검색</button> 
                 <input type="text" id="addr_2" name="addr_2" placeholder="주소">              
                 <input type="text" id="addr_3" name="addr_3" placeholder="상세 주소 입력">
+              </div>--> 
+              
+               <!-- 주소 (카카오 연동) -->
+              <div class="row_3">
+                <label >*&nbsp;주소</label>
+                <input type="text" id="addr_1" placeholder="우편번호">
+				<input type="button" onclick="DaumPostcode()" value="우편번호 검색"><br>
+				<input type="text" id="addr_2" placeholder="주소"><br>
+				<input type="text" id="addr_3" placeholder="상세주소">
               </div>
+              
 
 			<!-- 좋아하는 장르 -->
               <div class="row final">

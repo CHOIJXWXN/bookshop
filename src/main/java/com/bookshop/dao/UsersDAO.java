@@ -4,17 +4,27 @@ import com.bookshop.vo.Users;
 
 public interface UsersDAO {
 	
-	// 아이디 중복 체크
+	// [1] -- 회원가입(join) 관련 --
+	
+	// 아이디 중복 확인 (checkId)
+	// parameter - user_id (String) (받는값)
 	public String checkId(String user_id) throws Exception;
 	
-	// 회원가입 완료
-	public void joinSuccess(Users users) throws Exception;
+	// 이메일 중복 확인 (checkEmail)
+	// parameter - user_email (string) (받는값)
+	public String checkEmail(String user_email) throws Exception;
 	
-	// 로그인 (vo -user bean 이용)
+	// 회원가입 (join)
+	// parameter - Users 객체 (받는값)
+	public void join(Users users) throws Exception;
+	
+	// [2] -- 로그인(login) 관련 --
+	
+	// 로그인
+	// DB에 저장되어있는 user_id 와 user_pw를 찾음, 객체로 전달
+	// DAO -1개의 객체만 전달
 	public Users login(Users users) throws Exception;
-	
-	// 아이디 찾기
-	public String find_id(Users users) throws Exception;
+		
 	
 	
 	
