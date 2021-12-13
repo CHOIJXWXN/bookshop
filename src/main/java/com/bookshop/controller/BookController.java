@@ -34,23 +34,8 @@ public class BookController {
 	 * 				 2 : 여행		  }
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String book(Integer pageNum, Model model, String book_genre) throws Exception {
-		if (pageNum == null) {
-			pageNum = 1;
-		}
-		if (book_genre == null) {
-			book_genre = "-1";
-		}
-		if (book_genre.equals("-1")) {
-			model.addAttribute("map", bookService.book("판매량순", "-1", pageNum));
-		} else if (book_genre.equals("0")) {
-			model.addAttribute("map", bookService.book("판매량순", "0", pageNum));
-		} else if (book_genre.equals("1")) {
-			model.addAttribute("map", bookService.book("판매량순", "1", pageNum));
-		} else if (book_genre.equals("2")) {
-			model.addAttribute("map", bookService.book("판매량순", "2", pageNum));
-		}
-		return "shop/books";
+	public String book() throws Exception {
+		return "redirect:/book";
 	}
 	
 	// 책 메인 페이지 (all, 신규출간순)

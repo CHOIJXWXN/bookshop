@@ -22,7 +22,7 @@
 	<select id="getBookCntPoem" resultType="_int">
 		SELECT COUNT(*)
 		FROM book
-		WHERE book_genre = '시/에세이'
+		WHERE book_genre = '시_에세이'
 	</select>
 	
 	<!-- 여행 책 개수 -->
@@ -71,7 +71,7 @@
 	<select id="getBookListPoem" resultType="Book">
 		SELECT * 
 		FROM book
-		WHERE book_genre = '시/에세이' 
+		WHERE book_genre = '시_에세이' 
 		ORDER BY book_sell_tot DESC
 		LIMIT #{start}, 16
 	</select>
@@ -89,8 +89,8 @@
 	<select id="searchBook" parameterType="map" resultType="Book">
 		SELECT *
 		FROM book
-		WHERE book_title  LIKE '%'+#{keyword}+'%'
-		   OR book_writer LIKE '%'+#{keyword}+'%'
+		WHERE book_title LIKE CONCAT('%', #{keyword}, '%')
+		OR book_writer LIKE CONCAT('%', #{keyword}, '%')
 		LIMIT #{start}, 16
 	</select>
 	
@@ -98,8 +98,8 @@
 	<select id="getSearchBookCnt" resultType="_int">
 		SELECT COUNT(*)
 		FROM book
-		WHERE book_title  LIKE '%'+#{keyword}+'%'
-		   OR book_writer LIKE '%'+#{keyword}+'%'
+		WHERE book_title LIKE CONCAT('%', #{keyword}, '%')
+		OR book_writer LIKE CONCAT('%', #{keyword}, '%')
 	</select>
 	
 	<!-- 베스트 셀러 리스트 -->

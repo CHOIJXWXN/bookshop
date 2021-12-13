@@ -85,7 +85,7 @@ public class BookDAOImpl implements BookDAO {
 
 	@Override
 	public int getSearchBookCnt(String keyword) throws Exception {
-		return sqlSession.selectOne("SESSION" + ".getSearchBookCnt", keyword);
+		return sqlSession.selectOne(SESSION + ".getSearchBookCnt", keyword);
 	}
 	
 	@Override
