@@ -14,26 +14,39 @@ public class UsersDAOImpl implements UsersDAO {
 	
 	final String SESSION = "com.bookshop.mappers.main";
 	
-	// 아이디 중복 확인
+	// [1] -- 회원가입(join) 관련 --
+	
+	// 아이디 중복확인 (checkId)
+	// join page에 id 입력값이 DB USERS 테이블안의 users_id 에 있는지 select 함
 	@Override
 	public String checkId(String user_id) throws Exception {
+										// ( 실행할 구문 id, 받아올 데이터)	
 		return sqlSession.selectOne(SESSION + ".checkId", user_id);
 	}
 	
-	// 회원가입 완료
+	// 이메일 중복확인 (checkEmail)
+	// join page에 email 입력값이 DB USERS 테이블안의 user_email에 있는지 select 함
 	@Override
-	public void joinSuccess(Users users) throws Exception {
-		sqlSession.insert(SESSION + ".join", users);
+	public String checkEmail(String user_email) throws Exception {
+		
+		return sqlSession.selectOne(SESSION + ".checkEmail", user_email);
 	}
 	
-	// 로그인
+	// 회원가입(join)
+		// join 페이지에 작성된 내용을 DB의 USESRS 테이블에 연결하여 Insert 시킴
+		@Override
+		public void join(Users users) throws Exception {
+			sqlSession.insert(SESSION + ".join", users);
+		}
+	
+	// [2] -- 로그인(login) 관련 --
+		
+	// 로그인 (login)
 	@Override
 	public Users login(Users users) throws Exception {
 		return sqlSession.selectOne(SESSION + ".login", users);
 	}
-
 	
-
 
 	
 
