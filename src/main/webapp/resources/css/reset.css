@@ -43,7 +43,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
 /* playfair */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@700&display=swap');
-
+/*대한bold*/
+@font-face {
+  font-family: 'Daehan-Bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Daehan-Bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126

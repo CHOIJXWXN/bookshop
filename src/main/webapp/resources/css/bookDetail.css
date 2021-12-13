@@ -35,10 +35,18 @@
 }
 #book_info .book_img_box .book_thum {
   width: 490px;
-  height: 630px;
-  /* background-color: silver; */
+  height: 470px;
+ /*  background-color: #DFDDD5; */
+  background-color: #F8F5F3;  
   margin: 20px 0 0 15px;
   box-shadow: 0px 0px 6px #777;
+  text-align:center;
+  overflow:hidden;
+  padding: 80px 0;
+}
+#book_info .book_img_box .book_thum img {
+	height: 100%;
+	filter: drop-shadow(5px 5px 5px #000);
 }
 #book_info .book_img_box .zoom_btn {
   width: 100px;
@@ -66,7 +74,7 @@
   border-bottom: 0.6px solid #1C1A1A; 
 }
 .book_buy_info header h3 {
-  font-family: 'Daehan-Bold'; 
+  font-family: 'Daehan-Bold';
   font-size: 36px;
   line-height: 80px;
   color: #1C1A1A;
@@ -217,22 +225,89 @@
   margin: 0 auto;
   margin-top: 70px;
   width: 1000px;
-  background-color: lightsalmon;
+  background-color: #F1F1F1;
+  border-bottom: 0.6px solid #1C1A1A;;
 
 }
 /* (1) 책 제목 영역 */
 #book_intro .book_intro_header {
   width: 100%;
   height: 230px;
-  background-color: #ff9900;
   border-top: 0.6px solid #1C1A1A;
+  text-align: center;
+}
+.book_intro_header h3 {
+  margin-top: 80px;
+  font-family: 'NotoSerifKR';
+  font-size: 50px;
+  color:#1C1A1A;
+  line-height: 100px;
+}
+.book_intro_header span {
+  font-family: 'NotoSerifKR';
+  font-size: 30px;
+  color:#1C1A1A;
+  line-height: 80px;
+}
+
+/* 책줄거리 */
+.book_story {
+  width: 100%;
+  /* background-color: lightgreen; */
+  margin-top: 100px;
+}
+.book_story h4 {
+  font-family: 'NotoSerifKR';
+  font-size: 20px;
+  color:#1C1A1A;
+  line-height: 50px;
+  width: 99%;
+  border-bottom: 0.6px solid #1C1A1A;
+  padding-left: 1%;
+  margin-bottom: 15px;
+}
+.book_story p {
+  font-family: "Pretendard-Regular";
+  font-size: 16px;
+  color:#1C1A1A;
+  line-height: 30px;
+  width: 98%;
+  padding: 0 1%;
+}
+/* 책 목차 */
+.book_contents {
+  margin: 0 auto;
+  width: 30%;
+  /* background-color: #5F5E67; */
+  margin-top: 100px;
+  text-align: center;
+}
+.book_contents h4 {
+  font-family: 'NotoSerifKR';
+  font-size: 20px;
+  color:#1C1A1A;
+  line-height: 50px;
+  width: 99%;
+  border-bottom: 0.6px solid #1C1A1A;
+  padding-left: 1%;
+  margin-bottom: 15px;
+  padding-top: 30px;
+}
+.book_contents p {
+  font-family: "Pretendard-Regular";
+  font-size: 16px;
+  color:#1C1A1A;
+  line-height: 30px;
+  width: 98%;
+  padding: 0 1%;
+  padding-bottom: 90px;
 }
 /* [2-3] 책 탭메뉴 영역 */
 /* 나중에 높이 지우기 */
 #book_tab_mn {
   width: 100%;
   /* height: 1200px; */
-  background-color: skyblue;
+ background-color: skyblue;
   margin-top: 230px;
 }
 /* 나중에 높이 지우기 */
@@ -246,7 +321,7 @@
 #book_tab_box > input {
   display: none;
 }
-#book_tab_box label {
+#book_tab_box > label {
   display: block;
   float: left;
   width: 33.333%;
@@ -316,6 +391,7 @@
   height: 180px;
   /* background-color: gray; */
   margin-right: 5%;
+  overflow: hidden;
 }
 .write_form .book_img img {
   width: 100%;
@@ -328,12 +404,18 @@
 }
 .write_form .book_info li {
   width: 100%;
-  height: 60px;
+  height: 50px;
   font-family: 'NotoSerifKR';
   font-size: 22px;
-  line-height: 60px;
+  line-height: 50px;
   color: #1C1A1A;
 }
+.write_form .book_info li:first-child {
+	font-size: 28px;
+	height: 80px;
+	line-height: 80px;
+}
+
 /* 리뷰 타이틀 */
 .write_form .review_msg {
   float: right;
@@ -351,6 +433,7 @@
   color: #1C1A1A;
   /* background-color: wheat; */
 }
+
 /* 별점 */
 .write_form .review_score {
   float: right;
@@ -358,10 +441,43 @@
   height: 50px;
   /* background-color: blue; */
 }
-.fa-star {
+/* 별점랭킹 input */
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 2rem;
+  line-height: 2.25rem;
+  justify-content: space-around;
+  padding: 0 0.1em;
+  text-align: center;
+  width: 5em;
+ /*  background-color: red; */
+}
+ 
+.star-rating input {
+  display: none;
+}
+ 
+.star-rating label {
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 0.8px;
+  -webkit-text-stroke-color: #1C1A1A;
+  cursor: pointer;
+}
+ 
+.star-rating :checked ~ label {
+  -webkit-text-fill-color: gold;
+}
+ 
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  -webkit-text-fill-color: #fff58c;
+}
+/* font awesome */
+/* .fa-star {
   color: #B5B1B1;
  margin-top: 5px;
-}
+} */
 /* 리뷰 입력칸 */
 #write_review_box {
   float: left;
@@ -386,6 +502,8 @@
   font-size: 20px;
   line-height: 70px;
   color: #f8f5f5;
+  margin-bottom: 50px;
+  cursor: pointer;
 }
 /* 등록된 리뷰수, 평점 평균 */
 .review_status {

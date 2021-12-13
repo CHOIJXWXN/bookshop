@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="${path}/resources/css/reset.css" />
     <link rel="stylesheet" href="${path}/resources/css/mainNav.css" />
     <link rel="stylesheet" href="${path}/resources/css/bookDetail.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="${path}/resources/js/bookjs/detail.js"></script>
-
   </head>
   <body>
     <div id="wrap">
@@ -28,9 +28,7 @@
           <!-- 책 썸네일 -->
             <div class="book_img_box">
               <div class="book_thum">
-                <img src="../../resources/images/bookcover/${book.book_id}.jpg" alt="">
-                <!-- 확대버튼 -->
-                <a href="#" class="zoom_btn">확대</a>
+                <img src="../../resources/images/bookcover/${book.book_id}.jpg" alt="">               
               </div>
             </div>
             <!-- [2-2] 가격 정보 & 구매하기 -->
@@ -90,8 +88,33 @@
             <h3>${book.book_title}</h3>
             <span>${book.book_writer}</span>
           </header>
-          <!-- (2) 책 상세설명 이미지 불러오기 -->
-          <img class="book_detail_img" src="../../resources/images/book_detail_img_temp.gif" alt="book_detail">
+          <!-- (2) 책줄거리 -->
+          <div class="book_story">
+            <h4>책소개</h4>
+           <p>
+           ※ 인터넷 한정 특별판: 매장 구매, 바로드림 구매 시에는 기존 일반판 표지와 랜덤으로 제공됩니다. 원 플러스 원의 기쁨, 삼각김밥 모양의
+		    슬픔, 만 원에 네 번의 폭소가 터지는 곳! 힘겨운 시대를 살아가는 우리들에게 다가온 조금 특별한 편의점 이야기 『불편한 편의점』 15만부 기념
+		    한정판 윈터 에디션 출간! 2021년 4월에 출간되어 15만이 넘는 독자의 뜨거운 사랑을 받고 있는 소설! 청파동 골목의 작은 편의점에서
+		    펼쳐지는 마법 같은 이야기 『불편한 편의점』이 윈터 에디션을 선보입니다. 눈 내리는 밤, 크리스마스 조명을 밝힌 편의점이 등대처럼 든든하게
+		    골목을 지키고 있네요. 전면에 홀로그램 박을 입혀 신비롭게 반짝이는 표지가 특별함을 더합니다. 책 속에는 김호연 작가의 친필 서명도 인쇄되어
+		    있답니다. 서울역 노숙인 독고가 편의점에서 따뜻한 겨울을 보낸 것처럼 여러분의 겨울도 『불편한 편의점』과 함께 더욱 따스하길 바랍니다.
+		    2013년 세계문학상 우수상 수상작 『망원동 브라더스』로 데뷔한 후 일상적 현실을 위트 있게 그린 경쾌한 작품과 인간의 내밀한 욕망을 기발한
+		    상상력으로 풀어낸 스릴러 장르를 오가며 독자적인 작품 세계를 쌓아올린 작가 김호연. 그의 다섯 번째 장편소설 『불편한 편의점』이 나무옆의자에서
+		    출간되었다. 『불편한 편의점』은 청파동 골목 모퉁이에 자리 잡은 작은 편의점을 무대로 힘겨운 시대를 살아가는 우리 이웃들의 삶의 속내와
+		    희로애락을 따뜻하고 유머러스하게 담아낸 작품이다. 
+          </p>
+          </div>
+          <div class="book_contents">
+            <h4>목차</h4>
+            <p>산해진미 도시락<br>
+              제이에스 오브 제이에스<br>
+              삼각김밥의 용도<br>
+              원 플러스 원<br>
+              불편한 편의점<br>
+              네 캔에 만 원<br>
+              폐기 상품이지만 아직 괜찮아<br>
+              ALWAYS</p>
+          </div>
         </article>
         <!-- [2-3] 책 탭메뉴 영역 -->
         <article id="book_tab_mn">
@@ -115,7 +138,7 @@
               <!-- **탭메뉴-3**리뷰페이지 -->
               <section class="review">
                 <!-- 리뷰 입력 박스 -->
-                <form method="POST" action="/writeReview">
+                
                   <div class="write_form">
                     <!-- 리뷰 입력 박스 헤더 -->
                     <header class="form_ttl">
@@ -132,12 +155,22 @@
                       <!-- 리뷰 title -->
                       <div class="review_msg">
                         <h3>이 책 어떠셨나요?</h3>
-                        <div class="review_score">
+                        <div class="review_score star-rating">
+                          <!-- <i class="far fa-star fa-2x"></i>
                           <i class="far fa-star fa-2x"></i>
                           <i class="far fa-star fa-2x"></i>
                           <i class="far fa-star fa-2x"></i>
-                          <i class="far fa-star fa-2x"></i>
-                          <i class="far fa-star fa-2x"></i>
+                          <i class="far fa-star fa-2x"></i> -->
+                          <input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
+                          <label for="5-stars" class="star pr-4">★</label>
+                          <input type="radio" id="4-stars" name="rating" value="4" v-model="ratings"/>
+                          <label for="4-stars" class="star">★</label>
+                          <input type="radio" id="3-stars" name="rating" value="3" v-model="ratings"/>
+                          <label for="3-stars" class="star">★</label>
+                          <input type="radio" id="2-stars" name="rating" value="2" v-model="ratings"/>
+                          <label for="2-stars" class="star">★</label>
+                          <input type="radio" id="1-star" name="rating" value="1" v-model="ratings" />
+                          <label for="1-star" class="star">★</label>
                         </div>
                       </div>
                     </header>
@@ -145,9 +178,9 @@
                     <input type="textarea" name="write_review" id="write_review_box" placeholder="로그인 후 리뷰등록 가능합니다." />
                    
                     <!-- 리뷰 등록 버튼 -->
-                    <input type="submit" id="upload_review" value="리뷰 등록하기" />
+                    <button type="button" id="upload_review">리뷰 등록하기</button>
                   </div>
-                </form>
+               
                 <!-- 등록된 리뷰수, 평점 평균 -->
                 <div class="review_status">
                 </div>
