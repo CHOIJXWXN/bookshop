@@ -9,7 +9,7 @@
     <title>Book Shop</title>
     <link rel="stylesheet" href="${path }/resources/css/reset.css" />
     <link rel="stylesheet" href="${path }/resources/css/mainNav.css" />
-    <link rel="stylesheet" href="${path }/resources/css/changeInfo.css" />
+    <link rel="stylesheet" href="${path }/resources/css/profile.css" />
   </head>
   <body>
     <div id="wrap">
@@ -20,13 +20,13 @@
           <!-- 사이드 퀵메뉴 -->
         <div id="sidebar">
             <p id="nav_title">My Page</p>
-            <a href="orderManage.html">
+            <a href="${path }/delivery">
                 <span>주문 / 배송 조회&nbsp;&nbsp;</span>
             </a>
             <a href="prodManage.html">
                 <span>교환 / 반품 / 취소&nbsp;&nbsp;</span>
             </a>
-            <a href="inqManage.html" class="active">
+            <a href="${path }/profile" class="active">
                 <span>회원 정보 수정&nbsp;&nbsp;</span>
             </a>
         </div>
@@ -42,7 +42,7 @@
                 <!-- 아이디 -->
                 <div class="row">
                   <label for="user_id">*&nbsp;아이디</label>
-                  <input type="text" id="user_id" name="user_id" placeholder="lsumin1127(변경불가)" readonly="true">
+                  <input type="text" id="user_id" name="user_id" value="${users.user_id}" readonly="true">
                 </div>
                 <!-- 비밀번호 -->
                 <div class="row">
@@ -59,28 +59,28 @@
                 <!-- 이름 -->
                 <div class="row">
                   <label for="user_name">*&nbsp;이름</label>
-                  <input type="text" id="user_name" name="user_name" placeholder="이수민(유저에서 불러옴)">
+                  <input type="text" id="user_name" name="user_name" value="${users.user_name}">
                 </div>
                 <!-- 생년월일 -->
                 <div class="row">
                   <label for="user_birth">&nbsp;&nbsp;생년월일</label>
-                  <input type="text" id="user_birth" name="user_birth" placeholder="19801223(유저에서 불러옴)">
+                  <input type="text" id="user_birth" name="user_birth" value="${users.user_birth}">
                 </div>
                 <!-- 닉네임 -->
                 <div class="row">
                   <label for="nickname">&nbsp;&nbsp;닉네임</label>
-                  <input type="text" id="nickname" name="nickname" placeholder="닉네임(유저에서 불러옴)">
+                  <input type="text" id="nickname" name="nickname" value="${users.user_nickname}">
                 </div>
                  <!-- 이메일 -->
                  <div class="row">
                   <label for="user_email">*&nbsp;이메일</label>
-                  <input type="text" id="user_email" name="user_email" placeholder="lsumin1234@hanmail.net(변경불가)" readonly="true">
+                  <input type="text" id="user_email" name="user_email" value="${users.user_email}" readonly="true">
  
                 </div>
                 <!-- 휴대폰번호 -->
                 <div class="row">
                   <label for="phone_num">*&nbsp;휴대폰번호</label>
-                  <input type="text" id="phone_num" name="phone_num" placeholder="010-010-0000(유저에서 불러옴)">
+                  <input type="text" id="phone_num" name="phone_num" value="${users.user_phone}">
                   <button class="id_check">인증</button>
                 </div>
                 <!-- 주소 -->

@@ -5,6 +5,14 @@
 
 <mapper namespace="com.bookshop.mappers.member">
 
+<!-- (마이페이지) 회원정보 불러오기 -->
+
+<select id="getUserInfo" resultType="Users">
+	SELECT *
+	FROM USERS
+	WHERE user_id = #{user_id}
+</select>
+
 <!-- (마이페이지) 회원정보 수정하기 -->
 <update id="profile">
 	UPDATE USERS
