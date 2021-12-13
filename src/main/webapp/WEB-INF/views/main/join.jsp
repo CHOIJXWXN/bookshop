@@ -13,6 +13,9 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <%-- <script src="${path }/resource/js/jquery.js"></script> --%>
     <script src="${path }/resources/js/mainjs/join.js" charset="UTF-8"></script>
+    <%-- 카카오 주소검색 API --%>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    
   </head>
 	<body>
     <div id="wrap">
@@ -31,7 +34,7 @@
         <div class="guide_msg">
           <p>* 필수 입력 사항입니다.</p>
         </div>
-        <form method="POST" action="./joinAction">
+        <form method="POST" action="./joinSuccess">
           <div id="join_form">
             <div class="container">
               <!-- 입력 폼 -->
@@ -39,21 +42,24 @@
               <div class="row_msg">
                 <label for="user_id">*&nbsp;아이디</label>
                 <input type="text" id="user_id" name="user_id" placeholder="영문소문자/숫자, 4 ~ 16 자리">
-                <p class="pass">사용가능한 아이디입니다.</p>
-                <p class="fail">이미 가입된 아이디입니다.</p>
-                <button class="id_check">중복확인</button>
+                <p class="pass" id="id_pass">사용가능한 아이디입니다.</p>
+                <p class="fail" id="id_fail">이미 가입된 아이디입니다.</p>
+                <button type="button" class="checkId" id="checkId">중복확인</button>
               </div>
+             
               <!-- 비밀번호 -->
+              <!-- type ="text를 type="password" 로 변경 -->
               <div class="row">
                 <label for="user_pw">*&nbsp;비밀번호</label>
-                <input type="text" id="user_pw" name="user_pw"  placeholder="영문 대소문자/숫자/특수문자, 10자 ~ 16자">
+                <input type="password" id="user_pw" name="user_pw"  placeholder="영문 대소문자/숫자/특수문자, 10자 ~ 16자">
               </div>
               <!-- 비밀번호 확인 -->
+              <!-- type ="text를 type="password" 로 변경 -->
               <div class="row_msg">
                 <label for="user_pw2">*&nbsp;비밀번호 확인</label>
-                <input type="text" id="user_pw2" name="user_pw2">
-                <p class="pass">확인되었습니다.</p>
-                <p class="fail">비밀번호가 다릅니다.</p>
+                <input type="password" id="user_pw2" name="user_pw2">
+                <p class="pass" id="pw_pass">확인되었습니다.</p>
+                <p class="fail" id="pw_fail">비밀번호가 다릅니다.</p>
               </div>
               <!-- 이름 -->
               <div class="row">
@@ -71,7 +77,8 @@
                 <input type="text" id="nickname" name="nickname">
               </div>
                <!-- 이메일 -->
-               <div class="row">
+               <!-- 이메일 확인 알림을 위한 p 태그 추가 -->
+               <div class="row_msg">
                 <label for="user_email">*&nbsp;이메일</label>
                 <input type="text" id="user_email" name="user_email" style="width: 240px">
                 <select name="book_num" class="book_num">
@@ -80,30 +87,43 @@
                   <option value="hanmail.com">hanmail.com</option>
                   <option value="gmail.com">gmail.com</option>
               </select>
-                <button class="id_check">확인</button>
+             	<p class="pass" id="email_pass">사용가능한 이메일입니다.</p>
+               	<p class="fail" id="email_fail">이미 존재하는 이메일입니다.</p>
+                <button class="checkEmail" id="checkEmail">중복확인</button>
               </div>
               <!-- 휴대폰번호 -->
               <div class="row">
                 <label for="phone_num">*&nbsp;휴대폰번호</label>
                 <input type="text" id="phone_num" name="phone_num" placeholder="- 없이 입력하세요">
-                <button class="id_check">인증</button>
+                <button type="button" class="authPhone" id="authPhone">인증</button>
               </div>
-              <!-- 주소 -->
+              <!-- 주소 
               <div class="row_3">
                 <label >*&nbsp;주소</label>
                 <input type="text" id="addr_1" name="addr_1" readonly="true">  
                 <button>우편번호 검색</button> 
                 <input type="text" id="addr_2" name="addr_2" readonly="true">              
                 <input type="text" id="addr_3" name="addr_3" placeholder="상세 주소 입력">
+              </div> --> 
+              
+              <!-- 주소 (카카오 연동)-->  
+              <div class="row_3">
+                <label >*&nbsp;주소</label>
+                <input type="text" id="addr_1" name="addr_1" placeholder="우편번호">  
+                <button type="button" onclick="execDaumPostcode()">우편번호 검색</button> 
+                <input type="text" id="addr_2" name="addr_2" placeholder="주소">              
+                <input type="text" id="addr_3" name="addr_3" placeholder="상세 주소 입력">
               </div>
-              <!-- 좋아하는 장르 -->
+
+			<!-- 좋아하는 장르 -->
               <div class="row final">
                 <label>*&nbsp;가장 좋아하는 장르</label>
                 <input type="radio" name="genre" value="소설" checked>소설
                 <input type="radio" name="genre" value="시/에세이">시/에세이
                 <input type="radio" name="genre" value="여행">여행
               </div>
-              
+             
+             <!-- 제출 --> 
             </div>
             <div class="submit_btn">
               <input type="submit" value="회원가입">
@@ -112,6 +132,6 @@
           </div>
         </form>
       </section>
-    </div>
+    </div>  
   </body>
 </html>
