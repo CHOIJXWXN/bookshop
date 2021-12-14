@@ -98,5 +98,12 @@
     </footer> 
     
   </div>
+  
+  <script>
+  $(document).ready(function(){
+	var msg = '${msg}';
+	if(msg != null && msg != '') alert(msg);
+  });
+  </script>
 </body>
 </html>

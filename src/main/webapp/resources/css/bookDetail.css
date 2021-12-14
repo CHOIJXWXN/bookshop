@@ -266,13 +266,14 @@
   padding-left: 1%;
   margin-bottom: 15px;
 }
-.book_story p {
+.book_story pre {
   font-family: "Pretendard-Regular";
   font-size: 16px;
   color:#1C1A1A;
   line-height: 30px;
   width: 98%;
   padding: 0 1%;
+  white-space: pre-wrap;
 }
 /* 책 목차 */
 .book_contents {
@@ -293,7 +294,7 @@
   margin-bottom: 15px;
   padding-top: 30px;
 }
-.book_contents p {
+.book_contents pre {
   font-family: "Pretendard-Regular";
   font-size: 16px;
   color:#1C1A1A;
@@ -301,6 +302,7 @@
   width: 98%;
   padding: 0 1%;
   padding-bottom: 90px;
+  white-space: pre-wrap;
 }
 /* [2-3] 책 탭메뉴 영역 */
 /* 나중에 높이 지우기 */

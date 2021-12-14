@@ -33,18 +33,19 @@ $(document).ready(function() {
 							str2 += '<span>' + list.review_date + '</span>';
 							str2 += '</div>';
 							str2 += '<div class="review_star">';
-							str2 += '<i class="far fa-star"></i>';
-							str2 += '<i class="far fa-star"></i>';
-							str2 += '<i class="far fa-star"></i>';
-							str2 += '<i class="far fa-star"></i>';
-							str2 += '<i class="far fa-star"></i>';
+							for (var j = 0; j < list.review_score; j++) {
+								str2 += '<label class="star" style="-webkit-text-fill-color: yellow;">★</label>';
+							}
+							for (var k = 0; k < 5 - list.review_score; k++) {
+								str2 += '<label class="star">★</label>';
+							}
 							str2 += '</div>';
 							str2 += '<div class="view_review">';
 							str2 += '<p>' + list.review_contents + '</p>';
 							str2 += '</div>';
-							str2 += '</div>';
-							
+							str2 += '</div>';						
 						}
+						$('.review_list').append(str2);
 					}
 				},
 				error : function(data) {
