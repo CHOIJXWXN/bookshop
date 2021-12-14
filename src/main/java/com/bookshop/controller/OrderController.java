@@ -62,8 +62,9 @@ public class OrderController {
 	public String cart(HttpSession session, Model model) throws Exception {
 		// (해당 유저의 List<Cart>, List<Book>) HashMap
 		String user_id = (String) session.getAttribute("user_id");
-		model.addAttribute("cartPlus", orderService.viewCart(user_id));
-		return "";
+		user_id = "abcd";
+		model.addAttribute("list", orderService.viewCart(user_id));
+		return "shop/cart";
 	}
 	
 	// 선택 상품 주문 기능
