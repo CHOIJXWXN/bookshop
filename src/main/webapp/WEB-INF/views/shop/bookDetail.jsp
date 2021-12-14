@@ -59,14 +59,16 @@
               <!-- (3) 구매 정보 요약 -->
               <div class="buy_summary">
                 <h4>${book.book_title}</h4>
-                <select name="book_cnt" class="book_num">
-                  <option value="1" selected="selected">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-                <span class="book_price" id="book_price"></span>
+                <div class="num_price_wrap">
+                	<span class="book_price" id="book_price"></span>
+	                <select name="book_cnt" class="book_num">
+	                  <option value="1" selected="selected">1</option>
+	                  <option value="2">2</option>
+	                  <option value="3">3</option>
+	                  <option value="4">4</option>
+	                  <option value="5">5</option>
+	                </select>               
+                </div>            
               </div>
               <!-- (4) 총 금액 -->
               <div class="buy_total">
