@@ -10,8 +10,7 @@
     <link rel="stylesheet" href="${path }/resources/css/reset.css" />
     <link rel="stylesheet" href="${path }/resources/css/mainNav.css" />
     <link rel="stylesheet" href="${path }/resources/css/join.css" />
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <%-- <script src="${path }/resource/js/jquery.js"></script> --%>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="${path }/resources/js/mainjs/join.js" charset="UTF-8"></script>
     <%-- 카카오 주소검색 API --%>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

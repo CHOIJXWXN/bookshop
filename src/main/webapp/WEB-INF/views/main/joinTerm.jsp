@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="${path }/resources/css/mainNav.css" />
     <link rel="stylesheet" href="${path }/resources/css/joinTerm.css" />
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <%-- <script src="${path }/resources/js/jquery.js"></script> --%>
     <script src="${path }/resources/js/mainjs/join.js" charset="UTF-8"></script>
   </head>
 <body>

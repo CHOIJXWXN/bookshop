@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+ <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 </head>
 <body>
 	<!-- [1] 헤더(메인 네비게이션) -->

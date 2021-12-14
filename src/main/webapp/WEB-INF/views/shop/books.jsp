@@ -65,7 +65,9 @@
            <!-- 책 검색 시 ul 아래 태그는 모두 삭제되고 검색된 데이터로 다시 불러옴 List<Book>(searchList) -->
            <c:forEach var="book" items="${map.list}">
            	<li><a href="${path}/book/detail?book_id=${book.book_id}">
+           	<div class="img_wrap">
              <img class="book_cover" src="../../resources/images/bookcover/${book.book_id}.jpg" alt="book_cover">
+             </div>
              <h4 class="book_ttl">${book.book_title}</h4>
              <span class="book_price">${book.book_price}원</span>
            </a></li>

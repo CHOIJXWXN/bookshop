@@ -52,8 +52,7 @@ public class MemberController {
 			ra.addFlashAttribute("msg", "로그인이 필요합니다.");
 			return "redirect:/login";
 		}
-		//2) 로그인이 되어있으면 유저 아이디에 일치하는 정보를 불러옴
-		
+		//2) 로그인이 되어있으면 유저 아이디에 일치하는 정보를 불러옴	
 		//3) 받아온 users 객체를 회원 정보 수정페이지 값 넘겨줌
 		model.addAttribute("users", memberService.getUserInfo(user_id));
 		
