@@ -64,10 +64,12 @@ public class MemberController {
 	// url 패턴이 'path/mypage/updateProfile' 
 	// AJAX
 	@RequestMapping(value = "/updateProfile", method = RequestMethod.POST)
-	@ResponseBody
+	//@ResponseBody
 	public String updateProfile(Users users, String addr1, String addr2, String addr3, RedirectAttributes ra, HttpSession session) throws Exception {
+	
 		
 		String user_id = (String) session.getAttribute("user_id");
+		user_id = "lsumin1127";
 		//1) 로그인이 되어있지 않으면 로그인 페이지로 이동시키고 로그인이필요하다고 알려줌
 		if(user_id == null) {
 			ra.addFlashAttribute("msg", "로그인이 필요합니다.");
@@ -84,7 +86,7 @@ public class MemberController {
 		// +) 필수 입력값을 다 입력했는지는 검증(ajax)
 		
 		
-		return "redirect:/profile";
+		return "redirect:/mypage/profile";
 	}
 	
 	// 주문 배송 조회 page 
