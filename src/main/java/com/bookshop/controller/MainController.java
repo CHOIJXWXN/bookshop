@@ -178,10 +178,11 @@ public class MainController {
 	
 	
 	// 회원가입 완료
+	// url 패턴이 'path/joinSuccess'
 	// 회원가입 버튼 클릭 하면 정보 저장하고 회원가입 완료 페이지를 출력함
 	
 	@RequestMapping(value = "/joinSuccess", method = RequestMethod.POST)
-	public String joinSuccess(Users user) throws Exception {
+	public String joinSuccess(Users user, String addr_1, String addr_2, String addr_3) throws Exception {
 
 		// users 테이블에 삽입
 		return "main/joinSuccess";

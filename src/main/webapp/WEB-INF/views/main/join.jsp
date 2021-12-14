@@ -125,23 +125,27 @@
               </div>
               
 
-			<!-- 좋아하는 장르 -->
+			  <!-- 좋아하는 장르 -->
               <div class="row final">
                 <label>*&nbsp;가장 좋아하는 장르</label>
                 <input type="radio" name="genre" value="소설" checked>소설
                 <input type="radio" name="genre" value="시/에세이">시/에세이
                 <input type="radio" name="genre" value="여행">여행
               </div>
-             
-             <!-- 제출 --> 
+            
+            <!-- container class div 종료 --> 
             </div>
+            <!-- 제출 -form --> 
             <div class="submit_btn">
               <input type="submit" value="회원가입">
             </div>
             
+            <!-- id=join_fron div 종료 -->
           </div>
         </form>
       </section>
+     <!-- id=wrap div 종료 -->
     </div>  
   </body>
+  
 </html>
