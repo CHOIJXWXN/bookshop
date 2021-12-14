@@ -22,6 +22,7 @@
   width: 1300px;
   height: 800px;
   /* background-color: aquamarine; */
+  padding-bottom: 150px;
 }
 /* 책 썸네일 */
 #book_info .book_img_box {
@@ -69,7 +70,6 @@
 .book_buy_info header {
   float: left;
   width: 100%;
-  height: 105px;
   /* background-color: lightgreen; */
   border-bottom: 0.6px solid #1C1A1A; 
 }
@@ -123,7 +123,6 @@
 /* (3) 구매정보 요약 */
 .book_buy_info .buy_summary {
   width: 100%;
-  height: 40px;
   /* background-color: #ff9900; */
   padding: 30px 0;
   position: relative;
@@ -131,22 +130,24 @@
 }
 /* 책 제목 */
 .book_buy_info .buy_summary h4 {
-  float: left;
   font-family: 'NotoSerifKR';
   font-size: 25px;
   line-height: 40px;
   color: #1C1A1A;
   padding-left: 10px;
+  margin-bottom: 20px;
+}
+.num_price_wrap {
+	width: 100%;
+	height: 40px;
 }
 /* 책 수량 */
 .book_buy_info .book_num {
+  float:right;
   width: 130px;
   height: 40px;
   border-radius: 0;
   text-align: center;
-  position: absolute;
-  top:30px;
-  left: 50%;
   font-family: 'NotoSerifKR';
   font-size: 20px;
   color: #1C1A1A;
@@ -158,7 +159,8 @@
   font-size: 22px;
   line-height: 40px;
   color: #1C1A1A;
-  padding-right: 30px;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 /* (4) 총 금액*/
 .book_buy_info .buy_total {
@@ -192,7 +194,6 @@
   position: relative;
 }
 .book_buy_info .buy_btns li {
-  float: left;
   text-align: center;
   position:absolute;
   top: 0;
@@ -232,12 +233,13 @@
 /* (1) 책 제목 영역 */
 #book_intro .book_intro_header {
   width: 100%;
-  height: 230px;
   border-top: 0.6px solid #1C1A1A;
   text-align: center;
 }
 .book_intro_header h3 {
+  width: 70%;
   margin-top: 80px;
+  margin-left: 15%;
   font-family: 'NotoSerifKR';
   font-size: 50px;
   color:#1C1A1A;
@@ -252,9 +254,10 @@
 
 /* 책줄거리 */
 .book_story {
-  width: 100%;
+  width: 96%;
   /* background-color: lightgreen; */
   margin-top: 100px;
+  padding: 0 2%;
 }
 .book_story h4 {
   font-family: 'NotoSerifKR';
