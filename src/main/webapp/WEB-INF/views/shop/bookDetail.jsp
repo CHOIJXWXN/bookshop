@@ -24,11 +24,11 @@
       <section id="book_detail">
         <!-- [2-1] 책 썸네일 & 가격정보 -->
         <article id="book_info">
-          <form action="./detailAction" method="POST">
+          <form action="/order/" method="GET">
           <!-- 책 썸네일 -->
             <div class="book_img_box">
               <div class="book_thum">
-                <img src="../../resources/images/bookcover/${book.book_id}.jpg" alt="">               
+                <img src="../../resources/images/bookcover/${book.book_cover}" alt="">               
               </div>
             </div>
             <!-- [2-2] 가격 정보 & 구매하기 -->
@@ -59,25 +59,36 @@
               <!-- (3) 구매 정보 요약 -->
               <div class="buy_summary">
                 <h4>${book.book_title}</h4>
-                <select name="book_cnt" class="book_num">
-                  <option value="1" selected="selected">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-                <span class="book_price" id="book_price"></span>
+                <div class="num_price_wrap">
+                	<span class="book_price" id="book_price"></span>
+	                <select name="book_cnt" class="book_num">
+	                  <option value="1" selected="selected">1</option>
+	                  <option value="2">2</option>
+	                  <option value="3">3</option>
+	                  <option value="4">4</option>
+	                  <option value="5">5</option>
+	                </select>               
+                </div>            
               </div>
               <!-- (4) 총 금액 -->
               <div class="buy_total">
                 <h4 class="buy_total_ttl">총 합계금액</h4>
                 <span class="buy_total_price" id="book_total_price"></span>
               </div>
+                            
+              <input type="hidden" name="user_id" value="${user_id}">
+              <input type="hidden" name="book_id" value="${book.book_id}">
+              <input type="hidden" name="book_cover" value="${book.book_cover}">
+              <input type="hidden" name="book_title" value="${book.book_title}">
+              <input type="hidden" name="book_writer" value="${book.book_writer}">
+              <input type="hidden" name="book_price" value="${book.book_price}">
+              
               <!-- (5) 장바구니 & 구매하기 버튼 -->
               <ul class="buy_btns">
-                <li><input type="submit" value="Add to Cart" name="addCart"/></li>
-   	 		    <li><input type="submit" value="Buy Now" name="buyNow"/></li>   	 		
+                <li><button type="button" id="addCart">Add to Cart</button></li>
+   	 		    <li><input type="submit" value="Buy Now"/></li>   	 		
               </ul>
+
             </div>
          </form>
         </article>
@@ -130,7 +141,7 @@
                     <header class="form_ttl">
                       <!-- 책 사진 -->
                       <div class="book_img">
-                        <img src="../../resources/images/bookcover/${book.book_id}.jpg" alt="">
+                        <img src="../../resources/images/bookcover/${book.book_cover}" alt="">
                       </div>
                       <!-- 책 요약 -->
                       <ul class="book_info">

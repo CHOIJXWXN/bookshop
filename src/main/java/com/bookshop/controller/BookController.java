@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bookshop.service.BookService;
+import com.bookshop.service.OrderService;
 import com.bookshop.vo.Book;
+import com.bookshop.vo.Cart;
 import com.bookshop.vo.Review;
 
 @Controller
@@ -25,6 +27,7 @@ public class BookController {
 	
 	@Inject
 	BookService bookService;
+	OrderService orderService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(BookController.class);
 	
@@ -83,21 +86,24 @@ public class BookController {
 	
 	// 책 상세 페이지
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String detail(String book_id, RedirectAttributes ra, Model model) throws Exception {
+	public String detail(String book_id, RedirectAttributes ra, HttpSession session, Model model) throws Exception {
+		String user_id = (String) session.getAttribute("user_id");
 		Book book = bookService.view(book_id);
 		if (book == null) {
 			ra.addFlashAttribute("msg", "해당 책이 존재하지 않습니다");
 			return "redirect:/book";
 		}
 		model.addAttribute("book", book);
+		model.addAttribute("user_id", user_id);
 		return "shop/bookDetail";
 	}
 	
 	// 책 장바구니에 추가 버튼 (수정 필요)
 	@RequestMapping(value = "/detailAction", method = RequestMethod.POST, params="addCart")
-	public String addCart(String book_id, Model model) throws Exception {
-		
-		return "shop/bookDetail";
+	public String addCart(Cart cart, RedirectAttributes ra, Model model) throws Exception {
+		orderService.addCart(cart);
+		ra.addFlashAttribute("msg", "장바구니에 추가되었습니다");
+		return "";
 	}
 	
 	// 책 바로 주문 버튼 (수정 필요)
