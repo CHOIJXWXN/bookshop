@@ -14,6 +14,7 @@
     <script src="${path }/resources/js/mainjs/join.js" charset="UTF-8"></script>
     <%-- 카카오 주소검색 API --%>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="${path }/resources/js/mainjs/kakao.js" charset="UTF-8"></script>
     
   </head>
 	<body>
@@ -73,7 +74,7 @@
               <!-- 닉네임 -->
               <div class="row">
                 <label for="nickname">&nbsp;&nbsp;닉네임</label>
-                <input type="text" id="nickname" name="nickname">
+                <input type="text" id="user_nickname" name="user_nickname">
               </div>
                <!-- 이메일 -->
                <!-- 이메일 확인 알림을 위한 p 태그 추가 -->
@@ -93,7 +94,7 @@
               <!-- 휴대폰번호 -->
               <div class="row">
                 <label for="phone_num">*&nbsp;휴대폰번호</label>
-                <input type="text" id="phone_num" name="phone_num" placeholder="- 없이 입력하세요">
+                <input type="text" id="user_phone" name="user_phone" placeholder="- 없이 입력하세요">
                 <button type="button" class="authPhone" id="authPhone">인증</button>
               </div>
               <!-- 주소 
@@ -124,23 +125,27 @@
               </div>
               
 
-			<!-- 좋아하는 장르 -->
+			  <!-- 좋아하는 장르 -->
               <div class="row final">
                 <label>*&nbsp;가장 좋아하는 장르</label>
-                <input type="radio" name="genre" value="소설" checked>소설
-                <input type="radio" name="genre" value="시/에세이">시/에세이
-                <input type="radio" name="genre" value="여행">여행
+                <input type="radio" name="user_init_genre" value="소설" checked>소설
+                <input type="radio" name="user_init_genre" value="시/에세이">시/에세이
+                <input type="radio" name="user_init_genre" value="여행">여행
               </div>
-             
-             <!-- 제출 --> 
+            
+            <!-- container class div 종료 --> 
             </div>
+            <!-- 제출 -form --> 
             <div class="submit_btn">
               <input type="submit" value="회원가입">
             </div>
             
+            <!-- id=join_fron div 종료 -->
           </div>
         </form>
       </section>
+     <!-- id=wrap div 종료 -->
     </div>  
   </body>
+  
 </html>

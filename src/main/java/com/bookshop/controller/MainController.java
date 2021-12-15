@@ -10,10 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bookshop.service.BookService;
 import com.bookshop.service.UsersService;
 import com.bookshop.vo.Users;
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
 @Controller
 public class MainController {
@@ -37,6 +39,7 @@ public class MainController {
 	// --- 로그인(login) 관련 ---
 
 	// 로그인 페이지
+	// url 패턴이 'path/login'
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model) throws Exception {
 
@@ -44,19 +47,56 @@ public class MainController {
 	}
 	
 	// 로그인 실행 기능 (Ajax)
-	@RequestMapping(value = "/loginAction", method = RequestMethod.GET)
-	@ResponseBody
-	public String loginAction(Users user, HttpSession session) throws Exception {
-		int result = 0;
+	//  url 패턴이 'path/loginAction
+	// ajax 이용이 어려워 일단 수업시간에 배운 내용 기준으로 하였음.
+	// 로그인 실패시 알림창 안뜸
+	@RequestMapping(value = "/loginAction", method = RequestMethod.POST)
+	
+	public String loginAction(Users users, HttpSession session, RedirectAttributes ra) throws Exception {
+		
+		// service 에서 반환된 result 값을 받아옴
+		// result = 1 : 결과값 없음, 로그인 실패
+		// result = 0 : 결과값 있음, 로그인 성공
+		int result = usersService.loginAction(users);
+		String url = null;
+		// 결과값이 있으면 로그인 성공, session에 등록시킴
+		if(result == 0) {
+			session.setAttribute("user_id", users.getUser_id());
+			url = "redirect:/";
+		}
+		// 결과값이 없으면 로그인 실패
+		else {
+			ra.addFlashAttribute("msg", "아이디 또는 비밀번호가 일치하지 않습니다.");
+			 url = "redirect:/login";
+		}
+		
+		return url;
+	}
+	
+	/*
+	 * @RequestMapping(value = "/loginAction", method = RequestMethod.POST)
+	 * @ResposeBody
+	public String loginAction(Users users, HttpSession session) throws Exception {
+		
 		// 유저 아이디/비밀번호 확인
 		// 맞으면 return 0	view에서 data == 0이면  location.href 써서 메인 페이지로
 		// 틀리면 return -1	view에서 data == -1이면 정보 불일치 띄우기
 		// int result = userService.mtehod();
+		// service 에서 반환된 result 값을 받아옴
+		int result = usersService.loginAction(users);
+		String url = null;
+		// result = 0 : 결과값 있음, 로그인 성공
+		if(result == 0) {
+			session.setAttribute("user_id", users.getUser_id());
+		
+		}
+		// result = 1 : 결과값 없음, 로그인 실패
+		else {
+		}
+		
 		return result + "";
 	}
 	
-	/*
-	 * 매핑 더 필요함 (아이디 찾기 기능 / 비밀번호 찾기 기능)
 	 */
 	
 	// 아이디/비밀번호 찾기 페이지
@@ -66,13 +106,37 @@ public class MainController {
 		return "main/find";
 	}
 	
+
+	// 아이디 찾기 - 이메일로 찾기 클릭
+	// url 패턴이 'path/findIde'
+	// 결과를 findIde.jsp로 보냄
+	@RequestMapping(value = "/findIdE", method = RequestMethod.POST)
+	public String findIdE(Users users, Model model) throws Exception {
+		
+		int result = usersService.findID_email(users);
+		String url= null;
+		if(result == 0) {
+			model.addAttribute("user_id", users.getUser_id());
+			model.addAttribute("user_name", users.getUser_name());
+			model.addAttribute("user_email", users.getUser_email());
+			
+			url="main/findIdE";
+			
+		}
+		else {
+			url="redirect:/find";
+		}
+		
+		return url;
+	}
+	
+	
+	
 	/* 아이디 찾기 관련 주석
 	  // 존재 확인
       // 있으면 data = 0, data == 0이면 view에서 location.href="아이디 보여주는 페이지" 시키기
       // 없으면 data = -1, data == -1이면 view에서 alert 시키기
       // 아이디 찾기 DAO, Service 필요
-      // DAO - string user_id 받아옴, Impl - (selectOne, SESSOIN + ".getuser_id",user_id)
-      // service - 
       // 존재하면 - 아이디를 보여줌 
       // 존재하지 않으면 - 아이디가 존재하지 않음 msg 출력 후 로그인 페이지로 이동
 	*/
@@ -81,17 +145,11 @@ public class MainController {
 	// 아이디 찾기 - 휴대폰번호로 찾기 클릭
 	// url 패턴이 'path/findIdP'
 	@RequestMapping(value = "/findIdP", method = RequestMethod.GET)
-	public String helpIdP(Model model) throws Exception {
+	public String findIdP(Model model) throws Exception {
 		return "main/findIdP";
 	}
 	
-	// 아이디 찾기 기능 (email)
-	// 아이디 찾기 - 이메일로 찾기 클릭
-	// url 패턴이 'path/findIdE'
-	@RequestMapping(value = "/findIdE", method = RequestMethod.GET)
-	public String helpIdE(Model model) throws Exception {
-		return "main/findIdE";
-	}
+	
 
 	/* 비밀번호 찾기 관련 주석
 	 // 가입된 아이디 기준으로 비밀번호 찾음
@@ -178,11 +236,13 @@ public class MainController {
 	
 	
 	// 회원가입 완료
+	// url 패턴이 'path/joinSuccess'
 	// 회원가입 버튼 클릭 하면 정보 저장하고 회원가입 완료 페이지를 출력함
 	
 	@RequestMapping(value = "/joinSuccess", method = RequestMethod.POST)
-	public String joinSuccess(Users user) throws Exception {
-
+	public String joinSuccess(Users users, String addr_1, String addr_2, String addr_3) throws Exception {
+		users.setUser_addr(addr_1 + "_" +  addr_2 + "_" + addr_3);
+		usersService.joinSuccess(users);
 		// users 테이블에 삽입
 		return "main/joinSuccess";
 	}

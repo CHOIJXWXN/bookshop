@@ -25,10 +25,7 @@
           <!-- 제목 -->
           <h2>FIND ID</h2>
           <div id="findId_tab_box">
-            <label for="tab1">
-              <img src="../../resources/images/findIdPw_icon.png" alt="">
-              이메일로 찾기
-            </label>
+            <label for="tab1"><img src="../../resources/images/findIdPw_icon.png" alt="">이메일로 찾기</label>
             <input type="radio" id="tab1" name="tab" checked/>            
             <label for="tab2"><img src="../../resources/images/findIdPw_icon.png" alt="">휴대폰 번호로 찾기</label>
             <input type="radio" id="tab2" name="tab" />         
@@ -37,7 +34,7 @@
             <!-- 이메일로 찾기 선택시 -->
             
             <section class="email">
-              <form method="POST" action="findID_email">
+              <form method="POST" action="/findIdE">
                 <div class="row">
                   <label for="user_name">이름</label>
                   <input type="text" id="user_name" name="user_name" >
@@ -83,7 +80,7 @@
             <!-- 위의 탭박스 선택에 따라 아래 탭 컨텐츠 달라짐 -->
             <!-- 이메일로 찾기 선택시 -->
             <section class="pw_email">
-              <form method="POST" action="findPW_email">
+              <form method="POST" action="/findPW_email">
                 <div class="row">
                   <label for="user_id">아이디</label>
                   <input type="text" id="user_id" name="user_id" >

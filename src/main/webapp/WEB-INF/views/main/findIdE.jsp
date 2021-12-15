@@ -18,11 +18,11 @@
       <!-- [2] 메인화면 -->
       <section id="findIdE">
         <div class="findId_success">
-            <h2>user_name불러오기</h2>
-            <p>user_email불러오기</p>
+            <h2>${user_name }</h2>
+            <p>${user_email }</p>
             <div class="row">
                 <input type="radio" name="id_list" id="id_list" checked />
-                <label for="id_list">일치하는 user_id 불러오기</label>
+                <label for="id_list">${user_id}</label>
             </div>
             <ul class="btns_wrap">
                 <li><a href="#">LOGIN</a></li>
