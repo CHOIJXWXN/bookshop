@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>[관리자 페이지] 문의 관리</title>
     <link rel="stylesheet" href="${path}/resources/css/reset.css" />
+    <link rel="stylesheet" href="${path}/resources/css/mainNav.css" />
     <link rel="stylesheet" href="${path}/resources/css/admin_ask.css" />
   </head>
   <body>

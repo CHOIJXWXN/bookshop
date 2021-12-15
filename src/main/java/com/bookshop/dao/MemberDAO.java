@@ -16,9 +16,13 @@ public interface MemberDAO {
 	public void profile(Users users) throws Exception;
 		
 	// (마이페이지) 주문/배송 조회
-	public Orders getOrders(String user_id) throws Exception;
+	// 1) 주문 목록 가져오기
+	public List<Orders> getOrders(String user_id) throws Exception;
 	public List<OrderList> getOrderlist(String order_num) throws Exception;
 	public Book getBook(String book_id) throws Exception;
+	
+	// 2) 보유 포인트 가져오기
+	public int getPoint(String user_id) throws Exception;
 		
 	
 }

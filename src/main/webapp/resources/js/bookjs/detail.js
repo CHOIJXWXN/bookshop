@@ -111,4 +111,31 @@ $(document).ready(function() {
 		$('#book_total_price').text(price * cnt + shippingCost + '원');
 	});
 	
+	// add to cart 버튼 클릭 시 ajax
+	$('#addCart').click(function() {
+		var user_id = $('input[name=user_id]').val();
+		var book_id = $('input[name=book_id]').val();
+		var book_cnt = $('select[name=book_cnt]').val();
+		$.ajax({
+			type : "GET",
+			url : "/order/addCart",
+			data : {
+				user_id : user_id,
+				book_id : book_id,
+				book_cnt : book_cnt
+			},
+			dataType : "text",
+			success : function(data) {
+				if (data == 0) {
+					alert('장바구니에 추가되었습니다');
+				} else {
+					alert('장바구니 추가에 실패하였습니다');
+				}
+			},
+			error : function(data) {
+				
+			}
+		});
+	});
+	
 });

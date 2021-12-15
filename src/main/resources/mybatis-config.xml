@@ -13,6 +13,7 @@
 	  <typeAlias alias="Delivery" type="com.bookshop.vo.Delivery"/>
 	  <typeAlias alias="OrderList" type="com.bookshop.vo.OrderList"/>
 	  <typeAlias alias="Orders" type="com.bookshop.vo.Orders"/>
+	  <typeAlias alias="OrderPlus" type="com.bookshop.vo.OrderPlus"/>
 	  <typeAlias alias="Record" type="com.bookshop.vo.Record"/>
 	  <typeAlias alias="Review" type="com.bookshop.vo.Review"/>
 	  <typeAlias alias="Users" type="com.bookshop.vo.Users"/>

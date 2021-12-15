@@ -1,7 +1,5 @@
 package com.bookshop.controller;
 
-import java.util.List;
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bookshop.service.OrderService;
-import com.bookshop.vo.Book;
 import com.bookshop.vo.Cart;
 import com.bookshop.vo.CartPlus;
 
@@ -39,9 +36,10 @@ public class OrderController {
 	 */
 	// 장바구니 상품 추가 기능
 	@RequestMapping(value = "/addCart", method = RequestMethod.GET)
+	@ResponseBody
 	public String addCart(Cart cart) throws Exception {
 		orderService.addCart(cart);
-		return "";
+		return "0";
 	}
 	
 	/*
@@ -64,8 +62,9 @@ public class OrderController {
 	public String cart(HttpSession session, Model model) throws Exception {
 		// (해당 유저의 List<Cart>, List<Book>) HashMap
 		String user_id = (String) session.getAttribute("user_id");
-		model.addAttribute("cartPlus", orderService.viewCart(user_id));
-		return "";
+		
+		model.addAttribute("list", orderService.viewCart(user_id));
+		return "shop/cart";
 	}
 	
 	// 선택 상품 주문 기능
