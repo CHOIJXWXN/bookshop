@@ -1,8 +1,9 @@
 package com.bookshop.controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bookshop.service.AdminService;
@@ -86,12 +88,14 @@ public class AdminController {
 	}
 
 	// 상품 삭제
-	@RequestMapping(value = "/deleteProduct", method = RequestMethod.POST)
-	public String deleteProduct(ArrayList<String> book_id, Model model) throws Exception {
-		for (String item : book_id) {
-			adminService.deleteProduct(item);
+	@RequestMapping(value = "/deleteProduct", method = RequestMethod.GET)
+	public String deleteProduct(@RequestParam List<String> book_id, Model model, HttpServletRequest request) throws Exception {
+		for (int i = 0; i < book_id.size(); i++) {
+			adminService.deleteProduct(book_id.get(i));
 		}
-		return "admin/admin";
+		// 컨트롤러에서 새로고침
+		String referer = request.getHeader("Referer");
+		return "redirect:" + referer;
 	}
 	
 	// 문의 관리 페이지
