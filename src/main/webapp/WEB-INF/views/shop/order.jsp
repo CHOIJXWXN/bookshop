@@ -7,13 +7,13 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Shop</title>
-    <link rel="stylesheet" href="${path }/resources/css/reset.css" />
-    <link rel="stylesheet" href="${path }/resources/css/order_set.css" />
+    <link rel="stylesheet" href="${path}/resources/css/reset.css" />
+    <link rel="stylesheet" href="${path}/resources/css/order_set.css" />
   </head>
   <body>
     <div id="wrap">
       <!-- [1] 네비게이션 -->
-      <jsp:include page="../mainNav.jsp">
+      <jsp:include page="../mainNav.jsp"/>
         <!-- [2-2] 주문상세내역 -->
         <article id="order_detail">
             <!-- 소제목 -->
