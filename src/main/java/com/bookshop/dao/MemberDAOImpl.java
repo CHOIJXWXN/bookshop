@@ -62,5 +62,12 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne(SESSION + ".getPoint", user_id);
 		
 	}
+
+	// 3) 주문목록 건수 가져오기
+	@Override
+	public int getOrderCnt(String user_id) throws Exception {
+		
+		return sqlSession.selectOne(SESSION + ".getOrderCnt", user_id);
+	}
 	
 }
