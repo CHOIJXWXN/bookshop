@@ -32,15 +32,17 @@
         		$('#book_price_' + ${item['book_id']}).text(price * book_cnt + '원');
         		book_price = book_price + parseInt($('#book_price_' + ${item['book_id']}).text());
         		$('#book_price').text(book_price + '원');
+        		$('#book_total_price').text(parseInt($('#book_price').text()) + shippingCost + '원');
+            	$('#point').text('적립예정 포인트 : ' + parseInt($('#book_price').text()) * 0.05 + '원');
     		});
     	</c:forEach>
-    		$('#book_price').text(book_price + '원');
+    	$('#book_price').text(book_price + '원');
     	if (book_price >= 20000) {
     		shippingCost = 0;
-    		$('tbody tr:first-child').append('<td rowspan="${length}" style="border-left: 0.5px solid #707070;">무료배송</td>')
+    		$('tbody tr:first-child').append('<td rowspan="${length}" style="border-left: 0.5px solid #707070; vertical-align: middle;">무료배송</td>')
     		$('#shippingCost').append('0원');
     	} else {
-    		$('tbody tr:first-child').append('<td rowspan="${length}" style="border-left: 0.5px solid #707070;">3000원</td>')
+    		$('tbody tr:first-child').append('<td rowspan="${length}" style="border-left: 0.5px solid #707070; vertical-align: middle;">3000원</td>')
     		$('#shippingCost').append('3000원');
     	}
     	$('#book_total_price').text(parseInt($('#book_price').text()) + shippingCost + '원');
@@ -89,7 +91,7 @@
                     </td>
                     <td class="hidden_col"><!--book_id--></td>
                     <td class="book_name" style="text-align: left;">
-                      <img src="../../resources/images/bookcover/${book.book_cover}" alt="book_cover">
+                      <img src="../../resources/images/bookcover/${item.book_cover}" alt="book_cover">
                       <span>${item.book_title}&nbsp;|&nbsp;${item.book_writer}</span>
                     </td>
                     <td> 
@@ -122,14 +124,14 @@
                             <span id="book_price"></span>
                         </li>
                         <li class="plus">
-                          <img src="images/cart_plus.png" alt="">
+                          <img src="../../resources/images/cart_plus.png" alt="">
                         </li>
                         <li>
                           <h4>배송비</h4>
                           <span id="shippingCost"></span>
                       </li>
                       <li class="equal">
-                        <img src="images/cart_equal.png" alt="">
+                        <img src="../../resources/images/cart_equal.png" alt="">
                       </li>
                       <li>
                           <h4>총 주문금액</h4>
@@ -137,7 +139,7 @@
                       </li>
                       
                     </ul>
-                    <p id="point">적립예정 포인트 : 1000원</p>
+                    <p id="point"></p>
                 </div>
                 <!-- [2-5] 주문 버튼 -->
                 <ul class="order_btns_wrap">
