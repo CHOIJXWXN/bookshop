@@ -1,5 +1,8 @@
 package com.bookshop.controller;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.bookshop.vo.OrderItem;
 import com.bookshop.vo.Users;
 import com.bookshop.service.MemberService;
 
@@ -112,9 +116,10 @@ public class MemberController {
 		}
 		//2) userId가 매칭되는 ordernum(ORDERS) -> book_id(ORDERLIST) -> book_name,author(BOOK)	
 		// 주문날짜1, 주문번호12, 책 표지3, 책 제목3, 책id23, 작가3, 상품금액3, 수량2, 주문상태3를 리스트로 받아와서 띄움
-		memberService.viewOrderlist(user_id);
+		List<OrderItem> list = memberService.viewOrderlist(user_id);
 		// 3)보유 포인트를 받아와서 표시
-		model.addAttribute("point", memberService.getPoint("user_id"));
+		model.addAttribute("point", memberService.getPoint(user_id));
+		model.addAttribute("list", list);
 		// 한페이지에 4개 리스트보여줌 이전/다음
 		// 주문상태  입금전 배송중 배송완료
 		// 입금전일 때 아무 버튼 x
@@ -122,7 +127,7 @@ public class MemberController {
 		// 배송완료일 때 리뷰쓰기 버튼 보이기
 		
 		
-		return "member/delivery";
+		return "member/orderList";
 	}
 	
 	
