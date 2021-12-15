@@ -3,6 +3,7 @@ package com.bookshop.controller;
 import java.util.HashMap;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bookshop.service.BookService;
 import com.bookshop.vo.Book;
@@ -33,7 +35,7 @@ public class BookController {
 	 * 				 1 : 시/에세이
 	 * 				 2 : 여행		  }
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String book() throws Exception {
 		return "redirect:/book";
 	}
@@ -71,7 +73,7 @@ public class BookController {
 	}	
 	
 	// 책 베스트셀러 페이지
-	@RequestMapping(value = "/best", method = RequestMethod.GET)
+	@RequestMapping(value = "/best", method = RequestMethod.POST)
 	public String best(HttpSession session, Model model) throws Exception {
 		// (정해진 기간의 베스트 셀러 List<Book> + 유저 기반 추천 도서 List<Book>) HashMap 가져오기
 		String user_id = (String) session.getAttribute("user_id");
@@ -81,8 +83,26 @@ public class BookController {
 	
 	// 책 상세 페이지
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String detail(String book_id, Model model) throws Exception {
-		model.addAttribute("book", bookService.view(book_id));
+	public String detail(String book_id, RedirectAttributes ra, Model model) throws Exception {
+		Book book = bookService.view(book_id);
+		if (book == null) {
+			ra.addFlashAttribute("msg", "해당 책이 존재하지 않습니다");
+			return "redirect:/book";
+		}
+		model.addAttribute("book", book);
+		return "shop/bookDetail";
+	}
+	
+	// 책 장바구니에 추가 버튼 (수정 필요)
+	@RequestMapping(value = "/detailAction", method = RequestMethod.POST, params="addCart")
+	public String addCart(String book_id, Model model) throws Exception {
+		
+		return "shop/bookDetail";
+	}
+	
+	// 책 바로 주문 버튼 (수정 필요)
+	@RequestMapping(value = "/detailAction", method = RequestMethod.POST, params="buyNow")
+	public String buyNow(String book_id, Model model) throws Exception {
 		return "shop/bookDetail";
 	}
 	

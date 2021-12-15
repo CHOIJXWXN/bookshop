@@ -63,6 +63,7 @@ input[type="submit"] {
     width: 100%;
     height: 50px;
 }
+
 /* 회원가입/ 찾기 버튼 */
 .join_find {
     margin: 0 auto;

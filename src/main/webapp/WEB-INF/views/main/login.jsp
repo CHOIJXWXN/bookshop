@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="${path }/resources/css/reset.css" />
     <link rel="stylesheet" href="${path }/resources/css/mainNav.css" />
     <link rel="stylesheet" href="${path }/resources/css/login.css" />
+    
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    
+    <script src="${path }/resources/js/mainjs/login.js" charset="UTF-8"></script>
+  
+
   </head>
   <body>
     <div id="wrap">
@@ -17,7 +23,8 @@
       <jsp:include page="../mainNav.jsp" />
       <!-- [2] 메인화면 -->
       <section id="login_view">
-        <form  method="POST" action="/loginAction">
+      <!-- 수정 : from name 설정함 -->
+        <form name="fform" method="POST" action="/loginAction">
             <!-- 로그인 박스 -->
             <div class="container">
                 <header>LOGIN</header>
@@ -29,11 +36,12 @@
                 </div>
                 <div class="row_s">
                     <input type="checkbox" name="save_id" id="save_id">
-                    <lable for="save_id">아이디 저장</lable>
+                    <label for="save_id">아이디 저장</label>
                 </div>
                 <input type="submit" value="LOGIN">
             </div>
         </form>
+       
         <div class="join_find">
             <p>아직 회원이 아니신가요?</p>
             <div class="btn_group">
@@ -42,7 +50,10 @@
             </div>
         </div>
         
+        
       </section>
     </div>
+    
+    
   </body>
 </html>

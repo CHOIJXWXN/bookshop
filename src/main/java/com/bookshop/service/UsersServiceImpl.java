@@ -1,6 +1,7 @@
 package com.bookshop.service;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
@@ -43,6 +44,49 @@ public class UsersServiceImpl implements UsersService {
 		// dao.users를 실행
 		dao.join(users);
 	}
+	
+	// [2] 로그인 (login) 관련 service
+	// 로그인 loginAction 실행
+	@Override
+	public int loginAction(Users users) throws Exception {
+		// users 값이 존재하면 0 반환-> 로그인 성공
+		// users 값이 존재하지 않으면 1 반환 -> 로그인 실패 
+		int result = 0;
+		Users rs = dao.login(users);
+		
+		if(rs == null) result = 1;
+		return result;
+	}
+	// 아이디 찾기 (이메일을 이용해서 찾기)
+	// users 값이 존재하면 0 > 아이디 전달
+	// users 값이 존재하지 않으면 -1 > 가입된 아이디 없음
+	@Override
+	public int findID_email(Users users) throws Exception {
+		int result = 0;
+		Users rs = dao.getIdE(users);
+		
+		if(rs == null) result = -1;
+		return result;
+	}
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+
+	
+	
+
+		
+	
+	
+	
+	
 	
 
 }

@@ -124,10 +124,22 @@
   /* background-color: lemonchiffon; */
   margin-bottom: 65px;
 }
+#all_books .book_prod_wrap li a {
+  display: block;
+}
 /* 책 표지 */
-#all_books .book_prod_wrap li .book_cover {
+#all_books .book_prod_wrap li .img_wrap {
   width: 280px;
+  height: 270px;
+  overflow: hidden;
+  text-align: center;
   margin: 0 10px;
+  background-color: #DFDDD5;
+  padding: 45px 0;
+}
+#all_books .book_prod_wrap li .book_cover {
+  height: 100%;
+  filter: drop-shadow(5px 5px 5px #000);
 }
 /* 책 제목 */
 #all_books .book_prod_wrap li .book_ttl {

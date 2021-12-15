@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+ <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 </head>
 <body>
 	<!-- [1] 헤더(메인 네비게이션) -->
@@ -17,15 +18,17 @@
           <!-- (2) 네비 메뉴 -->
           <nav>
             <ul class="main_nav">
-              <li class="nav_1"><a href="${path }/shop">Books</a></li>
+              <li class="nav_1"><a href="${path }/book">Books</a>
+              	<ul class="books_sub_mn">
+	              <li><a href="${path }/book">ALL</a></li>
+	              <li><a href="${path }/book/best">BEST</a></li>
+	            </ul>
+              </li>
               <li class="nav_2"><a href="${path }/record">Diary</a></li>
               <li class="nav_3"><a href="${path }/ask">Board</a></li>
             </ul>
             <!-- BOOKS HOVER : 서브메뉴 보이기 -->
-            <ul class="books_sub_mn">
-              <li><a href="${path }/book">ALL</a></li>
-              <li><a href="${path }/book/best">BEST</a></li>
-            </ul>
+            
           </nav>
           <!-- (3) 인포메뉴 -->
           <!-- case1) 로그아웃 상태 -->

@@ -27,31 +27,31 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 		
 		
-		// (마이페이지) 회원정보 수정
-		@Override
-		public void profile(Users users) throws Exception {
+	// (마이페이지) 회원정보 수정
+	@Override
+	public void profile(Users users) throws Exception {
 			
-			sqlSession.update(SESSION + ".profile", users);
+		sqlSession.update(SESSION + ".profile", users);
 			
-		}
+	}
 
-		// (마이페이지) 주문/배송 조회
-		@Override
-		public Orders getOrders(String user_id) throws Exception {
+	// (마이페이지) 주문/배송 조회
+	@Override
+	public Orders getOrders(String user_id) throws Exception {
 			
-			return sqlSession.selectOne(SESSION + ".getOrders", user_id);
-		}
+		return sqlSession.selectOne(SESSION + ".getOrders", user_id);
+	}
 
-		@Override
-		public List<OrderList> getOrderlist(String order_num) throws Exception {
+	@Override
+	public List<OrderList> getOrderlist(String order_num) throws Exception {
 			
-			return sqlSession.selectList(SESSION + ".getOrderlist", order_num);
-		}
+		return sqlSession.selectList(SESSION + ".getOrderlist", order_num);
+	}
 
-		@Override
-		public Book getBook(String book_id) throws Exception {
+	@Override
+	public Book getBook(String book_id) throws Exception {
 			
-			return sqlSession.selectOne(SESSION + ".getBook", book_id);
-		}
+		return sqlSession.selectOne(SESSION + ".getBook", book_id);
+	}
 	
 }
