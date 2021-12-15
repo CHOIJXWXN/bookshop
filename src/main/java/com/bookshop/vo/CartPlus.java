@@ -2,6 +2,7 @@ package com.bookshop.vo;
 
 public class CartPlus {
 	
+	private String book_id;
 	private String book_cover;
 	private String book_title;
 	private String book_writer;
@@ -12,15 +13,23 @@ public class CartPlus {
 	
 	}
 
-	public CartPlus(String book_cover, String book_title, String book_writer, int book_cnt, int book_price) {
-		super();
+	public CartPlus(String book_id, String book_cover, String book_title, String book_writer, int book_cnt, int book_price) {
+		this.book_id = book_id;
 		this.book_cover = book_cover;
 		this.book_title = book_title;
 		this.book_writer = book_writer;
 		this.book_cnt = book_cnt;
 		this.book_price = book_price;
 	}
-
+	
+	public String getBook_id() {
+		return book_id;
+	}
+	
+	public void setBook_id(String book_id) {
+		this.book_id = book_id;
+	}
+	
 	public String getBook_cover() {
 		return book_cover;
 	}
