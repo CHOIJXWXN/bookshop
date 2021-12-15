@@ -24,7 +24,7 @@ public class MemberController {
 
 	// mypage - login 되어 있어야지 보임
 	
-	// 마이페이지 메인화면 page
+	// [1] 마이페이지 메인화면 page
 	// url 패턴이 'path/mypage/'
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String mypage(RedirectAttributes ra, HttpSession session) throws Exception {
@@ -39,7 +39,7 @@ public class MemberController {
 		
 	}
 	
-	// 회원정보수정 page
+	// [2] 회원정보수정 page
 	// url 패턴이 'path/mypage/profile' 
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String profile(Model model, RedirectAttributes ra, HttpSession session) throws Exception {
@@ -53,19 +53,28 @@ public class MemberController {
 			return "redirect:/login";
 		}
 		//2) 로그인이 되어있으면 유저 아이디에 일치하는 정보를 불러옴	
+		Users users = memberService.getUserInfo(user_id);
+		//주소를 문자열 분리
+		String[] addrList = users.getUser_addr().split("/_/");
+		String addr_1 = addrList[0];
+		String addr_2 = addrList[1];
+		String addr_3 = addrList[2];
+		
 		//3) 받아온 users 객체를 회원 정보 수정페이지 값 넘겨줌
-		model.addAttribute("users", memberService.getUserInfo(user_id));
-		
-		
+		model.addAttribute("users", users);
+		model.addAttribute("addr_1", addr_1);
+		model.addAttribute("addr_2", addr_2);
+		model.addAttribute("addr_3", addr_3);
+				
 		return "member/profile";
 	}
 	
-	// 회원정보 수정 기능
+	// [3] 회원정보 수정 기능
 	// url 패턴이 'path/mypage/updateProfile' 
 	// AJAX
 	@RequestMapping(value = "/updateProfile", method = RequestMethod.POST)
 	//@ResponseBody
-	public String updateProfile(Users users, String addr1, String addr2, String addr3, RedirectAttributes ra, HttpSession session) throws Exception {
+	public String updateProfile(Users users, String addr_1, String addr_2, String addr_3, RedirectAttributes ra, HttpSession session) throws Exception {
 	
 		
 		String user_id = (String) session.getAttribute("user_id");
@@ -81,7 +90,7 @@ public class MemberController {
 			return "redirect:/mypage";
 		}
 		//3) 일치한다면 프로필 업데이트 실행
-		users.setUser_addr(addr1 + " " + addr2 + " " + addr3);
+		users.setUser_addr(addr_1 + "/_/ " + addr_2 + "/_/" + addr_3);
 		memberService.updateProfile(users);
 		// +) 필수 입력값을 다 입력했는지는 검증(ajax)
 		
@@ -89,21 +98,23 @@ public class MemberController {
 		return "redirect:/mypage/profile";
 	}
 	
-	// 주문 배송 조회 page 
+	// [4] 주문 배송 조회 page 
 	// url 패턴이 'path/mypage/delivery'
 	@RequestMapping(value = "/delivery", method = RequestMethod.GET)
-	public String delivery(RedirectAttributes ra, HttpSession session) throws Exception{
+	public String delivery(Model model, RedirectAttributes ra, HttpSession session) throws Exception{
 		
 		String user_id = (String) session.getAttribute("user_id");
+		user_id = "lsumin1127";
 		//1) 로그인이 되어있지 않으면 로그인 페이지로 이동시키고 로그인이필요하다고 알려줌
 		if(user_id == null) {
 			ra.addFlashAttribute("msg", "로그인이 필요합니다.");
 			return "redirect:/login";
 		}
-		//2) userId가 매칭되는 ordernum(ORDERS) -> book_id(ORDERLIST) -> book_name,author(BOOK)
-		
-		// 주문날짜, 주문번호, 책 표지, 책 제목, 책id, 작가, 상품금액, 수량, 주문상태를 리스트로 받아와서 띄움
-		// 보유 포인트를 받아와서 표시
+		//2) userId가 매칭되는 ordernum(ORDERS) -> book_id(ORDERLIST) -> book_name,author(BOOK)	
+		// 주문날짜1, 주문번호12, 책 표지3, 책 제목3, 책id23, 작가3, 상품금액3, 수량2, 주문상태3를 리스트로 받아와서 띄움
+		memberService.viewOrderlist(user_id);
+		// 3)보유 포인트를 받아와서 표시
+		model.addAttribute("point", memberService.getPoint("user_id"));
 		// 한페이지에 4개 리스트보여줌 이전/다음
 		// 주문상태  입금전 배송중 배송완료
 		// 입금전일 때 아무 버튼 x

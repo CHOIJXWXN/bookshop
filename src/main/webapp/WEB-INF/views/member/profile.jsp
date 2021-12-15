@@ -49,7 +49,7 @@
                 <!-- 비밀번호 -->
                 <div class="row">
                   <label for="user_pw">*&nbsp;비밀번호</label>
-                  <input type="password" id="user_pw" name="user_pw"  placeholder="영문 대소문자/숫자/특수문자, 10자 ~ 16자">
+                  <input type="password" id="user_pw" name="user_pw" value="${users.user_pw }" placeholder="영문 대소문자/숫자/특수문자, 10자 ~ 16자">
                 </div>
                 <!-- 비밀번호 확인 -->
                 <div class="row_msg pw_check">
@@ -88,10 +88,10 @@
                 <!-- 주소 -->
                 <div class="row_3 final">
                   <label >*&nbsp;주소</label>
-                  <input type="text" id="addr_1" name="addr_1" readonly="true" placeholder="유저에서 불러옴">  
-                  <button>우편번호 검색</button> 
-                  <input type="text" id="addr_2" name="addr_2" readonly="true" placeholder="유저에서 불러옴">              
-                  <input type="text" id="addr_3" name="addr_3" value="${users.user_addr}" placeholder="유저에서 불러옴">
+                  <input type="text" id="addr_1" name="addr_1" readonly="true"  value="${addr_1}" />  
+                  <button type="button">우편번호 검색</button> 
+                  <input type="text" id="addr_2" name="addr_2" readonly="true" value="${addr_2}" />              
+                  <input type="text" id="addr_3" name="addr_3" value="${addr_3}" />
                 </div>
                 
                 
