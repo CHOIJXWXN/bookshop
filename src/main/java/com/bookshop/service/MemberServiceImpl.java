@@ -47,22 +47,20 @@ public class MemberServiceImpl implements MemberService {
 			
 			// 유저 아이디에 일치하는 주문번호, 주문날짜, 주문상태 리스트 가져오기
 			List<Orders> orders = (List<Orders>) dao.getOrders(user_id);
+			//리스트 만들어주고
+			List ResultList = new ArrayList();
 			
 			for(int i = 0; i < orders.size(); i++) {
 				
 				// 주문번호에 속하는 책아이디, 책별 구매수량 가져오기
 				List<OrderList> orderlist = dao.getOrderlist(orders.get(i).getOrder_num());
-				
-				HashMap<String, Object> ordermap = new HashMap<String, Object>();			
-				ordermap.put("ordernum", orderlist.get(i).getOrder_num());
-				ordermap.put("book_cnt", orderlist.get(i).getBook_cnt());
-				
+							
 				List list = new ArrayList();
 				
 				for(int j = 0; j < orderlist.size(); j++) {
 					
 					// 책아이디별 책 정보 가져오기
-					Book book = dao.getBook(orderlist.get(i).getBook_id());
+					Book book = dao.getBook(orderlist.get(j).getBook_id());
 					
 					HashMap<String, Object> bookmap = new HashMap<String, Object>();
 					bookmap.put("book_id", book.getBook_id());
@@ -70,24 +68,20 @@ public class MemberServiceImpl implements MemberService {
 					bookmap.put("book_writer", book.getBook_writer());
 					bookmap.put("book_price", book.getBook_price());
 					bookmap.put("book_cover", book.getBook_cover());
+					bookmap.put("book_cnt", orderlist.get(j).getBook_cnt());
 					
 					list.add(bookmap);
 				}
 				
-				List list2 = new ArrayList();
-				list2.add(list);
-				ordermap.put("booklist", list2);
+				HashMap<String, Object> ordermap = new HashMap<String, Object>();			
+				ordermap.put("ordernum", orderlist.get(i).getOrder_num());
+				ordermap.put("booklist", list);
+				
+				ResultList.add(ordermap);
 			}
 			
-			String book_id = ((Map<String, Object>) orderlist.get(0)).get("book_id").toString();
-			Book book = dao.getBook(book_id);
-			
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("orders", orders);
-			map.put("orderlist", orderlist);
-			map.put("book", book);
-			
-			return map;
+		
+			return (HashMap<String, Object>) ResultList;
 		}
 		
 		// 2) 보유 포인트 가져오기
