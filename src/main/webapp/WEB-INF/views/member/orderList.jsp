@@ -43,141 +43,42 @@
                     <li class="btn">버튼</li>
                 </ul>
             </header>
+            
+            <c:forEach var="items" items="${list }">
             <div class="row">
                 <ul>
                     <li class="date">
-                      <span>2021-12-27</span>
-                      <a href="#"><p>20211227-000001</p></a>
+                      <span>${items.orders.order_date}</span>
+                      <a href="#"><p>${items.orders.order_num}</p></a>
                     </li>
-                    <li class="prod_name" style="text-align:left;">
-                        <span class="book_id">9878654567</span>
-                        <!-- 책 표지 -->
-                        <img class="book_cover" src="../resources/images/book_cover_temp4.gif" alt="">                      
-                        <!-- 책 제목 & 작가 -->
-                        <ul class="ttl_writer_wrap">
-                          <span>책제목책제목책제목책제목</span>
-                          <span>작가</span>
-                        </ul>
+                    <li>
+                    	<c:forEach var="item" items="${items.list }">
+                    	<ul>
+	                    	<li class="prod_name" style="text-align:left;">
+		                        <span class="book_id">${item.book.book_id}</span>
+		                        <!-- 책 표지 -->
+		                        <img class="book_cover" src="../resources/images/${item.book.book_cover}" alt="">                      
+		                        <!-- 책 제목 & 작가 -->
+		                        <ul class="ttl_writer_wrap">
+		                          <span>${item.book.book_title}</span>
+		                          <span>${item.book.book_writer}</span>
+		                        </ul>
+		                    </li>
+		                    <li class="prod_price">
+		                        <span>${item.book.book_price}원 / ${item.book_cnt}개</span>
+		                    </li>
+                    	</ul>
+                    	</c:forEach>
                     </li>
-                    <li class="prod_price">
-                        <span>14,000원 / 1개</span>
-                    </li>
-                    <li class="status">배송완료</li>
                     <li class="btn">
                       <button type="button" class="ask on">문의</button>
                       <button type="button" class="review">리뷰쓰기</button>
                       <button type="button" class="delivery">배송추적</button>
                     </li>
+                    <li class="status">${items.orders.order_status }</li>
                 </ul>
             </div>
-            <div class="row">
-                <ul>
-                    <li class="date">
-                      <span>2021-12-27</span>
-                      <a href="#"><p>20211227-000001</p></a>
-                    </li>
-                    <li class="prod_name" style="text-align:left;">
-                        <span class="book_id">9878654567</span>
-                        <!-- 책 표지 -->
-                        <img class="book_cover" src="../resources/images/book_cover_temp1.gif" alt="">                      
-                        <!-- 책 제목 & 작가 -->
-                        <ul class="ttl_writer_wrap">
-                          <span>책제목책제목책제목책제목</span>
-                          <span>작가</span>
-                        </ul>
-                    </li>
-                    <li class="prod_price">
-                        <span>14,000원 / 1개</span>
-                    </li>
-                    <li class="status">배송완료</li>
-                    <li class="btn">
-                      <button type="button" class="ask on">문의</button>
-                      <button type="button" class="review">리뷰쓰기</button>
-                      <button type="button" class="delivery">배송추적</button>
-                    </li>
-                </ul>
-            </div>
-            <div class="row">
-                <ul>
-                    <li class="date">
-                      <span>2021-12-27</span>
-                      <a href="#"><p>20211227-000001</p></a>
-                    </li>
-                    <li class="prod_name" style="text-align:left;">
-                        <span class="book_id">9878654567</span>
-                        <!-- 책 표지 -->
-                        <img class="book_cover" src="../resources/images/book_cover_temp3.gif" alt="">                      
-                        <!-- 책 제목 & 작가 -->
-                        <ul class="ttl_writer_wrap">
-                          <span>책제목책제목책제목책제목</span>
-                          <span>작가</span>
-                        </ul>
-                    </li>
-                    <li class="prod_price">
-                        <span>14,000원 / 1개</span>
-                    </li>
-                    <li class="status">배송완료</li>
-                    <li class="btn">
-                      <button type="button" class="ask on">문의</button>
-                      <button type="button" class="review">리뷰쓰기</button>
-                      <button type="button" class="delivery">배송추적</button>
-                    </li>
-                </ul>
-            </div>
-            <div class="row">
-                <ul>
-                    <li class="date">
-                      <span>2021-12-27</span>
-                      <a href="#"><p>20211227-000001</p></a>
-                    </li>
-                    <li class="prod_name" style="text-align:left;">
-                        <span class="book_id">9878654567</span>
-                        <!-- 책 표지 -->
-                        <img class="book_cover" src="../resources/images/book_cover_temp2.gif" alt="">                      
-                        <!-- 책 제목 & 작가 -->
-                        <ul class="ttl_writer_wrap">
-                          <span>책제목책제목책제목책제목</span>
-                          <span>작가</span>
-                        </ul>
-                    </li>
-                    <li class="prod_price">
-                        <span>14,000원 / 1개</span>
-                    </li>
-                    <li class="status">배송완료</li>
-                    <li class="btn">
-                      <button type="button" class="ask on">문의</button>
-                      <button type="button" class="review">리뷰쓰기</button>
-                      <button type="button" class="delivery">배송추적</button>
-                    </li>
-                </ul>
-            </div>
-            <div class="row">
-                <ul>
-                    <li class="date">
-                      <span>2021-12-27</span>
-                      <a href="#"><p>20211227-000001</p></a>
-                    </li>
-                    <li class="prod_name" style="text-align:left;">
-                        <span class="book_id">9878654567</span>
-                        <!-- 책 표지 -->
-                        <img class="book_cover" src="../resources/images/book_cover_temp4.gif" alt="">                      
-                        <!-- 책 제목 & 작가 -->
-                        <ul class="ttl_writer_wrap">
-                          <span>책제목책제목책제목책제목</span>
-                          <span>작가</span>
-                        </ul>
-                    </li>
-                    <li class="prod_price">
-                        <span>14,000원 / 1개</span>
-                    </li>
-                    <li class="status">배송완료</li>
-                    <li class="btn">
-                      <button type="button" class="ask on">문의</button>
-                      <button type="button" class="review">리뷰쓰기</button>
-                      <button type="button" class="delivery">배송추적</button>
-                    </li>
-                </ul>
-            </div>
+            </c:forEach>
         </div>
         <div class="pagenum_wrap">
             <ul>

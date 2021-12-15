@@ -40,7 +40,7 @@
 </select>
 
 <!-- (마이페이지) 보유 포인트 가져오기 -->
-<select id="getPoint" resultType="int">
+<select id="getPoint" resultType="_int">
 	SELECT user_point
 	FROM USERS
 	WHERE user_id = #{user_id};
