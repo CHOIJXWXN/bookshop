@@ -85,7 +85,7 @@
               
               <!-- (5) 장바구니 & 구매하기 버튼 -->
               <ul class="buy_btns">
-                <li><button type="button" id="addCart">Add to Cart</button></li>
+                <li><button type="button" id="addCart" class="addCart">Add to Cart</button></li>
    	 		    <li><input type="submit" value="Buy Now"/></li>   	 		
               </ul>
 
