@@ -4,12 +4,13 @@ import java.util.List;
 
 public class OrderItem {
 
-	Orders orders;
-	List<OrderDetail> list;
+	private Orders orders;
+	private List<OrderDetail> list;
 	
 	public OrderItem() {}
-	
+
 	public OrderItem(Orders orders, List<OrderDetail> list) {
+		
 		this.orders = orders;
 		this.list = list;
 	}
@@ -29,5 +30,8 @@ public class OrderItem {
 	public void setList(List<OrderDetail> list) {
 		this.list = list;
 	}
+	
+	
+	
 	
 }
