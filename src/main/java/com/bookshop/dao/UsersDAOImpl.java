@@ -1,5 +1,7 @@
 package com.bookshop.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -46,16 +48,21 @@ public class UsersDAOImpl implements UsersDAO {
 	public Users login(Users users) throws Exception {
 		return sqlSession.selectOne(SESSION + ".login", users);
 	}
-
+	
+	// 아이디 찾기(getIdE)
 	@Override
 	public Users getIdE(Users users) throws Exception {
 		
 		return sqlSession.selectOne(SESSION + ".getIdE", users);
 	}
+	
+
+	
+
 
 
 	
-	// 아이디찾기 (email 이용)
+	
 	
 	
 

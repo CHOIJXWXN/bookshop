@@ -25,7 +25,7 @@
                 <label for="id_list">${user_id}</label>
             </div>
             <ul class="btns_wrap">
-                <li><a href="#">LOGIN</a></li>
+                <li><a href="../login">LOGIN</a></li>
                 <li><a href="#">FIND PASSWORD</a></li>
             </ul>
         </div>

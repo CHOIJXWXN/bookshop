@@ -58,16 +58,19 @@ public class UsersServiceImpl implements UsersService {
 		return result;
 	}
 	// 아이디 찾기 (이메일을 이용해서 찾기)
-	// users 값이 존재하면 0 > 아이디 전달
-	// users 값이 존재하지 않으면 -1 > 가입된 아이디 없음
+	// 존재하면 0, 아이디 찾기 가능
+	// 존재하지 않으면 -1, 아이디찾기 불가능
 	@Override
-	public int findID_email(Users users) throws Exception {
+	public int findIdE(Users users) throws Exception {
 		int result = 0;
 		Users rs = dao.getIdE(users);
 		
-		if(rs == null) result = -1;
+		if(rs == null) {
+			result = -1;
+		}
 		return result;
 	}
+	
 	
 	
 	
