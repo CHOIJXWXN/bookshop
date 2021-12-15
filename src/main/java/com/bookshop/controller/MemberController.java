@@ -118,8 +118,10 @@ public class MemberController {
 		// 주문날짜1, 주문번호12, 책 표지3, 책 제목3, 책id23, 작가3, 상품금액3, 수량2, 주문상태3를 리스트로 받아와서 띄움
 		List<OrderItem> list = memberService.viewOrderlist(user_id);
 		// 3)보유 포인트를 받아와서 표시
+		// 4) 주문목록 건수 받아오기
 		model.addAttribute("point", memberService.getPoint(user_id));
 		model.addAttribute("list", list);
+		model.addAttribute("order_cnt", memberService.getOrderCnt(user_id));
 		// 한페이지에 4개 리스트보여줌 이전/다음
 		// 주문상태  입금전 배송중 배송완료
 		// 입금전일 때 아무 버튼 x

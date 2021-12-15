@@ -23,6 +23,9 @@ public interface MemberDAO {
 	
 	// 2) 보유 포인트 가져오기
 	public int getPoint(String user_id) throws Exception;
+	
+	// 3) 주문목록 건수 가져오기
+	public int getOrderCnt(String user_id) throws Exception;
 		
 	
 }

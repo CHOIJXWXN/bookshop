@@ -103,6 +103,17 @@ public class MemberServiceImpl implements MemberService {
 			
 			return point;
 		}
+
+		// 4) 주문목록 건수 가져오기
+		@Override
+		public int getOrderCnt(String user_id) throws Exception {
+			
+			int order_cnt = 0;
+			order_cnt = dao.getOrderCnt(user_id);
+
+			return order_cnt;
+			
+		}
 		
 
 }
