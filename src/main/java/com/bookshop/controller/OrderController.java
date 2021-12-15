@@ -62,7 +62,7 @@ public class OrderController {
 	public String cart(HttpSession session, Model model) throws Exception {
 		// (해당 유저의 List<Cart>, List<Book>) HashMap
 		String user_id = (String) session.getAttribute("user_id");
-		user_id = "abcd";
+		
 		model.addAttribute("list", orderService.viewCart(user_id));
 		return "shop/cart";
 	}

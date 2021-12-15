@@ -84,15 +84,31 @@
 #order_detail .container table .book_name {
   position: relative;
 }
-#order_detail .container table .book_name img {
-  width: 80px;
-  margin-right: 5px;
+.img_box {
   position: absolute;
-  top: 8px;
-  left: 15px;
+  width: 30%;
+  height: 120px;
+  top:0;
+  left:0;
+  text-align: center;
 }
-#order_detail .container .book_name span {
-  padding-left: 135px;
+#order_detail .container table .book_name img {
+  height: 100px;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+.ttl_writer_wrap {
+  position: absolute;
+  top: 0;
+  left: 30%;
+  width: 70%;
+  height: 120px;
+  display: flex;
+  align-items: center;
+}
+.ttl_writer_wrap p {
+  line-height: 30px;
+  padding: 13px 5px 5px 15px;
 }
 /* 셀렉트박스 커스텀 */
 select {

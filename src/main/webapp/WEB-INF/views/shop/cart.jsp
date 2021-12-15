@@ -91,8 +91,12 @@
                     </td>
                     <td class="hidden_col"><!--book_id--></td>
                     <td class="book_name" style="text-align: left;">
-                      <img src="../../resources/images/bookcover/${item.book_cover}" alt="book_cover">
-                      <span>${item.book_title}&nbsp;|&nbsp;${item.book_writer}</span>
+                    	<div class="img_box">
+                      		<img src="../../resources/images/bookcover/${item.book_cover}" alt="book_cover">
+                      	</div>
+                      	<div class="ttl_writer_wrap">
+                      		<p>${item.book_title}&nbsp;|&nbsp;${item.book_writer}</p>
+                      	</div>
                     </td>
                     <td> 
 	                  <select name="book_cnt" class="book_num" id="book_cnt_${item.book_id}">
