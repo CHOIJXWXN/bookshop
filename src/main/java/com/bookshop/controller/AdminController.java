@@ -1,5 +1,7 @@
 package com.bookshop.controller;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -34,12 +36,12 @@ public class AdminController {
 			pageNum = 1;
 		}
 		// 해당 페이지의 주문 리스트
-		model.addAttribute("list", adminService.view(pageNum).get("list"));
+		model.addAttribute("list", adminService.viewOrder(pageNum).get("list"));
 		// 각각 입금전/배송중/배송완료/총 주문 개수
-		model.addAttribute("before", adminService.view(pageNum).get("before"));
-		model.addAttribute("start", adminService.view(pageNum).get("start"));
-		model.addAttribute("end", adminService.view(pageNum).get("end"));
-		model.addAttribute("tot", adminService.view(pageNum).get("tot"));
+		model.addAttribute("before", adminService.viewOrder(pageNum).get("before"));
+		model.addAttribute("start", adminService.viewOrder(pageNum).get("start"));
+		model.addAttribute("end", adminService.viewOrder(pageNum).get("end"));
+		model.addAttribute("tot", adminService.viewOrder(pageNum).get("tot"));
 		// 페이지 번호
 		model.addAttribute("pageNum", pageNum);
 		return "admin/order";
@@ -63,7 +65,11 @@ public class AdminController {
 	
 	// 상품 관리 페이지
 	@RequestMapping(value = "/product", method = RequestMethod.GET)
-	public String product(Model model) throws Exception {
+	public String product(Integer pageNum, Model model) throws Exception {
+		if (pageNum == null) {
+			pageNum = 1;
+		}
+		model.addAttribute("map", adminService.viewProduct(pageNum));
 		return "admin/product";
 	}
 	
@@ -80,9 +86,12 @@ public class AdminController {
 	}
 
 	// 상품 삭제
-	@RequestMapping(value = "/deleteProduct", method = RequestMethod.GET)
-	public String deleteProduct(Model model) throws Exception {
-		return "";
+	@RequestMapping(value = "/deleteProduct", method = RequestMethod.POST)
+	public String deleteProduct(ArrayList<String> book_id, Model model) throws Exception {
+		for (String item : book_id) {
+			adminService.deleteProduct(item);
+		}
+		return "admin/admin";
 	}
 	
 	// 문의 관리 페이지

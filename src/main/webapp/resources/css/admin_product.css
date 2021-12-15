@@ -71,6 +71,7 @@
 }
 #order_info table {
   width: 500px;
+  table-layout: fixed;
 }
 
 table {

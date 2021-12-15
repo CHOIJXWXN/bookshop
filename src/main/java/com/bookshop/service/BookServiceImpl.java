@@ -90,7 +90,7 @@ public class BookServiceImpl implements BookService {
 		dao.getGenreRecommFour(book_genre);
 		map.put("bestSeller", bookList);
 		map.put("genreList", dao.getGenreRecommFour(book_genre));		
-		map.put("flag", flag);
+		map.put("flag", (Integer) flag);
 		return map;
 	}
 
