@@ -9,14 +9,14 @@ public class OrderPlus {
 	private String book_writer;
 	private int book_price;
 	private int book_cnt;
-	private int order_status;
+	private String order_status;
 
 	public OrderPlus() {
 	
 	}
 
 	public OrderPlus(String order_num, String user_id, String book_id, String book_title, String book_writer,
-			int book_price, int book_cnt, int order_status) {
+			int book_price, int book_cnt, String order_status) {
 		this.order_num = order_num;
 		this.user_id = user_id;
 		this.book_id = book_id;
@@ -83,11 +83,11 @@ public class OrderPlus {
 		this.book_cnt = book_cnt;
 	}
 
-	public int getOrder_status() {
+	public String getOrder_status() {
 		return order_status;
 	}
 
-	public void setOrder_status(int order_status) {
+	public void setOrder_status(String order_status) {
 		this.order_status = order_status;
 	}
 	

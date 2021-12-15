@@ -17,7 +17,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public HashMap<String, Object> viewOrder(int pageNum) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("list", dao.getOrderList(pageNum));
+		map.put("list", dao.getOrderList(dao.getOrderNumList(pageNum)));
 		map.put("before", dao.getBeforeStartCnt());
 		map.put("start", dao.getStartCnt());
 		map.put("end", dao.getEndCnt());

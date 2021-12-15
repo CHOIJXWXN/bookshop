@@ -16,11 +16,16 @@ public class AdminDAOImpl implements AdminDAO {
 	SqlSession sqlSession;
 	
 	final String SESSION = "com.bookshop.mappers.admin";
+	
+	@Override
+	public List<String> getOrderNumList(int pageNum) throws Exception {
+		int start = 20 * (pageNum - 1);
+		return sqlSession.selectList(SESSION + ".getOrderNumList", start);
+	}
 
 	@Override
-	public List<OrderPlus> getOrderList(int pageNum) throws Exception {
-		int start = 20 * (pageNum - 1);
-		return sqlSession.selectList(SESSION + ".getOrderList", start);
+	public List<OrderPlus> getOrderList(List<String> list) throws Exception {
+		return sqlSession.selectList(SESSION + ".getOrderList", list);
 	}
 
 	@Override
