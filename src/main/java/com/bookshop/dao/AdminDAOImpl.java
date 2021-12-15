@@ -1,6 +1,5 @@
 package com.bookshop.dao;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -18,22 +17,9 @@ public class AdminDAOImpl implements AdminDAO {
 	final String SESSION = "com.bookshop.mappers.admin";
 
 	@Override
-	public String getLastOrderNum(int pageNum) throws Exception {
-		int end = 30 * pageNum - 1;
-		return sqlSession.selectOne(SESSION + ".getLastOrderNum", end);
-	}
-
-	@Override
 	public List<OrderPlus> getOrderList(int pageNum) throws Exception {
-		String start = getLastOrderNum(pageNum - 1);
-		if (start.equals("") || start == null) {
-			start = "0";
-		}
-		String end = getLastOrderNum(pageNum);
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("start", start);
-		map.put("end", end);
-		return sqlSession.selectList(SESSION + ".getOrderList", map);
+		int start = 20 * (pageNum - 1);
+		return sqlSession.selectList(SESSION + ".getOrderList", start);
 	}
 
 	@Override
