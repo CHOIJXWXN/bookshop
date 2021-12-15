@@ -5,17 +5,29 @@
 
 <mapper namespace="com.bookshop.mappers.admin">
 
+	<!-- 주문번호 리스트 -->
+	<select id="getOrderNumList" resultType="string">
+		SELECT order_num
+		FROM orders
+		ORDER BY order_num DESC
+		LIMIT #{start}, 20
+		<!-- start : 20 * (pageNum - 1) -->
+	</select>
+
 	<!-- "주문" 20개씩 -->
-	<select id="getOrderList" resultType="OrderPlus">
+	<select id="getOrderList" parameterType="java.util.List" resultType="OrderPlus">
 		SELECT C.order_num, C.user_id, C.book_id, D.book_title, D.book_writer, D.book_price, C.book_cnt, C.order_status
 		FROM (
 			SELECT A.order_num, B.user_id, A.book_id, A.book_cnt, B.order_status
 			FROM orderlist A, orders B
 			WHERE A.order_num = B.order_num
-			AND A.order_num IN (SELECT order_num FROM orders ORDER BY order_num DESC LIMIT #{start}, 20)
+			AND A.order_num IN (
+			<foreach item="item" collection="list" separator=",">
+			#{item}
+			</foreach>
+			)
 		) C, book D
-		WHERE C.book_id = D.book_id;
-		<!-- start : 20 * (pageNum - 1) -->
+		WHERE C.book_id = D.book_id;	
 	</select>
 	
 	<!-- 배송중 상태 변경 -->
