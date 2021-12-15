@@ -9,7 +9,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>[관리자 페이지] 주문 관리</title>
     <link rel="stylesheet" href="${path}/resources/css/reset.css" />
+    <link rel="stylesheet" href="${path}/resources/css/mainNav.css" />
     <link rel="stylesheet" href="${path}/resources/css/admin_order.css" />
+  	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  	
+  	<script>
+  	$(document).ready(function() {
+
+  		$('#startBtn').click(function() {
+  			$.ajax({
+  				type : "GET",
+  				url : "./start",
+  				data : {
+  					// 수정 필요
+  					order_num : order_num
+  				},
+  				dataType : "text",
+  				success : function(data) {
+  					if (data != null) {
+  						$('#status_' + data).text("배송중");
+  					}
+  					else {
+  						alert('배송중 변경에 실패하였습니다');
+  					}
+  				},
+  				error : function(data) {
+  					
+  				}
+  			});
+  		});
+  		
+  		$('#endBtn').click(function() {
+  			$.ajax({
+  				type : "GET",
+  				url : "./end",
+  				data : {
+  					order_num : order_num
+  				},
+  				dataType : "text",
+  				success : function(data) {
+  					if (data != null) {
+  						$('#status_' + data).text("배송완료");
+  					}
+  					else {
+  						alert('배송완료 변경에 실패하였습니다');
+  					}
+  				},
+  				error : function(data) {
+  					
+  				}
+  			});
+  		});
+  		
+  	});
+    </script>
+    
   </head>
   <body>
     <div id="wrap">
@@ -32,18 +86,18 @@
                       <th>배송완료</th>
                   </tr>
                   <tr>
-                      <td>0건</td>
-                      <td>0건</td>
-                      <td>0건</td>
+                      <td>${before}건</td>
+                      <td>${start}건</td>
+                      <td>${end}건</td>
                   </tr>
               </table>
             </div>
             <div id="order_info_list">
               <div>
-                <span class="title">주문목록 / 배송조회 내역 총 0 건</span>
+                <span class="title">주문목록 / 배송조회 내역 총 ${tot} 건</span>
                 <div class="func_btns">
-                  <button class="btn" onclick="location.href='${path}/admin/start'">배송중 처리</button>
-                  <button class="btn" onclick="location.href='${path}/admin/end'">배송완료 처리</button>
+                  <button class="btn" id="startBtn">배송중 처리</button>
+                  <button class="btn" id="endBtn">배송완료 처리</button>
                 </div>
               </div>
               <table id="table">
@@ -56,69 +110,17 @@
                   <th>상품금액/수량</th>
                   <th>처리상태</th>
                 </tr>
+                <c:forEach var="item" items="${list}">
                 <tr>
                   <td><input type="checkbox"></td>
-                  <td>20211207-000001</td>
-                  <td>abcd</td>
-                  <td>92473632</td>
-                  <td>책 제목 | 작가</td>
-                  <td>14,000원 / 1개</td>
-                  <td>배송중</td>
+                  <td>${item.order_num}</td>
+                  <td>${item.user_id}</td>
+                  <td>${item.book_id}</td>
+                  <td>${item.book_title} | ${item.book_writer}</td>
+                  <td>${item.book_price}원 / ${item.book_cnt}개</td>
+                  <td id="status_${item.order_num}">${item.order_status}</td>
                 </tr>
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td>20211207-000001</td>
-                  <td>abcd</td>
-                  <td>92473632</td>
-                  <td>책 제목 | 작가</td>
-                  <td>14,000원 / 1개</td>
-                  <td>배송중</td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td>20211207-000001</td>
-                  <td>abcd</td>
-                  <td>92473632</td>
-                  <td>책 제목 | 작가</td>
-                  <td>14,000원 / 1개</td>
-                  <td>배송중</td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td>20211207-000001</td>
-                  <td>abcd</td>
-                  <td>92473632</td>
-                  <td>책 제목 | 작가</td>
-                  <td>14,000원 / 1개</td>
-                  <td>배송중</td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td>20211207-000001</td>
-                  <td>abcd</td>
-                  <td>92473632</td>
-                  <td>책 제목 | 작가</td>
-                  <td>14,000원 / 1개</td>
-                  <td>배송중</td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td>20211207-000001</td>
-                  <td>abcd</td>
-                  <td>92473632</td>
-                  <td>책 제목 | 작가</td>
-                  <td>14,000원 / 1개</td>
-                  <td>배송중</td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td>20211207-000001</td>
-                  <td>abcd</td>
-                  <td>92473632</td>
-                  <td>책 제목 | 작가</td>
-                  <td>14,000원 / 1개</td>
-                  <td>배송중</td>
-                </tr>
+                </c:forEach>
               </table>
             </div>
           </div>
