@@ -67,9 +67,10 @@
         </header>
         <!-- [2-2] 주문상세내역 -->
         <article id="order_detail">
-            <!-- 소제목(빈공간) -->
-            <div class="ttl"></div>
-            <!-- 주문 상세내역 표 -->
+          <!-- 소제목(빈공간) -->
+          <div class="ttl"></div>
+          <!-- 주문 상세내역 표 -->
+          <form action="/order/" method="GET">
             <div class="container">
               <table>
                 <thead>
@@ -88,7 +89,7 @@
                   <c:forEach var="item" items="${list}">
                   <tr class="row_style">
                     <td>
-                      <input type="checkbox" name="order_check">
+                      <input type="checkbox" name="order_check" value="${item.book_id}">
                     </td>
                     <td class="hidden_col"><!--book_id--></td>
                     <td class="book_name" style="text-align: left;">
@@ -148,12 +149,13 @@
                 </div>
                 <!-- [2-5] 주문 버튼 -->
                 <ul class="order_btns_wrap">
-                    <li class="chk_only"><a href="./getOrderSelect">선택 상품 주문</a></li>
-                    <li class="all"><a href="./getOrderAll">전체 상품 주문</a></li>
+                    <li class="chk_only"><button name="select">선택 상품 주문</button><!-- <a href="./getOrderSelect">선택 상품 주문</a> --></li>
+                    <li class="all"><button name="all">전체 상품 주문</button><!-- <a href="./getOrderAll">전체 상품 주문</a> --></li>
                 </ul>
               </div>
               
             </div>
+          </form>
         </article>
       </section>
     </div>

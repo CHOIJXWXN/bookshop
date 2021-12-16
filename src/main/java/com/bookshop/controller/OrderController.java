@@ -24,8 +24,22 @@ public class OrderController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 	
-	// 주문 페이지
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	// 주문 페이지 (장바구니 선택 주문)
+	@RequestMapping(params = "select", value = "/", method = RequestMethod.GET)
+	public String select(CartPlus cartPlus, Model model) throws Exception {
+		model.addAttribute("cartPlus", cartPlus);
+		return "shop/order";
+	}
+	
+	// 주문 페이지 (장바구니 전체 주문)
+	@RequestMapping(params = "all", value = "/", method = RequestMethod.GET)
+	public String all(CartPlus cartPlus, Model model) throws Exception {
+		model.addAttribute("cartPlus", cartPlus);
+		return "shop/order";
+	}
+	
+	// 주문 페이지 (바로 주문)
+	@RequestMapping(params = "direct", value = "/", method = RequestMethod.GET)
 	public String order(CartPlus cartPlus, Model model) throws Exception {
 		model.addAttribute("cartPlus", cartPlus);
 		return "shop/order";
