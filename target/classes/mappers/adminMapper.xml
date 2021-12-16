@@ -71,37 +71,6 @@
 		FROM orders
 	</select>
 	
-	<!-- 전체 책 개수 -->
-	<select id="getBookCnt" resultType="_int">
-		SELECT COUNT(*)
-		FROM book
-		WHERE available = 0
-	</select>
-	
-	<!-- 소설 책 개수 -->
-	<select id="getBookCntNovel" resultType="_int">
-		SELECT COUNT(*)
-		FROM book
-		WHERE book_genre = '소설'
-		AND available = 0
-	</select>
-	
-	<!-- 시/에세이 책 개수 -->
-	<select id="getBookCntPoem" resultType="_int">
-		SELECT COUNT(*)
-		FROM book
-		WHERE book_genre = '시_에세이'
-		AND available = 0
-	</select>
-	
-	<!-- 여행 책 개수 -->
-	<select id="getBookCntTravel" resultType="_int">
-		SELECT COUNT(*)
-		FROM book
-		WHERE book_genre = '여행'
-		AND available = 0
-	</select>
-	
 	<!-- 책 20개 리스트 -->
 	<select id="getBookList" resultType="Book">
 		SELECT *

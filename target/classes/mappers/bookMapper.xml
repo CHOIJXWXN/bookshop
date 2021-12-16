@@ -17,7 +17,7 @@
 		SELECT COUNT(*)
 		FROM book
 		WHERE book_genre = '소설'
-		WHERE available = 0
+		AND available = 0
 	</select>
 	
 	<!-- 시/에세이 책 개수 -->
@@ -25,7 +25,7 @@
 		SELECT COUNT(*)
 		FROM book
 		WHERE book_genre = '시_에세이'
-		WHERE available = 0
+		AND available = 0
 	</select>
 	
 	<!-- 여행 책 개수 -->
@@ -33,7 +33,7 @@
 		SELECT COUNT(*)
 		FROM book
 		WHERE book_genre = '여행'
-		WHERE available = 0
+		AND available = 0
 	</select>
 	
 	<!-- 판매량 순으로 16개  -->

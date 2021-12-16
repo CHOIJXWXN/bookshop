@@ -15,10 +15,6 @@ public interface AdminDAO {
 	public int getStartCnt() throws Exception;
 	public int getEndCnt() throws Exception;
 	public int getTotCnt() throws Exception;
-	public int getBookCnt() throws Exception;
-	public int getBookCntNovel() throws Exception;
-	public int getBookCntPoem() throws Exception;
-	public int getBookCntTravel() throws Exception;
 	public List<Book> getBookList(int pageNum) throws Exception;
 	public void deleteBook(String book_id) throws Exception;
 

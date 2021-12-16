@@ -59,26 +59,6 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public int getBookCnt() throws Exception {
-		return sqlSession.selectOne(SESSION + ".getBookCnt");
-	}
-
-	@Override
-	public int getBookCntNovel() throws Exception {
-		return sqlSession.selectOne(SESSION + ".getBookCntNovel");
-	}
-
-	@Override
-	public int getBookCntPoem() throws Exception {
-		return sqlSession.selectOne(SESSION + ".getBookCntPoem");
-	}
-
-	@Override
-	public int getBookCntTravel() throws Exception {
-		return sqlSession.selectOne(SESSION + ".getBookCntTravel");
-	}
-
-	@Override
 	public List<Book> getBookList(int pageNum) throws Exception {
 		int start = 20 * (pageNum - 1);
 		return sqlSession.selectList(SESSION + ".getBookList", start);
