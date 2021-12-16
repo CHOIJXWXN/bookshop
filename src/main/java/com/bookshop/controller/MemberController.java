@@ -39,9 +39,7 @@ public class MemberController {
 //			return "redirect:/login";
 //		}
 		// 2) 로그인이 되어있으면 마이페이지 메인화면 출력
-//		return "member/myPage";
-		return "shop/booksBest";
-		
+		return "member/myPage";		
 	}
 	
 	// [2] 회원정보수정 page
