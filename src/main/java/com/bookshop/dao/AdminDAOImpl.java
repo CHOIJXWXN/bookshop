@@ -86,7 +86,7 @@ public class AdminDAOImpl implements AdminDAO {
 
 	@Override
 	public void deleteBook(String book_id) throws Exception {
-		sqlSession.delete(SESSION + ".deleteBook", book_id);
+		sqlSession.update(SESSION + ".deleteBook", book_id);
 	}
 
 }
