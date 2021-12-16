@@ -32,14 +32,14 @@
 	
 	<!-- 배송중 상태 변경 -->
 	<update id="changeToStart">
-		UPDATE order
+		UPDATE orders
 		SET order_status = '배송중'
 		WHERE order_num = #{order_num}
 	</update>
 	
 	<!-- 배송완료 상태 변경 -->
 	<update id="changeToEnd">
-		UPDATE order
+		UPDATE orders
 		SET order_status = '배송완료'
 		WHERE order_num = #{order_num}
 	</update>

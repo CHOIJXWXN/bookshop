@@ -38,7 +38,7 @@
                 </tr>
               </table>
             </div>
-            <form action="./deleteProduct" method="GET">
+            <form action="./deleteProduct" method="POST">
             <div id="order_info_list">
               <div>
                 <span class="title">총 ${map.bookCnt} 권</span>

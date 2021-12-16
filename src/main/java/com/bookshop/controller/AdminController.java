@@ -49,20 +49,24 @@ public class AdminController {
 		return "admin/order";
 	}
 	
-	// 배송중 변경 기능 (Ajax)
-	@RequestMapping(value = "/start", method = RequestMethod.GET)
-	@ResponseBody
-	public String start(String order_num, Model model) throws Exception {
-		adminService.deliveryStart(order_num);
-		return order_num;
+	// 배송중 변경 기능
+	@RequestMapping(params = "start", value = "/changeStatus", method = RequestMethod.POST)
+	public String start(@RequestParam List<String> order_num, HttpServletRequest request, Model model) throws Exception {
+		for (var i = 0; i < order_num.size(); i++) {
+			adminService.deliveryStart(order_num.get(i));
+		}
+		String referer = request.getHeader("Referer");
+		return "redirect:" + referer;
 	}
-	
-	// 배송완료 변경 기능 (Ajax)
-	@RequestMapping(value = "/end", method = RequestMethod.GET)
-	@ResponseBody
-	public String end(String order_num, Model model) throws Exception {
-		adminService.deliveryEnd(order_num);
-		return order_num;
+
+	// 배송완료 변경 기능
+	@RequestMapping(params = "end", value = "/changeStatus", method = RequestMethod.POST)
+	public String end(@RequestParam List<String> order_num, HttpServletRequest request, Model model) throws Exception {
+		for (var i = 0; i < order_num.size(); i++) {
+			adminService.deliveryEnd(order_num.get(i));
+		}
+		String referer = request.getHeader("Referer");
+		return "redirect:" + referer;
 	}
 	
 	// 상품 관리 페이지
@@ -88,7 +92,7 @@ public class AdminController {
 	}
 
 	// 상품 삭제
-	@RequestMapping(value = "/deleteProduct", method = RequestMethod.GET)
+	@RequestMapping(value = "/deleteProduct", method = RequestMethod.POST)
 	public String deleteProduct(@RequestParam List<String> book_id, Model model, HttpServletRequest request) throws Exception {
 		for (int i = 0; i < book_id.size(); i++) {
 			adminService.deleteProduct(book_id.get(i));
