@@ -39,7 +39,8 @@ public class MemberController {
 //			return "redirect:/login";
 //		}
 		// 2) 로그인이 되어있으면 마이페이지 메인화면 출력
-		return "member/myPage";
+//		return "member/myPage";
+		return "shop/booksBest";
 		
 	}
 	
@@ -80,9 +81,9 @@ public class MemberController {
 	//@ResponseBody
 	public String updateProfile(Users users, String addr_1, String addr_2, String addr_3, RedirectAttributes ra, HttpSession session) throws Exception {
 	
-		
 		String user_id = (String) session.getAttribute("user_id");
 		user_id = "lsumin1127";
+		
 		//1) 로그인이 되어있지 않으면 로그인 페이지로 이동시키고 로그인이필요하다고 알려줌
 		if(user_id == null) {
 			ra.addFlashAttribute("msg", "로그인이 필요합니다.");
@@ -97,8 +98,7 @@ public class MemberController {
 		users.setUser_addr(addr_1 + "/_/ " + addr_2 + "/_/" + addr_3);
 		memberService.updateProfile(users);
 		// +) 필수 입력값을 다 입력했는지는 검증(ajax)
-		
-		
+			
 		return "redirect:/mypage/profile";
 	}
 	
@@ -114,12 +114,14 @@ public class MemberController {
 			ra.addFlashAttribute("msg", "로그인이 필요합니다.");
 			return "redirect:/login";
 		}
-		//2) userId가 매칭되는 ordernum(ORDERS) -> book_id(ORDERLIST) -> book_name,author(BOOK)	
-		// 주문날짜1, 주문번호12, 책 표지3, 책 제목3, 책id23, 작가3, 상품금액3, 수량2, 주문상태3를 리스트로 받아와서 띄움
-		List<OrderItem> list = memberService.viewOrderlist(user_id);
-		// 3)보유 포인트를 받아와서 표시
-		model.addAttribute("point", memberService.getPoint(user_id));
+		// 2) user_id가 매칭되는 ordernum(ORDERS) -> book_id(ORDERLIST) -> book_name,author(BOOK)	
+		// 주문번호, 주문날짜, 주문상태, 책아이디, 책별 수량, 책표지, 책제, 작가, 가격 가져오기
+		List<HashMap<String, Object>> list = memberService.viewOrderList(user_id);	
 		model.addAttribute("list", list);
+		// 3)보유 포인트를 가져오기
+		model.addAttribute("point", memberService.getPoint(user_id));
+		// 4) 주문목록 건수 받아오기
+		model.addAttribute("order_cnt", memberService.getOrderCnt(user_id));
 		// 한페이지에 4개 리스트보여줌 이전/다음
 		// 주문상태  입금전 배송중 배송완료
 		// 입금전일 때 아무 버튼 x

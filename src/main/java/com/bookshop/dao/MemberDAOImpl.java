@@ -37,22 +37,26 @@ public class MemberDAOImpl implements MemberDAO {
 
 	// (마이페이지) 주문/배송 조회
 	// 1) 주문목록 가져오기
+	// user_id의 ORDERS 가져오기
 	@Override
 	public List<Orders> getOrders(String user_id) throws Exception {
-			
+		
 		return sqlSession.selectList(SESSION + ".getOrders", user_id);
+		
+		
 	}
-
+	// order_num 의 orderlist 가져오기
 	@Override
-	public List<OrderList> getOrderlist(String order_num) throws Exception {
-			
-		return sqlSession.selectList(SESSION + ".getOrderlist", order_num);
+	public List<OrderList> getOrderList(String order_num) throws Exception {
+		
+		return sqlSession.selectList(SESSION + ".getOrderList", order_num);
 	}
-
+	// book_id의 book info 가져오기
 	@Override
 	public Book getBook(String book_id) throws Exception {
-			
+		
 		return sqlSession.selectOne(SESSION + ".getBook", book_id);
+		
 	}
 
 	// 2) 보유 포인트 가져오기
@@ -62,5 +66,21 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne(SESSION + ".getPoint", user_id);
 		
 	}
+
+	// 3) 주문목록 건수 가져오기
+	@Override
+	public int getOrderCnt(String user_id) throws Exception {
+		
+		return sqlSession.selectOne(SESSION + ".getOrderCnt", user_id);
+	}
+
+
+	
+
+
+	
+
+
+	
 	
 }

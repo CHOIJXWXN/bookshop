@@ -2,12 +2,13 @@ package com.bookshop.vo;
 
 public class OrderDetail {
 
-	Book book;
-	int book_cnt;
+	private Book book;
+	private int book_cnt;
 	
-	public OrderDetail() {}
-	
+	public OrderDetail() {	}
+
 	public OrderDetail(Book book, int book_cnt) {
+		
 		this.book = book;
 		this.book_cnt = book_cnt;
 	}
@@ -27,6 +28,8 @@ public class OrderDetail {
 	public void setBook_cnt(int book_cnt) {
 		this.book_cnt = book_cnt;
 	}
+	
+	
 	
 	
 	
