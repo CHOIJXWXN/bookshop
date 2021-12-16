@@ -34,7 +34,7 @@ public class MainController {
 	public String main(Model model) throws Exception {
 
 		return "main/main";
-	}
+	}	
 
 	// --- 로그인(login) 관련 ---
 
@@ -110,22 +110,26 @@ public class MainController {
 	// 아이디 찾기 - 이메일로 찾기 클릭
 	// url 패턴이 'path/findIde'
 	// 결과를 findIde.jsp로 보냄
+	// 존재하면 0, 아이디 찾기 가능
+	// 존재하지 않으면 -1, 아이디찾기 불가능
 	@RequestMapping(value = "/findIdE", method = RequestMethod.POST)
-	public String findIdE(Users users, Model model) throws Exception {
+	public String findIdE(Users users, Model model, RedirectAttributes ra) throws Exception {
+		int result = usersService.findIdE(users);
+		String url = null;
 		
-		int result = usersService.findID_email(users);
-		String url= null;
-		if(result == 0) {
-			model.addAttribute("user_id", users.getUser_id());
-			model.addAttribute("user_name", users.getUser_name());
-			model.addAttribute("user_email", users.getUser_email());
-			
-			url="main/findIdE";
-			
+		if(result == -1) {
+			ra.addAttribute("msg", "가입하신 정보가 없습니다.");
+			url = "redirect:/login";
 		}
 		else {
-			url="redirect:/find";
+			model.addAttribute("user_id", users.getUser_id());
+			model.addAttribute("user_email", users.getUser_email());
+			model.addAttribute("user_name", users.getUser_name());
+			
+			url = "main/findIdE";
+			
 		}
+		
 		
 		return url;
 	}
@@ -165,7 +169,9 @@ public class MainController {
 	public String helpPwP(Model model) throws Exception {
 		return "main/findPwP";
 	}
-
+	
+	// 비밀번호 찾기
+	
 
 	// 임시 비밀번호 전송 기능
    @RequestMapping(value = "/sendPw", method = RequestMethod.GET)

@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="${path }/resources/css/reset.css" />
     <link rel="stylesheet" href="${path }/resources/css/mainNav.css" />
     <link rel="stylesheet" href="${path }/resources/css/find.css" />
+    
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  
   </head>
   <body>
    <div id="wrap">
@@ -34,14 +37,14 @@
             <!-- 이메일로 찾기 선택시 -->
             
             <section class="email">
-              <form method="POST" action="/findIdE">
+              <form name="findIdE" id="findIdE" method="POST" action="./findIdE">
                 <div class="row">
                   <label for="user_name">이름</label>
                   <input type="text" id="user_name" name="user_name" >
                 </div>
                 <div class="row">
-                  <label for="email">이메일</label>
-                  <input type="text" id="email" name="email" >
+                  <label for="user_email">이메일</label>
+                  <input type="text" id="user_email" name="user_email" >
                 </div>
                 <input type="submit" value="SEARCH">
               </form>
@@ -127,5 +130,12 @@
        </ul>       
       </section>
     </div>
+    
+<script>
+	$(document).ready(function(){
+		var msg = '${msg}';
+		if(msg != null && msg != '') alert(msg);
+	});
+</script>
   </body>
 </html>

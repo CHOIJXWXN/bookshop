@@ -25,8 +25,7 @@ public interface UsersService {
 	public int loginAction(Users users) throws Exception;
 	
 	// 아이디 찾기 (이메일이용하여 아이디찾기 클릭시)
-	// 결과 존재 - 반환값 가져옴 result : 0, 
-	// 결과 없음 - result -1;
-	public int findID_email(Users users) throws Exception;
-
+	// 존재하면 0, 아이디 찾기 가능
+	// 존재하지 않으면 -1, 아이디찾기 불가능
+	public int findIdE(Users users) throws Exception;
 }

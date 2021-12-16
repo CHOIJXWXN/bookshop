@@ -1,5 +1,7 @@
 package com.bookshop.dao;
 
+import java.util.List;
+
 import com.bookshop.vo.Users;
 
 public interface UsersDAO {
@@ -29,7 +31,6 @@ public interface UsersDAO {
 	// DB에 저장되어있는 user_id 찾음
 	// Users 객체로 전달
 	public Users getIdE(Users users) throws Exception;
-		
 	
 	
 	

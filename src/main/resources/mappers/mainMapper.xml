@@ -42,8 +42,9 @@
 	SELECT *
 	FROM USERS
 	WHERE user_email = #{user_email}
-	AND	  user_name =#{user_name}
+	AND	  user_name = #{user_name}
 </select>
+
 
 
 
