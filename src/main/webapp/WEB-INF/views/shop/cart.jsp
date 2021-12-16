@@ -12,6 +12,7 @@
     <title>장바구니</title>
     <link rel="stylesheet" href="${path}/resources/css/reset.css" />
     <link rel="stylesheet" href="${path}/resources/css/book_cart.css" />
+    <link rel="stylesheet" href="${path }/resources/css/mainNav.css" />
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     
     <script>
@@ -147,8 +148,8 @@
                 </div>
                 <!-- [2-5] 주문 버튼 -->
                 <ul class="order_btns_wrap">
-                    <li class="chk_only"><a href="#">선택 상품 주문</a></li>
-                    <li class="all"><a href="#">전체 상품 주문</a></li>
+                    <li class="chk_only"><a href="./getOrderSelect">선택 상품 주문</a></li>
+                    <li class="all"><a href="./getOrderAll">전체 상품 주문</a></li>
                 </ul>
               </div>
               

@@ -8,7 +8,8 @@ import com.bookshop.vo.OrderPlus;
 public interface AdminDAO {
 
 	public List<String> getOrderNumList(int pageNum) throws Exception;
-	public List<OrderPlus> getOrderList(List<String> list) throws Exception;
+	public List<OrderPlus> getOrderListSeparate(List<String> list) throws Exception;
+	public List<OrderPlus> getOrderListUnited(List<String> list) throws Exception;
 	public void changeToStart(String order_num) throws Exception;
 	public void changeToEnd(String order_num) throws Exception;
 	public int getBeforeStartCnt() throws Exception;

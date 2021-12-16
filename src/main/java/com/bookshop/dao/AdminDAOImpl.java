@@ -24,8 +24,13 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public List<OrderPlus> getOrderList(List<String> list) throws Exception {
-		return sqlSession.selectList(SESSION + ".getOrderList", list);
+	public List<OrderPlus> getOrderListSeparate(List<String> list) throws Exception {
+		return sqlSession.selectList(SESSION + ".getOrderListSeparate", list);
+	}
+
+	@Override
+	public List<OrderPlus> getOrderListUnited(List<String> list) throws Exception {
+		return sqlSession.selectList(SESSION + ".getOrderListUnited", list);
 	}
 
 	@Override

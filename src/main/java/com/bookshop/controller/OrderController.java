@@ -71,14 +71,14 @@ public class OrderController {
 	@RequestMapping(value = "/getOrderSelect", method = RequestMethod.GET)
 	public String getOrderSelect(CartPlus cartPlus, Model model) throws Exception {
 		model.addAttribute("cartPlus", cartPlus);
-		return "redirect:/";
+		return "redirect:/order/";
 	}
 	
 	// 전체 상품 주문 기능
 	@RequestMapping(value = "/getOrderAll", method = RequestMethod.GET)
 	public String getOrderAll(String user_id, Model model) throws Exception {
 		model.addAttribute("cartPlus", orderService.viewCart(user_id));
-		return "redirect:/";
+		return "redirect:/order/";
 	}
 
 }
