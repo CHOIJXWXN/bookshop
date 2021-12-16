@@ -12,58 +12,6 @@
     <link rel="stylesheet" href="${path}/resources/css/mainNav.css" />
     <link rel="stylesheet" href="${path}/resources/css/admin_order.css" />
   	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  	
-  	<script>
-  	$(document).ready(function() {
-
-  		$('#startBtn').click(function() {
-  			$.ajax({
-  				type : "GET",
-  				url : "./start",
-  				data : {
-  					// 수정 필요
-  					order_num : order_num
-  				},
-  				dataType : "text",
-  				success : function(data) {
-  					if (data != null) {
-  						$('#status_' + data).text("배송중");
-  					}
-  					else {
-  						alert('배송중 변경에 실패하였습니다');
-  					}
-  				},
-  				error : function(data) {
-  					
-  				}
-  			});
-  		});
-  		
-  		$('#endBtn').click(function() {
-  			$.ajax({
-  				type : "GET",
-  				url : "./end",
-  				data : {
-  					order_num : order_num
-  				},
-  				dataType : "text",
-  				success : function(data) {
-  					if (data != null) {
-  						$('#status_' + data).text("배송완료");
-  					}
-  					else {
-  						alert('배송완료 변경에 실패하였습니다');
-  					}
-  				},
-  				error : function(data) {
-  					
-  				}
-  			});
-  		});
-  		
-  	});
-    </script>
-    
   </head>
   <body>
     <div id="wrap">
@@ -92,12 +40,13 @@
                   </tr>
               </table>
             </div>
+            <form action="./changeStatus" method="POST">
             <div id="order_info_list">
               <div>
                 <span class="title">주문목록 / 배송조회 내역 총 ${tot} 건</span>
                 <div class="func_btns">
-                  <button class="btn" id="startBtn">배송중 처리</button>
-                  <button class="btn" id="endBtn">배송완료 처리</button>
+                  <button class="btn" name="start" id="startBtn">배송중 처리</button>
+                  <button class="btn" name="end" id="endBtn">배송완료 처리</button>
                 </div>
               </div>
               <table id="table">
@@ -112,7 +61,7 @@
                 </tr>
                 <c:forEach var="item" items="${list}">
                 <tr>
-                  <td><input type="checkbox"></td>
+                  <td><input type="checkbox" name="order_num" value="${item.order_num}"></td>
                   <td>${item.order_num}</td>
                   <td>${item.user_id}</td>
                   <td>${item.book_id}</td>
@@ -123,6 +72,7 @@
                 </c:forEach>
               </table>
             </div>
+            </form>
           </div>
         </div>
       </section>
