@@ -65,7 +65,7 @@
                        <div class="prod_name">
                             <span class="book_id">${item.book_id }</span>
                             <!-- 책 표지 -->
-                            <img class="book_cover" src="../resources/images/${item.book_cover }" alt="">                      
+                            <img class="book_cover" src="../../resources/images/bookcover/${item.book_cover }" alt="">                      
                             <!-- 책 제목 & 작가 -->
                             <div class="ttl_writer_wrap">
                                 <span>${item.book_title }</span>
@@ -78,9 +78,15 @@
                        </div>
                        <!-- 문의, 리뷰, 배송추적 버튼 -->
                        <div class="btn">
-                            <button type="button" class="ask on">문의</button>
+                       		<c:if test="${items.order_status eq '입금전' }">
+                            <button type="button" class="ask">문의</button>
+                            </c:if>
+                       		<c:if test="${items.order_status eq '배송완료' }">
                             <button type="button" class="review">리뷰쓰기</button>
+                            </c:if>
+                       		<c:if test="${items.order_status eq '배송중' }">
                             <button type="button" class="delivery">배송추적</button>
+                            </c:if>
                        </div>
                    </div>
                    <!-- 1번 종료 -->
@@ -101,11 +107,28 @@
         </div>
       </section>
     </div>
+    <!-- alert 메시지 -->
     <script>
     $(document).ready(function(){
     	var msg = '${msg}';
     	if(msg != null && msg != '') alert(msg);
     });
+    </script>
+    <!-- 문의, 리뷰, 배송추적 버튼 -->
+    <script>
+     $(document).ready(function(){
+        var order_status = $(".order_status span").text();
+        $(".btn > button").removeClass("on");
+        if(order_status == "입금전") {
+            $(".ask").addClass("on");
+        }
+        else if(order_status == "배송중") {
+            $(".delivery").addClass("on");
+        } 
+        else if(order_status == "배송완료") {
+            $(".review").addClass("on");
+        } 
+    }); 
     </script>
   </body>
 </html>

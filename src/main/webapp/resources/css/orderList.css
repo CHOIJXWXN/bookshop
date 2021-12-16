@@ -252,12 +252,7 @@ section {
     top: 34px;
     left: 50%;
     margin-left: -40px;
-  }
-  button {
-    display: none;
-  }
-  button.on {
-    display: block;
+    cursor: pointer;
   }
 
   /* 페이지넘버  */
