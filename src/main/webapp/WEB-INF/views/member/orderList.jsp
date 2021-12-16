@@ -53,28 +53,28 @@
             <div class="row">
                 <!-- 주문번호, 주문날짜 -->
                <div class="order_num">
-                    <span>${items.orders.order_date }</span>
-                    <a href="#"><p>${items.orders.order_num }</p></a>
+                    <span>${items.order_date }</span>
+                    <a href="#"><p>${items.order_num }</p></a>
                </div>
                <div class="book_list">
                    <!-- 주문한 책 리스트 반복 s -->
-                   <c:forEach var="item" items="${items.list }">
+                   <c:forEach var="item" items="${items.booklist }">
                    <!-- 1번 -->
                    <div class="each_book">
                        <!-- 표지, 도서명, 작가 -->
                        <div class="prod_name">
-                            <span class="book_id">${item.book.book_id }</span>
+                            <span class="book_id">${item.book_id }</span>
                             <!-- 책 표지 -->
-                            <img class="book_cover" src="../resources/images/${item.book.book_cover }" alt="">                      
+                            <img class="book_cover" src="../resources/images/${item.book_cover }" alt="">                      
                             <!-- 책 제목 & 작가 -->
                             <div class="ttl_writer_wrap">
-                                <span>${item.book.book_title }</span>
-                                <span>${item.book.book_writer }</span>
+                                <span>${item.book_title }</span>
+                                <span>${item.book_writer }</span>
                             </div>
                        </div>
                        <!-- 가격, 수량 -->
                        <div class="prod_price">
-                            <span>${item.book.book_price }원 / ${item.book_cnt }개</span>
+                            <span>${item.book_price }원 / ${item.book_cnt }개</span>
                        </div>
                        <!-- 문의, 리뷰, 배송추적 버튼 -->
                        <div class="btn">
@@ -88,7 +88,7 @@
                    <!-- 주문한 책 리스트 반복 e-->
                </div>
                <!-- 주문 상태 -->
-               <div class="order_status"><span>${items.orders.order_status }</span></div>
+               <div class="order_status"><span>${items.order_status }</span></div>
             </div>
             </c:forEach>          
         </div>

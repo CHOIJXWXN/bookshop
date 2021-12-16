@@ -43,55 +43,46 @@ public class MemberServiceImpl implements MemberService {
 		// (마이페이지) 주문/배송 조회 service
 		// 1) 주문 목록 가져오기
 		@Override
-		public List<OrderItem> viewOrderlist(String user_id) throws Exception {
+		public List<HashMap<String, Object>> viewOrderList(String user_id) throws Exception {
 			
-			// 유저 아이디에 일치하는 주문번호, 주문날짜, 주문상태 리스트 가져오기
+			// user_id의 ORDERS를 리스트로 들고옴
 			List<Orders> orders = dao.getOrders(user_id);
-			//리스트 만들어주고
-			List<OrderItem> ResultList = new ArrayList<OrderItem>();
+			List<HashMap<String, Object>> resultlist = new ArrayList<HashMap<String, Object>>();
 			
+			// 첫번째 order_num부터 넘겨주면서 주문 책 리스트를 들고옴			
 			for(int i = 0; i < orders.size(); i++) {
+				HashMap<String, Object> orderMap = new HashMap<String, Object>();
 				
-				// 주문번호에 속하는 책아이디, 책별 구매수량 가져오기
-				List<OrderList> orderlist = dao.getOrderlist(orders.get(i).getOrder_num());
-							
-				List<OrderDetail> list = new ArrayList<OrderDetail>();
+				List<OrderList> orderlist = dao.getOrderList(orders.get(i).getOrder_num());
+				
+				List<HashMap<String, Object>> booklist = new ArrayList<HashMap<String, Object>>();
 				
 				for(int j = 0; j < orderlist.size(); j++) {
-					
-					// 책아이디별 책 정보 가져오기
 					Book book = dao.getBook(orderlist.get(j).getBook_id());
 					
-					OrderDetail orderDetail = new OrderDetail(book, orderlist.get(j).getBook_cnt());
+					HashMap<String, Object> bookMap = new HashMap<String, Object>();
+					bookMap.put("book_id", orderlist.get(i).getBook_id());
+					bookMap.put("book_cover", book.getBook_cover());
+					bookMap.put("book_title", book.getBook_title());
+					bookMap.put("book_writer", book.getBook_writer());
+					bookMap.put("book_price", book.getBook_price());
+					bookMap.put("book_cnt", orderlist.get(j).getBook_cnt());
 					
-					/*
-					HashMap<String, Object> bookmap = new HashMap<String, Object>();
-					bookmap.put("book_id", book.getBook_id());
-					bookmap.put("book_title", book.getBook_title());
-					bookmap.put("book_writer", book.getBook_writer());
-					bookmap.put("book_price", book.getBook_price());
-					bookmap.put("book_cover", book.getBook_cover());
-					bookmap.put("book_cnt", orderlist.get(j).getBook_cnt());
-					*/
-					
-					list.add(orderDetail);
+					booklist.add(bookMap);
 				}
+
+				orderMap.put("order_num", orders.get(i).getOrder_num());
+				orderMap.put("order_date", orders.get(i).getOrder_date());
+				orderMap.put("booklist", booklist);
+				orderMap.put("order_status", orders.get(i).getOrder_status());
 				
-				OrderItem orderItem = new OrderItem(orders.get(i), list);
+				resultlist.add(orderMap);
 				
-				/*
-				HashMap<String, Object> ordermap = new HashMap<String, Object>();			
-				ordermap.put("order_num", orders.get(i).getOrder_num());	
-				ordermap.put("order_date", orders.get(i).getOrder_date());
-				ordermap.put("order_status", orders.get(i).getOrder_status());
-				ordermap.put("booklist", list);
-				*/
-				
-				ResultList.add(orderItem);
 			}
 			
-		
-			return ResultList;
+			
+			
+			return resultlist;
 		}
 		
 		// 2) 보유 포인트 가져오기
@@ -114,6 +105,9 @@ public class MemberServiceImpl implements MemberService {
 			return order_cnt;
 			
 		}
+
+
+		
 		
 
 }
