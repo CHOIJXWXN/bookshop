@@ -9,6 +9,7 @@
 	<select id="getBookCnt" resultType="_int">
 		SELECT COUNT(*)
 		FROM book
+		WHERE available = 0
 	</select>
 	
 	<!-- 소설 책 개수 -->
@@ -16,6 +17,7 @@
 		SELECT COUNT(*)
 		FROM book
 		WHERE book_genre = '소설'
+		WHERE available = 0
 	</select>
 	
 	<!-- 시/에세이 책 개수 -->
@@ -23,6 +25,7 @@
 		SELECT COUNT(*)
 		FROM book
 		WHERE book_genre = '시_에세이'
+		WHERE available = 0
 	</select>
 	
 	<!-- 여행 책 개수 -->
@@ -30,12 +33,14 @@
 		SELECT COUNT(*)
 		FROM book
 		WHERE book_genre = '여행'
+		WHERE available = 0
 	</select>
 	
 	<!-- 판매량 순으로 16개  -->
 	<select id="getBookListSell" resultType="Book">
 		SELECT *
 		FROM book
+		WHERE available = 0
 		ORDER BY book_sell_tot DESC
 		LIMIT #{start}, 16
 	</select>
@@ -44,6 +49,7 @@
 	<select id="getBookListNew" resultType="Book">
 		SELECT *
 		FROM book
+		WHERE available = 0
 		ORDER BY book_date DESC
 		LIMIT #{start}, 16
 	</select>
@@ -52,7 +58,8 @@
 	<select id="getBookListReview" resultType="Book">
 		SELECT A.book_id, A.book_title, A.book_cover, A.book_price
 		FROM book A LEFT JOIN review B 
-		ON A.book_id = B.book_id 
+		ON A.book_id = B.book_id
+		WHERE A.available = 0 
 		GROUP BY A.book_id 
 		ORDER BY COUNT(B.review_id) DESC 
 		LIMIT #{start}, 16
@@ -62,7 +69,7 @@
 	<select id="getBookListNovel" resultType="Book">
 		SELECT * 
 		FROM book
-		WHERE book_genre = '소설' 
+		WHERE book_genre = '소설' AND available = 0
 		ORDER BY book_sell_tot DESC
 		LIMIT #{start}, 16
 	</select>
@@ -71,7 +78,7 @@
 	<select id="getBookListPoem" resultType="Book">
 		SELECT * 
 		FROM book
-		WHERE book_genre = '시_에세이' 
+		WHERE book_genre = '시_에세이' AND available = 0
 		ORDER BY book_sell_tot DESC
 		LIMIT #{start}, 16
 	</select>
@@ -80,7 +87,7 @@
 	<select id="getBookListTravel" resultType="Book">
 		SELECT * 
 		FROM book
-		WHERE book_genre = '여행' 
+		WHERE book_genre = '여행' AND available = 0
 		ORDER BY book_sell_tot DESC
 		LIMIT #{start}, 16
 	</select>
@@ -89,8 +96,9 @@
 	<select id="searchBook" parameterType="map" resultType="Book">
 		SELECT *
 		FROM book
-		WHERE book_title LIKE CONCAT('%', #{keyword}, '%')
-		OR book_writer LIKE CONCAT('%', #{keyword}, '%')
+		WHERE (book_title LIKE CONCAT('%', #{keyword}, '%')
+		OR book_writer LIKE CONCAT('%', #{keyword}, '%'))
+		AND available = 0
 		LIMIT #{start}, 16
 	</select>
 	
@@ -98,11 +106,12 @@
 	<select id="getSearchBookCnt" resultType="_int">
 		SELECT COUNT(*)
 		FROM book
-		WHERE book_title LIKE CONCAT('%', #{keyword}, '%')
-		OR book_writer LIKE CONCAT('%', #{keyword}, '%')
+		WHERE (book_title LIKE CONCAT('%', #{keyword}, '%')
+		OR book_writer LIKE CONCAT('%', #{keyword}, '%'))
+		AND available = 0
 	</select>
 	
-	<!-- 베스트 셀러 리스트 -->
+	<!-- 베스트 셀러 리스트 --> <!-- available 조건 추가 -->
 	<select id="getBestSeller" resultType="_int">
 		SELECT B.book_id
 		FROM orders A, orderlist B
@@ -127,6 +136,7 @@
 		WHERE A.user_id = #{user_id}
 		  AND A.book_id = B.book_id
 		  AND A.review_score <![CDATA[>=]]> 3
+		  AND B.available = 0
 		GROUP BY B.book_genre
 		ORDER BY COUNT(B.book_id) DESC
 		LIMIT 1
@@ -136,6 +146,7 @@
 		SELECT *
 		FROM book
 		WHERE book_genre = #{book_genre}
+		AND available = 0
 		ORDER BY RAND()
 		LIMIT 4
 	</select>
@@ -147,6 +158,7 @@
 		WHERE A.user_id = #{user_id}
 		  AND A.book_id = B.book_id
 		  AND A.review_score <![CDATA[>=]]> 3
+		  AND B.available = 0
 		GROUP BY B.book_writer
 		ORDER BY COUNT(B.book_id) DESC
 		LIMIT 1
@@ -156,6 +168,7 @@
 		SELECT *
 		FROM book
 		WHERE book_writer = #{book_writer}
+		AND available = 0
 		ORDER BY RAND()
 		LIMIT 2
 	</select>

@@ -1,8 +1,9 @@
 package com.bookshop.controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bookshop.service.AdminService;
@@ -47,20 +49,24 @@ public class AdminController {
 		return "admin/order";
 	}
 	
-	// 배송중 변경 기능 (Ajax)
-	@RequestMapping(value = "/start", method = RequestMethod.GET)
-	@ResponseBody
-	public String start(String order_num, Model model) throws Exception {
-		adminService.deliveryStart(order_num);
-		return order_num;
+	// 배송중 변경 기능
+	@RequestMapping(params = "start", value = "/changeStatus", method = RequestMethod.POST)
+	public String start(@RequestParam List<String> order_num, HttpServletRequest request, Model model) throws Exception {
+		for (var i = 0; i < order_num.size(); i++) {
+			adminService.deliveryStart(order_num.get(i));
+		}
+		String referer = request.getHeader("Referer");
+		return "redirect:" + referer;
 	}
-	
-	// 배송완료 변경 기능 (Ajax)
-	@RequestMapping(value = "/end", method = RequestMethod.GET)
-	@ResponseBody
-	public String end(String order_num, Model model) throws Exception {
-		adminService.deliveryEnd(order_num);
-		return order_num;
+
+	// 배송완료 변경 기능
+	@RequestMapping(params = "end", value = "/changeStatus", method = RequestMethod.POST)
+	public String end(@RequestParam List<String> order_num, HttpServletRequest request, Model model) throws Exception {
+		for (var i = 0; i < order_num.size(); i++) {
+			adminService.deliveryEnd(order_num.get(i));
+		}
+		String referer = request.getHeader("Referer");
+		return "redirect:" + referer;
 	}
 	
 	// 상품 관리 페이지
@@ -87,11 +93,13 @@ public class AdminController {
 
 	// 상품 삭제
 	@RequestMapping(value = "/deleteProduct", method = RequestMethod.POST)
-	public String deleteProduct(ArrayList<String> book_id, Model model) throws Exception {
-		for (String item : book_id) {
-			adminService.deleteProduct(item);
+	public String deleteProduct(@RequestParam List<String> book_id, Model model, HttpServletRequest request) throws Exception {
+		for (int i = 0; i < book_id.size(); i++) {
+			adminService.deleteProduct(book_id.get(i));
 		}
-		return "admin/admin";
+		// 컨트롤러에서 새로고침
+		String referer = request.getHeader("Referer");
+		return "redirect:" + referer;
 	}
 	
 	// 문의 관리 페이지

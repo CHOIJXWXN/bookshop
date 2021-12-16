@@ -3,12 +3,12 @@
 #wrap {
     width: 100%;
   }
-  
+ 
   /* [2]메인화면*/
 section {
     float: left;
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
     background-image: url("../images/main_bg_4.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -16,10 +16,11 @@ section {
   }
   /* 사이드바 퀵메뉴 */
   #sidebar {
+    float: left;
     width: 180px;
     height: 200px;
     margin-top: 250px;
-    margin-left: 250px;
+    margin-left: 13%;
     /* background-color: lightgoldenrodyellow; */
 }
 #nav_title {
@@ -45,6 +46,11 @@ section {
     line-height: 50px;
     color: #B5B1B1;;
 }
+#sidebar a.on span{
+	padding-left: 10px;
+	font-size: 17px;
+    color: #1C1A1A;
+}
 #sidebar a:hover span{
     padding-left: 10px;
     font-size: 17px;
@@ -57,10 +63,36 @@ section {
 /* 주문 목록 테이블 */
 /* 높이 나중에 지우기 */
 #order_list {
+    float: right;
     width: 1100px;
+    margin-top: 300px;
+    margin-right: 13%;
+    position: relative;
+}
+#order_list > .point {
+    width: 1080px;
+    height: 50px;
     position: absolute;
-    top: 300px;
-    left: 530px;
+    top: -50px;
+    left: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+#order_list > .point > p {
+    font-family: "Pretendard-Regular";
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 50px;
+    color: #1C1A1A;
+    position: relative;
+}
+#order_list > .point > p > img {
+    width: 20px;
+    height: 20px;
+    margin-top: 10px;
+    position:absolute;
+    top: 5px;
+    left: -27px;
 }
 #order_list header {
     width: 100%;
@@ -68,83 +100,123 @@ section {
     background-color: rgba(28, 26, 26, 0.65);
     border-top: 1px solid #707070;
     border-bottom: 1px solid #707070;
-}
-#order_list header ul {
-    width: 100%;
-    height: 60px;
     display: flex;
 }
-#order_list header li {
-    
+#order_list header > div {
+    font-family: "Pretendard-Regular";
+    font-size: 20px;
+    height: 60px;
+    text-align: center;
+}
+#order_list header > div.date {
+    width: 20%;
+}
+#order_list header > div.prod_name {
+    width: 35%;
+}
+#order_list header > div.prod_price {
+    width: 18%;
+}
+#order_list header > div.btn {
+    width: 13%;
+}
+#order_list header > div.status {
+    width: 14%;
+}
+#order_list header > div > h3 {
     font-family: "Pretendard-Regular";
     font-size: 20px;
     line-height: 60px;
     color: #FAFAF8;
     text-align: center;
 }
-#order_list .date {
-    width: 20%;
-}
-#order_list .prod_name {
-    width: 35%;
-}
-#order_list .prod_price {
-    width: 18%;
-}
-#order_list .status {
-    width: 14%;
-}
-#order_list .btn {
-    width: 13%;
-}
 /* 테이블 내용 부분 */
 #order_list .row {
     width: 100%;
-    height: 100px;
-    background-color: white;
-    border-bottom: 0.5px solid #707070;
-}
-#order_list .row > ul {
-    width: 100%;
-    height: 100px;
+    /* height: 100px; */
+    background-color: #f6f6f6;
     display: flex;
 }
-#order_list .row li {
-    text-align: center;
-}
 /* 주문번호 & 주문날짜 */
-/* 주문날짜 */
-.row .date span {
-    display: inline-block;
+.row .order_num {
+    width: 20%;
+    border-bottom: 0.5px solid #707070;
+    border-right: 0.5px solid #707070;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+.order_num span {
     font-family: "Pretendard-Regular";
     font-size: 15px;
     line-height: 30px;
-    margin-top: 20px;
     color: #5A5656F0;
-  }
-/* 주문번호 */
-.row .date p {
+}
+.order_num p {
     font-family: "Pretendard-Regular";
     text-decoration: underline;
     font-size: 17px;
-    line-height: 26px;
+    line-height: 35px;
     color: #6B52F1F0;
-  }
-.row ul > .prod_name {
+}
+/* 주문한 책 리스트 반복 */
+.row .book_list {
+    width: 66%;
+}
+
+/* 주문한 책 리스트 반복 */
+.book_list .each_book {
+    width: 100%;
+    height: 100px;
+    border-bottom: 0.5px solid #707070;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+}
+.book_list .each_book .prod_name {
+    width: 53%;
+    height: 100px;
     display: flex;
 }
-/* 책 아이디 */
+.book_list .each_book .prod_price {
+    width: 28%;
+    height: 100px;
+    text-align: center;
+}
+.book_list .each_book .btn {
+    width: 19%;
+    height: 100px;
+}
+/* 주문상태 */
+.row .order_status {
+    width: 14%;
+    border-bottom: 0.5px solid #707070;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-left: 0.5px solid #707070;
+    box-sizing: border-box;
+}
+.row .order_status span {
+    font-family: "Pretendard-Regular";
+    font-size: 15px;
+    line-height: 30px;
+    color: #1C1A1A;
+}
+/* 표지, 도서명, 작가 */
 .prod_name .book_id {
     display: none;
 }
-/* 책 표지 */
 .prod_name .book_cover {
     height: 80px;
     margin-top: 10px;
     margin-left: 15px;
     margin-right: 25px;
 }
-/* 책 제목 작가 */
 .ttl_writer_wrap {
     height: 100px;
     display: flex;
@@ -163,14 +235,7 @@ section {
   line-height: 100px;
   color: #1C1A1A;
 }
-/* 주문상태 */
-.row .status {
-    font-family: "Pretendard-Regular";
-  font-size: 17px;
-  line-height: 100px;
-  color: #1C1A1A;
-}
-/* 리뷰버튼 */
+/* 리뷰, 문의, 배송추적 버튼 */
 .btn {
     position: relative;
   }
@@ -187,29 +252,25 @@ section {
     top: 34px;
     left: 50%;
     margin-left: -40px;
+    cursor: pointer;
   }
-  button {
-    display: none;
-  }
-  button.on {
-    display: block;
-  }
-  /* 페이지넘버 */
+
+  /* 페이지넘버  */
   .pagenum_wrap {
+      float: left;
       width: 100%;
       height: 50px;
-      margin-top: 440px;
+      margin-top: 30px;
+      margin-bottom: 200px;
   }
   .pagenum_wrap ul {
+      width: 230px;
       float: right;
-      width: 170px;
-      height: 50px;
       display: flex;
       justify-content: space-between;
-      margin-right: 17%;
+      margin-right: 35%;
   }
-  .pagenum_wrap ul a {
-      
+  .pagenum_wrap ul a {     
       display: block;
       font-family: 'Goudy Bookletter 1911', serif;
     font-size: 22px;
@@ -221,6 +282,17 @@ section {
   .pagenum_wrap ul a:hover {
       background-color: whitesmoke;
   }
+
+  .pagenum_wrap ul .prev:hover span::before {
+        content: "<";
+}
+.pagenum_wrap ul .next:hover {
+    padding-right: 10px;
+}
+    .pagenum_wrap ul .next:hover span::after {
+    content: ">";
+}
+
 
 
   
