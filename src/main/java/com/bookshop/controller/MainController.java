@@ -112,28 +112,40 @@ public class MainController {
 	// 결과를 findIde.jsp로 보냄
 	// 존재하면 0, 아이디 찾기 가능
 	// 존재하지 않으면 -1, 아이디찾기 불가능
+	/*
 	@RequestMapping(value = "/findIdE", method = RequestMethod.POST)
 	public String findIdE(Users users, Model model, RedirectAttributes ra) throws Exception {
-		int result = usersService.findIdE(users);
+		Users rs = usersService.findIdE(users);
 		String url = null;
 		
-		if(result == -1) {
+		if(rs == null) {
 			ra.addAttribute("msg", "가입하신 정보가 없습니다.");
 			url = "redirect:/login";
 		}
 		else {
-			model.addAttribute("user_id", users.getUser_id());
-			model.addAttribute("user_email", users.getUser_email());
-			model.addAttribute("user_name", users.getUser_name());
-			
+			//model.addAttribute("user_id", users.getUser_id());
+			//model.addAttribute("user_email", users.getUser_email());
+			//model.addAttribute("user_name", users.getUser_name());
+			model.addAttribute("users", users);
 			url = "main/findIdE";
 			
 		}
 		
 		
 		return url;
-	}
+	}*/
+	// 아이디찾기 (이메일 이용)
+	// url 패턴이 'path/findIde'
+	// 결과를 findIde.jsp로 보냄
+	// 존재하면 0, 아이디 찾기 가능
+	// 존재하지 않으면 -1, 아이디찾기 불가능
+	@RequestMapping(value = "/findIdE", method = {RequestMethod.POST, RequestMethod.GET})
+	@ResponseBody
+	public String findIdE(Users users, Model model) throws Exception {
+		int result = usersService.findIdE(users);
 	
+		return result + "";
+	}
 	
 	
 	/* 아이디 찾기 관련 주석
@@ -171,10 +183,9 @@ public class MainController {
 	}
 	
 	// 비밀번호 찾기
-	
-
+	// 아이디, 이름, 이메일 입력후 form 제출하면 실행
 	// 임시 비밀번호 전송 기능
-   @RequestMapping(value = "/sendPw", method = RequestMethod.GET)
+   @RequestMapping(value = "/findPW_email", method = RequestMethod.POST)
    public String sendPw(Model model) throws Exception {
       // 임시 비밀번호 만들고 전송
       // 그 임시 비밀번호로 업데이트
