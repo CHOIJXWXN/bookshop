@@ -1,14 +1,27 @@
 $(document).ready(function() {
 
 	// 엔터 시 검색
-	$('#book_keyword').keyup(function(event) {
-		var keyword = $('#book_keyword').val();
+	$('#book_keyword').keyup(function(event) {		
+		var keyword = $('#book_keyword').val();	
+		var book_genre = $('#book_genre').val();
+		if (book_genre == "0") {
+			book_genre = "소설";
+		} else if (book_genre == "1") {
+			book_genre = "시_에세이";
+		} else if (book_genre == "2") {
+			book_genre = "여행";
+		}
 		if (event.keyCode == 13) {
+			if (keyword == '') {
+				alert('검색어를 입력하세요');
+				return;
+			}
 			$.ajax({
 				type : "GET",
 				url : "../book/search",
 				data : {
-					keyword : keyword
+					keyword : keyword,
+					book_genre : book_genre
 				},
 				dataType : "json",
 				success : function(data) {
