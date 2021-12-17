@@ -76,7 +76,7 @@ public class BookController {
 	}	
 	
 	// 책 베스트셀러 페이지
-	@RequestMapping(value = "/best", method = RequestMethod.POST)
+	@RequestMapping(value = "/best", method = RequestMethod.GET)
 	public String best(HttpSession session, Model model) throws Exception {
 		// (정해진 기간의 베스트 셀러 List<Book> + 유저 기반 추천 도서 List<Book>) HashMap 가져오기
 		String user_id = (String) session.getAttribute("user_id");

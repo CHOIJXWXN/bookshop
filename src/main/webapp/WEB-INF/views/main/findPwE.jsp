@@ -9,27 +9,27 @@
     <title>Book Shop</title>
     <link rel="stylesheet" href="${path }/resources/css/reset.css" />
     <link rel="stylesheet" href="${path }/resources/css/mainNav.css" />
-    <link rel="stylesheet" href="${path }/resources/css/findIdE.css" />
+    <link rel="stylesheet" href="${path }/resources/css/findPwP.css" />
   </head>
   <body>
    <div id="wrap">
       <!-- [1] 메인 네비게이션 -->
       <jsp:include page="../mainNav.jsp" />
       <!-- [2] 메인화면 -->
-      <section id="findIdE">
-        <div class="findId_success">
-            <h2>${users.user_name }</h2>
-            <p>${users.user_email }</p>
-            <div class="row">
-                <input type="radio" name="id_list" id="id_list" checked />
-                <label for="id_list">${users.user_id}</label>
-            </div>
+      <section id="findPwP">
+        <div class="findPw_success">
+            <h2>임시 비밀번호가 전송되었습니다.</h2>
+            <p>
+                {user_id} 회원님, 임시 비밀번호를<br>
+                000 - 000 - 0000 으로 보내드렸습니다.
+            </p>
+            
             <ul class="btns_wrap">
-                <li><a href="../login">LOGIN</a></li>
-                <li><a href="../find">FIND PASSWORD</a></li>
+                <li class="login_btn"><a href="#">LOGIN</a></li>
+                <li class="resend_btn"><a href="#">재전송</a></li>
             </ul>
         </div>
-      </section>    
+      </section>     
     </div>
   </body>
 </html>

@@ -38,12 +38,19 @@
 </select>
 
 <!-- 아이디 찾기 SQL (email이용)-->
-<select id="getIdE" resultType="Users">
+<select id="getIdE" resultType="string">
 	SELECT *
 	FROM USERS
 	WHERE user_email = #{user_email}
 	AND	  user_name = #{user_name}
 </select>
+
+<!-- 비밀번호 변경 SQL -->
+<update id="update_pw" >
+	UPDATE USERS
+	SET 	user_pw = #{user_pw}
+	WHERE 	user_id = #{user_id}
+</update>
 
 
 

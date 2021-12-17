@@ -63,12 +63,17 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	public int findIdE(Users users) throws Exception {
 		int result = 0;
-		Users rs = dao.getIdE(users);
 		
-		if(rs == null) {
-			result = -1;
-		}
+		if(dao.getIdE(users) != null) result = 0;
+		else if(dao.getIdE(users) == null) result = -1;
+		
+			
 		return result;
+	}
+
+	@Override
+	public void sendEmail(Users users) throws Exception {
+		
 	}
 	
 	

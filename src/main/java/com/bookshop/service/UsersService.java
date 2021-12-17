@@ -28,4 +28,9 @@ public interface UsersService {
 	// 존재하면 0, 아이디 찾기 가능
 	// 존재하지 않으면 -1, 아이디찾기 불가능
 	public int findIdE(Users users) throws Exception;
+	
+	// 비밀번호찾기
+	// 이메일 전송
+	public void sendEmail(Users users) throws Exception;
+	
 }

@@ -10,13 +10,14 @@ public class OrderPlus {
 	private int book_price;
 	private int book_cnt;
 	private String order_status;
+	private int cnt;
 
 	public OrderPlus() {
 	
 	}
 
 	public OrderPlus(String order_num, String user_id, String book_id, String book_title, String book_writer,
-			int book_price, int book_cnt, String order_status) {
+			int book_price, int book_cnt, String order_status, int cnt) {
 		this.order_num = order_num;
 		this.user_id = user_id;
 		this.book_id = book_id;
@@ -25,6 +26,7 @@ public class OrderPlus {
 		this.book_price = book_price;
 		this.book_cnt = book_cnt;
 		this.order_status = order_status;
+		this.cnt = cnt;
 	}
 
 	public String getOrder_num() {
@@ -89,6 +91,14 @@ public class OrderPlus {
 
 	public void setOrder_status(String order_status) {
 		this.order_status = order_status;
+	}
+	
+	public int getCnt() {
+		return cnt;
+	}
+	
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 	
 }

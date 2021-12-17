@@ -12,6 +12,22 @@
     <link rel="stylesheet" href="${path}/resources/css/mainNav.css" />
     <link rel="stylesheet" href="${path}/resources/css/admin_order.css" />
   	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  	<script>
+  		$(document).ready(function() {
+  			
+  			<c:forEach var="item1" items="${listUnited}">
+  				var str1 = '';
+  				str1 += '<td rowspan="${item1.cnt}"><input type="checkbox" name="order_num" value="${item1.order_num}"></td>';
+  				str1 += '<td rowspan="${item1.cnt}">${item1.order_num}</td>';
+  				str1 += '<td rowspan="${item1.cnt}">${item1.user_id}</td>';
+  				$('.${item1.order_num}').filter(':first').prepend(str1);
+  				var str2 = '';
+  				str2 += '<td rowspan="${item1.cnt}">${item1.order_status}</td>';
+  				$('.${item1.order_num}').filter(':first').append(str2);
+  			</c:forEach>
+  			
+  		});
+  	</script>
   </head>
   <body>
     <div id="wrap">
@@ -58,16 +74,12 @@
                   <th>상품명</th>
                   <th>상품금액/수량</th>
                   <th>처리상태</th>
-                </tr>
-                <c:forEach var="item" items="${list}">
-                <tr>
-                  <td><input type="checkbox" name="order_num" value="${item.order_num}"></td>
-                  <td>${item.order_num}</td>
-                  <td>${item.user_id}</td>
-                  <td>${item.book_id}</td>
-                  <td>${item.book_title} | ${item.book_writer}</td>
-                  <td>${item.book_price}원 / ${item.book_cnt}개</td>
-                  <td id="status_${item.order_num}">${item.order_status}</td>
+                </tr>                
+                <c:forEach var="item2" items="${listSeparate}">
+                <tr class="${item2.order_num}">
+                  <td>${item2.book_id}</td>
+                  <td>${item2.book_title} | ${item2.book_writer}</td>
+                  <td>${item2.book_price}원 / ${item2.book_cnt}개</td>
                 </tr>
                 </c:forEach>
               </table>

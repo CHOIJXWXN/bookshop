@@ -7,17 +7,21 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.bookshop.dao.AdminDAO;
+import com.bookshop.dao.BookDAO;
 
 @Service
 public class AdminServiceImpl implements AdminService {
 	
 	@Inject
 	AdminDAO dao;
+	@Inject
+	BookDAO bdao;
 
 	@Override
 	public HashMap<String, Object> viewOrder(int pageNum) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("list", dao.getOrderList(dao.getOrderNumList(pageNum)));
+		map.put("listSeparate", dao.getOrderListSeparate(dao.getOrderNumList(pageNum)));
+		map.put("listUnited", dao.getOrderListUnited(dao.getOrderNumList(pageNum)));
 		map.put("before", dao.getBeforeStartCnt());
 		map.put("start", dao.getStartCnt());
 		map.put("end", dao.getEndCnt());
@@ -39,10 +43,10 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public HashMap<String, Object> viewProduct(int pageNum) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("bookCnt", dao.getBookCnt());
-		map.put("novelCnt", dao.getBookCntNovel());
-		map.put("poemCnt", dao.getBookCntPoem());
-		map.put("travelCnt", dao.getBookCntTravel());
+		map.put("bookCnt", bdao.getBookCnt());
+		map.put("novelCnt", bdao.getBookCntNovel());
+		map.put("poemCnt", bdao.getBookCntPoem());
+		map.put("travelCnt", bdao.getBookCntTravel());
 		map.put("list", dao.getBookList(pageNum));
 		return map;
 	}
