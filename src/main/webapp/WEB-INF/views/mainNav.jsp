@@ -40,7 +40,7 @@
           </c:if>
           <!-- case2) 로그인 상태 -->
          <c:if test="${not empty user_id }">
-          <a href="${path }/mypage" class="info_mn mypage">
+          <a href="${path }/mypage/" class="info_mn mypage">
             <img src="../resources/images/mypage.png" alt="">
             <span>My Page</span>
           </a>

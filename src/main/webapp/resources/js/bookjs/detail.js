@@ -126,14 +126,10 @@ $(document).ready(function() {
 			},
 			dataType : "text",
 			success : function(data) {
-				if (data == 0) {
-					alert('장바구니에 추가되었습니다');
-				} else {
-					alert('장바구니 추가에 실패하였습니다');
-				}
+				alert('장바구니에 추가되었습니다');
 			},
 			error : function(data) {
-				
+				alert('이미 담긴 책입니다');
 			}
 		});
 	});

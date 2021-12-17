@@ -18,6 +18,8 @@ public interface BookDAO {
 	public List<Book> getBookListTravel(int pageNum) throws Exception;
 	public List<Book> searchBook(String keyword, int pageNum) throws Exception;
 	public int getSearchBookCnt(String keyword) throws Exception;
+	public List<Book> searchGenreBook(String keyword, String book_genre, int pageNum) throws Exception;
+	public int getSearchGenreBookCnt(String keyword, String book_genre) throws Exception;
 	public List<String> getBestSeller() throws Exception;
 	public String getInitGenre(String user_id) throws Exception;
 	public String getGenreRecomm(String user_id) throws Exception;

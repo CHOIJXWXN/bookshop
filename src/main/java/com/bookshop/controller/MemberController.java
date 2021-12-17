@@ -112,18 +112,19 @@ public class MemberController {
 			ra.addFlashAttribute("msg", "로그인이 필요합니다.");
 			return "redirect:/login";
 		}
+		
 		// 2) user_id가 매칭되는 ordernum(ORDERS) -> book_id(ORDERLIST) -> book_name,author(BOOK)	
-		// 주문번호, 주문날짜, 주문상태, 책아이디, 책별 수량, 책표지, 책제, 작가, 가격 가져오기
-		List<HashMap<String, Object>> list = memberService.viewOrderList(user_id);	
-		model.addAttribute("list", list);
-		// 3)보유 포인트를 가져오기
-		model.addAttribute("point", memberService.getPoint(user_id));
-		// 4) 주문목록 건수 받아오기
-		model.addAttribute("order_cnt", memberService.getOrderCnt(user_id));
-		// 한페이지에 2일 리스트보여줌 이전/다음
+		// 주문번호, 주문날짜, 주문상태, 책아이디, 책별 수량, 책표지, 책제목, 작가, 가격 가져오기
 		if(pageNumber == null) pageNumber = 1;
-		
-		
+		List<HashMap<String, Object>> list = memberService.viewOrderList(user_id, pageNumber);	
+		model.addAttribute("list", list);
+		// 3) 다음 페이지 존재하는지 
+		model.addAttribute("pageNumber", pageNumber);
+		model.addAttribute("isNext", memberService.getPageIs(user_id, pageNumber));
+		// 4)보유 포인트를 가져오기
+		model.addAttribute("point", memberService.getPoint(user_id));
+		// 5) 주문목록 건수 받아오기
+		model.addAttribute("order_cnt", memberService.getOrderCnt(user_id));
 		
 		return "member/orderList";
 	}

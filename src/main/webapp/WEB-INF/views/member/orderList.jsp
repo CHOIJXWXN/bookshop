@@ -24,10 +24,10 @@
             <a href="${path }/mypage/delivery" class="on">
                 <span>주문 / 배송 조회&nbsp;&nbsp;</span>
             </a>
-            <a href="prodManage.html">
+           <!--  <a href="prodManage.html">
                 <span>교환 / 반품 / 취소&nbsp;&nbsp;</span>
-            </a>
-            <a href="${path }mypage/profile" class="active">
+            </a> -->
+            <a href="${path }/mypage/profile" class="active">
                 <span>회원 정보 수정&nbsp;&nbsp;</span>
             </a>
         </div>
@@ -101,8 +101,12 @@
         <!-- 페이지 넘버 -->
         <div class="pagenum_wrap">
             <ul>
-                <li><a href="#" class="prev"><span>&nbsp;prev</span></a></li>
-                <li><a href="#" class="next"><span>next&nbsp;</span></a></li>
+            	<c:if test = "${pageNumber != 1 }">
+                <li><a href="./delivery?pageNumber=${pageNumber-1}" class="prev"><span>&nbsp;prev</span></a></li>
+                </c:if>
+                <c:if test = "${isNext eq true}">
+                <li><a href="./delivery?pageNumber=${pageNumber+1}" class="next"><span>next&nbsp;</span></a></li>
+                </c:if>
             </ul>
         </div>
       </section>
