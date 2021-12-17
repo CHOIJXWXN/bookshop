@@ -28,7 +28,8 @@
               maxlength="100"
               id="book_keyword"    
               class="search_box"       
-            />              
+            />
+            <input type="hidden" name="book_genre" id="book_genre" value="${book_genre}">              
             <label>
               <button class="search_btn" id="search_btn">
               	<img src="" alt="">

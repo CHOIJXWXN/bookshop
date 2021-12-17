@@ -39,7 +39,7 @@ public class OrderController {
 	}
 	
 	// 주문 페이지 (바로 주문)
-	@RequestMapping(params = "direct", value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String order(CartPlus cartPlus, Model model) throws Exception {
 		model.addAttribute("cartPlus", cartPlus);
 		return "shop/order";
@@ -52,8 +52,7 @@ public class OrderController {
 	@RequestMapping(value = "/addCart", method = RequestMethod.GET)
 	@ResponseBody
 	public String addCart(Cart cart) throws Exception {
-		orderService.addCart(cart);
-		return "0";
+		return orderService.addCart(cart) + "";
 	}
 	
 	/*

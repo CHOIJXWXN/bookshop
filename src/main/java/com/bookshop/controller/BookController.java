@@ -50,6 +50,7 @@ public class BookController {
 			pageNum = 1;
 		}
 		model.addAttribute("map", bookService.book("신규출간순", "-1", pageNum));
+		model.addAttribute("book_genre", "-1");
 		return "shop/books";
 	}
 	
@@ -60,6 +61,7 @@ public class BookController {
 			pageNum = 1;
 		}
 		model.addAttribute("map", bookService.book("리뷰순", "-1", pageNum));
+		model.addAttribute("book_genre", "-1");
 		return "shop/books";
 	}
 	
@@ -68,11 +70,14 @@ public class BookController {
 	// 책 검색 기능 (Ajax)
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	@ResponseBody
-	public HashMap<String, Object> search(String keyword, Integer pageNum) throws Exception {
+	public HashMap<String, Object> search(String keyword, String book_genre, Integer pageNum) throws Exception {
 		if (pageNum == null) {
 			pageNum = 1;
 		}
-		return bookService.searchBook(keyword, pageNum);
+		if (book_genre == null) {
+			book_genre = "-1";
+		}
+		return bookService.searchBook(keyword, book_genre, pageNum);
 	}	
 	
 	// 책 베스트셀러 페이지
@@ -80,6 +85,9 @@ public class BookController {
 	public String best(HttpSession session, Model model) throws Exception {
 		// (정해진 기간의 베스트 셀러 List<Book> + 유저 기반 추천 도서 List<Book>) HashMap 가져오기
 		String user_id = (String) session.getAttribute("user_id");
+		if (user_id == null) {
+			user_id = "";
+		}
 		model.addAttribute("map", bookService.best(user_id));
 		return "shop/booksBest";
 	}
