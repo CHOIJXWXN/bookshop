@@ -8,18 +8,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>주문 페이지</title>
     <link rel="stylesheet" href="${path}/resources/css/reset.css" />
-    <link rel="stylesheet" href="${path}/resources/css/book_order.css" />
+    <link rel="stylesheet" href="${path}/resources/css/order.css" />
     <link rel="stylesheet" href="${path}/resources/css/mainNav.css" />
   </head>
   <body>
     <div id="wrap">
       <!-- [1] 네비게이션 -->
       <jsp:include page="../mainNav.jsp"/>
+      <!-- [2] 메인화면 -->
+      <section id="book_order">
+        <!-- [2-1] 제목 -->
+        <header class="order_ttl">
+            <h2>ORDER</h2>
+            <div class="process">
+                <img src="../resources/images/process_step2.png" alt="">
+            </div>
+        </header>
         <!-- [2-2] 주문상세내역 -->
         <article id="order_detail">
             <!-- 소제목 -->
             <div class="ttl">
-                <img src="images/order_ttl_icon.png" alt="">
+                <img src="../resources/images/order_ttl_icon.png" alt="">
                 <h3>주문상세내역</h3>
             </div>
             <!-- [2-2-1] 주문 상세내역 표 -->
@@ -44,7 +53,7 @@
                     </td>
                     <td class="hidden_col"><!--book_id--></td>
                     <td class="book_name" style="text-align: left;">
-                        <img src="images/book_cover_temp1.gif" alt="">
+                        <img src="../resources/images/book_cover_temp1.gif" alt="">
                         <span>책 제목&nbsp;|&nbsp;작가</span>
                     </td>
                     <td> 
@@ -66,7 +75,7 @@
                   <td><input type="checkbox" name="order_check"></td>
                   <td class="hidden_col"><!--book_id--></td>
                   <td class="book_name" style="text-align: left;">
-                      <img src="images/book_cover_temp1.gif" alt="">
+                      <img src="../resources/images/book_cover_temp1.gif" alt="">
                       <span>책 제목&nbsp;|&nbsp;작가</span>
                   </td>
                   <td> 
@@ -87,7 +96,7 @@
                 <td><input type="checkbox" name="order_check"></td>
                 <td class="hidden_col"><!--book_id--></td>
                 <td class="book_name" style="text-align: left;">
-                    <img src="images/book_cover_temp1.gif" alt="">
+                    <img src="../resources/images/book_cover_temp1.gif" alt="">
                     <span>책 제목&nbsp;|&nbsp;작가</span>
                 </td>
                 <td> 
@@ -116,14 +125,14 @@
                             <span>14,000원</span>
                         </li>
                         <li class="plus">
-                          <img src="images/cart_plus.png" alt="">
+                          <img src="../resources/images/cart_plus.png" alt="">
                         </li>
                         <li>
                           <h4>배송비</h4>
                           <span>3,000원</span>
                       </li>
                       <li class="equal">
-                        <img src="images/cart_equal.png" alt="">
+                        <img src="../resources/images/cart_equal.png" alt="">
                       </li>
                       <li>
                           <h4>총 주문금액</h4>
@@ -141,7 +150,7 @@
           <div class="container">
             <!-- 소제목 -->
             <div class="ttl">
-              <img src="images/order_ttl_icon.png" alt="">
+              <img src="../resources/images/order_ttl_icon.png" alt="">
                <h3>주문자 정보</h3>
             </div>
             <!-- 입력 폼 -->
@@ -165,7 +174,7 @@
           <div class="container">
             <!-- 소제목 -->
             <div class="ttl">
-              <img src="images/order_ttl_icon.png" alt="">
+              <img src="../resources/images/order_ttl_icon.png" alt="">
                <h3>배송정보</h3>
             </div>
             <!-- 입력 폼 -->
@@ -201,7 +210,7 @@
           <div class="container">
             <!-- 소제목 -->
             <div class="ttl">
-              <img src="images/order_ttl_icon.png" alt="">
+              <img src="../resources/images/order_ttl_icon.png" alt="">
                <h3>결제 정보</h3>
             </div>
             <!-- 입력 폼 -->
@@ -234,7 +243,7 @@
           <div class="container">
             <!-- 소제목 -->
             <div class="ttl">
-              <img src="images/order_ttl_icon.png" alt="">
+              <img src="../resources/images/order_ttl_icon.png" alt="">
                <h3>결제수단</h3>
             </div>
             <!-- 입력 폼 -->

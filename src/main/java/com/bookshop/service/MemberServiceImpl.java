@@ -43,10 +43,10 @@ public class MemberServiceImpl implements MemberService {
 		// (마이페이지) 주문/배송 조회 service
 		// 1) 주문 목록 가져오기
 		@Override
-		public List<HashMap<String, Object>> viewOrderList(String user_id) throws Exception {
+		public List<HashMap<String, Object>> viewOrderList(String user_id, int pageNumber) throws Exception {
 			
 			// user_id의 ORDERS를 리스트로 들고옴
-			List<Orders> orders = dao.getOrders(user_id);
+			List<Orders> orders = dao.getOrders(user_id, pageNumber);
 			List<HashMap<String, Object>> resultlist = new ArrayList<HashMap<String, Object>>();
 			
 			// 첫번째 order_num부터 넘겨주면서 주문 책 리스트를 들고옴			
@@ -85,7 +85,16 @@ public class MemberServiceImpl implements MemberService {
 			return resultlist;
 		}
 		
-		// 2) 보유 포인트 가져오기
+		// 2) (페이징) 다음 페이지 존재하는지 
+		@Override
+		public boolean getPageIs(String user_id, int pageNumber) throws Exception {
+			
+			int pageNum = (pageNumber * 2) + 1;
+			
+			return dao.getPageIs(user_id, pageNum) != null;
+		}
+		
+		// 3) 보유 포인트 가져오기
 		@Override
 		public int getPoint(String user_id) throws Exception {
 			
@@ -95,7 +104,7 @@ public class MemberServiceImpl implements MemberService {
 			return point;
 		}
 
-		// 3) 주문목록 건수 가져오기
+		// 4) 주문목록 건수 가져오기
 		@Override
 		public int getOrderCnt(String user_id) throws Exception {
 			
@@ -104,7 +113,6 @@ public class MemberServiceImpl implements MemberService {
 
 			return order_cnt;
 			
-		}
-	
+		}	
 
 }
