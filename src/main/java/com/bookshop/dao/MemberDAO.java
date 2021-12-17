@@ -27,6 +27,8 @@ public interface MemberDAO {
 	
 	// 3) 주문목록 건수 가져오기
 	public int getOrderCnt(String user_id) throws Exception;
-		
+	
+	// 4) 최신 주문번호 가져오기
+	public String getRecentOrderNum(String user_id) throws Exception;
 	
 }

@@ -25,7 +25,9 @@
 <select id="getOrders" resultType="Orders">
 	SELECT order_num, order_date, order_status
 	FROM ORDERS
-	WHERE user_id = #{user_id};
+	WHERE user_id = #{user_id}
+	ORDER BY order_num DESC
+	LIMIT 2
 </select>
 
 <!-- ORDERLIST 가져오기 order_num & book_id pk -->
@@ -54,6 +56,14 @@
 	SELECT COUNT(order_num)
 	FROM ORDERS
 	WHERE user_id = #{user_id};
+</select>
+
+<!-- (마이페이지) 최신 주문번호 가져오기 -->
+<select id="getRecentOrderNum" resultType="String">
+	SELECT *
+	FROM ORDERS
+	WHERE user_id = #{user_id}
+	ORDER BY order_num DESC;
 </select>
 
 </mapper>

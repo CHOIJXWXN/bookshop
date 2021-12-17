@@ -103,7 +103,7 @@ public class MemberController {
 	// [4] 주문 배송 조회 page 
 	// url 패턴이 'path/mypage/delivery'
 	@RequestMapping(value = "/delivery", method = RequestMethod.GET)
-	public String delivery(Model model, RedirectAttributes ra, HttpSession session) throws Exception{
+	public String delivery(Integer pageNumber, Model model, RedirectAttributes ra, HttpSession session) throws Exception{
 		
 		String user_id = (String) session.getAttribute("user_id");
 		user_id = "lsumin1127";
@@ -120,11 +120,9 @@ public class MemberController {
 		model.addAttribute("point", memberService.getPoint(user_id));
 		// 4) 주문목록 건수 받아오기
 		model.addAttribute("order_cnt", memberService.getOrderCnt(user_id));
-		// 한페이지에 4개 리스트보여줌 이전/다음
-		// 주문상태  입금전 배송중 배송완료
-		// 입금전일 때 아무 버튼 x
-		// 배송중일 때 배송추적 버튼
-		// 배송완료일 때 리뷰쓰기 버튼 보이기
+		// 한페이지에 2일 리스트보여줌 이전/다음
+		if(pageNumber == null) pageNumber = 1;
+		
 		
 		
 		return "member/orderList";
