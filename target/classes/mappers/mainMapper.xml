@@ -38,7 +38,7 @@
 </select>
 
 <!-- 아이디 찾기 SQL (email이용)-->
-<select id="getIdE" resultType="string">
+<select id="getIdE" resultType="Users">
 	SELECT *
 	FROM USERS
 	WHERE user_email = #{user_email}

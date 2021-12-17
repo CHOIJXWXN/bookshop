@@ -50,31 +50,39 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	public int loginAction(Users users) throws Exception {
 		// users 값이 존재하면 0 반환-> 로그인 성공
-		// users 값이 존재하지 않으면 1 반환 -> 로그인 실패 
+		// users 값이 존재하지 않으면 -1 반환 -> 로그인 실패 
 		int result = 0;
 		Users rs = dao.login(users);
-		
-		if(rs == null) result = 1;
+		if(rs != null) result = 0;
+		if(rs == null) result = -1;
 		return result;
 	}
 	// 아이디 찾기 (이메일을 이용해서 찾기)
 	// 존재하면 0, 아이디 찾기 가능
 	// 존재하지 않으면 -1, 아이디찾기 불가능
 	@Override
-	public int findIdE(Users users) throws Exception {
+	public int findIdEAction(Users users) throws Exception {
 		int result = 0;
+		Users rs = dao.getIdE(users);
 		
-		if(dao.getIdE(users) != null) result = 0;
-		else if(dao.getIdE(users) == null) result = -1;
+		if(rs != null) result = 0;
+		else if(rs == null) result = -1;
 		
-			
 		return result;
+	}
+	// 아이디 찾기 값을 전달하기 위한 service
+	@Override
+	public Users findIdE(Users users) throws Exception {
+		
+		return dao.getIdE(users);
 	}
 
 	@Override
 	public void sendEmail(Users users) throws Exception {
 		
 	}
+
+
 	
 	
 	
