@@ -48,23 +48,14 @@ public class MainController {
 	
 	// 로그인 실행 기능 (Ajax)
 	//  url 패턴이 'path/loginAction
-	// ajax 이용이 어려워 일단 수업시간에 배운 내용 기준으로 하였음.
-	/* 
-	String url = null;
-	// 결과값이 있으면 로그인 성공, session에 등록시킴
-
-	// 결과값이 없으면 로그인 실패
-	else {
-		ra.addFlashAttribute("msg", "아이디 또는 비밀번호가 일치하지 않습니다.");
-		 url = "redirect:/login";
-	} */
-	// 로그인 실패시 알림창 안뜸
+	// 유저 아이디/비밀번호 확인
+	// 맞으면 return 0	view에서 data == 0이면  location.href 써서 메인 페이지로
+	// 틀리면 return -1	view에서 data == -1이면 정보 불일치 띄우기
+	// int result = userService.mtehod();
+	// service 에서 반환된 result 값을 받아옴
 	@RequestMapping(value = "/loginAction", method = RequestMethod.POST)
 	@ResponseBody
 	public String loginAction(Users users, HttpSession session, RedirectAttributes ra) throws Exception {
-		// service 에서 반환된 result 값을 받아옴
-		// result = -1 : 결과값 없음, 로그인 실패
-		// result = 0 : 결과값 있음, 로그인 성공
 		int result = usersService.loginAction(users);	
 		if(result == 0) {
 			session.setAttribute("user_id", users.getUser_id());	
@@ -72,13 +63,6 @@ public class MainController {
 		return result + "";
 	}
 		
-		// 유저 아이디/비밀번호 확인
-		// 맞으면 return 0	view에서 data == 0이면  location.href 써서 메인 페이지로
-		// 틀리면 return -1	view에서 data == -1이면 정보 불일치 띄우기
-		// int result = userService.mtehod();
-		// service 에서 반환된 result 값을 받아옴
-
-	
 	// 아이디/비밀번호 찾기 페이지
 	// url 패턴이 'path/find' 
 	@RequestMapping(value = "/find", method = RequestMethod.GET)

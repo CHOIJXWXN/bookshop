@@ -17,7 +17,7 @@
 		SELECT COUNT(*)
 		FROM book
 		WHERE book_genre = '소설'
-		WHERE available = 0
+		AND available = 0
 	</select>
 	
 	<!-- 시/에세이 책 개수 -->
@@ -25,7 +25,7 @@
 		SELECT COUNT(*)
 		FROM book
 		WHERE book_genre = '시_에세이'
-		WHERE available = 0
+		AND available = 0
 	</select>
 	
 	<!-- 여행 책 개수 -->
@@ -33,7 +33,7 @@
 		SELECT COUNT(*)
 		FROM book
 		WHERE book_genre = '여행'
-		WHERE available = 0
+		AND available = 0
 	</select>
 	
 	<!-- 판매량 순으로 16개  -->
@@ -112,11 +112,11 @@
 	</select>
 	
 	<!-- 베스트 셀러 리스트 --> <!-- available 조건 추가 -->
-	<select id="getBestSeller" resultType="_int">
+	<select id="getBestSeller" resultType="string">
 		SELECT B.book_id
 		FROM orders A, orderlist B
 		WHERE A.order_num = B.order_num
-		AND DATE_DIFF(NOW() - A.order_date) <![CDATA[<=]]> 30
+		AND DATEDIFF(NOW(), A.order_date) <![CDATA[<=]]> 30
 		GROUP BY B.book_id
 		ORDER BY SUM(B.book_cnt) DESC
 		LIMIT 0, 8
@@ -125,7 +125,7 @@
 	<!-- 초기 흥미 장르 -->
 	<select id="getInitGenre" resultType="string">
 		SELECT user_init_genre
-		FROM user
+		FROM users
 		WHERE user_id = #{user_id}
 	</select>
 	

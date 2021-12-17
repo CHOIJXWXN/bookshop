@@ -74,6 +74,13 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne(SESSION + ".getOrderCnt", user_id);
 	}
 
+	// 4) 최신 주문번호 조회하기
+	@Override
+	public String getRecentOrderNum(String user_id) throws Exception {
+		
+		return sqlSession.selectOne(SESSION + ".getRecentOrderNum", user_id);
+	}
+
 
 	
 

@@ -21,7 +21,9 @@ $(document).ready(function() {
 						for (var i = 0; i < searchList.length; i++) {
 							var str = '';
 							str += '<li><a href="/book/detail?book_id=' + searchList[i].book_id + '">';
+							str += '<div class="img_wrap">';
 							str += '<img class="book_cover" src="../../resources/images/bookcover/' + searchList[i].book_id + '.jpg" alt="book_cover">';
+							str += '</div>';
 							str += '<h4 class="book_ttl">' + searchList[i].book_title + '</h4>';
 							str += '<span class="book_price">' + searchList[i].book_price + '원</span>';
 							str += '</a></li>';

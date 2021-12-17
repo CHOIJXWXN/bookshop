@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="${path }/resources/css/login.css" />
     
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <!--  
-    <script src="${path }/resources/js/mainjs/login.js" charset="UTF-8"></script>-->
+    <!-- 따로 script 빼놓을시 적용 안되서 일단 주석처리함 (login.js 내용 지움)
+    <script src="${path }/resources/js/mainjs/login.js" charset="UTF-8"></script> -->
     <script>
     $(document).ready(function(){
     	$('#btn_login').click(function(){
@@ -51,15 +51,14 @@
     				}
     				// 로그인 실패 -> 로그인 정보 불일치 알림 띄우기
     				else if (data == -1) {
+    					//alert('아이디 또는 비밀번호가 잘못 입력되었습니다.');
    					 	$('#msg_id').hide();
    					 	$('#msg_pw').hide();
 					 	$('#msg1').text('아이디 또는 비밀번호가 잘못 입력되었습니다. ');
 					 	$('#msg2').text('아이디와 비밀번호를 정확하게 입력해주세요.');
     				}
-    					//alert('아이디 또는 비밀번호가 잘못 입력되었습니다.');
-    				}
-    			
-	
+    					
+    			}
     		// ajax	
     		});
     	// btn_login.click.function	
@@ -67,7 +66,7 @@
    	// document.ready.function
     });
     </script>
-  
+
 
   </head>
   <body>
