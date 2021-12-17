@@ -50,11 +50,11 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	public int loginAction(Users users) throws Exception {
 		// users 값이 존재하면 0 반환-> 로그인 성공
-		// users 값이 존재하지 않으면 1 반환 -> 로그인 실패 
+		// users 값이 존재하지 않으면 -1 반환 -> 로그인 실패 
 		int result = 0;
 		Users rs = dao.login(users);
-		
-		if(rs == null) result = 1;
+		if(rs != null) result = 0;
+		if(rs == null) result = -1;
 		return result;
 	}
 	// 아이디 찾기 (이메일을 이용해서 찾기)

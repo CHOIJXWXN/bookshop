@@ -12,8 +12,61 @@
     <link rel="stylesheet" href="${path }/resources/css/login.css" />
     
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    
-    <script src="${path }/resources/js/mainjs/login.js" charset="UTF-8"></script>
+    <!--  
+    <script src="${path }/resources/js/mainjs/login.js" charset="UTF-8"></script>-->
+    <script>
+    $(document).ready(function(){
+    	$('#btn_login').click(function(){
+    		var user_id = $('#user_id').val();
+    		var user_pw = $('#user_pw').val();
+    		
+    		if(user_id == '') {
+    			// alert ('아이디를 입력하세요');
+    			$('#msg_id').text('아이디를 입력하세요.');
+    			$('#msg_pw').hide();
+    			$('#user_id').focus();
+    			return;
+    		}
+    		if(user_pw == '') {
+    			// alert ('비밀번호를 입력하세요');
+    			$('#msg_pw').text('비밀번호를 입력하세요.');
+    			$('#msg_id').hide();
+    			$('#user_pw').focus();
+    			return;
+    		}
+    	
+    		$.ajax({
+    			type : 'POST',
+    			url  : './loginAction',
+    			data : {
+    				user_id : user_id,
+    				user_pw : user_pw
+    			},
+    			
+    			dataType: 'text',
+    			success : function(data) {
+    				// 로그인 정보 일치 -> 로그인 성공, 메인페이지이동
+    				if(data == 0) {
+    					location.href = '../';
+    				}
+    				// 로그인 실패 -> 로그인 정보 불일치 알림 띄우기
+    				else if (data == -1) {
+   					 	$('#msg_id').hide();
+   					 	$('#msg_pw').hide();
+					 	$('#msg1').text('아이디 또는 비밀번호가 잘못 입력되었습니다. ');
+					 	$('#msg2').text('아이디와 비밀번호를 정확하게 입력해주세요.');
+    				}
+    					//alert('아이디 또는 비밀번호가 잘못 입력되었습니다.');
+    				}
+    			
+	
+    		// ajax	
+    		});
+    	// btn_login.click.function	
+    	});
+   	// document.ready.function
+    });
+    </script>
   
 
   </head>
@@ -23,8 +76,8 @@
       <jsp:include page="../mainNav.jsp" />
       <!-- [2] 메인화면 -->
       <section id="login_view">
-      <!-- 수정 : from name 설정함 -->
-        <form name="fform" method="POST" action="/loginAction">
+      <!-- form tag 삭제 
+        <form name="fform" method="POST" action="/loginAction">-->
             <!-- 로그인 박스 -->
             <div class="container">
                 <header>LOGIN</header>
@@ -38,9 +91,16 @@
                     <input type="checkbox" name="save_id" id="save_id">
                     <label for="save_id">아이디 저장</label>
                 </div>
-                <input type="submit" value="LOGIN">
+                <!-- msg 공간 추가 -->
+                <p id="msg_id" style="color:red;"></p>
+                <p id="msg_pw" style="color:red;"></p>
+                <p id="msg1" style="color:red;"></p><br>
+                <p id="msg2" style="color:red;"></p><br>
+                <!-- type submit -> button 변경
+                <input type="submit" value="LOGIN">-->
+                <input type="button"  id="btn_login" value="LOGIN">
             </div>
-        </form>
+       <!-- </form>  -->
        
         <div class="join_find">
             <p>아직 회원이 아니신가요?</p>
