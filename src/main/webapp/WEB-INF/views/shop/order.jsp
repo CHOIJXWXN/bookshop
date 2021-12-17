@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -10,6 +11,67 @@
     <link rel="stylesheet" href="${path}/resources/css/reset.css" />
     <link rel="stylesheet" href="${path}/resources/css/order.css" />
     <link rel="stylesheet" href="${path}/resources/css/mainNav.css" />
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    
+    <script>
+    $(document).ready(function() {
+    	
+    	// 수량 변화에 따른 가격/총가격/배송비 등 변경
+    	// 바로 주문 시
+    	<c:if test="${not empty direct}">
+    	var price = parseInt($('#price_${direct.book_id}').text());
+    	$('#book_price').text(${direct.book_price * direct.book_cnt});
+    	$('#book_cnt_${direct.book_id}').change(function() {
+    		var cnt = parseInt($('#book_cnt_${direct.book_id}').val());
+    		var shippingCost = 3000;
+    		$('#book_price_${direct.book_id}').text(price * cnt + '원');
+    		$('#book_price').text(price * cnt + '원');
+    		if (price * cnt >= 20000) {
+    			$('#shippingCost_${direct.book_id}').text('무료배송');
+    			shippingCost = 0;
+    		} else {
+    			$('#shippingCost_${direct.book_id}').text('3000원');
+    			shippingCost = 3000;
+    		}
+    	});
+    	</c:if>
+    	// 전체 상품 주문 시
+    	<c:if test="${not empty allList}">
+    	var book_price = 0;
+    	<c:forEach var="all" items="${allList}">
+    	book_price += ${all.book_price * all.book_cnt};
+    	$('#book_price').text(book_price);
+    	$('#book_cnt_${all.book_id}').change(function() { 
+    		var shippingCost = 3000;
+    		$('#book_price_${all.book_id}').text(parseInt($('#price_${all.book_id}').text()) * parseInt($('#book_cnt_${all.book_id}').val()) + '원');
+    	});
+    	</c:forEach>
+    	</c:if>
+    	// 선택 상품 주문 시
+    	<c:if test="${not empty selectList}">
+    	<c:forEach var="select" items="${selectList}">
+    	</c:forEach>
+    	</c:if>
+		
+    	
+/*     	$('.book_num').change(function() {
+    		var cnt = parseInt($('.book_num').val());
+    		var shippingCost = 3000;
+    		$('#book_price').text(price * cnt + '원');
+    		$('#point').text('포인트 +' + price * cnt * 0.05 + '원(5%)');
+    		if (price * cnt >= 20000) {
+    			$('#shippingCost').text('무료배송');
+    			shippingCost = 0;
+    		} else {
+    			$('#shippingCost').text('3000원 (20000원 이상 구매시 배송비 무료)');
+    		}
+    		$('#book_total_price').text(price * cnt + shippingCost + '원');
+    	}); */
+    	
+    	
+    });
+    </script>
+    
   </head>
   <body>
     <div id="wrap">
@@ -47,71 +109,108 @@
                 </tr>
                 </thead>
                 <tbody>
+                
+                <!-- 바로 주문하기 -->
+                <c:if test="${not empty direct}">
                   <tr class="row_style">
                     <td>
                       <input type="checkbox" name="order_check">
                     </td>
-                    <td class="hidden_col"><!--book_id--></td>
+                    <td class="hidden_col"><input type="hidden" value="${direct.book_id}"></td>
                     <td class="book_name" style="text-align: left;">
-                        <img src="../resources/images/book_cover_temp1.gif" alt="">
-                        <span>책 제목&nbsp;|&nbsp;작가</span>
+                        <img src="../resources/images/bookcover/${direct.book_cover}" alt="">
+                        <span>${direct.book_title}&nbsp;|&nbsp;${direct.book_writer}</span>
                     </td>
                     <td> 
-                        <select name="book_num" class="book_num">
-                            <option value="1" selected="selected">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                    </td>
-                    <td>14,000원</td>
-                    <td>5% 적립</td>
-                    <td>14,000원</td>
-                    <td rowspan="3" style="border-left: 0.5px solid #707070;">3,000원</td>
-                </tr>
-                
-                <tr class="row_style">
-                  <td><input type="checkbox" name="order_check"></td>
-                  <td class="hidden_col"><!--book_id--></td>
-                  <td class="book_name" style="text-align: left;">
-                      <img src="../resources/images/book_cover_temp1.gif" alt="">
-                      <span>책 제목&nbsp;|&nbsp;작가</span>
-                  </td>
-                  <td> 
-                      <select name="book_num" class="book_num">
-                          <option value="1" selected="selected">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
+                      <select name="book_num" class="book_num" id="book_cnt_${direct.book_id}">
+                      <c:forEach var="i" begin="1" end="5">
+	                  <c:if test="${i eq direct.book_cnt}">
+	                    <option value="${i}" selected>${i}</option>
+	                  </c:if>
+	                  <c:if test="${i ne direct.book_cnt}">
+	                    <option value="${i}">${i}</option>
+	                  </c:if>
+	                  </c:forEach>
                       </select>
-                  </td>
-                  <td>14,000원</td>
-                  <td>5% 적립</td>
-                  <td>14,000원</td>
-              </tr>
-              
-              <tr class="row_style">
-                <td><input type="checkbox" name="order_check"></td>
-                <td class="hidden_col"><!--book_id--></td>
-                <td class="book_name" style="text-align: left;">
-                    <img src="../resources/images/book_cover_temp1.gif" alt="">
-                    <span>책 제목&nbsp;|&nbsp;작가</span>
-                </td>
-                <td> 
-                    <select name="book_num" class="book_num">
-                        <option value="1" selected="selected">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                </td>
-                <td>14,000원</td>
-                <td>5% 적립</td>
-                <td>14,000원</td>
-            </tr>
+                    </td>
+                    <td id="price_${direct.book_id}">${direct.book_price}원</td>
+                    <td>5% 적립</td>
+                    <td id="book_price_${direct.book_id}">${direct.book_price * direct.book_cnt}원</td>
+                    <td rowspan="1" style="border-left: 0.5px solid #707070;" id="shippingCost_${direct.book_id}">
+                    <c:if test="${direct.book_price * direct.book_cnt < 20000}">
+                    3000원
+                    </c:if>
+                    <c:if test="${direct.book_price * direct.book_cnt >= 20000}">
+                    무료배송
+                    </c:if>                   
+					</td>
+                  </tr>
+                </c:if>
+                
+                <!-- 전체 주문하기 -->
+                <c:if test="${not empty allList}">
+                <c:forEach var="all" items="${allList}">
+                  <tr class="row_style">
+                    <td>
+                      <input type="checkbox" name="order_check">
+                    </td>
+                    <td class="hidden_col"><input type="hidden" value="${all.book_id}"></td>
+                    <td class="book_name" style="text-align: left;">
+                        <img src="../resources/images/bookcover/${all.book_cover}" alt="">
+                        <span>${all.book_title}&nbsp;|&nbsp;${all.book_writer}</span>
+                    </td>
+                    <td> 
+                      <select name="book_num" class="book_num" id="book_cnt_${all.book_id}">
+                      <c:forEach var="i" begin="1" end="5">
+	                  <c:if test="${i eq all.book_cnt}">
+	                    <option value="${i}" selected>${i}</option>
+	                  </c:if>
+	                  <c:if test="${i ne all.book_cnt}">
+	                    <option value="${i}">${i}</option>
+	                  </c:if>
+	                  </c:forEach>
+                      </select>
+                    </td>
+                    <td id="price_${all.book_id}">${all.book_price}원</td>
+                    <td>5% 적립</td>
+                    <td id="book_price_${all.book_id}">${all.book_price * all.book_cnt}원</td>
+                    <td rowspan="3" style="border-left: 0.5px solid #707070;">3,000원</td>
+                  </tr>
+                </c:forEach>
+                </c:if>
+                
+                <!-- 선택 주문하기 -->
+                <c:if test="${not empty selectList}">
+                <c:forEach var="select" items="${selectList}">
+                  <tr class="row_style">
+                    <td>
+                      <input type="checkbox" name="order_check">
+                    </td>
+                    <td class="hidden_col"><input type="hidden" value="${select.book_id}"></td>
+                    <td class="book_name" style="text-align: left;">
+                        <img src="../resources/images/bookcover/${select.book_cover}" alt="">
+                        <span>${select.book_title}&nbsp;|&nbsp;${select.book_writer}</span>
+                    </td>
+                    <td> 
+                      <select name="book_num" class="book_num" id="book_cnt_${select.book_id}">
+                      <c:forEach var="i" begin="1" end="5">
+	                  <c:if test="${i eq select.book_cnt}">
+	                    <option value="${i}" selected>${i}</option>
+	                  </c:if>
+	                  <c:if test="${i ne select.book_cnt}">
+	                    <option value="${i}">${i}</option>
+	                  </c:if>
+	                  </c:forEach>
+                      </select>
+                    </td>
+                    <td id="price_${select.book_id}">${select.book_price}원</td>
+                    <td>5% 적립</td>
+                    <td id="book_price_${select.book_id}">${select.book_price * select.book_cnt}원</td>
+                    <td rowspan="3" style="border-left: 0.5px solid #707070;">3,000원</td>
+                  </tr>
+                </c:forEach>
+                </c:if>
+                
                 </tbody>
               </table>
               <!-- [2-2-2] 장바구니 돌아가기 버튼 -->
@@ -121,8 +220,16 @@
                 <div class="order_tot">
                     <ul>
                         <li>
-                            <h4>총 1개의 상품</h4>
-                            <span>14,000원</span>
+                        	<c:if test="${not empty direct}">
+                        	<h4>총 1개의 상품</h4>
+                        	</c:if>
+                        	<c:if test="${not empty allList}">
+                        	<h4>총 ${fn:length(allList)}개의 상품</h4>
+                        	</c:if>
+                        	<c:if test="${not empty selectList}">
+                        	<h4>총 ${fn:length(selectList)}개의 상품</h4>
+                        	</c:if>
+                            <span id="book_price">14,000원</span>
                         </li>
                         <li class="plus">
                           <img src="../resources/images/cart_plus.png" alt="">
