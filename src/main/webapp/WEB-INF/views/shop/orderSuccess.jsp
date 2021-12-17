@@ -8,19 +8,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Shop</title>
     <link rel="stylesheet" href="${path }/resources/css/reset.css" />
-    <link rel="stylesheet" href="${path }/resources/css/book_order.css" />
+    <link rel="stylesheet" href="${path}/resources/css/mainNav.css" />
+    <link rel="stylesheet" href="${path }/resources/css/order_set.css" />
   </head>
 <body>
     <div id="wrap">
      <!-- [1] 네비게이션 -->
-      <jsp:include page="../mainNav.jsp">
+     <jsp:include page="../mainNav.jsp"/>
       <!-- [2] 메인화면 -->
       <section id="order_set">
         <!-- [2-1] 제목 -->
         <header class="order_ttl">
             <h2>SET ORDER</h2>
             <div class="process">
-                <img src="images/process_step3.png" alt="">
+                <img src="../resources/images/process_step3.png" alt="">
             </div>
         </header>
         <!-- [2-2] 결제완료 -->
@@ -29,7 +30,7 @@
             <div class="ttl"></div>
             <!-- 결제완료 메세지 -->
             <div class="msg_box">
-              <img src="images/order_set_icon.png" alt="">
+              <img src="../resources/images/order_set_icon.png" alt="">
               <h3>결제가 완료되었습니다.</h3>
               <p>감사합니다.</p>
             </div>
@@ -39,7 +40,7 @@
           <div class="container">
             <!-- 소제목 -->
             <div class="ttl">
-              <img src="images/order_ttl_icon.png" alt="">
+              <img src="../resources/images/order_ttl_icon.png" alt="">
                <h3>주문 | 결제 정보</h3>
                <p>2021-12-14</p>
             </div>
