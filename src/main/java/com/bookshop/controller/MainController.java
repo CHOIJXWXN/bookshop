@@ -70,45 +70,27 @@ public class MainController {
 		return "main/find";
 	}
 	
-
-	// 아이디 찾기 - 이메일로 찾기 클릭
-	// url 패턴이 'path/findIde'
+	// 아이디찾기 (이메일 이용)(ajax)
+	// url 패턴이 'path/findIdEAction'
 	// 결과를 findIde.jsp로 보냄
 	// 존재하면 0, 아이디 찾기 가능
 	// 존재하지 않으면 -1, 아이디찾기 불가능
-	/*
-	@RequestMapping(value = "/findIdE", method = RequestMethod.POST)
-	public String findIdE(Users users, Model model, RedirectAttributes ra) throws Exception {
-		Users rs = usersService.findIdE(users);
-		String url = null;
-		
-		if(rs == null) {
-			ra.addAttribute("msg", "가입하신 정보가 없습니다.");
-			url = "redirect:/login";
-		}
-		else {
-			//model.addAttribute("user_id", users.getUser_id());
-			//model.addAttribute("user_email", users.getUser_email());
-			//model.addAttribute("user_name", users.getUser_name());
-			model.addAttribute("users", users);
-			url = "main/findIdE";
-			
-		}
-		
-		
-		return url;
-	}*/
-	// 아이디찾기 (이메일 이용)
-	// url 패턴이 'path/findIde'
-	// 결과를 findIde.jsp로 보냄
-	// 존재하면 0, 아이디 찾기 가능
-	// 존재하지 않으면 -1, 아이디찾기 불가능
-	@RequestMapping(value = "/findIdE", method = {RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping(value = "/findIdEAction", method = RequestMethod.POST)
 	@ResponseBody
-	public String findIdE(Users users, Model model) throws Exception {
-		int result = usersService.findIdE(users);
-	
+	public String findIdEAction(Users users, Model model) throws Exception {
+		int result = usersService.findIdEAction(users);
+		
 		return result + "";
+	}
+	// url 이 'path/findIdE
+	// 결과가 존재할 시 값을 전달해 줌
+	@RequestMapping(value = "/findIdE", method = RequestMethod.POST) 
+	public String findIdE(Users users, Model model) throws Exception {
+		
+		users = usersService.findIdE(users);
+		model.addAttribute("users", users);
+		
+		return "main/findIdE";
 	}
 	
 	

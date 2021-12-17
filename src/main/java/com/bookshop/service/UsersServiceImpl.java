@@ -61,20 +61,28 @@ public class UsersServiceImpl implements UsersService {
 	// 존재하면 0, 아이디 찾기 가능
 	// 존재하지 않으면 -1, 아이디찾기 불가능
 	@Override
-	public int findIdE(Users users) throws Exception {
+	public int findIdEAction(Users users) throws Exception {
 		int result = 0;
+		Users rs = dao.getIdE(users);
 		
-		if(dao.getIdE(users) != null) result = 0;
-		else if(dao.getIdE(users) == null) result = -1;
+		if(rs != null) result = 0;
+		else if(rs == null) result = -1;
 		
-			
 		return result;
+	}
+	// 아이디 찾기 값을 전달하기 위한 service
+	@Override
+	public Users findIdE(Users users) throws Exception {
+		
+		return dao.getIdE(users);
 	}
 
 	@Override
 	public void sendEmail(Users users) throws Exception {
 		
 	}
+
+
 	
 	
 	

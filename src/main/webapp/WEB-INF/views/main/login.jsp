@@ -16,21 +16,32 @@
     <script src="${path }/resources/js/mainjs/login.js" charset="UTF-8"></script> -->
     <script>
     $(document).ready(function(){
+    	
+    	$('#msg_id').hide();
+	 	$('#msg_pw').hide();
+	 	$('#msg1').hide();
+	 	$('#msg2').hide();
+	 	
     	$('#btn_login').click(function(){
     		var user_id = $('#user_id').val();
     		var user_pw = $('#user_pw').val();
+		 	
     		
     		if(user_id == '') {
     			// alert ('아이디를 입력하세요');
-    			$('#msg_id').text('아이디를 입력하세요.');
+    			// $('#msg_id').text('아이디를 입력하세요.');
+    			// $('#msg_pw').hide();
+    			$('#msg_id').show();
     			$('#msg_pw').hide();
     			$('#user_id').focus();
     			return;
     		}
-    		if(user_pw == '') {
+    		else if(user_pw == '') {
     			// alert ('비밀번호를 입력하세요');
-    			$('#msg_pw').text('비밀번호를 입력하세요.');
+    			// $('#msg_pw').text('비밀번호를 입력하세요.');
+    			// $('#msg_id').hide();
     			$('#msg_id').hide();
+    			$('#msg_pw').show();
     			$('#user_pw').focus();
     			return;
     		}
@@ -52,10 +63,10 @@
     				// 로그인 실패 -> 로그인 정보 불일치 알림 띄우기
     				else if (data == -1) {
     					//alert('아이디 또는 비밀번호가 잘못 입력되었습니다.');
-   					 	$('#msg_id').hide();
-   					 	$('#msg_pw').hide();
-					 	$('#msg1').text('아이디 또는 비밀번호가 잘못 입력되었습니다. ');
-					 	$('#msg2').text('아이디와 비밀번호를 정확하게 입력해주세요.');
+					 	$('#msg_id').hide();
+	 					$('#msg_pw').hide();
+					 	$('#msg1').show();
+					 	$('#msg2').show();
     				}
     					
     			}
@@ -91,10 +102,10 @@
                     <label for="save_id">아이디 저장</label>
                 </div>
                 <!-- msg 공간 추가 -->
-                <p id="msg_id" style="color:red;"></p>
-                <p id="msg_pw" style="color:red;"></p>
-                <p id="msg1" style="color:red;"></p><br>
-                <p id="msg2" style="color:red;"></p><br>
+                <p id="msg_id" style="color:red;">아이디를 입력하세요.</p>
+                <p id="msg_pw" style="color:red;">비밀번호를 입력하세요.</p>
+                <p id="msg1" style="color:red;">아이디 또는 비밀번호가 잘못 입력되었습니다.</p><br>
+                <p id="msg2" style="color:red;">아이디와 비밀번호를 정확하게 입력해주세요.</p><br>
                 <!-- type submit -> button 변경
                 <input type="submit" value="LOGIN">-->
                 <input type="button"  id="btn_login" value="LOGIN">

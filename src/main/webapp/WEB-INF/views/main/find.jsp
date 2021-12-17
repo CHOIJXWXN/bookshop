@@ -12,7 +12,67 @@
     <link rel="stylesheet" href="${path }/resources/css/find.css" />
     
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="${path }/resources/js/mainjs/find.js" charset="UTF-8"></script>
+    <!-- 스크립트 경로 사용 X -> 주석 
+    <script src="${path }/resources/js/mainjs/find.js" charset="UTF-8"></script> -->
+    <script>
+    $(document).ready(function(){
+       
+        $('#msg_id_name').hide();
+        $('#msg_id_email').hide();
+        
+        // 아이디 찾기 (이메일 이용)
+        $('#btn_findIdE').click(function(event){
+            var user_name = $('#user_name_IdE').val();
+            var user_email = $('#user_email_IdE').val();
+            if(user_name == '') {
+               // alert('이름을 입력해주세요.');
+                $('#msg_id_name').show();
+      			$('#msg_id_email').hide();
+                event.preventDefault();
+                $('#user_name_IdE').focus();
+                return;
+            }
+            if(user_email == '') {
+               // alert ('이메일을 입력해주세요.');
+                $('#msg_id_name').hide();
+      			$('#msg_id_email').show();
+                event.preventDefault();
+                $('#user_email_IdE').focus();
+                return;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: './findIdEAction',
+                data : {
+                    user_name: user_name,
+                    user_email: user_email
+                },
+
+                dataType: 'text',
+                success: function(data) {
+                    // 이름, 이메일이 존재 (아이디 찾기 가능)
+                    // findeIdE page안에 각 값을 넣어줘야함 {user_name}, {user_email}, {user_id}
+                    if(data == 0) {
+                        $('#findIdE').submit();
+                    }
+                    // 이름, 이메일 존재 X (아이디 찾기 불가능)
+                    else if(data == -1) {
+                    	$('#msg_id_name').hide();
+                        $('#msg_id_email').hide();
+                        // 모달을 띄워야함.
+                    	$('#not_exist_msg').show();
+                    }
+                }
+            // ajax
+            });
+        // btn_findIdE.click.function
+        });
+        
+        
+    // document.ready.function    
+    });
+    </script>
   
   </head>
   <body>
@@ -38,7 +98,8 @@
             <!-- 이메일로 찾기 선택시 -->
             
             <section class="email">
-              <form name="findIdE" id="findIdE" method="POST" action="./findIdE">
+            
+              <form name="findIdE" id="findIdE" method="POST" action="./findIdE"> 
                 <div class="row">
                   <label for="user_name">이름</label>
                   <input type="text" id="user_name_IdE" name="user_name" >
@@ -47,9 +108,10 @@
                   <label for="user_email">이메일</label>
                   <input type="text" id="user_email_IdE" name="user_email" >
                 </div>
-                <input type="button" id="Btn_findIdE" value="SEARCH">
-                <!-- 
-                <input type="submit" value="SEARCH"> -->
+                 <!-- 알림 문구 추가 -->
+                <P id ="msg_id_name" style="color:red;">이름을 입력해주세요.</P>
+                <p id="msg_id_email" style="color:red;">이메일을 입력해주세요.</p>
+                <input type="button" id="btn_findIdE" value="SEARCH">
               </form>
             </section>
             <!-- 휴대폰 번호로 찾기 선택시 -->
@@ -128,7 +190,7 @@
 		      <!-- 모달 띄울 때 display: block; -->
 		      <div id="not_exist_msg" style="display: none;">
 		        <h3>입력하신 정보로 가입된 회원 아이디는<br>존재하지 않습니다.</h3>
-		        <a href="#">확인</a>
+		        <a href="../find">확인</a>
 		      </div>
           </div>
         </li>

@@ -27,7 +27,11 @@ public interface UsersService {
 	// 아이디 찾기 (이메일이용하여 아이디찾기 클릭시)
 	// 존재하면 0, 아이디 찾기 가능
 	// 존재하지 않으면 -1, 아이디찾기 불가능
-	public int findIdE(Users users) throws Exception;
+	public int findIdEAction(Users users) throws Exception;
+	
+	// 아이디 찾기 값을 전달하기 위한 service
+	// Users 객체로 반환
+	public Users findIdE(Users users) throws Exception;
 	
 	// 비밀번호찾기
 	// 이메일 전송
