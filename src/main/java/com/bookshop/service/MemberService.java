@@ -23,5 +23,4 @@ public interface MemberService {
 	
 	// 3) 주문목록 건수 가져오기
 	public int getOrderCnt(String user_id) throws Exception;
-
 }

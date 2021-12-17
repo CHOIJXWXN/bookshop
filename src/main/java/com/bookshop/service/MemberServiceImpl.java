@@ -61,7 +61,7 @@ public class MemberServiceImpl implements MemberService {
 					Book book = dao.getBook(orderlist.get(j).getBook_id());
 					
 					HashMap<String, Object> bookMap = new HashMap<String, Object>();
-					bookMap.put("book_id", orderlist.get(i).getBook_id());
+					bookMap.put("book_id", orderlist.get(j).getBook_id());
 					bookMap.put("book_cover", book.getBook_cover());
 					bookMap.put("book_title", book.getBook_title());
 					bookMap.put("book_writer", book.getBook_writer());
@@ -95,7 +95,7 @@ public class MemberServiceImpl implements MemberService {
 			return point;
 		}
 
-		// 4) 주문목록 건수 가져오기
+		// 3) 주문목록 건수 가져오기
 		@Override
 		public int getOrderCnt(String user_id) throws Exception {
 			
@@ -105,9 +105,6 @@ public class MemberServiceImpl implements MemberService {
 			return order_cnt;
 			
 		}
-
-
-		
-		
+	
 
 }

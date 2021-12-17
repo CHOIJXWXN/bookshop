@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="${path }/resources/css/find.css" />
     
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="${path }/resources/js/mainjs/find.js" charset="UTF-8"></script>
   
   </head>
   <body>
@@ -40,13 +41,15 @@
               <form name="findIdE" id="findIdE" method="POST" action="./findIdE">
                 <div class="row">
                   <label for="user_name">이름</label>
-                  <input type="text" id="user_name" name="user_name" >
+                  <input type="text" id="user_name_IdE" name="user_name" >
                 </div>
                 <div class="row">
                   <label for="user_email">이메일</label>
-                  <input type="text" id="user_email" name="user_email" >
+                  <input type="text" id="user_email_IdE" name="user_email" >
                 </div>
-                <input type="submit" value="SEARCH">
+                <input type="button" id="Btn_findIdE" value="SEARCH">
+                <!-- 
+                <input type="submit" value="SEARCH"> -->
               </form>
             </section>
             <!-- 휴대폰 번호로 찾기 선택시 -->
@@ -83,20 +86,22 @@
             <!-- 위의 탭박스 선택에 따라 아래 탭 컨텐츠 달라짐 -->
             <!-- 이메일로 찾기 선택시 -->
             <section class="pw_email">
-              <form method="POST" action="/findPW_email">
+              <form id="findPW_email" method="POST" action="/findPW_email">
                 <div class="row">
                   <label for="user_id">아이디</label>
-                  <input type="text" id="user_id" name="user_id" >
+                  <input type="text" id="user_id_fwe" name="user_id" >
                 </div>
                 <div class="row">
                   <label for="user_name">이름</label>
-                  <input type="text" id="user_name" name="user_name" >
+                  <input type="text" id="user_name_fwe" name="user_name" >
                 </div>
                 <div class="row">
                   <label for="email">이메일</label>
-                  <input type="text" id="email" name="email" >
+                  <input type="text" id="user_email_fwe" name="user_email" >
                 </div>
-                <input type="submit" value="SEARCH">
+                <input type="button" id="Btn_findPWE" value="SEARCH">
+                <!-- 
+                <input type="submit" value="SEARCH"> -->
              </form>
             </section>
             <!-- 휴대폰번호로 찾기 선택시 -->    
