@@ -33,7 +33,10 @@
     			// $('#msg_pw').hide();
     			$('#msg_id').show();
     			$('#msg_pw').hide();
+    			$('#msg1').hide();
+    		 	$('#msg2').hide();
     			$('#user_id').focus();
+    		 	
     			return;
     		}
     		else if(user_pw == '') {
@@ -42,6 +45,8 @@
     			// $('#msg_id').hide();
     			$('#msg_id').hide();
     			$('#msg_pw').show();
+    			$('#msg1').hide();
+    		 	$('#msg2').hide();
     			$('#user_pw').focus();
     			return;
     		}
