@@ -19,8 +19,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public void addCart(Cart cart) throws Exception {
-		dao.addCart(cart);
+	public int addCart(Cart cart) throws Exception {
+		return dao.addCart(cart);
 	}
 
 	@Override

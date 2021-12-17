@@ -52,12 +52,20 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public HashMap<String, Object> searchBook(String keyword, int pageNum) throws Exception {
+	public HashMap<String, Object> searchBook(String keyword, String book_genre, int pageNum) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		int bookCnt = dao.getSearchBookCnt(keyword);
+		int bookCnt = 0;
+		if (book_genre.equals("-1")) {
+			bookCnt = dao.getSearchBookCnt(keyword);
+			map.put("searchList", dao.searchBook(keyword, pageNum));
+		} else {
+			bookCnt = dao.getSearchGenreBookCnt(keyword, book_genre);
+			map.put("searchList", dao.searchGenreBook(keyword, book_genre, pageNum));
+		}
 		Paging paging = new Paging(pageNum, bookCnt);
-		map.put("searchList", dao.searchBook(keyword, pageNum));
 		map.put("searchPaging", paging);
+		map.put("book_genre", book_genre);
+		map.put("bookCnt", bookCnt);
 		return map;
 	}
 	
@@ -68,29 +76,35 @@ public class BookServiceImpl implements BookService {
 	 */
 	@Override
 	public HashMap<String, Object> best(String user_id) throws Exception {
-		int flag;
+		int flag = 0;
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		List<String> idList = dao.getBestSeller();
 		List<Book> bookList = new ArrayList<Book>();
+		String book_genre = "";
+		String book_writer = "";
 		for (int i = 0; i < idList.size(); i++) {
 			bookList.add(dao.getBook(idList.get(i)));
 		}
-		String book_genre = dao.getGenreRecomm(user_id);
-		String book_writer = dao.getWriterRecomm(user_id);
-		if (book_genre == null) {
-			book_genre = dao.getInitGenre(user_id);							// 평균 3점 이상인 장르가 없으면 초기에 입력한 장르로 추천
+		if (!user_id.equals("")) {
+			book_genre = dao.getGenreRecomm(user_id);
+			book_writer = dao.getWriterRecomm(user_id);
+			if (book_genre.equals("") || book_genre == null) {
+				book_genre = dao.getInitGenre(user_id);
+			}
+			map.put("genreList", dao.getGenreRecommFour(book_genre));
+			if (book_writer.equals("") || book_writer == null) {
+				flag = 0;
+			} else {
+				if (dao.getWriterRecommTwo(book_writer).size() == 1) {
+					flag = 1;
+				} else {
+					flag = 2;
+				}
+				map.put("writerList", dao.getWriterRecommTwo(book_writer));
+			}
 		}
-		if (book_writer == null) flag = 0;									// 평균 3점 이상인 작가가 없으면 4개 모두 장르로 추천 (writerList 넘기지 않음)
-		else {
-			if (dao.getWriterRecommTwo(book_writer).size() == 1) flag = 1;	// 추천 작가의 책이 하나 뿐이라면 flag가 1
-			else flag = 2;													// 추천 작가의 책이 둘 이상이라면 flag가 2
-			map.put("writerList", dao.getWriterRecommTwo(book_writer));
-		}
-
-		dao.getGenreRecommFour(book_genre);
-		map.put("bestSeller", bookList);
-		map.put("genreList", dao.getGenreRecommFour(book_genre));		
-		map.put("flag", (Integer) flag);
+		map.put("bestSeller", bookList);		
+		map.put("flag", flag);
 		return map;
 	}
 

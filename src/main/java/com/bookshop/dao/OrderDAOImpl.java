@@ -18,17 +18,18 @@ public class OrderDAOImpl implements OrderDAO {
 	final String SESSION = "com.bookshop.mappers.order";
 
 	@Override
-	public List<CartPlus> getCartPlus(String user_id) {
+	public List<CartPlus> getCartPlus(String user_id) throws Exception {
 		return sqlSession.selectList(SESSION + ".getCartPlus", user_id);
 	}
 
 	@Override
-	public void addCart(Cart cart) {
-		sqlSession.insert(SESSION + ".addCart", cart);
+	public int addCart(Cart cart) throws Exception {
+		return sqlSession.insert(SESSION + ".addCart", cart);
+		// 성공 시 1, 실패 시 0
 	}
 
 	@Override
-	public void deleteCart(CartPlus cartPlus) {
+	public void deleteCart(CartPlus cartPlus) throws Exception {
 		sqlSession.delete(SESSION + ".deleteCart", cartPlus);
 	}
 	
