@@ -6,9 +6,10 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Book Shop</title>
+    <title>주문 페이지</title>
     <link rel="stylesheet" href="${path}/resources/css/reset.css" />
-    <link rel="stylesheet" href="${path}/resources/css/order_set.css" />
+    <link rel="stylesheet" href="${path}/resources/css/book_order.css" />
+    <link rel="stylesheet" href="${path}/resources/css/mainNav.css" />
   </head>
   <body>
     <div id="wrap">

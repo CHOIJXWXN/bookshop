@@ -24,8 +24,13 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public List<OrderPlus> getOrderList(List<String> list) throws Exception {
-		return sqlSession.selectList(SESSION + ".getOrderList", list);
+	public List<OrderPlus> getOrderListSeparate(List<String> list) throws Exception {
+		return sqlSession.selectList(SESSION + ".getOrderListSeparate", list);
+	}
+
+	@Override
+	public List<OrderPlus> getOrderListUnited(List<String> list) throws Exception {
+		return sqlSession.selectList(SESSION + ".getOrderListUnited", list);
 	}
 
 	@Override
@@ -56,26 +61,6 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public int getTotCnt() throws Exception {
 		return sqlSession.selectOne(SESSION + ".getTotCnt");
-	}
-
-	@Override
-	public int getBookCnt() throws Exception {
-		return sqlSession.selectOne(SESSION + ".getBookCnt");
-	}
-
-	@Override
-	public int getBookCntNovel() throws Exception {
-		return sqlSession.selectOne(SESSION + ".getBookCntNovel");
-	}
-
-	@Override
-	public int getBookCntPoem() throws Exception {
-		return sqlSession.selectOne(SESSION + ".getBookCntPoem");
-	}
-
-	@Override
-	public int getBookCntTravel() throws Exception {
-		return sqlSession.selectOne(SESSION + ".getBookCntTravel");
 	}
 
 	@Override
