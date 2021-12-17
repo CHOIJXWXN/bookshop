@@ -32,6 +32,12 @@ public interface UsersDAO {
 	// Users 객체로 전달
 	public Users getIdE(Users users) throws Exception;
 	
+	// 비밀번호 검색
+	// ( 존재하면 새로운 비밀번호 생성후 업데이트, 생성된 비밀번호 이메일로 전송)
+	// 비밀번호 변경
+	public int update_pw(Users users) throws Exception;
+
+	
 	
 	
 }
