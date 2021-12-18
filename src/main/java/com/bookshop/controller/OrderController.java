@@ -51,6 +51,7 @@ public class OrderController {
 		}
 		model.addAttribute("selectList", cartPlus);
 		model.addAttribute("user", memberService.getUserInfo(user_id));
+		model.addAttribute("orderNum", orderService.newOrderNum());
 		return "shop/order";
 	}
 	
@@ -66,6 +67,7 @@ public class OrderController {
 		}
 		model.addAttribute("allList", orderService.viewCart(user_id));
 		model.addAttribute("user", memberService.getUserInfo(user_id));
+		model.addAttribute("orderNum", orderService.newOrderNum());
 		return "shop/order";
 	}
 	
@@ -76,6 +78,7 @@ public class OrderController {
 		//user_id = "abcd";
 		model.addAttribute("direct", cartPlus);
 		model.addAttribute("user", memberService.getUserInfo(user_id));
+		model.addAttribute("orderNum", orderService.newOrderNum());
 		return "shop/order";
 	}
 	

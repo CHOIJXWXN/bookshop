@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="${path}/resources/css/order.css" />
     <link rel="stylesheet" href="${path}/resources/css/mainNav.css" />
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
     <script>
     $(document).ready(function() {  	
     	// 포인트 변화 기능
@@ -187,6 +188,68 @@
     		}
     	});
     });
+    
+    var name = '';
+    <c:if test="${not empty direct}">
+    name = '${direct.book_title}';
+    </c:if>
+    <c:if test="${not empty allList}">
+    name = '${allList[0].book_title}';
+    <c:if test="${fn:length(allList) >= 2}">
+    name = '${allList[0].book_title} 외 ${fn:length(allList) - 1}';
+    </c:if>
+    </c:if>    
+    <c:if test="${not empty selectList}">
+    name = '${selectList[0].book_title}';
+    <c:if test="${fn:length(selectList) >= 2}">
+    name = '${selectList[0].book_title} 외 ${fn:length(selectList) - 1}';
+    </c:if>
+    </c:if>
+    // https://docs.iamport.kr/implementation/payment
+    // 아직 node.js를 몰라서 그 부분은 안했음
+    // 결제 api
+	var IMP = window.IMP;
+	IMP.init("imp21304345");
+	function requestPay() {
+      // IMP.request_pay(param, callback) 결제창 호출
+      IMP.request_pay({ // param
+          pg: "html5_inicis",
+          pay_method: "card",
+          merchant_uid: "${orderNum}",							// 주문 아이디
+          name: name,											// 상품 이름
+          amount: parseInt($('.book_price_tot_pt').text()),		// 결제 가격
+          buyer_email: "${user.user_email}",					// 구매자 이메일
+          buyer_name: "${user.user_name}",						// 구매자 이름
+          buyer_tel: "${user.user_phone}",						// 구매자 연락처
+          buyer_addr: "서울특별시 강남구 신사동",						// 구매자 주소
+          buyer_postcode: "01181"								// 구매자 우편번호
+      }, function (rsp) { // callback
+          if (rsp.success) {
+        	  ajax({
+        		  url: "{서버의 결제 정보를 받는 endpoint}", // 예: https://www.myservice.com/payments/complete
+            	  method: "POST",
+            	  headers: { "Content-Type": "application/json" },
+            	  data: {
+            		  imp_uid: rsp.imp_uid,
+                	  merchant_uid: rsp.merchant_uid
+            	  }
+              }).done(function(data) { // 응답 처리
+                  switch(data.status) {
+                    case "vbankIssued":
+                      // 가상계좌 발급 시 로직
+                      break;
+                    case "success":
+                      // 결제 성공 시 로직
+                      break;
+                  }
+              })
+             // 결제 성공 시 로직,
+          } else {
+        	  alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
+              // 결제 실패 시 로직,
+          }
+      });
+	};
    
     </script>
     
@@ -480,7 +543,8 @@
             <label for="order_agree">[필수] 구매하실 상품의 결제정보를 확인하였으며, 구매진행에 동의합니다.</label>
           </div>
           <!-- 결제버튼 -->
-          <input type="submit" name="order_set" id="order_set" value="결제하기">
+		  <!-- <input type="submit" name="order_set" id="order_set" value="결제하기"> -->
+ 		  <button onclick="requestPay()">결제하기</button>
         </article>
       </section>
     </div>
