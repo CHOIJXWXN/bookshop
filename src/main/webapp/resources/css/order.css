@@ -251,6 +251,11 @@ margin-top: 92px;
   height: 45px;
   padding-left: 15px;
 }
+.row input[type="number"] {
+  width: 390px;
+  height: 45px;
+  padding-left: 15px;
+}
 .row_3 input {
   width: 150px;
   height: 45px;

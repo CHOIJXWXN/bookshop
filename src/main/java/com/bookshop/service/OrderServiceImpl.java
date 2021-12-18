@@ -17,6 +17,11 @@ public class OrderServiceImpl implements OrderService {
 	public List<CartPlus> viewCart(String user_id) throws Exception {
 		return dao.getCartPlus(user_id);
 	}
+	
+	@Override
+	public CartPlus viewCertainCart(Cart cart) throws Exception {
+		return dao.getCertainCartPlus(cart);
+	}
 
 	@Override
 	public int addCart(Cart cart) throws Exception {
@@ -26,6 +31,11 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public void deleteCart(CartPlus cartPlus) throws Exception {
 		dao.deleteCart(cartPlus);
+	}
+
+	@Override
+	public void updateCart(Cart cart) throws Exception {
+		dao.updateCntCart(cart);
 	}
 
 }
