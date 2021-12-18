@@ -39,6 +39,11 @@ section {
     height: 50px;
     border-bottom: 0.5px solid #707070; 
 }
+#sidebar a.on span{
+	padding-left: 10px;
+	font-size: 17px;
+    color: #1C1A1A;
+}
 #sidebar span {
     font-family: "Pretendard-Regular";
     font-size: 15px;
