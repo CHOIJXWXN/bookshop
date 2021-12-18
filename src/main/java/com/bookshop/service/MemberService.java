@@ -16,7 +16,7 @@ public interface MemberService {
 		
 	// (마이페이지) 주문/배송 조회 service
 	// 1) 주문 목록 가져오기
-	public List<HashMap<String, Object>> viewOrderList(String user_id, int pageNumber) throws Exception;
+	public List<OrderItem> viewOrderList(String user_id, int pageNumber) throws Exception;
 	// 2) 다음 페이지 존재하는지 
 	public boolean getPageIs(String user_id, int pageNumber) throws Exception;
 	// 3) 보유 포인트 가져오기
