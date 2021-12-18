@@ -70,7 +70,7 @@
           <!-- 소제목(빈공간) -->
           <div class="ttl"></div>
           <!-- 주문 상세내역 표 -->
-          <form action="/order/" method="GET">
+          <form action="/order/" method="POST">
             <div class="container">
               <table>
                 <thead>
@@ -89,9 +89,9 @@
                   <c:forEach var="item" items="${list}">
                   <tr class="row_style">
                     <td>
-                      <input type="checkbox" name="order_check" value="${item.book_id}">
+                      <input type="checkbox" name="checked_book_id" value="${item.book_id}">
                     </td>
-                    <td class="hidden_col"><!--book_id--></td>
+                    <td class="hidden_col"><input type="hidden" name="book_id" value="${item.book_id}"></td>
                     <td class="book_name" style="text-align: left;">
                     	<div class="img_box">
                       		<img src="../../resources/images/bookcover/${item.book_cover}" alt="book_cover">

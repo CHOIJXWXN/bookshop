@@ -12,6 +12,14 @@
      	AND A.book_id = B.book_id
    	</select>
    	
+	<!-- 특정 유저의 특정 책 장바구니 -->
+   	<select id="getCertainCartPlus" resultType="CartPlus">
+   		SELECT B.book_id, B.book_cover, B.book_title, B.book_writer, A.book_cnt, B.book_price FROM cart A, book B
+     	WHERE user_id = #{user_id}
+     	AND A.book_id = B.book_id
+     	AND A.book_id = ${book_id}
+   	</select>
+   	
    	<!-- 상품을 장바구니에 추가 -->
    	<insert id="addCart">
    		INSERT INTO cart
@@ -23,5 +31,13 @@
    		DELETE FROM cart
    		WHERE user_id = #{user_id} AND book_id = #{book_id}
    	</delete>
+   	
+   	<!-- 장바구니 수량 변경 -->
+   	<update id="updateCntCart">
+   		UPDATE cart
+   		SET book_cnt = #{book_cnt}
+   		WHERE user_id = #{user_id}
+   		AND book_id = #{book_id}
+   	</update>
    
 </mapper>
