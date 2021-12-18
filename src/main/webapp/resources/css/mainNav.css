@@ -1,5 +1,12 @@
 @charset "utf-8";
 
+a:hover {
+	text-decoration-line: none;
+	text-decoration: none;
+}
+a {
+	 text-decoration-line: none;
+}
 /* [1] 헤더 */
 #header {
   float: left;
@@ -47,6 +54,7 @@
 
 }
 #header .main_nav > li {
+  
   float: left;
   width: 147px;
   height: 80px;

@@ -1,0 +1,127 @@
+@charset "UTF-8";
+
+#wrap {
+    width: 100%;
+}
+ 
+ /* [2]메인화면*/
+section {
+    float: left;
+    width: 100%;
+    height: 100vh;
+    background-image: url("../images/main_bg_4.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+.container {
+    margin: 0 auto;
+    width: 1100px;
+    margin-top: 150px;
+}
+/* 제목 */
+.container h2 {
+    width: 100%;
+    height: 70px;
+    font-family: 'Goudy Bookletter 1911', serif;
+    font-size: 32px;
+    line-height: 70px;
+    color: #1C1A1A;
+    letter-spacing: 0.2em;
+    padding-left: 2%;
+    box-sizing: border-box;
+}
+.table_h {
+    width: 100%;
+    height: 60px;
+    background-color: rgba(28, 26, 26, 0.65);
+    display: flex;
+}
+.table_h > h3 {
+    height: 60px;
+    text-align: center;
+    font-family: "Pretendard-Regular";
+    /* font-family: 'NotoSerifKR'; */
+    font-size: 19px;
+    line-height: 60px;
+    color: #FAFAF8;
+}
+.board_id {
+    width: 20%;
+}
+.board_ttl {
+    width: 36%;
+}
+.board_writer {
+    width: 18%;
+}
+.board_date {
+    width: 26%;
+}
+/* 각 게시글 행 스타일 */
+.row {
+    width: 100%;
+    height: 50px;
+    border-bottom: 0.5px solid #707070;
+    background-color: #f6f6f6;
+    display: flex;
+}
+.row > div p {
+    text-align: center;
+    font-family: "Pretendard-Regular";
+    font-size: 16px;
+    line-height: 50px;
+    color: #1C1A1A;
+}
+.board_ttl > a {
+    display: block;
+}
+/* 마지막 row 보더바텀 굵게 */
+.row:last-child {
+    border-bottom: 1.5px solid #707070;
+}
+/* 페이징 */
+.pagebox {
+    width: 100%;
+    height: 60px;
+    margin-top: 30px; 
+}
+.pagenum_wrap {
+    margin: 0 auto;
+    width: 30%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+   
+}
+.pagenum_wrap li {
+    width: 50%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pagenum_wrap a {
+    display: block;
+    width: 70%;
+    height: 40px;
+    text-align: center;
+    font-family: 'Goudy Bookletter 1911', serif;
+    font-size: 22px;
+    line-height: 40px;
+    color: #1C1A1A;
+}
+.pagenum_wrap a.prev::before {
+    content: "<";
+    display: none;
+}
+.pagenum_wrap a.next::after {
+    content: ">";
+    display: none;
+}
+.pagenum_wrap a:hover:before {
+    display: inline-block;
+}
+.pagenum_wrap a:hover:after {
+    display: inline-block;
+}
