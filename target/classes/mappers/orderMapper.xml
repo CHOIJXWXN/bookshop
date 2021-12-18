@@ -39,5 +39,12 @@
    		WHERE user_id = #{user_id}
    		AND book_id = #{book_id}
    	</update>
+   	
+   	<!-- 오늘 총 주문 개수 -->
+   	<select id="getOrderCntToday" resultType="_int">
+   		SELECT COUNT(*)
+   		FROM orders
+   		WHERE DATE_FORMAT(order_date, "%Y-%m-%d") = CURDATE()
+   	</select>
    
 </mapper>

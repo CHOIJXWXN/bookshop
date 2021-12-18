@@ -42,5 +42,10 @@ public class OrderDAOImpl implements OrderDAO {
 	public void updateCntCart(Cart cart) throws Exception {
 		sqlSession.update(SESSION + ".updateCntCart", cart);
 	}
+
+	@Override
+	public int getOrderCntToday() throws Exception {
+		return sqlSession.selectOne(SESSION + ".getOrderCntToday");
+	}
 	
 }
