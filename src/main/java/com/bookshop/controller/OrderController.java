@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bookshop.service.MemberService;
 import com.bookshop.service.OrderService;
 import com.bookshop.vo.Cart;
 import com.bookshop.vo.CartPlus;
+import com.bookshop.vo.Users;
 
 @Controller
 @RequestMapping(value = "/order/*")
@@ -25,11 +27,13 @@ public class OrderController {
 	
 	@Inject
 	OrderService orderService;
+	@Inject
+	MemberService memberService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 	
 	// 주문 페이지 (장바구니 선택 주문)
-	@RequestMapping(params = "select", value = "/", method = RequestMethod.GET)
+	@RequestMapping(params = "select", value = "/", method = RequestMethod.POST)
 	public String select(@RequestParam List<String> checked_book_id, @RequestParam List<String> book_id, @RequestParam List<Integer> book_cnt, HttpSession session, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
 		user_id = "abcd";
@@ -46,11 +50,12 @@ public class OrderController {
 			cartPlus.add(orderService.viewCertainCart(cart));
 		}
 		model.addAttribute("selectList", cartPlus);
+		model.addAttribute("user", memberService.getUserInfo(user_id));
 		return "shop/order";
 	}
 	
 	// 주문 페이지 (장바구니 전체 주문)
-	@RequestMapping(params = "all", value = "/", method = RequestMethod.GET)
+	@RequestMapping(params = "all", value = "/", method = RequestMethod.POST)
 	public String all(@RequestParam List<String> book_id, @RequestParam List<Integer> book_cnt, HttpSession session, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
 		user_id = "abcd";
@@ -60,13 +65,17 @@ public class OrderController {
 			orderService.updateCart(cart);
 		}
 		model.addAttribute("allList", orderService.viewCart(user_id));
+		model.addAttribute("user", memberService.getUserInfo(user_id));
 		return "shop/order";
 	}
 	
 	// 주문 페이지 (바로 주문)
 	@RequestMapping(params = "direct", value = "/", method = RequestMethod.GET)
-	public String order(CartPlus cartPlus, Model model) throws Exception {
+	public String order(CartPlus cartPlus, HttpSession session, Model model) throws Exception {
+		String user_id = (String) session.getAttribute("user_id");
+		user_id = "abcd";
 		model.addAttribute("direct", cartPlus);
+		model.addAttribute("user", memberService.getUserInfo(user_id));
 		return "shop/order";
 	}
 	

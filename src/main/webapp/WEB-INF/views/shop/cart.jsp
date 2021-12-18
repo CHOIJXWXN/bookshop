@@ -70,7 +70,7 @@
           <!-- 소제목(빈공간) -->
           <div class="ttl"></div>
           <!-- 주문 상세내역 표 -->
-          <form action="/order/" method="GET">
+          <form action="/order/" method="POST">
             <div class="container">
               <table>
                 <thead>
