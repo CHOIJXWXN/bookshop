@@ -29,7 +29,8 @@ public interface BookDAO {
 	public Book getBook(String book_id) throws Exception;
 	public List<Review> getReview(String book_id, int pageNum) throws Exception;
 	public int getReviewCnt(String book_id) throws Exception;
-	public int getBookScore(String book_id) throws Exception;
+	public Integer getBookScore(String book_id) throws Exception;
 	public void addReview(Review review) throws Exception;
+	public int getReviewFlag(Review review) throws Exception;
 	
 }
