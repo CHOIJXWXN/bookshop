@@ -1,8 +1,57 @@
 $(document).ready(function() {
+
+	function getReview(data) {
+		if (data == null) {
+			alert('리뷰를 불러올 수 없습니다');
+			return;
+		} else {
+			var list = data.list;			// 리뷰 리스트
+			var paging = data.paging;		// 리뷰 페이징
+			var cnt = data.cnt;				// 리뷰 총 개수
+			var score = data.score / 10;	// 리뷰 평균 점수
+			
+			var str1 = '';
+			str1 += '<span>등록된 리뷰 수 : ' + cnt + '개</span>';
+			str1 += '<span>&nbsp;&nbsp;평점 평균 : ' + score + '점</span>';
+			$('.review_status').empty();
+			$('.review_status').append(str1);
+			$('.review_list').empty();
+			
+			for (var i = 0; i < list.length; i++) {
+			
+				// 회원 아이디의 3, 4번째 문자를 *로 치환 (abcdefg -> ab**efg)
+				var user_id = list[i].user_id;
+				var id1 = user_id.substr(0, 2);
+				var id2 = '**';
+				var id3 = user_id.substr(4, user_id.length - 4);
+				var id = id1 + id2 + id3;
+				
+				var str2 = '';
+				str2 += '<div class="review_row">';
+				str2 += '<div class="review_writer">';
+				str2 += '<span>' + id + '</span>';
+				str2 += '<span>' + list[i].review_date + '</span>';
+				str2 += '</div>';
+				str2 += '<div class="review_star">';
+				for (var j = 0; j < list[i].review_score; j++) {
+					str2 += '<label class="star" style="-webkit-text-fill-color: yellow; -webkit-text-stroke-width: 0.8px;">★</label>';
+				}
+				str2 += '</div>';
+				str2 += '<div class="view_review">';
+				str2 += '<p>' + list[i].review_contents + '</p>';
+				str2 += '</div>';
+				str2 += '</div>';
+				$('.review_list').append(str2);						
+			}						
+			
+			
+		}
+	};
 	
 	// 리뷰 라디오 체크 시 리뷰 불러오기
-	$('#reviewTab').change(function() {
-		if($('#reviewTab').is(':checked')) {
+	$('#tab3').change(function() {
+		if($(this).is(':checked')) {
+			var book_id = $('input[type=hidden][name=book_id]').val();
 			$.ajax({
 				type : "GET",
 				url : "./review",
@@ -10,55 +59,22 @@ $(document).ready(function() {
 					book_id : book_id
 				},
 				dataType : "json",
-				success : function(data) {
-					if (data == null) {
-						alert('리뷰가 없습니다');
-						return;
-					} else {
-						var list = data.list;			// 리뷰 리스트
-						var paging = data.paging;		// 리뷰 페이징
-						var cnt = data.cnt;				// 리뷰 총 개수
-						var score = data.score / 10;	// 리뷰 평균 점수
-						
-						var str1 = '';
-						str1 += '<span>등록된 리뷰 수 : ' + cnt + '개</span>';
-						str1 += '<span>&nbsp;&nbsp;평점 평균 : ' + score + '점</span>';
-						$('.review_status').append(str1);
-						
-						for (var i = 0; i < list.length; i++) {
-							var str2 = '';
-							str2 += '<div class="review_row">';
-							str2 += '<div class="review_writer">';
-							str2 += '<span>' + list.user_id + '</span>';
-							str2 += '<span>' + list.review_date + '</span>';
-							str2 += '</div>';
-							str2 += '<div class="review_star">';
-							for (var j = 0; j < list.review_score; j++) {
-								str2 += '<label class="star" style="-webkit-text-fill-color: yellow;">★</label>';
-							}
-							for (var k = 0; k < 5 - list.review_score; k++) {
-								str2 += '<label class="star">★</label>';
-							}
-							str2 += '</div>';
-							str2 += '<div class="view_review">';
-							str2 += '<p>' + list.review_contents + '</p>';
-							str2 += '</div>';
-							str2 += '</div>';						
-						}
-						$('.review_list').append(str2);
-					}
+				success : function(data){
+					getReview(data);
 				},
 				error : function(data) {
-				
+					alert('리뷰 보기에 실패했습니다');
 				}
 			});
 		}
 	});
 	
 	// 리뷰 추가하기
-	$('#ㅁㅁㅁ').click(function() {
-		var review_contents = $('#ㅇㅇㅇ').val();
-		var review_score = $('#').val();
+	$('#upload_review').click(function() {
+		var user_id = $('input[type=hidden][name=user_id]').val();
+		var book_id = $('input[type=hidden][name=book_id]').val();
+		var review_contents = $('#write_review_box').val();
+		var review_score = $('input[type=radio][name=rating]:checked').val();
 		$.ajax({
 			type : "GET",
 			url : "./addReview",
@@ -70,16 +86,15 @@ $(document).ready(function() {
 			},
 			dataType : "json",
 			success : function(data) {
-				var list = data.list;		// 리뷰 리스트
-				var paging = data.paging;	// 리뷰 페이징
-				var cnt = data.cnt;			// 리뷰 총 개수
-				var score = data.score;		// 리뷰 평균 점수
-				for (var i = 0; i < list.length; i++) {
-					var str = '';
+				if (data.flag == 0) {
+					getReview(data);
+				} else if (data.flag == 1) {
+					alert('이미 작성된 리뷰가 있습니다');
 				}
+				$('#write_review_box').val('');
 			},
 			error : function(data) {
-				
+				alert('리뷰 추가에 실패했습니다');
 			}
 		});
 	});
@@ -111,7 +126,7 @@ $(document).ready(function() {
 		$('#book_total_price').text(price * cnt + shippingCost + '원');
 	});
 	
-	// add to cart 버튼 클릭 시 ajax
+	// add to cart 버튼 클릭 시 비동기 추가
 	$('#addCart').click(function() {
 		var user_id = $('input[name=user_id]').val();
 		var book_id = $('input[name=book_id]').val();

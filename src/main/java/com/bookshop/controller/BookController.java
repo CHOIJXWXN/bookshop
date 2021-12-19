@@ -95,6 +95,7 @@ public class BookController {
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public String detail(String book_id, RedirectAttributes ra, HttpSession session, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
+		user_id = "abcd";
 		Book book = bookService.view(book_id);
 		if (book == null) {
 			ra.addFlashAttribute("msg", "해당 책이 존재하지 않습니다");
@@ -136,8 +137,14 @@ public class BookController {
       if (pageNum == null) {
          pageNum = 1;
       }
-      bookService.addReview(review);
-      return bookService.showReview(review.getBook_id(), pageNum);
+      HashMap<String, Object> map = bookService.showReview(review.getBook_id(), pageNum);      
+      if (bookService.flag(review) == 0) {
+    	  bookService.addReview(review);
+    	  map.put("flag", 0);
+      } else {
+    	  map.put("flag", 1);	// 이미 존재할 때
+      }
+      return map;
    }
 
 }

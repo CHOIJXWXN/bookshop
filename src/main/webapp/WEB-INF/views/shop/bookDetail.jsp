@@ -121,7 +121,7 @@
             <label for="tab2">교환 반품</label>
             <input type="radio" id="tab2" name="tab" />
             <label for="tab3">책 리뷰</label>
-            <input type="radio" id="tab3" name="tab" id="reviewTab" />
+            <input type="radio" id="tab3" name="tab" />
 
               <!-- 탭 내용 영역 -->
               <section class="delivery">delivery
@@ -153,12 +153,7 @@
                       <div class="review_msg">
                         <h3>이 책 어떠셨나요?</h3>
                         <div class="review_score star-rating">
-                          <!-- <i class="far fa-star fa-2x"></i>
-                          <i class="far fa-star fa-2x"></i>
-                          <i class="far fa-star fa-2x"></i>
-                          <i class="far fa-star fa-2x"></i>
-                          <i class="far fa-star fa-2x"></i> -->
-                          <input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
+                          <input type="radio" id="5-stars" name="rating" value="5" v-model="ratings" checked/>
                           <label for="5-stars" class="star pr-4">★</label>
                           <input type="radio" id="4-stars" name="rating" value="4" v-model="ratings"/>
                           <label for="4-stars" class="star">★</label>
@@ -171,11 +166,15 @@
                         </div>
                       </div>
                     </header>
-                    <!-- 리뷰 입력칸 -->
+                    <!-- 리뷰 입력칸 및 리뷰 등록 버튼 -->
+                    <c:if test="${not empty user_id}">
                     <input type="textarea" name="write_review" id="write_review_box" placeholder="로그인 후 리뷰등록 가능합니다." />
-                   
-                    <!-- 리뷰 등록 버튼 -->
                     <button type="button" id="upload_review">리뷰 등록하기</button>
+                    </c:if>
+                    <c:if test="${empty user_id}">
+                    <input type="textarea" name="write_review" id="write_review_box" placeholder="로그인 후 리뷰등록 가능합니다." readonly />
+                    <button type="button" id="upload_review" disabled>리뷰 등록하기</button>
+                    </c:if>
                   </div>
                
                 <!-- 등록된 리뷰수, 평점 평균 -->

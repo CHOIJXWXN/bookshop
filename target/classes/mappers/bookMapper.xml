@@ -210,7 +210,7 @@
 		SELECT *
 		FROM review
 		WHERE book_id = #{book_id}
-		ORDER BY review_date DESC
+		ORDER BY review_id DESC
 		LIMIT #{start}, 3
 	</select>
 	
@@ -222,7 +222,7 @@
 	</select>
 	
 	<!-- 특정 책의 리뷰 평균 평점  -->
-   	<select id="getBookScore" resultType="_int">
+   	<select id="getBookScore" resultType="int">
    		SELECT AVG(review_score) * 10
       	FROM review
       	WHERE book_id = #{book_id}
@@ -233,5 +233,13 @@
       	INSERT INTO review (user_id, book_id, review_score, review_contents, review_date)
       	VALUES (#{user_id}, #{book_id}, #{review_score}, #{review_contents}, NOW())
    	</insert>
+   	
+   	<!-- 특정 유저의 특정 책 리뷰 존재 여부 -->
+   	<select id="getReviewFlag" resultType="_int">
+   		SELECT COUNT(*)
+   		FROM review
+   		WHERE user_id = #{user_id}
+   		AND book_id = #{book_id}
+   	</select>
 	
 </mapper>

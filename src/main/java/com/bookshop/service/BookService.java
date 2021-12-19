@@ -13,5 +13,6 @@ public interface BookService {
 	public Book view(String book_id) throws Exception;
 	public HashMap<String, Object> showReview(String book_id, int pageNum) throws Exception;
 	public void addReview(Review review) throws Exception;
+	public int flag(Review review) throws Exception;
 	
 }
