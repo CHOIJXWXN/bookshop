@@ -1,5 +1,6 @@
 package com.bookshop.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -39,10 +40,12 @@ public class MemberDAOImpl implements MemberDAO {
 	// 1) 주문목록 가져오기
 	// user_id의 ORDERS 가져오기
 	@Override
-	public List<Orders> getOrders(String user_id) throws Exception {
+	public List<Orders> getOrders(String user_id, int pageNumber) throws Exception {
 		
-		return sqlSession.selectList(SESSION + ".getOrders", user_id);
-		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("user_id", user_id);
+		map.put("pageNumber", (pageNumber * 2) - 1);	
+		return sqlSession.selectList(SESSION + ".getOrders", map);	
 		
 	}
 	// order_num 의 orderlist 가져오기
@@ -59,7 +62,20 @@ public class MemberDAOImpl implements MemberDAO {
 		
 	}
 
-	// 2) 보유 포인트 가져오기
+	
+	// 2) 다음 페이지 존재하는지 
+	@Override
+	public Orders getPageIs(String user_id, int pageNum) throws Exception {
+		
+		HashMap<String, Object> pageMap = new HashMap<String, Object>();
+		pageMap.put("user_id", user_id);
+		pageMap.put("pageNumber", pageNum);
+		
+		return sqlSession.selectOne(SESSION + ".getPageIs", pageMap);
+	}
+	
+	
+	// 3) 보유 포인트 가져오기
 	@Override
 	public int getPoint(String user_id) throws Exception {
 				
@@ -67,27 +83,12 @@ public class MemberDAOImpl implements MemberDAO {
 		
 	}
 
-	// 3) 주문목록 건수 가져오기
+	// 4) 주문목록 건수 가져오기
 	@Override
 	public int getOrderCnt(String user_id) throws Exception {
 		
 		return sqlSession.selectOne(SESSION + ".getOrderCnt", user_id);
 	}
-
-	// 4) 최신 주문번호 조회하기
-	@Override
-	public String getRecentOrderNum(String user_id) throws Exception {
-		
-		return sqlSession.selectOne(SESSION + ".getRecentOrderNum", user_id);
-	}
-
-
-	
-
-
-	
-
-
 	
 	
 }

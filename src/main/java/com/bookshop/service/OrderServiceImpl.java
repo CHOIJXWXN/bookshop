@@ -1,5 +1,7 @@
 package com.bookshop.service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.inject.Inject;
 import org.springframework.stereotype.Service;
@@ -17,15 +19,32 @@ public class OrderServiceImpl implements OrderService {
 	public List<CartPlus> viewCart(String user_id) throws Exception {
 		return dao.getCartPlus(user_id);
 	}
+	
+	@Override
+	public CartPlus viewCertainCart(Cart cart) throws Exception {
+		return dao.getCertainCartPlus(cart);
+	}
 
 	@Override
-	public void addCart(Cart cart) throws Exception {
-		dao.addCart(cart);
+	public int addCart(Cart cart) throws Exception {
+		return dao.addCart(cart);
 	}
 
 	@Override
 	public void deleteCart(CartPlus cartPlus) throws Exception {
 		dao.deleteCart(cartPlus);
+	}
+
+	@Override
+	public void updateCart(Cart cart) throws Exception {
+		dao.updateCntCart(cart);
+	}
+
+	@Override
+	public String newOrderNum() throws Exception {		
+		String today = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+		String count = String.format("%06d", dao.getOrderCntToday() + 1);
+		return today + "-" + count;
 	}
 
 }

@@ -93,7 +93,7 @@
 	</select>
 	
 	<!-- 키워드 검색 -->
-	<select id="searchBook" parameterType="map" resultType="Book">
+	<select id="searchBook" parameterType="hashmap" resultType="Book">
 		SELECT *
 		FROM book
 		WHERE (book_title LIKE CONCAT('%', #{keyword}, '%')
@@ -111,15 +111,40 @@
 		AND available = 0
 	</select>
 	
-	<!-- 베스트 셀러 리스트 --> <!-- available 조건 추가 -->
+	<!-- 장르별 키워드 검색 -->
+	<select id="searchGenreBook" parameterType="hashmap" resultType="Book">
+		SELECT *
+		FROM book
+		WHERE (book_title LIKE CONCAT('%', #{keyword}, '%')
+		OR book_writer LIKE CONCAT('%', #{keyword}, '%'))
+		AND book_genre = #{book_genre}
+		AND available = 0
+		LIMIT #{start}, 16
+	</select>
+	
+	<!-- 검색된 장르별 책 개수 -->
+	<select id="getSearchGenreBookCnt" parameterType="hashmap" resultType="_int">
+		SELECT COUNT(*)
+		FROM book
+		WHERE (book_title LIKE CONCAT('%', #{keyword}, '%')
+		OR book_writer LIKE CONCAT('%', #{keyword}, '%'))
+		AND book_genre = #{book_genre}
+		AND available = 0
+	</select>
+	
+	<!-- 베스트 셀러 리스트 -->
 	<select id="getBestSeller" resultType="string">
-		SELECT B.book_id
-		FROM orders A, orderlist B
-		WHERE A.order_num = B.order_num
-		AND DATEDIFF(NOW(), A.order_date) <![CDATA[<=]]> 30
-		GROUP BY B.book_id
-		ORDER BY SUM(B.book_cnt) DESC
-		LIMIT 0, 8
+		SELECT C.book_id FROM (
+			SELECT B.book_id
+			FROM orders A, orderlist B
+			WHERE A.order_num = B.order_num
+			AND DATEDIFF(NOW(), A.order_date) <![CDATA[<=]]> 30
+			GROUP BY B.book_id
+			ORDER BY SUM(B.book_cnt) DESC
+			LIMIT 0, 8
+		) C, book D
+		WHERE C.book_id = D.book_id
+		AND D.available = 0
 	</select>
 	
 	<!-- 초기 흥미 장르 -->

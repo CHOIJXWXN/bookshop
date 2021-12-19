@@ -25,8 +25,6 @@ public class MemberController {
 	
 	@Inject
 	MemberService memberService;
-
-	// mypage - login 되어 있어야지 보임
 	
 	// [1] 마이페이지 메인화면 page
 	// url 패턴이 'path/mypage/'
@@ -34,12 +32,12 @@ public class MemberController {
 	public String mypage(RedirectAttributes ra, HttpSession session) throws Exception {
 		
 		// 1) 로그인이 되어있지 않으면 로그인 페이지로 이동시키고 로그인이 필요하다고 알려줌
-//		if(session.getAttribute("user_id") == null) {
-//			ra.addFlashAttribute("msg", "로그인이 필요합니다.");
-//			return "redirect:/login";
-//		}
+		if(session.getAttribute("user_id") == null) {
+			ra.addFlashAttribute("msg", "로그인이 필요합니다.");
+			return "redirect:/login";
+		}
 		// 2) 로그인이 되어있으면 마이페이지 메인화면 출력
-		return "member/myPage";		
+			return "member/myPage";		
 	}
 	
 	// [2] 회원정보수정 page
@@ -47,8 +45,7 @@ public class MemberController {
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String profile(Model model, RedirectAttributes ra, HttpSession session) throws Exception {
 		
-		String user_id = "lsumin1127";
-//		String user_id = (String) session.getAttribute("user_id");
+		String user_id = (String) session.getAttribute("user_id");
 		
 		//1) 로그인이 되어있지 않으면 로그인 페이지로 이동시키고 로그인이필요하다고 알려줌
 		if(user_id == null) {
@@ -58,7 +55,7 @@ public class MemberController {
 		//2) 로그인이 되어있으면 유저 아이디에 일치하는 정보를 불러옴	
 		Users users = memberService.getUserInfo(user_id);
 		//주소를 문자열 분리
-		String[] addrList = users.getUser_addr().split("/_/");
+		String[] addrList = users.getUser_addr().split("_");
 		String addr_1 = addrList[0];
 		String addr_2 = addrList[1];
 		String addr_3 = addrList[2];
@@ -80,7 +77,6 @@ public class MemberController {
 	public String updateProfile(Users users, String addr_1, String addr_2, String addr_3, RedirectAttributes ra, HttpSession session) throws Exception {
 	
 		String user_id = (String) session.getAttribute("user_id");
-		user_id = "lsumin1127";
 		
 		//1) 로그인이 되어있지 않으면 로그인 페이지로 이동시키고 로그인이필요하다고 알려줌
 		if(user_id == null) {
@@ -93,7 +89,7 @@ public class MemberController {
 			return "redirect:/mypage";
 		}
 		//3) 일치한다면 프로필 업데이트 실행
-		users.setUser_addr(addr_1 + "/_/ " + addr_2 + "/_/" + addr_3);
+		users.setUser_addr(addr_1 + "_" + addr_2 + "_" + addr_3);
 		memberService.updateProfile(users);
 		// +) 필수 입력값을 다 입력했는지는 검증(ajax)
 			
@@ -106,26 +102,27 @@ public class MemberController {
 	public String delivery(Integer pageNumber, Model model, RedirectAttributes ra, HttpSession session) throws Exception{
 		
 		String user_id = (String) session.getAttribute("user_id");
-		user_id = "lsumin1127";
+		
 		//1) 로그인이 되어있지 않으면 로그인 페이지로 이동시키고 로그인이필요하다고 알려줌
 		if(user_id == null) {
 			ra.addFlashAttribute("msg", "로그인이 필요합니다.");
 			return "redirect:/login";
 		}
-		// 2) user_id가 매칭되는 ordernum(ORDERS) -> book_id(ORDERLIST) -> book_name,author(BOOK)	
-		// 주문번호, 주문날짜, 주문상태, 책아이디, 책별 수량, 책표지, 책제, 작가, 가격 가져오기
-		List<HashMap<String, Object>> list = memberService.viewOrderList(user_id);	
-		model.addAttribute("list", list);
-		// 3)보유 포인트를 가져오기
-		model.addAttribute("point", memberService.getPoint(user_id));
-		// 4) 주문목록 건수 받아오기
-		model.addAttribute("order_cnt", memberService.getOrderCnt(user_id));
-		// 한페이지에 2일 리스트보여줌 이전/다음
+		
+		// 2) 주문번호, 주문날짜, 주문상태, 책아이디, 책별 수량, 책표지, 책제목, 작가, 가격 가져오기
 		if(pageNumber == null) pageNumber = 1;
-		
-		
+		List<OrderItem> list = memberService.viewOrderList(user_id, pageNumber);	
+		model.addAttribute("list", list);
+		// 3) 다음 페이지 존재하는지 
+		model.addAttribute("pageNumber", pageNumber);
+		model.addAttribute("isNext", memberService.getPageIs(user_id, pageNumber));
+		// 4)보유 포인트를 가져오기
+		model.addAttribute("point", memberService.getPoint(user_id));
+		// 5) 주문목록 건수 받아오기
+		model.addAttribute("order_cnt", memberService.getOrderCnt(user_id));
 		
 		return "member/orderList";
+		
 	}
 	
 	

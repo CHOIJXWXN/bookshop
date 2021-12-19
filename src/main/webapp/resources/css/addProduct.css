@@ -1,0 +1,228 @@
+@charset "utf-8";
+
+#wrap {
+    width: 100%;
+  }
+ 
+  /* [2]메인화면*/
+section {
+    float: left;
+    width: 100%;
+    height: 140vh;
+    background-image: url("../images/main_bg_4.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+  /* 사이드바 퀵메뉴 */
+  #sidebar {
+    float: left;
+    width: 180px;
+    height: 200px;
+    margin-top: 250px;
+    margin-left: 13%;
+}
+#nav_title {
+    width: 180px;
+    height: 50px;
+    font-size: 25px;
+    margin-bottom: 0;
+    line-height: 50px;
+    border-bottom: 1px #1C1A1A solid;
+    box-sizing: border-box;
+    font-family: 'Goudy Bookletter 1911', serif;
+    padding-left: 5px;
+}
+#sidebar a {
+    display: block;
+    width: 180px;
+    height: 50px;
+    border-bottom: 0.5px solid #707070; 
+}
+#sidebar span {
+    font-family: "Pretendard-Regular";
+    font-size: 15px;
+    line-height: 50px;
+    color: #B5B1B1;;
+}
+#sidebar a span.on{
+    padding-left: 10px;
+    font-size: 17px;
+    color: #1C1A1A;
+}
+#sidebar a:hover span{
+    padding-left: 10px;
+    font-size: 17px;
+    color: #1C1A1A;
+}
+#sidebar a:hover span::after {
+    content: ">";
+}
+  
+/* 주문 목록 테이블 */
+/* 높이 나중에 지우기 */
+#upload_book {
+    float: right;
+    width: 1100px;
+    height: 800px;
+    margin-top: 300px;
+    margin-right: 13%;
+    background-color: #f6f6f6;
+    border: 0.5px solid #707070;
+    position: relative;
+}
+#upload_book > h2 {
+    width: 1080px;
+    height: 70px;
+    position: absolute;
+    top: -70px;
+    left: 10px;
+    font-family: "Pretendard-Regular";
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 70px;
+    color: #1C1A1A;
+}
+
+#upload_book .ttl_writer_price {
+    float: left;
+    width: 50%;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly
+}
+.row {
+    width: 100%;
+    height: 50px;
+}
+#upload_book .book_cover {
+    float: left;
+    width: 50%;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.book_cover > div {
+    width: 100%;
+    height: 50px;
+}
+#upload_book .row h3 {
+    float: left;
+    width: 30%;
+    height: 50px;
+    font-family: "Pretendard-Regular";
+    font-size: 18px;
+    line-height: 50px;
+    font-weight: 600;
+    text-align: center;
+}
+#upload_book .row .input_box {
+    float: left;
+    width: 65%;
+    height: 50px;
+   
+}
+.row input {
+    width: 90%;
+    height: 40px;
+    margin-top: 1.5px;
+    padding-left: 10px;
+    font-family: "Pretendard-Regular";
+    font-size: 17px;
+    line-height: 40px;
+    color: #1C1A1A;
+}
+
+.book_cover h3 {
+    float: left;
+    width: 30%;
+    height: 50px;
+    font-family: "Pretendard-Regular";
+    font-size: 18px;
+    line-height: 50px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* 오른쪽 영역 */
+.row2 input {
+    float: left;
+    width: 60%;
+    height: 40px;
+    font-family: "Pretendard-Regular";
+    font-size: 17px;
+    line-height: 40px;
+    color: #1C1A1A;
+    margin-top: 1.5px;
+    padding-left: 10px;
+}
+/* 표지이미지 */
+.row_img {
+    position: relative;
+}
+#book_cover {
+    background-color: rgb(204, 203, 203);
+    outline:none;
+    border: none;
+    border: 1px solid #999;
+}
+
+/* 카테고리 선택박스 */
+.row2 select {
+    float: left;
+    width: 30%;
+    height: 50px;
+    padding: .6em .5em;
+    border: 1px solid #999;
+    font-family: "Pretendard-Regular";
+    font-size: 17px;
+    color: rgba(46, 45, 45, 1);
+    background: url(../images/order_num_dropdown.png) no-repeat 90% 50%;
+    border-radius: 0px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+/* 책 목차 쓰는 영역 */
+.book_contents,
+.book_story {
+    float: left;
+    width: 96%;
+    height: 250px;
+    margin-left: 2%;
+}
+.book_contents h3,
+.book_story h3 {
+    width: 96.5%;
+    height: 50px;
+    font-family: "Pretendard-Regular";
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 50px;
+    color: #1C1A1A;
+    padding-left: 3.5%;
+}
+.book_contents input,
+.book_story input {
+    width: 95.5%;
+    height: 180px;
+    margin-left: 1%;
+    overflow: scroll;
+    padding-left: 2%
+}
+/* 업로드 버튼 */
+#uploadBook {
+    width: 200px;
+    height: 60px;
+    background-color: #1C1A1A;
+    font-family: "Pretendard-Regular";
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 60px;
+    color: whitesmoke;
+    position: absolute;
+    top: 1140px;
+    right: 250px;
+}

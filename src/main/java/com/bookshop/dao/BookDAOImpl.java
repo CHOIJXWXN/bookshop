@@ -89,6 +89,24 @@ public class BookDAOImpl implements BookDAO {
 	}
 	
 	@Override
+	public List<Book> searchGenreBook(String keyword, String book_genre, int pageNum) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int start = (pageNum - 1) * 16;
+		map.put("keyword", keyword);
+		map.put("book_genre", book_genre);
+		map.put("start", start);
+		return sqlSession.selectList(SESSION + ".searchGenreBook", map);
+	}
+	
+	@Override
+	public int getSearchGenreBookCnt(String keyword, String book_genre) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("keyword", keyword);
+		map.put("book_genre", book_genre);
+		return sqlSession.selectOne(SESSION + ".getSearchGenreBookCnt", map);
+	}
+	
+	@Override
 	public List<String> getBestSeller() throws Exception {
 		return sqlSession.selectList(SESSION + ".getBestSeller");
 	}

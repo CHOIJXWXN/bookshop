@@ -43,49 +43,51 @@ public class MemberServiceImpl implements MemberService {
 		// (마이페이지) 주문/배송 조회 service
 		// 1) 주문 목록 가져오기
 		@Override
-		public List<HashMap<String, Object>> viewOrderList(String user_id) throws Exception {
+		public List<OrderItem> viewOrderList(String user_id, int pageNumber) throws Exception {
 			
-			// user_id의 ORDERS를 리스트로 들고옴
-			List<Orders> orders = dao.getOrders(user_id);
-			List<HashMap<String, Object>> resultlist = new ArrayList<HashMap<String, Object>>();
+			// 최종 결과를 넣을 리스트 선언
+			List<OrderItem> ResultList = new ArrayList<OrderItem>();
+
+			// 'user_id'의 ORDERS를 리스트로 들고옴
+			List<Orders> orders = dao.getOrders(user_id, pageNumber);
 			
-			// 첫번째 order_num부터 넘겨주면서 주문 책 리스트를 들고옴			
+			
 			for(int i = 0; i < orders.size(); i++) {
-				HashMap<String, Object> orderMap = new HashMap<String, Object>();
 				
+				// 주문번호에 속하는 책아이디, 구매수량 가져오기
 				List<OrderList> orderlist = dao.getOrderList(orders.get(i).getOrder_num());
 				
-				List<HashMap<String, Object>> booklist = new ArrayList<HashMap<String, Object>>();
+				// 주문번호별 책 정보들을 담을 리스트 선언			
+				List<OrderDetail> booklist = new ArrayList<OrderDetail>();
 				
 				for(int j = 0; j < orderlist.size(); j++) {
+					
+					// 책아이디별 책 정보 가져오기
 					Book book = dao.getBook(orderlist.get(j).getBook_id());
 					
-					HashMap<String, Object> bookMap = new HashMap<String, Object>();
-					bookMap.put("book_id", orderlist.get(j).getBook_id());
-					bookMap.put("book_cover", book.getBook_cover());
-					bookMap.put("book_title", book.getBook_title());
-					bookMap.put("book_writer", book.getBook_writer());
-					bookMap.put("book_price", book.getBook_price());
-					bookMap.put("book_cnt", orderlist.get(j).getBook_cnt());
-					
-					booklist.add(bookMap);
+					OrderDetail orderDetail = new OrderDetail(book, orderlist.get(j).getBook_cnt());
+									
+					booklist.add(orderDetail);
 				}
-
-				orderMap.put("order_num", orders.get(i).getOrder_num());
-				orderMap.put("order_date", orders.get(i).getOrder_date());
-				orderMap.put("booklist", booklist);
-				orderMap.put("order_status", orders.get(i).getOrder_status());
 				
-				resultlist.add(orderMap);
+				OrderItem orderItem = new OrderItem(orders.get(i), booklist);
 				
+				ResultList.add(orderItem);
 			}
-			
-			
-			
-			return resultlist;
+				
+			return ResultList;
 		}
 		
-		// 2) 보유 포인트 가져오기
+		// 2) (페이징) 다음 페이지 존재하는지 
+		@Override
+		public boolean getPageIs(String user_id, int pageNumber) throws Exception {
+			
+			int pageNum = (pageNumber * 2) + 1;
+			
+			return dao.getPageIs(user_id, pageNum) != null;
+		}
+		
+		// 3) 보유 포인트 가져오기
 		@Override
 		public int getPoint(String user_id) throws Exception {
 			
@@ -95,7 +97,7 @@ public class MemberServiceImpl implements MemberService {
 			return point;
 		}
 
-		// 3) 주문목록 건수 가져오기
+		// 4) 주문목록 건수 가져오기
 		@Override
 		public int getOrderCnt(String user_id) throws Exception {
 			
@@ -104,7 +106,6 @@ public class MemberServiceImpl implements MemberService {
 
 			return order_cnt;
 			
-		}
-	
+		}	
 
 }
