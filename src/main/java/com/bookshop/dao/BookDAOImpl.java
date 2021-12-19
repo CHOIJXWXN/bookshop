@@ -155,7 +155,7 @@ public class BookDAOImpl implements BookDAO {
 	}
 	
    @Override
-   public int getBookScore(String book_id) throws Exception {
+   public Integer getBookScore(String book_id) throws Exception {
       return sqlSession.selectOne(SESSION + ".getBookScore", book_id);
    }
 
@@ -163,6 +163,11 @@ public class BookDAOImpl implements BookDAO {
    public void addReview(Review review) throws Exception {
       sqlSession.insert(SESSION + ".addReview", review);
    }
+
+@Override
+public int getReviewFlag(Review review) throws Exception {
+	return sqlSession.selectOne(SESSION + ".getReviewFlag", review);
+}
 
 
 }
