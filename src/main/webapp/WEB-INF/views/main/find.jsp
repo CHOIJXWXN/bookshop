@@ -62,6 +62,7 @@
                         $('#msg_id_email').hide();
                         // 모달을 띄워야함.
                     	$('#not_exist_msg').show();
+                    	
                     }
                 }
             // ajax
@@ -160,8 +161,7 @@
             <!-- 위의 탭박스 선택에 따라 아래 탭 컨텐츠 달라짐 -->
             <!-- 이메일로 찾기 선택시 -->
             
-            <section class="email">
-            
+            <section class="email">        
               <form name="findIdE" id="findIdE" method="POST" action="./findIdE"> 
                 <div class="row">
                   <label for="user_name">이름</label>
@@ -172,8 +172,8 @@
                   <input type="text" id="user_email_IdE" name="user_email" >
                 </div>
                  <!-- 알림 문구 추가 -->
-                <P id ="msg_id_name" style="color:red;">이름을 입력해주세요.</P>
-                <p id="msg_id_email" style="color:red;">이메일을 입력해주세요.</p>
+                <P id ="msg_id_name">이름을 입력해주세요.</P>
+                <p id="msg_id_email">이메일을 입력해주세요.</p>
                 <input type="button" id="btn_findIdE" value="SEARCH">
               </form>
             </section>
@@ -185,14 +185,10 @@
                   <label for="user_name">이름</label>
                   <input type="text" id="user_name" name="user_name" >
                 </div>
-                <div class="row_tel">
+                <div class="row">
                   <label>휴대폰번호</label>
-                  <input type="text" id="phone1" name="tel1" class="tel1">
-                  <input type="text" id="phone2" name="tel2" >
-                  <input type="text" id="phone3" name="tel3" >
+                   <input type="text" id="user_phone_1" name="user_phone_1" placeholder="- 없이 입력해주세요">
                 </div>
-                <!-- tpye submit -> type button 변경 
-                <input type="submit" value="SEARCH"> -->
                 <input type="button" id="btn_findIdP" value="SEARCH">
               </form>
             </section>
@@ -214,8 +210,6 @@
             <!-- 위의 탭박스 선택에 따라 아래 탭 컨텐츠 달라짐 -->
             <!-- 이메일로 찾기 선택시 -->
             <section class="pw_email">
-            <!-- form 태그 지우기 위해 주석 처리 
-              <form id="findPW_email" method="POST" action="/findPW_email"> -->
                 <div class="row">
                   <label for="user_id">아이디</label>
                   <input type="text" id="user_id_fwe" name="user_id" >
@@ -229,10 +223,6 @@
                   <input type="text" id="user_email_fwe" name="user_email" >
                 </div>
                 <input type="button" id="btn_findPWE" value="SEARCH">
-                <!-- type=submit을 button으로 수정
-                <input type="submit" value="SEARCH"> 
-                form 태그 제거
-             </form>-->
             </section>
             <!-- 휴대폰번호로 찾기 선택시 -->    
             <section class="pw_phone">
@@ -245,25 +235,24 @@
                   <label for="user_name">이름</label>
                   <input type="text" id="user_name" name="user_name" >
                 </div>
-                <div class="row_tel">
+                <div class="row">
                   <label>휴대폰번호</label>
-                  <input type="text" id="phone" name="tel1" class="tel1">
-                  <input type="text" id="phone" name="tel2" >
-                  <input type="text" id="phone" name="tel3" >
+                  <input type="text" id="user_phone_2" name="user_phone_2" placeholder="- 없이 입력해주세요">
                 </div>
-                <input type="submit" value="SEARCH">
+                <input type="button" id="btn_findPwP" value="SEARCH">
              </form>
             </section>
-            <!-- --------------모달---------------- -->
-		      <!-- 모달 띄울 때 display: block; -->
-		      <div id="not_exist_msg" style="display: none;">
-		        <h3>입력하신 정보로 가입된 회원 아이디는<br>존재하지 않습니다.</h3>
-		        <a href="../find">확인</a>
-		      </div>
+            
           </div>
         </li>
        </ul>       
       </section>
+      <!-- --------------모달---------------- -->
+		<!-- 모달 띄울 때 display: block; -->
+		<div id="not_exist_msg" style="display:none;">
+		    <h3>입력하신 정보로 가입된 회원 아이디는<br>존재하지 않습니다.</h3>
+		    <a href="../find">확인</a>
+		</div>
     </div>
     
 <script>

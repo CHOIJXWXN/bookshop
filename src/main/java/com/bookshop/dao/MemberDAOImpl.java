@@ -20,6 +20,8 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	final String SESSION = "com.bookshop.mappers.member";
 
+
+	
 	// (마이페이지) 회원정보 불러오기
 	@Override
 	public Users getUserInfo(String user_id) throws Exception {
@@ -89,6 +91,9 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		return sqlSession.selectOne(SESSION + ".getOrderCnt", user_id);
 	}
+
+
+	
 	
 	
 }

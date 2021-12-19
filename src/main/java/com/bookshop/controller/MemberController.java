@@ -1,6 +1,5 @@
 package com.bookshop.controller;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -13,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.bookshop.service.MemberService;
+import com.bookshop.service.UsersService;
 import com.bookshop.vo.OrderItem;
 import com.bookshop.vo.Users;
-import com.bookshop.service.MemberService;
 
 // Mypage 관련 Controller
 
@@ -25,6 +25,9 @@ public class MemberController {
 	
 	@Inject
 	MemberService memberService;
+	
+	@Inject
+	UsersService usersService;
 	
 	// [1] 마이페이지 메인화면 page
 	// url 패턴이 'path/mypage/'
@@ -40,7 +43,39 @@ public class MemberController {
 			return "member/myPage";		
 	}
 	
-	// [2] 회원정보수정 page
+	// [2] 회원정보수정
+	
+	// [2-1] 회원정보 수정 페이지 접근시 본인 인증 페이지
+	@RequestMapping(value = "/checkUser", method = RequestMethod.GET)
+	public String checkUser(RedirectAttributes ra, HttpSession session) throws Exception {
+		
+		String user_id = (String) session.getAttribute("user_id");
+		
+		//1) 로그인이 되어있지 않으면 로그인 페이지로 이동시키고 로그인이필요하다고 알려줌
+		if(user_id == null) {
+			ra.addFlashAttribute("msg", "로그인이 필요합니다.");
+			return "redirect:/login";
+		}
+				
+		return "member/checkUser";
+	}
+	
+	// [2-2] 유저 본인 인증 비밀번호 재확인 기능
+	@RequestMapping(value = "/pwCheck", method = RequestMethod.GET)
+	@ResponseBody
+	public String pwCheck(Users users, HttpSession session) throws Exception {
+		
+		String user_id = (String) session.getAttribute("user_id");
+
+		users.setUser_id(user_id);
+		
+		int result = usersService.loginAction(users);
+			
+		return result + "";
+	}
+	
+	
+	// [2-3] 회원정보수정 page 
 	// url 패턴이 'path/mypage/profile' 
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String profile(Model model, RedirectAttributes ra, HttpSession session) throws Exception {
@@ -52,7 +87,9 @@ public class MemberController {
 			ra.addFlashAttribute("msg", "로그인이 필요합니다.");
 			return "redirect:/login";
 		}
-		//2) 로그인이 되어있으면 유저 아이디에 일치하는 정보를 불러옴	
+		//2) 비밀번호 검증을 거치지 않았으면 해당 페이지로 이동
+		
+		//3) 로그인이 되어있으면 유저 아이디에 일치하는 정보를 불러옴	
 		Users users = memberService.getUserInfo(user_id);
 		//주소를 문자열 분리
 		String[] addrList = users.getUser_addr().split("_");
@@ -60,7 +97,7 @@ public class MemberController {
 		String addr_2 = addrList[1];
 		String addr_3 = addrList[2];
 		
-		//3) 받아온 users 객체를 회원 정보 수정페이지 값 넘겨줌
+		//4) 받아온 users 객체를 회원 정보 수정페이지 값 넘겨줌
 		model.addAttribute("users", users);
 		model.addAttribute("addr_1", addr_1);
 		model.addAttribute("addr_2", addr_2);

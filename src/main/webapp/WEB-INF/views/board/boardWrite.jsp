@@ -62,7 +62,7 @@
       <!-- 1번 모달) 글쓰는 도중 list버튼(목록으로 돌아가기) 눌렀을 때 -->
       <div id="go_back_list" class="ask_modal" style="display:none">
         <h3>작성중인 문의글이 저장되지 않습니다.</h3>
-        <a href="#">목록보기</a>
+        <a href="../">목록보기</a>
       </div>
       <!-- 2번 모달) 문의 카테고리를 선택하지 않았을 때 -->
       <div id="category_null" class="ask_modal" style="display:none">
@@ -85,6 +85,13 @@
                 lang: 'ko-KR' // default: 'en-US'
               });
           });
+    </script>
+    <script>
+    	$(document).ready(function() {
+    		$('.goback').click(function(){
+    			$('#go_back_list').css("display","block");
+    		});
+    	});
     </script>
   </body>
 </html>

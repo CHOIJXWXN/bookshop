@@ -1,4 +1,4 @@
-@charset "utf-8";
+@charset "UTF-8";
 
 #wrap {
     width: 100%;
@@ -107,12 +107,21 @@ section {
   }
   .container .row_3 {
     width: 100%;
-    height: 216px;
+    height: 170px;
     background-color: white;
     border-top: 0.05px solid #707070;
     padding-bottom: 2px;
     padding-top: 2px;
     background-clip: content-box;
+    display: flex;
+  }
+  .row_3 .wrap {
+      width: 70%;
+      height: 170px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      padding-left: 7px;
   }
   /* 첫번째 행의 보더 탑 굵게 */
   /* 스타일 적용안됨 물어보기 */
@@ -150,12 +159,12 @@ section {
   .row_3 label {
     display: inline-block;
     width: 250px;
-    height: 216px;
+    height: 170px;
     background-color: rgba(28, 26, 26, 0.05);  
     font-family: 'NotoSerifKR';
     font-size: 19px;
     color: #2E2D2D;
-    line-height: 216px;
+    line-height: 170px;
     padding-left: 15px;
   }
   /* 입력칸 크기 */
@@ -172,10 +181,29 @@ section {
     font-family: "Pretendard-Regular";
   }
   .row_3 input {
-    width: 150px;
     height: 45px;
     padding-left: 15px;
     font-family: "Pretendard-Regular";
+  }
+  #addr_1 {
+      width: 220px;
+      outline:none;
+  }
+  #findPost {
+      width: 150px;
+      margin-left: 15px;
+      text-align: center;
+      padding-left: 0;
+      background-color: #1C1A1A;
+      font-family: "Pretendard-Regular";
+      color: whitesmoke;
+  }
+  #addr_2 {
+      width: 390px;
+      outline:none;
+  }
+  #addr_3 {
+    width: 390px;
   }
   .row input[type="radio"] {
     width: 30px;
@@ -188,6 +216,9 @@ section {
   input:read-only {background-color: #EFEFEF; border:0.5px solid #707070;}  
 
 /* 중복알림 메시지 */
+.pw_check p {
+	display: none;
+}
 .row_msg p {
   display: none;
   font-family: "Pretendard-Regular";
@@ -203,6 +234,16 @@ section {
 }
 p.on {
   display: inline-block;
+}
+/* 휴대폰 인증 버튼 */
+.phonenum_check {
+	width: 100px;
+	height: 45px;
+	background-color: #1C1A1A;
+	font-family: "Pretendard-Regular";
+  	line-height: 45px;
+  	color: whitesmoke;
+  	border: none;
 }
   /* 셀렉트박스 커스텀 */
   select {
