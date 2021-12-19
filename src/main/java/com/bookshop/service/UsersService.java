@@ -33,8 +33,7 @@ public interface UsersService {
 	// Users 객체로 반환
 	public Users findIdE(Users users) throws Exception;
 	
-	// 비밀번호찾기
-	// 이메일 전송
-	public void sendEmail(Users users) throws Exception;
+	// 비밀번호 수정, 이메일전송 service (비밀번호찾기)
+	public int findPwEAction(Users users) throws Exception;
 	
 }

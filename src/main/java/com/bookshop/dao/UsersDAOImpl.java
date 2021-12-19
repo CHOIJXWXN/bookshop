@@ -55,13 +55,19 @@ public class UsersDAOImpl implements UsersDAO {
 		
 		return sqlSession.selectOne(SESSION + ".getIdE", users);
 	}
-
-	// 비밀번호 변경(update_pw)
+	
+	// 비밀번호 찾기(getUserInfo)
 	@Override
-	public int update_pw(Users users) throws Exception {
-		
-		return sqlSession.selectOne(SESSION + ".update_pw", users);
+	public Users getUserInfo(Users users) throws Exception {
+	
+		return sqlSession.selectOne(SESSION + ".getUserInfo", users);
 	}
+
+	@Override
+	public void updatePw(Users users) throws Exception {
+		sqlSession.selectOne(SESSION + ".updatePw", users);
+	}
+
 	
 
 	

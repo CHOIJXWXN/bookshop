@@ -70,6 +70,15 @@ public class MainController {
 		return "main/find";
 	}
 	
+	/* 아이디 찾기 관련 주석
+	  // 존재 확인
+    // 있으면 data = 0, data == 0이면 view에서 location.href="아이디 보여주는 페이지" 시키기
+    // 없으면 data = -1, data == -1이면 view에서 alert 시키기
+    // 아이디 찾기 DAO, Service 필요
+    // 존재하면 - 아이디를 보여줌 
+    // 존재하지 않으면 - 아이디가 존재하지 않음 msg 출력 후 로그인 페이지로 이동
+	*/
+	
 	// 아이디찾기 (이메일 이용)(ajax)
 	// url 패턴이 'path/findIdEAction'
 	// 결과를 findIde.jsp로 보냄
@@ -93,15 +102,6 @@ public class MainController {
 		return "main/findIdE";
 	}
 	
-	
-	/* 아이디 찾기 관련 주석
-	  // 존재 확인
-      // 있으면 data = 0, data == 0이면 view에서 location.href="아이디 보여주는 페이지" 시키기
-      // 없으면 data = -1, data == -1이면 view에서 alert 시키기
-      // 아이디 찾기 DAO, Service 필요
-      // 존재하면 - 아이디를 보여줌 
-      // 존재하지 않으면 - 아이디가 존재하지 않음 msg 출력 후 로그인 페이지로 이동
-	*/
 
 	// 아이디 찾기 기능 (phone)
 	// 아이디 찾기 - 휴대폰번호로 찾기 클릭
@@ -120,30 +120,25 @@ public class MainController {
 	 // 없으면 data = -1, data == -1이면 view에서 alert 시키기
 	*/
 
-	// 비밀번호 찾기 기능 (phone)
+	// 비밀번호 찾기
+	// 아이디, 이름, 이메일 입력후 form 제출하면 실행
+	// 임시 비밀번호 전송 기능
+   @RequestMapping(value = "/findPwEAction", method = RequestMethod.POST)
+   @ResponseBody
+   public String findPwEAction(Users users, Model model) throws Exception {
+	   int result = usersService.findPwEAction(users);
+	   
+      return result + "";
+   }
+   
+   // 비밀번호 찾기 기능 (phone)
 	// 비밀번호찾기 - 휴대폰번호로 찾기 클릭
 	// url 패턴이 'path/findPwP'
 	@RequestMapping(value = "/findPwP", method = RequestMethod.GET)
 	public String helpPwP(Model model) throws Exception {
 		return "main/findPwP";
 	}
-	
-	// 비밀번호 찾기
-	// 아이디, 이름, 이메일 입력후 form 제출하면 실행
-	// 임시 비밀번호 전송 기능
-   @RequestMapping(value = "/findPW_email", method = RequestMethod.POST)
-   public String sendPw(Model model) throws Exception {
-      // 임시 비밀번호 만들고 전송
-      // 그 임시 비밀번호로 업데이트
-      return "/success";
-   }
-   
-   // 임시 비밀번호 전송 성공
-   @RequestMapping(value = "/success", method = RequestMethod.GET)
-   public String success(Model model) throws Exception {
-      return "login";
-   }
-	
+ 
 	// 로그아웃 기능
 	// url 패턴이 'path/logout'
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -206,6 +201,7 @@ public class MainController {
 	public String joinSuccess(Users users, String addr_1, String addr_2, String addr_3) throws Exception {
 		users.setUser_addr(addr_1 + "_" +  addr_2 + "_" + addr_3);
 		usersService.joinSuccess(users);
+		System.out.println(users.getUser_addr());
 		// users 테이블에 삽입
 		return "main/joinSuccess";
 	}
