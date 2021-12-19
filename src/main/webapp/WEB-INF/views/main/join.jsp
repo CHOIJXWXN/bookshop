@@ -60,6 +60,7 @@
                 <input type="password" id="user_pw2" name="user_pw2">
                 <p class="pass" id="pw_pass">확인되었습니다.</p>
                 <p class="fail" id="pw_fail">비밀번호가 다릅니다.</p>
+                <p class="fail" id="pw_check">비밀번호는 4~14자리의 영어 대소문자, 숫자, 특수문자 입력가능 합니다.</p>
               </div>
               <!-- 이름 -->
               <div class="row">
@@ -118,10 +119,10 @@
                <!-- 주소 (카카오 연동) -->
               <div class="row_3">
                 <label >*&nbsp;주소</label>
-                <input type="text" id="addr_1" placeholder="우편번호">
+                <input type="text" name="addr_1" id="addr_1" placeholder="우편번호">
 				<input type="button" onclick="DaumPostcode()" value="우편번호 검색"><br>
-				<input type="text" id="addr_2" placeholder="주소"><br>
-				<input type="text" id="addr_3" placeholder="상세주소">
+				<input type="text" name="addr_2" id="addr_2" placeholder="주소"><br>
+				<input type="text" name="addr_3" id="addr_3" placeholder="상세주소">
               </div>
               
 

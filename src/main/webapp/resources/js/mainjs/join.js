@@ -5,6 +5,7 @@ $(document).ready(function() {
     // pw hide
      $('#pw_pass').hide();
      $('#pw_fail').hide();
+     $('#pw_check').hide();
     // email hide
      $('#email_pass').hide();
      $('#email_fail').hide(); 
@@ -56,10 +57,19 @@ $(document).ready(function() {
     $(function(){
       $('#checkId').click(function(){
          var user_id = $('#user_id').val();
+         var idReg = /^[a-z0-9]{4,16}$/;
+         
          if(user_id == '') {
              alert('아이디를 입력하세요.');
+              $('#user_id').focus();
              return;
          }
+       	else if(!idReg.test(user_id)) {
+           	alert("아이디는 4~14자리의 영어 소문자 와 숫자로만 입력가능 합니다.");
+            $('#user_id').focus();
+            return;
+        }
+         
          $.ajax({
              type: 'GET',
              url: './checkId',
@@ -94,24 +104,36 @@ $(document).ready(function() {
      // checkId click function
      });
  });  
-     
+
      
   // 비밀번호 일치 확인 (user_pw2를 가지는 태그 변경)   
  $(function(){
       $('#user_pw2').change(function(){
          var user_pw = $('#user_pw').val();
          var user_pw2 = $('#user_pw2').val();
+         var pwReg = /^[A-za-z0-9~!@#$%^&*()_+|<>?:{}]{10,16}$/;
+        
+        if(!pwReg.test(user_pw)) {
+       		$('#pw_pass').hide();
+        	$('#pw_fail').hide();
+       		$('#pw_check').show();
+        	pw_check_flag = false;
+       }
  
-         if(user_pw != user_pw2) {
+ 	   else if(user_pw != user_pw2) {
              $('#pw_pass').hide();
              $('#pw_fail').show();
+             $('#pw_check').hide();
              pw_check_flag = false;
          }
-         else if (user_pw == user_pw2) {
+         
+       else if (user_pw == user_pw2) {
              $('#pw_pass').show();
              $('#pw_fail').hide();
+             $('#pw_check').hide();
              pw_check_flag = true;
          }
+      
      // user_pw2 change function    
      });
    //function
@@ -194,6 +216,7 @@ $(document).ready(function() {
             event.preventDefault();
             return;
         }
+
         if(!pw_check_flag) {
             alert('비밀번호를 확인해주세요');
             event.preventDefault();

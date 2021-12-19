@@ -61,14 +61,12 @@
 	SELECT *
 	FROM USERS
 	WHERE user_id = #{user_id}
-	AND user_name = #{user_name}
-	AND user_email = #{user_email}
 </select>
 <!-- 비밀번호 변경 SQL -->
 <update id="updatePw" >
 	UPDATE USERS
 	SET 	user_pw = #{user_pw}
-	WHERE 	user_email = #{user_email}
+	WHERE 	user_id = #{user_id}
 </update>
 
 
