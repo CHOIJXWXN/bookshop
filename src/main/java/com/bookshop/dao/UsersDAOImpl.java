@@ -62,7 +62,8 @@ public class UsersDAOImpl implements UsersDAO {
 	
 		return sqlSession.selectOne(SESSION + ".getUserInfo", users);
 	}
-
+	
+	// 임시 비밀번호로 수정(updatePw)
 	@Override
 	public void updatePw(Users users) throws Exception {
 		sqlSession.selectOne(SESSION + ".updatePw", users);

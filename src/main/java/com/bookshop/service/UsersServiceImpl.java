@@ -128,9 +128,7 @@ public class UsersServiceImpl implements UsersService {
 			String from = "teambook3lcy@gmail.com";
 			String to = users.getUser_email();
 			String subject = "임시 비밀번호 발송 메일";
-			String content = "임시 비밀번호 입니다. 비밀번호를 변경하여 사용하세요. <br>임시비밀번호는 <h2>" + pw + "</h2> 입니다.";
-			
-			System.out.println(content);
+			String content = "임시 비밀번호 입니다. <br>비밀번호를 변경하여 사용하세요. <br>임시비밀번호는 <h2>" + pw + "</h2> 입니다.";
 			
 			Properties p = new Properties();
 			
