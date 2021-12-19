@@ -142,20 +142,39 @@ $(document).ready(function() {
  
  // 이메일 중복 확인(checkEmail)
  $(function(){
+     $('#user_email_domain_S').change(function(){
+        if($('#user_email_domain_S').val == '') {
+            $('#user_email_domain').val('');
+        } else {
+            $('#user_email_domain').val($('#user_email_domain_S').val());
+            $('#user_email_domain').attr('readonly', true);
+        }
+     // user_email_domain_S.change.fucntion
+     });
+
+
      $('#checkEmail').click(function(){
-         var user_email = $('#user_email').val();
+         var user_email = $('#user_email_id').val() + '@' + $('#user_email_domain').val();
+         var user_email_id = $('#user_email_id').val();
+         var user_email_domain = $('#user_email_domain').val();
          
-         if(user_email == '') {
+         if(user_email_id == '') {
              alert('이메일을 입력하세요.');
+             $('#user_email_id').focus();
              return;
          }
+        if(user_email_domain == '') {
+            alert('이메일을 입력하세요.');
+            $('#user_email_domain').focus();
+            return;
+        }
  
          $.ajax({
              type: 'GET',
              url: './checkEmail',
              data: {user_email : user_email},
  
-             dataType: 'TEXT',
+             dataType: 'text',
              success: function(data) {
               // 사용 가능한 email (database에 동일 email이 없음)
               // service impl 에서 result 0 (null): data == 0, 

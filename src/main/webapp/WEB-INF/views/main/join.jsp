@@ -81,8 +81,11 @@
                <!-- 이메일 확인 알림을 위한 p 태그 추가 -->
                <div class="row_msg">
                 <label for="user_email">*&nbsp;이메일</label>
-                <input type="text" id="user_email" name="user_email" style="width: 240px">
-                <select name="book_num" class="book_num">
+                <!-- 이메일 도메인 주소넣기 위해 input창 추가, 넓이 120으로 축소 
+                <input type="text" id="user_email" name="user_email" style="width: 240px">-->
+                <input type="text" id="user_email_id" name="user_email_id" style="width: 150px">@
+                <input type="text" id="user_email_domain" name="user_email_domain" style="width: 150px">
+                <select name="user_email_domain_S" id="user_email_domain_S" class="book_num">
                   <option value="" selected="selected">직접 입력</option>
                   <option value="naver.com">naver.com</option>
                   <option value="hanmail.com">hanmail.com</option>
