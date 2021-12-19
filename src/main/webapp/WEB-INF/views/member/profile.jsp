@@ -22,13 +22,13 @@
           <!-- 사이드 퀵메뉴 -->
         <div id="sidebar">
             <p id="nav_title">My Page</p>
-            <a href="${path }/delivery">
+            <a href="${path }/mypage/delivery">
                 <span>주문 / 배송 조회&nbsp;&nbsp;</span>
             </a>
-            <a href="prodManage.html">
+            <!-- <a href="prodManage.html">
                 <span>교환 / 반품 / 취소&nbsp;&nbsp;</span>
-            </a>
-            <a href="${path }/profile" class="active">
+            </a> -->
+            <a href="${path }/mypage/profile" class="on">
                 <span>회원 정보 수정&nbsp;&nbsp;</span>
             </a>
         </div>

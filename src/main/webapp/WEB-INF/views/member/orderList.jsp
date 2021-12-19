@@ -27,7 +27,7 @@
            <!--  <a href="prodManage.html">
                 <span>교환 / 반품 / 취소&nbsp;&nbsp;</span>
             </a> -->
-            <a href="${path }/mypage/profile" class="active">
+            <a href="${path }/mypage/profile">
                 <span>회원 정보 수정&nbsp;&nbsp;</span>
             </a>
         </div>
