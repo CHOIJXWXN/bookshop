@@ -95,7 +95,7 @@ public class BookController {
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public String detail(String book_id, RedirectAttributes ra, HttpSession session, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
-		user_id = "abcd";
+		//user_id = "abcd";
 		Book book = bookService.view(book_id);
 		if (book == null) {
 			ra.addFlashAttribute("msg", "해당 책이 존재하지 않습니다");
