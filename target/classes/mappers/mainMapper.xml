@@ -5,7 +5,7 @@
 
 <mapper namespace="com.bookshop.mappers.main">
 
-<!-- 회원가입 관련 -->
+<!-- [1] 회원가입 관련 -->
 
 <!-- 회원가입 SQL -->
 <insert id ="join">
@@ -27,7 +27,7 @@
 	WHERE user_email = #{user_email}
 </select>
 
-<!-- 로그인 관련 -->
+<!-- [2] 로그인 관련 -->
 
 <!-- 로그인 SQL -->
 <select id="login" resultType="Users">
@@ -38,6 +38,7 @@
 </select>
 
 <!-- 아이디 찾기 SQL (email이용)-->
+<!-- 객체를 반환 받음 : resutType = Users -->
 <select id="getIdE" resultType="Users">
 	SELECT *
 	FROM USERS
@@ -45,11 +46,29 @@
 	AND	  user_name = #{user_name}
 </select>
 
+<!-- 아이디 찾기 SQL (phone이용)-->
+<!-- 객체를 반환 받음 : resutType = Users -->
+<select id="getIdP" resultType="Users">
+	SELECT *
+	FROM USERS
+	WHERE user_email = #{user_email}
+	AND	  user_name = #{user_name}
+</select>
+
+<!-- 비밀번호 변경 관련 -->
+<!-- 가입된 회원정보 불러오기 (비밀번호변경) -->
+<select id="getUserInfo" resultType="Users">
+	SELECT *
+	FROM USERS
+	WHERE user_id = #{user_id}
+	AND user_name = #{user_name}
+	AND user_email = #{user_email}
+</select>
 <!-- 비밀번호 변경 SQL -->
-<update id="update_pw" >
+<update id="updatePw" >
 	UPDATE USERS
 	SET 	user_pw = #{user_pw}
-	WHERE 	user_id = #{user_id}
+	WHERE 	user_email = #{user_email}
 </update>
 
 

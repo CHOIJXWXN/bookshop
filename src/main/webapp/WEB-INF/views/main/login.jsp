@@ -26,7 +26,6 @@
     		var user_id = $('#user_id').val();
     		var user_pw = $('#user_pw').val();
 		 	
-    		
     		if(user_id == '') {
     			// alert ('아이디를 입력하세요');
     			// $('#msg_id').text('아이디를 입력하세요.');

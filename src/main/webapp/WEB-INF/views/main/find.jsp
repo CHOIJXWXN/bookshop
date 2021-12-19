@@ -69,6 +69,69 @@
         // btn_findIdE.click.function
         });
         
+        // 비밀번호 찾기 이메일 전송
+        $('#btn_findPWE').click(function(event) {
+            var user_id = $('#user_id_fwe').val();
+            var user_name = $('#user_name_fwe').val();
+            var user_email = $('#user_email_fwe').val();
+
+            if(user_id == "") {
+                alert('아이디를 입력하세요');
+                event.preventDefault();
+                $('#user_id_fwe').focus();
+                return;
+            }
+            else if(user_name == "") {
+                alert('이름을 입력하세요');
+                event.preventDefault();
+                $('#user_name_fwe').focus();
+                return;
+            }
+            else if(user_email == ""){
+                alert('이메일을 입력하세요.');
+                event.preventDefault();
+                $('#user_email_fwe').focus();
+                return;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url:  './findPwEAction' ,
+                data: {
+                    user_id: user_id,
+                    user_name: user_name,
+                    user_email: user_email
+                },
+
+                dataType: 'text',
+                success: function(data) {
+                    // 가입한 정보 존재 = 0 
+                    // 새비밀번호 수정, 이메일 전송
+                    if (data == 0) {
+                        alert('이메일로 임시 비밀번호를 발송하였습니다.')
+                        location.href ="../login";
+                    }
+                    // 가입한 id 정보 없음 = 1
+                    else if (data == 1) {
+                        alert('등록되지 않은 아이디입니다.');
+                        history.back;
+                    }
+                    // 이메일이 일치하지 않음 = 2
+                    else if (data == 2) {
+                        alert('등록되지 않은 이메일입니다.');
+                        history.back;
+                    }
+                    // 데이터베이스 오류 = -1
+                    else if(data == -1) {
+                        alert('데이터베이스 오류가 발상했습니다.')
+                        history.back;
+                    }
+                }
+
+            // ajax    
+            });
+        // btn_findPWE.click.function 
+        });
         
     // document.ready.function    
     });
@@ -115,19 +178,22 @@
               </form>
             </section>
             <!-- 휴대폰 번호로 찾기 선택시 -->
+            <!-- ajax로 넘길 url : findIdPAction -->
             <section class="phone">
-              <form method="POST" action="findID_phone">
+              <form method="POST" action="./findIdP">
                 <div class="row">
                   <label for="user_name">이름</label>
                   <input type="text" id="user_name" name="user_name" >
                 </div>
                 <div class="row_tel">
                   <label>휴대폰번호</label>
-                  <input type="text" id="phone" name="tel1" class="tel1">
-                  <input type="text" id="phone" name="tel2" >
-                  <input type="text" id="phone" name="tel3" >
+                  <input type="text" id="phone1" name="tel1" class="tel1">
+                  <input type="text" id="phone2" name="tel2" >
+                  <input type="text" id="phone3" name="tel3" >
                 </div>
-                <input type="submit" value="SEARCH">
+                <!-- tpye submit -> type button 변경 
+                <input type="submit" value="SEARCH"> -->
+                <input type="button" id="btn_findIdP" value="SEARCH">
               </form>
             </section>
           </div>
@@ -148,7 +214,8 @@
             <!-- 위의 탭박스 선택에 따라 아래 탭 컨텐츠 달라짐 -->
             <!-- 이메일로 찾기 선택시 -->
             <section class="pw_email">
-              <form id="findPW_email" method="POST" action="/findPW_email">
+            <!-- form 태그 지우기 위해 주석 처리 
+              <form id="findPW_email" method="POST" action="/findPW_email"> -->
                 <div class="row">
                   <label for="user_id">아이디</label>
                   <input type="text" id="user_id_fwe" name="user_id" >
@@ -161,10 +228,11 @@
                   <label for="email">이메일</label>
                   <input type="text" id="user_email_fwe" name="user_email" >
                 </div>
-                <input type="button" id="Btn_findPWE" value="SEARCH">
-                <!-- 
-                <input type="submit" value="SEARCH"> -->
-             </form>
+                <input type="button" id="btn_findPWE" value="SEARCH">
+                <!-- type=submit을 button으로 수정
+                <input type="submit" value="SEARCH"> 
+                form 태그 제거
+             </form>-->
             </section>
             <!-- 휴대폰번호로 찾기 선택시 -->    
             <section class="pw_phone">
