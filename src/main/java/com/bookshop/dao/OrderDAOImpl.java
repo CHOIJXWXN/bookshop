@@ -34,8 +34,8 @@ public class OrderDAOImpl implements OrderDAO {
 	}
 
 	@Override
-	public void deleteCart(CartPlus cartPlus) throws Exception {
-		sqlSession.delete(SESSION + ".deleteCart", cartPlus);
+	public void deleteCart(Cart cart) throws Exception {
+		sqlSession.delete(SESSION + ".deleteCart", cart);
 	}
 
 	@Override

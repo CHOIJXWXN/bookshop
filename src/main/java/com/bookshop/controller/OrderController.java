@@ -92,17 +92,18 @@ public class OrderController {
 		return orderService.addCart(cart) + "";
 	}
 	
-	/*
-	 * onclick으로 해당 li나 td 태그 remove()
-	 */
 	// 장바구니 상품 삭제 기능 (Ajax)
 	@RequestMapping(value = "/deleteCart", method = RequestMethod.GET)
 	@ResponseBody
-	public String deleteCart(CartPlus cartPlus) throws Exception {
-		if (cartPlus.getBook_title() == null) {
+	public String deleteCart(@RequestParam List<String> book_id, String user_id) throws Exception {
+		if (book_id.contains("none")) {
 			return "-1"; // 아무 것도 선택하지 않고 삭제 버튼을 누르면 -1 반환
 		} else {
-			orderService.deleteCart(cartPlus);
+			Cart cart;
+			for (int i = 0; i < book_id.size(); i++) {
+				cart = new Cart(user_id, book_id.get(i), 0);
+				orderService.deleteCart(cart);
+			}
 			return "0";  // 삭제했으면 0 반환
 		}
 	}
@@ -130,5 +131,16 @@ public class OrderController {
 		model.addAttribute("cartPlus", orderService.viewCart(user_id));
 		return "redirect:/order/";
 	}
+	
+//	@RequestMapping(value = "/deleteCart", method = RequestMethod.GET)
+//	@ResponseBody
+//	public String deleteCart(CartPlus cartPlus) throws Exception {
+//		if (cartPlus.getBook_title() == null) {
+//			return "-1"; // 아무 것도 선택하지 않고 삭제 버튼을 누르면 -1 반환
+//		} else {
+//			orderService.deleteCart(cartPlus);
+//			return "0";  // 삭제했으면 0 반환
+//		}
+//	}
 
 }
