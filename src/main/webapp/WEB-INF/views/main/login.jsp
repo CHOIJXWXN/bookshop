@@ -101,7 +101,7 @@
                 setCookie('cookie_user_id', user_id, 7);
             }
             else {
-                deleteCookie('cookie_user_id');
+            	deleteCookie('cookie_user_id');
             }
         // save_id.change.funciton
         });
@@ -109,6 +109,9 @@
             if($('#save_id').is(':checked')) {
                 var user_id = $('#user_id').val();
                 setCookie('cookie_user_id', user_id, 7);
+            }
+            else {
+            	deleteCookie('cookie_user_id');
             }
         // user_id.keyup.function    
         });

@@ -111,7 +111,7 @@ $(document).ready(function() {
       $('#user_pw2').change(function(){
          var user_pw = $('#user_pw').val();
          var user_pw2 = $('#user_pw2').val();
-         var pwReg = /^[A-za-z0-9~!@#$%^&*()_+|<>?:{}]{10,16}$/;
+         var pwReg = /^[A-za-z0-9~!@#$%^&*()_+|<>?:{}]{8,16}$/;
         
         if(!pwReg.test(user_pw)) {
        		$('#pw_pass').hide();

@@ -155,8 +155,6 @@ public class MainController {
 	// (회원가입 약관 페이지 출력)
 		@RequestMapping(value = "/joinTerm", method = RequestMethod.GET)
 		public String join(Model model) throws Exception {
-			
-			
 			return "main/joinTerm";
 		}
 	
@@ -199,7 +197,9 @@ public class MainController {
 	
 	@RequestMapping(value = "/joinSuccess", method = RequestMethod.POST)
 	public String joinSuccess(Users users, String addr_1, String addr_2, String addr_3, String user_email_id, String user_email_domain) throws Exception {
+		// 주소 합침
 		users.setUser_addr(addr_1 + "_" +  addr_2 + "_" + addr_3);
+		// 이메일주소 id와 domain 합침
 		users.setUser_email(user_email_id +"@"+ user_email_domain);
 		usersService.joinSuccess(users);
 		// users 테이블에 삽입

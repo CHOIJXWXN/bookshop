@@ -10,7 +10,7 @@
 <!-- 회원가입 SQL -->
 <insert id ="join">
 	INSERT INTO USERS
-	VALUES (#{user_id}, #{user_pw}, #{user_name}, #{user_birth}, #{user_nickname}, #{user_email}, #{user_phone}, #{user_addr}, 0, 0, #{user_init_genre});
+	VALUES (#{user_id}, SHA2(#{user_pw}, 256), #{user_name}, #{user_birth}, #{user_nickname}, #{user_email}, #{user_phone}, #{user_addr}, 0, 0, #{user_init_genre});
 </insert>
 
 <!-- 아이디 중복체크 SQL -->
@@ -34,7 +34,7 @@
 		SELECT 	* 
 		FROM	USERS
 		WHERE	user_id = #{user_id}
-		AND		user_pw = #{user_pw}
+		AND		user_pw = SHA2(#{user_pw}, 256)
 </select>
 
 <!-- 아이디 찾기 SQL (email이용)-->
@@ -65,11 +65,9 @@
 <!-- 비밀번호 변경 SQL -->
 <update id="updatePw" >
 	UPDATE USERS
-	SET 	user_pw = #{user_pw}
+	SET 	user_pw = SHA2(#{user_pw}, 256)
 	WHERE 	user_id = #{user_id}
 </update>
-
-
 
 
 </mapper>
