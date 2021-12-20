@@ -52,7 +52,7 @@ public class UsersServiceImpl implements UsersService {
 	// 회원가입 joinSuccess 실행
 	@Override
 	public void joinSuccess(Users users) throws Exception {
-		// dao.users를 실행
+		// dao.join 실행
 		dao.join(users);
 	}
 
@@ -95,6 +95,7 @@ public class UsersServiceImpl implements UsersService {
 	}
 
 	// 비밀번호 찾기 메일전송
+	// 회원정보 존재하면 = 0, 아이디 일치하지 않음 = 1, 이메일 일치하지 않음 = 2, 데이터베이스 오류 = -1
 	@Override
 	public int findPwEAction(Users users) throws Exception {
 		int result = 0;	
@@ -106,15 +107,15 @@ public class UsersServiceImpl implements UsersService {
 		if(exist == null) {
 				result = 1;
 			}
-		// 가입한 email 정보가 없음
+		// 가입한 email 정보가 일치하지 않음
 		else if(!users.getUser_email().equals(exist.getUser_email())) {
 				result = 2;
 			}
 		
 		// 가입한 정보 있음
-			// 랜덤 비밀번호 생성
-		else if(exist != null){
 			
+		else if(exist != null){
+			// 랜덤 비밀번호 생성
 			String pw = "";
 			for(int i = 0; i < 12; i++) {
 				pw += (char) ((Math.random() * 26) + 97);
@@ -128,7 +129,7 @@ public class UsersServiceImpl implements UsersService {
 			String from = "teambook3lcy@gmail.com";
 			String to = users.getUser_email();
 			String subject = "임시 비밀번호 발송 메일";
-			String content = "임시 비밀번호 입니다. <br>비밀번호를 변경하여 사용하세요. <br>임시비밀번호는 <h2>" + pw + "</h2> 입니다.";
+			String content = "임시 비밀번호 입니다. <br>비밀번호를 변경하여 사용하세요. <br>임시 비밀번호는 <h2>" + pw + "</h2> 입니다.";
 			
 			Properties p = new Properties();
 			
