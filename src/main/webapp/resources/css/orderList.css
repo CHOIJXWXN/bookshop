@@ -254,6 +254,21 @@ section {
     margin-left: -40px;
     cursor: pointer;
   }
+  .btn a {
+  	width: 80px;
+    height: 32px;
+    background-color:#1C1A1A;
+    text-align: center;
+    font-family: "Pretendard-Regular";
+    font-size: 15px;
+    line-height: 32px;
+    color: #FAFAF8;
+    position: absolute;
+    top: 34px;
+    left: 50%;
+    margin-left: -40px;
+    display: block;
+  }
 
   /* 페이지넘버  */
   .pagenum_wrap {

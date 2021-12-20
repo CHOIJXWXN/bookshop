@@ -39,7 +39,15 @@
 .container .row_s {
     width: 379px;
     height: 45px;
-   
+}
+/* 알림메세지 */
+.container p {	
+	font-family: "Pretendard-Regular";
+	font-size: 14px;
+	line-height: 14px;
+	color: #FF2704;
+	padding-left: 2px;
+	padding-bottom: 20px;
 }
 .row input[type="text"],
 .row input[type="password"] {
@@ -59,9 +67,21 @@
     width: 23px;
     height: 23px;
 }
-input[type="submit"] {
+.row_s label {
+	font-family: "Pretendard-Regular";
+    font-size: 15px;
+    line-height: 45px;
+    color: #5A5656F0;
+    position: relative;
+    top: -1px;
+}
+#btn_login {
     width: 100%;
     height: 50px;
+    cursor: pointer;
+    font-family: 'NotoSerifKR';
+    color: #1C1A1A;
+    font-size: 15px;
 }
 
 /* 회원가입/ 찾기 버튼 */
@@ -73,9 +93,10 @@ input[type="submit"] {
 .join_find p {
     font-family: "Pretendard-Regular";
     font-size: 15px;
-    line-height: 30px;
+    line-height: 20px;
     color: #1C1A1A;
     padding-left: 5px;
+    margin-bottom: 5px;
 }
 .join_find .btn_group {
     width: 400px;
@@ -90,6 +111,10 @@ input[type="submit"] {
     color: #1C1A1A;
     text-align: center;
     
+}
+.join_find .btn_group a:hover {
+	background-color: white;
+    transition: 0.5s all ease;
 }
 .join_find .join {
     display: block;

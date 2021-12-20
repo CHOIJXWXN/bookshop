@@ -44,7 +44,7 @@
 
 <!-- Book 정보 가져오기 book_id pk -->
 <select id="getBook" resultType="Book">
-	SELECT book_cover, book_title, book_writer, book_price
+	SELECT *
 	FROM book
 	WHERE book_id = #{book_id};
 </select>

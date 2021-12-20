@@ -88,7 +88,7 @@ section {
     height: 100%;
 }
 .row_h2 .book_ttl {
-    width: 60%;
+    width: 57%;
     height: 95px;
 }
 .row_h2 .book_ttl .ttl {
@@ -102,6 +102,12 @@ section {
     font-size: 15px;
     line-height: 47.5px;
     color: #1C1A1A;
+}
+.order_num {
+	display:none;
+	width : 150px;
+	height: 95px;
+	background-color: white
 }
 /* 문의내용 */
 #ask_contents {
@@ -122,6 +128,7 @@ section {
     line-height: 25px;
     color: #1C1A1A;
     outline:none;
+    resize:none;
 }
 /* 댓글 박스 */
 #ask_reply_box {
@@ -189,7 +196,8 @@ section {
     padding-left: 2%;
     box-sizing: border-box;
 }
-.write_reply input {
+
+.write_reply textarea {
     width: 98%;
     height: 100px;
     margin-left: 1%;
@@ -198,6 +206,11 @@ section {
     overflow: scroll;
     background-color: #f6f6f6;
     border: 0.5px solid #707070;
+    resize:none;
+    font-family: "Pretendard-Regular";
+    font-size: 15px;
+    line-height: 25px;
+    color: #1C1A1A;
 }
 /* 삭제 버튼 */
 .btn_box {

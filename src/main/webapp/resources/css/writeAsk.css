@@ -78,7 +78,7 @@ section {
     margin-top: 7.5px;
 }
 .row_h2 .book_id {
-    width: 0;
+    width:0;
     overflow: hidden;
 }
 .row_h2 .book_thumbnail {
@@ -91,7 +91,7 @@ section {
     height: 100%;
 }
 .row_h2 .book_ttl {
-    width: 60%;
+    width: 57%;
     height: 95px;
     display:flex;
     flex-direction:column;
@@ -111,6 +111,12 @@ section {
     color: #1C1A1A;
     margin-top: 0px;
     margin-bottom: 0px;
+}
+.order_num {
+	display:none;
+	width : 150px;
+	height: 95px;
+	background-color: white
 }
 /* 업로드버튼 */
 .btn_box {
