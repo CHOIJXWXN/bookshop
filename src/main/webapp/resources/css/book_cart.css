@@ -216,16 +216,25 @@ input[type=checkbox] {
     margin-right: 0;
     background-color: #1C1A1A;;
 }
-.order_btns_wrap li a {
+.order_btns_wrap li button {
     display: block;
+    width: 225px;
+    height:60px;
     text-align: center;
     font-family: 'NotoSerifKR';
     font-size: 22px;
     line-height: 60px;
     color: #1C1A1A;
-    
+    background-color: transparent;
+    border: 0px;
 }
-.order_btns_wrap li.all a {
+.order_btns_wrap li button:hover {
+	cursor: pointer;
+}
+.order_btns_wrap li button[disabled]:hover {
+	cursor: not-allowed;
+}
+.order_btns_wrap li.all button {
   color: whitesmoke;
   font-weight: lighter;
 }

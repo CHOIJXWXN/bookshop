@@ -281,7 +281,7 @@
   line-height: 30px;
   width: 98%;
   padding: 0 1%;
-  white-space: pre-wrap;
+  white-space: pre-line;
 }
 /* 책 목차 */
 .book_contents {
@@ -310,7 +310,7 @@
   width: 98%;
   padding: 0 1%;
   padding-bottom: 90px;
-  white-space: pre-wrap;
+  white-space: pre-line;
 }
 /* [2-3] 책 탭메뉴 영역 */
 /* 나중에 높이 지우기 */
