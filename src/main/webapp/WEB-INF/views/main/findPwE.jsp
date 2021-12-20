@@ -20,14 +20,16 @@
     	
         $('#resend_btn').click(function(){
             var user_id = '${users.user_id}';
-            var user_email = '${users.user_email}';
+            var user_email = '${users.user_email }';
+            var user_name = '${users.user_name}';
 
             $.ajax({
                 type: 'POST',
                 url:'./findPwEAction',
                 data: {
                     user_id: user_id,
-                    user_email: user_email
+                    user_email: user_email,
+                    user_name: user_name
                 },
 
                 dataType: 'text',

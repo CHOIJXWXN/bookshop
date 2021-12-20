@@ -124,10 +124,16 @@ public class UsersServiceImpl implements UsersService {
 		if(exist == null) {
 				result = 1;
 			}
-		// 가입한 email 정보가 일치하지 않음
+		
+		 //  가입한 email 정보가 일치하지 않음
 		else if(!users.getUser_email().equals(exist.getUser_email())) {
 				result = 2;
 			}
+		
+		else if(!users.getUser_name().equals(exist.getUser_name())) {
+			result = 3;
+		}
+		
 		
 		// 가입한 정보 있음
 			
