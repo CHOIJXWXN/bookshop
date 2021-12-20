@@ -88,11 +88,11 @@ public class BookServiceImpl implements BookService {
 		if (!user_id.equals("")) {
 			book_genre = dao.getGenreRecomm(user_id);
 			book_writer = dao.getWriterRecomm(user_id);
-			if (book_genre.equals("") || book_genre == null) {
+			if (book_genre == null || book_genre.equals("")) {
 				book_genre = dao.getInitGenre(user_id);
 			}
 			map.put("genreList", dao.getGenreRecommFour(book_genre));
-			if (book_writer.equals("") || book_writer == null) {
+			if (book_writer == null || book_writer.equals("")) {
 				flag = 0;
 			} else {
 				if (dao.getWriterRecommTwo(book_writer).size() == 1) {

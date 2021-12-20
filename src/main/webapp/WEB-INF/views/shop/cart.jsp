@@ -18,6 +18,42 @@
     <script>
     $(document).ready(function() {
     	
+    	$('input[type=checkbox]').click(function() {
+    		if ($('input[type=checkbox]:checked').length > 0) {
+    			$('button[name=select]').attr('disabled', false);
+    		}
+    	})
+    	
+    	$('#deleteBtn').click(function() {
+    		var book_id = [];
+    		$('input[type=checkbox]:checked').each(function(i){//체크된 리스트 저장
+                book_id.push($(this).val());
+            });
+    		if (book_id.length == 0) {
+    			book_id = ["none"];
+    		}
+    		$.ajax({
+				type : "GET",
+				url : "./deleteCart",
+				data : {
+					book_id : book_id,
+					user_id : "${user_id}"
+				},
+				traditional : true,
+				dataType : "json",
+				success : function(data){
+					if (data == 0) {
+						location.reload();
+					} else if (data == -1) {
+						alert('선택된 상품이 없습니다');
+					}
+				},
+				error : function(data) {
+					
+				}
+			});
+    	})
+    	
     	var book_price = 0;
     	var shippingCost = 3000;
     	<c:forEach items="${list}" var="item">
@@ -120,7 +156,7 @@
                 </tbody>
               </table>
                <!-- [2-3] 선택상품 삭제 -->
-              <a href="#" class="chk_delete">선택 상품 삭제</a>
+              <button type="button" class="chk_delete" id="deleteBtn">선택 상품 삭제</button>
               <!-- [2-4] 장바구니 합계 (주문 넘기기전 상태) -->
               <div class="order_prev_check_wrap">
                 <div class="cart_tot">
@@ -149,7 +185,7 @@
                 </div>
                 <!-- [2-5] 주문 버튼 -->
                 <ul class="order_btns_wrap">
-                    <li class="chk_only"><button name="select">선택 상품 주문</button><!-- <a href="./getOrderSelect">선택 상품 주문</a> --></li>
+                    <li class="chk_only"><button name="select" disabled>선택 상품 주문</button><!-- <a href="./getOrderSelect">선택 상품 주문</a> --></li>
                     <li class="all"><button name="all">전체 상품 주문</button><!-- <a href="./getOrderAll">전체 상품 주문</a> --></li>
                 </ul>
               </div>
