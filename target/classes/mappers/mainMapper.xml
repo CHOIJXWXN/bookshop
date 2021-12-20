@@ -51,7 +51,7 @@
 <select id="getIdP" resultType="Users">
 	SELECT *
 	FROM USERS
-	WHERE user_email = #{user_email}
+	WHERE user_phone = #{user_phone}
 	AND	  user_name = #{user_name}
 </select>
 

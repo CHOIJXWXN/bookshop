@@ -86,12 +86,29 @@ public class UsersServiceImpl implements UsersService {
 
 		return result;
 	}
+	// 아이디 찾기 (휴대폰 이용해서 찾기)
+	// 존재하면 0, 존재하지 않으면 -1 반환
+	@Override
+	public int findIdPAction(Users users) throws Exception {
+		int result = 0;
+		Users rs = dao.getIdP(users);
+		if(rs == null) result = -1;
+		
+		return result;
+	}
 
-	// 아이디 찾기 값을 전달하기 위한 service
+	// 아이디 찾기 값을 전달하기 위한 service(email)
 	@Override
 	public Users findIdE(Users users) throws Exception {
 
 		return dao.getIdE(users);
+	}
+	
+	// 아이디 찾기 값을 전달하기 위한 service(phone)
+	@Override
+	public Users findIdP(Users users) throws Exception {
+		
+		return dao.getIdP(users);
 	}
 
 	// 비밀번호 찾기 메일전송
@@ -169,5 +186,16 @@ public class UsersServiceImpl implements UsersService {
 
 		return result;
 	}
+	
+	// 비밀번호 찾기 결과완료 알려주기 위한 service(findPwE)
+	@Override
+	public Users findPwE(Users users) throws Exception {
+		
+		return dao.getUserInfo(users);
+	}
+
+	
+
+	
 
 }

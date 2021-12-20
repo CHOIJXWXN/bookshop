@@ -17,8 +17,10 @@
     <script>
     $(document).ready(function(){
        
-        $('#msg_id_name').hide();
+    	$('#msg_id_name').hide();
         $('#msg_id_email').hide();
+        $('#msg_id_nameP').hide();
+        $('#msg_id_phone').hide();
         
         // 아이디 찾기 (이메일 이용)
         $('#btn_findIdE').click(function(event){
@@ -62,11 +64,69 @@
                         $('#msg_id_email').hide();
                         // 모달을 띄워야함.
                     	$('#not_exist_msg').show();
+                    	
                     }
                 }
             // ajax
             });
         // btn_findIdE.click.function
+        });
+        
+        // 휴대폰 번호를 이용하여 비밀번호 찾기
+        $('#btn_findIdP').click(function(event) {
+            var user_name = $('#user_name_IdP').val();
+            var user_phone = $('#user_phone_IdP').val();
+
+            if (user_name == '') {
+                $('#msg_id_name').hide();
+                $('#msg_id_email').hide();
+                $('#msg_id_nameP').show();
+                $('#msg_id_phone').hide();
+                event.preventDefault();
+                $('user_name_IdP').focus();
+                return;
+            }
+            if (user_phone == '') {
+                $('#msg_id_name').hide();
+                $('#msg_id_email').hide();
+                $('#msg_id_nameP').hide();
+                $('#msg_id_phone').show();
+                event.preventDefault();
+                $('#user_phone_IdP').focus();
+                return;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: 'findIdPAction',
+                data: {
+                    user_name: user_name,
+                    user_phone: user_phone
+                },
+
+                dataType: 'text',
+                success: function(data) {
+                    // 이름, 폰번호 존재 -> id 찾기 가능
+                    // result = 0
+                    if(data == 0) {
+                        $('#findIdP').submit();
+                    }
+                    // 이름, 폰번호 존재 x -> id찾기 불가능
+                    // result = -1
+                    else if(data == -1) {
+                        $('#msg_id_name').hide();
+                        $('#msg_id_email').hide();
+                        $('#msg_id_nameP').hide();
+                        $('#msg_id_phone').hide();
+                        // 모달 띄움
+                        $('#not_exist_msg').show();
+                    }
+                }
+            // ajax    
+            });
+
+
+        // btn_findIdP.click.function    
         });
         
         // 비밀번호 찾기 이메일 전송
@@ -108,8 +168,7 @@
                     // 가입한 정보 존재 = 0 
                     // 새비밀번호 수정, 이메일 전송
                     if (data == 0) {
-                        alert('이메일로 임시 비밀번호를 발송하였습니다.')
-                        location.href ="../login";
+                    	$('#findPwE').submit();
                     }
                     // 가입한 id 정보 없음 = 1
                     else if (data == 1) {
@@ -160,8 +219,7 @@
             <!-- 위의 탭박스 선택에 따라 아래 탭 컨텐츠 달라짐 -->
             <!-- 이메일로 찾기 선택시 -->
             
-            <section class="email">
-            
+            <section class="email">        
               <form name="findIdE" id="findIdE" method="POST" action="./findIdE"> 
                 <div class="row">
                   <label for="user_name">이름</label>
@@ -172,27 +230,26 @@
                   <input type="text" id="user_email_IdE" name="user_email" >
                 </div>
                  <!-- 알림 문구 추가 -->
-                <P id ="msg_id_name" style="color:red;">이름을 입력해주세요.</P>
-                <p id="msg_id_email" style="color:red;">이메일을 입력해주세요.</p>
+                <P id ="msg_id_name">이름을 입력해주세요.</P>
+                <p id="msg_id_email">이메일을 입력해주세요.</p>
                 <input type="button" id="btn_findIdE" value="SEARCH">
               </form>
             </section>
             <!-- 휴대폰 번호로 찾기 선택시 -->
             <!-- ajax로 넘길 url : findIdPAction -->
             <section class="phone">
-              <form method="POST" action="./findIdP">
+              <form name="findIdP" id="findIdP" method="POST" action="./findIdP">
                 <div class="row">
                   <label for="user_name">이름</label>
-                  <input type="text" id="user_name" name="user_name" >
+                  <input type="text" id="user_name_IdP" name="user_name" >
                 </div>
-                <div class="row_tel">
+                <div class="row">
                   <label>휴대폰번호</label>
-                  <input type="text" id="phone1" name="tel1" class="tel1">
-                  <input type="text" id="phone2" name="tel2" >
-                  <input type="text" id="phone3" name="tel3" >
+                   <input type="text" id="user_phone_IdP" name="user_phone" placeholder="- 없이 입력해주세요">
                 </div>
-                <!-- tpye submit -> type button 변경 
-                <input type="submit" value="SEARCH"> -->
+                <!-- 알림 문구 추가 -->
+                 <P id ="msg_id_nameP">이름을 입력해주세요.</P>
+                 <p id="msg_id_phone">휴대폰 번호를 입력해주세요.</p>
                 <input type="button" id="btn_findIdP" value="SEARCH">
               </form>
             </section>
@@ -214,8 +271,7 @@
             <!-- 위의 탭박스 선택에 따라 아래 탭 컨텐츠 달라짐 -->
             <!-- 이메일로 찾기 선택시 -->
             <section class="pw_email">
-            <!-- form 태그 지우기 위해 주석 처리 
-              <form id="findPW_email" method="POST" action="/findPW_email"> -->
+            <form name="findPwE"  id="findPwE" method="POST" action="./findPwE">
                 <div class="row">
                   <label for="user_id">아이디</label>
                   <input type="text" id="user_id_fwe" name="user_id" >
@@ -229,10 +285,7 @@
                   <input type="text" id="user_email_fwe" name="user_email" >
                 </div>
                 <input type="button" id="btn_findPWE" value="SEARCH">
-                <!-- type=submit을 button으로 수정
-                <input type="submit" value="SEARCH"> 
-                form 태그 제거
-             </form>-->
+                </form>
             </section>
             <!-- 휴대폰번호로 찾기 선택시 -->    
             <section class="pw_phone">
@@ -245,25 +298,24 @@
                   <label for="user_name">이름</label>
                   <input type="text" id="user_name" name="user_name" >
                 </div>
-                <div class="row_tel">
+                <div class="row">
                   <label>휴대폰번호</label>
-                  <input type="text" id="phone" name="tel1" class="tel1">
-                  <input type="text" id="phone" name="tel2" >
-                  <input type="text" id="phone" name="tel3" >
+                  <input type="text" id="user_phone_2" name="user_phone_2" placeholder="- 없이 입력해주세요">
                 </div>
-                <input type="submit" value="SEARCH">
+                <input type="button" id="btn_findPwP" value="SEARCH">
              </form>
             </section>
-            <!-- --------------모달---------------- -->
-		      <!-- 모달 띄울 때 display: block; -->
-		      <div id="not_exist_msg" style="display: none;">
-		        <h3>입력하신 정보로 가입된 회원 아이디는<br>존재하지 않습니다.</h3>
-		        <a href="../find">확인</a>
-		      </div>
+            
           </div>
         </li>
        </ul>       
       </section>
+      <!-- --------------모달---------------- -->
+		<!-- 모달 띄울 때 display: block; -->
+		<div id="not_exist_msg" style="display:none;">
+		    <h3>입력하신 정보로 가입된 회원 아이디는<br>존재하지 않습니다.</h3>
+		    <a href="../find">확인</a>
+		</div>
     </div>
     
 <script>

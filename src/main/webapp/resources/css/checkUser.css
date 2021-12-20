@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+
+#wrap {
+  width: 100%;
+  
+}
+
+/* [2]메인화면*/
+#findPwP {
+  float: left;
+  width: 100%;
+  height: 100vh;
+  background-image: url("../images/main_bg_4.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.findPw_success {
+    width: 500px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.findPw_success h2 {
+    text-align: center;
+    font-family: 'NotoSerifKR';
+    font-size: 30px;
+    line-height: 40px;
+    color: #1C1A1A;
+    margin-top: 10px;
+}
+.findPw_success p {
+    text-align: center;
+    font-family: 'NotoSerifKR';
+    font-size: 19px;
+    line-height: 35px;
+    color: #1C1A1A;
+    margin-top: 40px;
+}
+/* 비밀번호 입력칸 */
+#user_pw {
+    width: 70%;
+    height: 50px;
+    margin-top: 80px;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+/* 버튼 */
+.findPw_success .btns_wrap {
+    width: 70%;
+    height: 60px;
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-between;
+}
+.findPw_success .btns_wrap .enter_btn {
+    width: 160px;
+    height: 60px;
+    background-color: #1C1A1A;
+    text-align: center;
+    display: block;
+    font-family: 'NotoSerifKR';
+	font-size: 18px;
+	line-height: 60px;
+	color: #f8f5f5;
+	border: none;
+	cursor:pointer;
+}
+.findPw_success .btns_wrap .cancel_btn {
+    width: 160px;
+    height: 60px;
+    border: 0.6px solid #1C1A1A;
+    box-sizing: border-box;
+}
+.findPw_success .btns_wrap .cancel_btn a {
+    text-align: center;
+    display: block;
+    font-family: 'NotoSerifKR';
+  font-size: 18px;
+  line-height: 60px;
+  color: #1C1A1A;
+}

@@ -93,7 +93,6 @@ input[type="radio"] {
 }
 #findId_tab_box .email {
   z-index: 9000;
-  /* background-color: whitesmoke; */
 }
 #findId_tab_box .phone {
   z-index: 8000;
@@ -143,7 +142,7 @@ input[type="radio"] {
 .row_tel .tel1 {
   margin-left: 80px;
 }
-input[type="submit"] {
+input[type="button"] {
   width: 80%;
   height: 50px;
   background-color: #1C1A1A;
@@ -153,7 +152,10 @@ input[type="submit"] {
   color: #fbf5f5;
   line-height: 50px;
   margin-left: 10%;
+  border: none;
+  cursor: pointer;
 }
+
 /* (2)findPW(나머지는 위와 스타일 공통) */
 #findId_tab_box .pw_email {
   z-index: 6000;
@@ -210,6 +212,13 @@ input[type="submit"] {
   color: #1C1A1A;
 }
 
-
+/* 필수값 미입력 메시지 */
+p {
+	font-family: "Pretendard-Regular";
+	font-size: 14px;
+	line-height: 40px;
+	color: #FF2704;
+	padding-left: 260px;
+}
 
 

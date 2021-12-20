@@ -8,11 +8,15 @@
         var user_pw2 = $("#user_pw2").val();
         //비밀번호 불일치
         if(user_pw != user_pw2) {
+          $(".pw_check").removeClass("row");
+          $(".pw_check").addClass("row_msg");
           $(".pw_check").find(".fail").addClass("on");
           $(".pw_check").find(".pass").removeClass("on");
           pw_check_flag = false;
         } else {
         // 비밀번호 일치
+          $(".pw_check").removeClass("row");
+          $(".pw_check").addClass("row_msg");
           $(".pw_check").find(".fail").removeClass("on");
           $(".pw_check").find(".pass").addClass("on");
           pw_check_flag = true;

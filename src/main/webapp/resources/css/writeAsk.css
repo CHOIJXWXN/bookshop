@@ -154,13 +154,9 @@ section {
     width: 400px;
     height: 220px;
     margin-left: -200px;
-    background-color: rgba(28, 26, 26, 0.84);
+    background-color: rgba(28, 26, 26, 0.9);
     z-index: 9999;
     border-radius: 35px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
   }
   .ask_modal h3 {
     text-align: center;
@@ -168,6 +164,7 @@ section {
     font-size: 20px;
     color: #fbf5f5;
     line-height: 43px; 
+    margin-top: 50px;
   }
   .ask_modal a {
     text-align: center;
@@ -180,6 +177,8 @@ section {
     line-height: 50px;
     border: 1px solid #efefef;
     border-radius: 30px;
+    margin-left: 120px;
+    margin-top: 30px;
   }
   .ask_modal a:hover {
     background-color: #efefef;

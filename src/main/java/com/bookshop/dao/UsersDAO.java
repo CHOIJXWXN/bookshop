@@ -32,6 +32,9 @@ public interface UsersDAO {
 	// Users 객체로 전달
 	public Users getIdE(Users users) throws Exception;
 	
+	// 아이디 찾기 (phone 이용)
+	public Users getIdP(Users users) throws Exception;
+	
 	// 비밀번호 찾기(회원정보 확인)
 	public Users getUserInfo(Users users) throws Exception;
 	

@@ -56,6 +56,13 @@ public class UsersDAOImpl implements UsersDAO {
 		return sqlSession.selectOne(SESSION + ".getIdE", users);
 	}
 	
+	// 아이디 찾기 (getIdP) 이용
+	@Override
+	public Users getIdP(Users users) throws Exception {
+		
+		return sqlSession.selectOne(SESSION + ".getIdP", users);
+	}
+	
 	// 비밀번호 찾기(getUserInfo)
 	@Override
 	public Users getUserInfo(Users users) throws Exception {
@@ -68,6 +75,8 @@ public class UsersDAOImpl implements UsersDAO {
 	public void updatePw(Users users) throws Exception {
 		sqlSession.selectOne(SESSION + ".updatePw", users);
 	}
+	
+	
 
 	
 

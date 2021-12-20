@@ -26,7 +26,7 @@
 	            </ul>
               </li>
               <li class="nav_2"><a href="${path }/record">Diary</a></li>
-              <li class="nav_3"><a href="${path }/ask">Board</a></li>
+              <li class="nav_3"><a href="${path }/ask/">Board</a></li>
             </ul>
             <!-- BOOKS HOVER : 서브메뉴 보이기 -->
             

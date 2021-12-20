@@ -9,6 +9,8 @@ import com.bookshop.vo.Users;
 
 public interface MemberDAO {
 
+
+	
 	// (마이페이지) 회원정보 불러오기
 	public Users getUserInfo(String user_id) throws Exception;
 		

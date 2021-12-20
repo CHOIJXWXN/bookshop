@@ -106,6 +106,9 @@ public class MemberServiceImpl implements MemberService {
 
 			return order_cnt;
 			
-		}	
+		}
+
+
+		
 
 }

@@ -29,11 +29,22 @@ public interface UsersService {
 	// 존재하지 않으면 -1, 아이디찾기 불가능
 	public int findIdEAction(Users users) throws Exception;
 	
-	// 아이디 찾기 값을 전달하기 위한 service
+	// 아이디 찾기 값을 전달하기 위한 service(이메일)
 	// Users 객체로 반환
 	public Users findIdE(Users users) throws Exception;
 	
+	// 아이디 찾기 (휴대폰 번호 이용하여 아이디 찾기)
+	public int findIdPAction(Users users) throws Exception;
+	
+	// 아이디 찾기 값을 전달하기 위한 service (phone)
+	// Users 객체로 반환
+	public Users findIdP(Users users) throws Exception;
+	
 	// 비밀번호 수정, 이메일전송 service (비밀번호찾기)
 	public int findPwEAction(Users users) throws Exception;
+	
+	// 비밀번호 찾기 결과완료 알려주기 위한 service(findPwE)
+	// Users 객체 반환
+	public Users findPwE(Users users) throws Exception;
 	
 }
