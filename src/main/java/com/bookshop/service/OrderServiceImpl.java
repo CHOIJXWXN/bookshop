@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.bookshop.dao.OrderDAO;
 import com.bookshop.vo.Cart;
 import com.bookshop.vo.CartPlus;
+import com.bookshop.vo.Orders;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -45,6 +46,21 @@ public class OrderServiceImpl implements OrderService {
 		String today = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 		String count = String.format("%06d", dao.getOrderCntToday() + 1);
 		return today + "-" + count;
+	}
+
+	@Override
+	public int addOrder(Orders order) throws Exception {
+		return dao.addOrder(order);
+	}
+
+	@Override
+	public void point(String user_id, int point_use, int point_add) throws Exception {
+		dao.changePoint(user_id, point_use, point_add);
+	}
+
+	@Override
+	public void sellTot(Cart cart) throws Exception {
+		dao.changeSellTot(cart);
 	}
 
 }
