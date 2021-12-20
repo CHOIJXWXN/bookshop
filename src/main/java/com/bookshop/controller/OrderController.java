@@ -19,6 +19,7 @@ import com.bookshop.service.MemberService;
 import com.bookshop.service.OrderService;
 import com.bookshop.vo.Cart;
 import com.bookshop.vo.CartPlus;
+import com.bookshop.vo.Orders;
 import com.bookshop.vo.Users;
 
 @Controller
@@ -82,9 +83,6 @@ public class OrderController {
 		return "shop/order";
 	}
 	
-	/*
-	 * 장바구니 바로가기 / 쇼핑 계속 하기
-	 */
 	// 장바구니 상품 추가 기능
 	@RequestMapping(value = "/addCart", method = RequestMethod.GET)
 	@ResponseBody
@@ -132,15 +130,23 @@ public class OrderController {
 		return "redirect:/order/";
 	}
 	
-//	@RequestMapping(value = "/deleteCart", method = RequestMethod.GET)
-//	@ResponseBody
-//	public String deleteCart(CartPlus cartPlus) throws Exception {
-//		if (cartPlus.getBook_title() == null) {
-//			return "-1"; // 아무 것도 선택하지 않고 삭제 버튼을 누르면 -1 반환
-//		} else {
-//			orderService.deleteCart(cartPlus);
-//			return "0";  // 삭제했으면 0 반환
-//		}
-//	}
+	@RequestMapping(value = "/paid", method = RequestMethod.POST)
+	@ResponseBody
+	public String paid(String merchant_uid, Orders order, int point_use, int point_add, @RequestParam List<String> book_id, @RequestParam List<Integer> book_cnt) throws Exception {
+		int result = orderService.addOrder(order);
+		if (result == 1) {
+			// 포인트 차감/적립
+			orderService.point(merchant_uid, point_use, point_add);
+			// 판매량 증가
+			Cart cart;
+			for (int i = 0; i < book_id.size(); i++) {
+				cart = new Cart("", book_id.get(i), book_cnt.get(i));
+				orderService.sellTot(cart);
+			}
+		} else {
+			
+		};
+		return result + "";
+	}
 
 }
