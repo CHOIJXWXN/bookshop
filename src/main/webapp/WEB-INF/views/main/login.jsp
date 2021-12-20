@@ -178,8 +178,7 @@
                 <!-- msg 공간 추가 -->
                 <p id="msg_id" style="color:red;">아이디를 입력하세요.</p>
                 <p id="msg_pw" style="color:red;">비밀번호를 입력하세요.</p>
-                <p id="msg1" style="color:red;">아이디 또는 비밀번호가 잘못 입력되었습니다.</p><br>
-                <p id="msg2" style="color:red;">아이디와 비밀번호를 정확하게 입력해주세요.</p><br>
+                <p id="msg1" style="color:red;">아이디 또는 비밀번호가 잘못 입력되었습니다.</p>
                 <!-- type submit -> button 변경
                 <input type="submit" value="LOGIN">-->
                 <input type="button"  id="btn_login" value="LOGIN">

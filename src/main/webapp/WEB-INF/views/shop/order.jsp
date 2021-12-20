@@ -221,8 +221,6 @@
           buyer_email: "${user.user_email}",					// 구매자 이메일
           buyer_name: "${user.user_name}",						// 구매자 이름
           buyer_tel: "${user.user_phone}",						// 구매자 연락처
-          buyer_addr: "서울특별시 강남구 신사동",						// 구매자 주소
-          buyer_postcode: "01181"								// 구매자 우편번호
       }, function (rsp) { // callback
           if (rsp.success) {
         	  ajax({

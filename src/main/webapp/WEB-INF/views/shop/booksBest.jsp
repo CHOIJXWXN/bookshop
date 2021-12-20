@@ -19,20 +19,6 @@
     <jsp:include page="../mainNav.jsp"/>
     <!-- [2] 메인화면 -->
     <section id="all_books">
-        <!-- [2-1] 검색창 -->
-        <div class="search_wrap">
-            <input 
-              type="text"
-              placeholder="읽고싶은 책의 제목, 작가로 검색해보세요."
-              name="keyword"
-              maxlength="100"
-              id="book_keyword"    
-              class="search_box"       
-            />  
-            <button class="search_btn" id="search_btn">
-              	<img src="images/search_btn.png" alt="">
-            </button>                                           
-        </div>
        <!-- [2-2] 페이지 타이틀 -->
        <header class="page_ttl">
          <h3>TRENDING&nbsp;&nbsp;NOW</h3>
@@ -56,7 +42,7 @@
        <header class="recommend_ttl">
         <h3>RECOMMEND</h3>
        </header>
-       <c:if test="${not empty session.user_id}">
+       <c:if test="${not empty user_id}">
        <!-- 추가 헤더 까지 -->
        <article class="book_list">
         <ul class="book_prod_wrap">       
@@ -131,7 +117,7 @@
        </ul>    
       </article>
       </c:if>
-      <c:if test="${empty session.user_id}">
+      <c:if test="${empty user_id}">
       
       <!-- 로그인 하지 않은 유저에게 띄울 추천 화면 -->
       <!-- ex) 가입하면 취향에 맞는 책을 추천해줄 수 있다는 문구 같은 거 -->

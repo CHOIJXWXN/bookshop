@@ -37,11 +37,13 @@
                         <h4 class="ttl">책제목 불러오기</h4>
                         <p class="writer">책작가 불러오기</p>
                     </div>
+                    <!-- order_num 숨겨두었음 -->
+                    <div class="order_num">주문번호 불러오기</div>
                 </div>               
              </div>        
              <!-- 문의 내용 불러오기 -->
              <div id="ask_contents">
-                 <input type="textarea" id="qna_contents" value="문의내용불러오기" readonly="true"/>
+       			<textarea id="qna_contents" readonly="true">문의내용 불러오기</textarea>
              </div> 
              <!-- 등록된 댓글 -->
              <div id="ask_reply_box">
@@ -86,7 +88,7 @@
              </div>
              <div class="write_reply">
                 <h2>Write</h2>
-                <input type="text" id="write_reply" placeholder="댓글을 남겨주세요." />
+                <textarea id="write_reply" placeholder="댓글을 남겨주세요."></textarea>
              </div>
              <!-- 삭제버튼 -->
              <div class="btn_box">
