@@ -91,7 +91,7 @@ public class MainController {
 		
 		return result + "";
 	}
-	// url 이 'path/findIdE
+	// url 이 'path/findIdE'
 	// 결과가 존재할 시 값을 전달해 줌
 	@RequestMapping(value = "/findIdE", method = RequestMethod.POST) 
 	public String findIdE(Users users, Model model) throws Exception {
@@ -105,11 +105,25 @@ public class MainController {
 
 	// 아이디 찾기 기능 (phone)
 	// 아이디 찾기 - 휴대폰번호로 찾기 클릭
+	@RequestMapping(value = "/findIdPAction", method = RequestMethod.POST)
+	@ResponseBody
+	public String findIdPAction(Users users, Model model) throws Exception {
+		int result = usersService.findIdPAction(users);
+		
+		return result + "";
+	}
+	
 	// url 패턴이 'path/findIdP'
-	@RequestMapping(value = "/findIdP", method = RequestMethod.GET)
-	public String findIdP(Model model) throws Exception {
+	// 결과가 존재할 시 전달
+	@RequestMapping(value = "/findIdP", method = RequestMethod.POST)
+	public String findIdP(Users users, Model model) throws Exception {
+		users = usersService.findIdP(users);
+		model.addAttribute("users", users);
+		
 		return "main/findIdP";
 	}
+	
+
 	
 	
 
@@ -130,6 +144,16 @@ public class MainController {
 	   
       return result + "";
    }
+   
+   // url이 'path/findPwE' 경우
+   // 결과가 존재할 시 전달
+   @RequestMapping(value = "/findPwE", method = RequestMethod.POST)
+	public String findPwE(Users users, Model model) throws Exception {
+	   users = usersService.findPwE(users);
+	   model.addAttribute("users", users);
+	   
+		return "main/findPwE";
+	}	
    
    // 비밀번호 찾기 기능 (phone)
 	// 비밀번호찾기 - 휴대폰번호로 찾기 클릭
@@ -155,8 +179,6 @@ public class MainController {
 	// (회원가입 약관 페이지 출력)
 		@RequestMapping(value = "/joinTerm", method = RequestMethod.GET)
 		public String join(Model model) throws Exception {
-			
-			
 			return "main/joinTerm";
 		}
 	
@@ -199,7 +221,9 @@ public class MainController {
 	
 	@RequestMapping(value = "/joinSuccess", method = RequestMethod.POST)
 	public String joinSuccess(Users users, String addr_1, String addr_2, String addr_3, String user_email_id, String user_email_domain) throws Exception {
+		// 주소 합침
 		users.setUser_addr(addr_1 + "_" +  addr_2 + "_" + addr_3);
+		// 이메일주소 id와 domain 합침
 		users.setUser_email(user_email_id +"@"+ user_email_domain);
 		usersService.joinSuccess(users);
 		// users 테이블에 삽입

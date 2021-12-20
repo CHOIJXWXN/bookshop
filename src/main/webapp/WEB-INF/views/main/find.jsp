@@ -17,8 +17,10 @@
     <script>
     $(document).ready(function(){
        
-        $('#msg_id_name').hide();
+    	$('#msg_id_name').hide();
         $('#msg_id_email').hide();
+        $('#msg_id_nameP').hide();
+        $('#msg_id_phone').hide();
         
         // 아이디 찾기 (이메일 이용)
         $('#btn_findIdE').click(function(event){
@@ -70,6 +72,63 @@
         // btn_findIdE.click.function
         });
         
+        // 휴대폰 번호를 이용하여 비밀번호 찾기
+        $('#btn_findIdP').click(function(event) {
+            var user_name = $('#user_name_IdP').val();
+            var user_phone = $('#user_phone_IdP').val();
+
+            if (user_name == '') {
+                $('#msg_id_name').hide();
+                $('#msg_id_email').hide();
+                $('#msg_id_nameP').show();
+                $('#msg_id_phone').hide();
+                event.preventDefault();
+                $('user_name_IdP').focus();
+                return;
+            }
+            if (user_phone == '') {
+                $('#msg_id_name').hide();
+                $('#msg_id_email').hide();
+                $('#msg_id_nameP').hide();
+                $('#msg_id_phone').show();
+                event.preventDefault();
+                $('#user_phone_IdP').focus();
+                return;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: 'findIdPAction',
+                data: {
+                    user_name: user_name,
+                    user_phone: user_phone
+                },
+
+                dataType: 'text',
+                success: function(data) {
+                    // 이름, 폰번호 존재 -> id 찾기 가능
+                    // result = 0
+                    if(data == 0) {
+                        $('#findIdP').submit();
+                    }
+                    // 이름, 폰번호 존재 x -> id찾기 불가능
+                    // result = -1
+                    else if(data == -1) {
+                        $('#msg_id_name').hide();
+                        $('#msg_id_email').hide();
+                        $('#msg_id_nameP').hide();
+                        $('#msg_id_phone').hide();
+                        // 모달 띄움
+                        $('#not_exist_msg').show();
+                    }
+                }
+            // ajax    
+            });
+
+
+        // btn_findIdP.click.function    
+        });
+        
         // 비밀번호 찾기 이메일 전송
         $('#btn_findPWE').click(function(event) {
             var user_id = $('#user_id_fwe').val();
@@ -109,8 +168,7 @@
                     // 가입한 정보 존재 = 0 
                     // 새비밀번호 수정, 이메일 전송
                     if (data == 0) {
-                        alert('이메일로 임시 비밀번호를 발송하였습니다.')
-                        location.href ="../login";
+                    	$('#findPwE').submit();
                     }
                     // 가입한 id 정보 없음 = 1
                     else if (data == 1) {
@@ -180,15 +238,18 @@
             <!-- 휴대폰 번호로 찾기 선택시 -->
             <!-- ajax로 넘길 url : findIdPAction -->
             <section class="phone">
-              <form method="POST" action="./findIdP">
+              <form name="findIdP" id="findIdP" method="POST" action="./findIdP">
                 <div class="row">
                   <label for="user_name">이름</label>
-                  <input type="text" id="user_name" name="user_name" >
+                  <input type="text" id="user_name_IdP" name="user_name" >
                 </div>
                 <div class="row">
                   <label>휴대폰번호</label>
-                   <input type="text" id="user_phone_1" name="user_phone_1" placeholder="- 없이 입력해주세요">
+                   <input type="text" id="user_phone_IdP" name="user_phone" placeholder="- 없이 입력해주세요">
                 </div>
+                <!-- 알림 문구 추가 -->
+                 <P id ="msg_id_nameP">이름을 입력해주세요.</P>
+                 <p id="msg_id_phone">휴대폰 번호를 입력해주세요.</p>
                 <input type="button" id="btn_findIdP" value="SEARCH">
               </form>
             </section>
@@ -210,6 +271,7 @@
             <!-- 위의 탭박스 선택에 따라 아래 탭 컨텐츠 달라짐 -->
             <!-- 이메일로 찾기 선택시 -->
             <section class="pw_email">
+            <form name="findPwE"  id="findPwE" method="POST" action="./findPwE">
                 <div class="row">
                   <label for="user_id">아이디</label>
                   <input type="text" id="user_id_fwe" name="user_id" >
@@ -223,6 +285,7 @@
                   <input type="text" id="user_email_fwe" name="user_email" >
                 </div>
                 <input type="button" id="btn_findPWE" value="SEARCH">
+                </form>
             </section>
             <!-- 휴대폰번호로 찾기 선택시 -->    
             <section class="pw_phone">

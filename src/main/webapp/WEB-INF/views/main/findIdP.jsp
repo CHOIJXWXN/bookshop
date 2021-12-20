@@ -18,15 +18,15 @@
       <!-- [2] 메인화면 -->
       <section id="findIdP">
         <div class="findId_success">
-            <h2>user_name불러오기</h2>
-            <p>user_phone불러오기</p>
+            <h2>${users.user_name }</h2>
+            <p>${users.user_phone }</p>
             <div class="row">
                 <input type="radio" name="id_list" id="id_list" checked />
-                <label for="id_list">일치하는 user_id 불러오기</label>
+                <label for="id_list">${users.user_id}</label>
             </div>
             <ul class="btns_wrap">
-                <li><a href="#">LOGIN</a></li>
-                <li><a href="#">FIND PASSWORD</a></li>
+                <li><a href="../login">LOGIN</a></li>
+                <li><a href="../find">FIND PASSWORD</a></li>
             </ul>
         </div>
       </section>    
