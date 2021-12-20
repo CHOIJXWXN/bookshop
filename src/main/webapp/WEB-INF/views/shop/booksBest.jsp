@@ -19,20 +19,6 @@
     <jsp:include page="../mainNav.jsp"/>
     <!-- [2] 메인화면 -->
     <section id="all_books">
-        <!-- [2-1] 검색창 -->
-        <div class="search_wrap">
-            <input 
-              type="text"
-              placeholder="읽고싶은 책의 제목, 작가로 검색해보세요."
-              name="keyword"
-              maxlength="100"
-              id="book_keyword"    
-              class="search_box"       
-            />  
-            <button class="search_btn" id="search_btn">
-              	<img src="images/search_btn.png" alt="">
-            </button>                                           
-        </div>
        <!-- [2-2] 페이지 타이틀 -->
        <header class="page_ttl">
          <h3>TRENDING&nbsp;&nbsp;NOW</h3>
