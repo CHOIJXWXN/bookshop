@@ -35,7 +35,7 @@ public interface UsersDAO {
 	// 비밀번호 찾기(회원정보 확인)
 	public Users getUserInfo(Users users) throws Exception;
 	
-	// 비밀번호 수정
+	// 비밀번호 임시 비밀번호로 수정
 	public void updatePw(Users users) throws Exception;
 
 	

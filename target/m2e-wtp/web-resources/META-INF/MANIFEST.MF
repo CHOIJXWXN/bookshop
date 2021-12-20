@@ -1,5 +1,13 @@
+<<<<<<< HEAD
+Manifest-Version: 1.0
+Built-By: Yoo
+Build-Jdk: 11.0.12
+Created-By: Maven Integration for Eclipse
+
+=======
 Manifest-Version: 1.0
 Built-By: choi
 Build-Jdk: 11.0.13
 Created-By: Maven Integration for Eclipse
 
+>>>>>>> 4237ee2b4c45c5533064218d44d14465b2b4249b

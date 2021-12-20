@@ -60,6 +60,7 @@
                 <input type="password" id="user_pw2" name="user_pw2">
                 <p class="pass" id="pw_pass">확인되었습니다.</p>
                 <p class="fail" id="pw_fail">비밀번호가 다릅니다.</p>
+                <p class="fail" id="pw_check">비밀번호는 4~14자리의 영어 대소문자, 숫자, 특수문자 입력가능 합니다.</p>
               </div>
               <!-- 이름 -->
               <div class="row">
@@ -80,8 +81,11 @@
                <!-- 이메일 확인 알림을 위한 p 태그 추가 -->
                <div class="row_msg">
                 <label for="user_email">*&nbsp;이메일</label>
-                <input type="text" id="user_email" name="user_email" style="width: 240px">
-                <select name="book_num" class="book_num">
+                <!-- 이메일 도메인 주소넣기 위해 input창 추가, 넓이 120으로 축소 
+                <input type="text" id="user_email" name="user_email" style="width: 240px">-->
+                <input type="text" id="user_email_id" name="user_email_id" style="width: 150px">@
+                <input type="text" id="user_email_domain" name="user_email_domain" style="width: 150px">
+                <select name="user_email_domain_S" id="user_email_domain_S" class="book_num">
                   <option value="" selected="selected">직접 입력</option>
                   <option value="naver.com">naver.com</option>
                   <option value="hanmail.com">hanmail.com</option>
@@ -118,10 +122,10 @@
                <!-- 주소 (카카오 연동) -->
               <div class="row_3">
                 <label >*&nbsp;주소</label>
-                <input type="text" id="addr_1" placeholder="우편번호">
+                <input type="text" name="addr_1" id="addr_1" placeholder="우편번호">
 				<input type="button" onclick="DaumPostcode()" value="우편번호 검색"><br>
-				<input type="text" id="addr_2" placeholder="주소"><br>
-				<input type="text" id="addr_3" placeholder="상세주소">
+				<input type="text" name="addr_2" id="addr_2" placeholder="주소"><br>
+				<input type="text" name="addr_3" id="addr_3" placeholder="상세주소">
               </div>
               
 

@@ -5,6 +5,7 @@ $(document).ready(function() {
     // pw hide
      $('#pw_pass').hide();
      $('#pw_fail').hide();
+     $('#pw_check').hide();
     // email hide
      $('#email_pass').hide();
      $('#email_fail').hide(); 
@@ -56,10 +57,19 @@ $(document).ready(function() {
     $(function(){
       $('#checkId').click(function(){
          var user_id = $('#user_id').val();
+         var idReg = /^[a-z0-9]{4,16}$/;
+         
          if(user_id == '') {
              alert('아이디를 입력하세요.');
+              $('#user_id').focus();
              return;
          }
+       	else if(!idReg.test(user_id)) {
+           	alert("아이디는 4~14자리의 영어 소문자 와 숫자로만 입력가능 합니다.");
+            $('#user_id').focus();
+            return;
+        }
+         
          $.ajax({
              type: 'GET',
              url: './checkId',
@@ -94,24 +104,36 @@ $(document).ready(function() {
      // checkId click function
      });
  });  
-     
+
      
   // 비밀번호 일치 확인 (user_pw2를 가지는 태그 변경)   
  $(function(){
       $('#user_pw2').change(function(){
          var user_pw = $('#user_pw').val();
          var user_pw2 = $('#user_pw2').val();
+         var pwReg = /^[A-za-z0-9~!@#$%^&*()_+|<>?:{}]{10,16}$/;
+        
+        if(!pwReg.test(user_pw)) {
+       		$('#pw_pass').hide();
+        	$('#pw_fail').hide();
+       		$('#pw_check').show();
+        	pw_check_flag = false;
+       }
  
-         if(user_pw != user_pw2) {
+ 	   else if(user_pw != user_pw2) {
              $('#pw_pass').hide();
              $('#pw_fail').show();
+             $('#pw_check').hide();
              pw_check_flag = false;
          }
-         else if (user_pw == user_pw2) {
+         
+       else if (user_pw == user_pw2) {
              $('#pw_pass').show();
              $('#pw_fail').hide();
+             $('#pw_check').hide();
              pw_check_flag = true;
          }
+      
      // user_pw2 change function    
      });
    //function
@@ -120,20 +142,39 @@ $(document).ready(function() {
  
  // 이메일 중복 확인(checkEmail)
  $(function(){
+     $('#user_email_domain_S').change(function(){
+        if($('#user_email_domain_S').val == '') {
+            $('#user_email_domain').val('');
+        } else {
+            $('#user_email_domain').val($('#user_email_domain_S').val());
+            $('#user_email_domain').attr('readonly', true);
+        }
+     // user_email_domain_S.change.fucntion
+     });
+
+
      $('#checkEmail').click(function(){
-         var user_email = $('#user_email').val();
+         var user_email = $('#user_email_id').val() + '@' + $('#user_email_domain').val();
+         var user_email_id = $('#user_email_id').val();
+         var user_email_domain = $('#user_email_domain').val();
          
-         if(user_email == '') {
+         if(user_email_id == '') {
              alert('이메일을 입력하세요.');
+             $('#user_email_id').focus();
              return;
          }
+        if(user_email_domain == '') {
+            alert('이메일을 입력하세요.');
+            $('#user_email_domain').focus();
+            return;
+        }
  
          $.ajax({
              type: 'GET',
              url: './checkEmail',
              data: {user_email : user_email},
  
-             dataType: 'TEXT',
+             dataType: 'text',
              success: function(data) {
               // 사용 가능한 email (database에 동일 email이 없음)
               // service impl 에서 result 0 (null): data == 0, 
@@ -194,6 +235,7 @@ $(document).ready(function() {
             event.preventDefault();
             return;
         }
+
         if(!pw_check_flag) {
             alert('비밀번호를 확인해주세요');
             event.preventDefault();
