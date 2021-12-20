@@ -36,15 +36,17 @@
                  </div>
                  <div class="row_h2">
                     <h3>문의상품</h3>
-                    <!-- book_id 숨겨두기 -->
-                    <div class="book_id">12345</div>
+                    <!-- book_id 숨겨두었음 -->
+                    <div class="book_id">${book.book_id }</div>
                     <div class="book_thumbnail">
-                        <img src="../../resources/images/book_cover_temp1.gif" alt="">
+                        <img src="${path}/resources/images/bookcover/${book.book_cover }" alt="">
                     </div>
                     <div class="book_ttl">
-                        <h4 class="ttl">책제목 불러오기</h4>
-                        <p class="writer">책작가 불러오기</p>
+                        <h4 class="ttl">${book.book_title }</h4>
+                        <p class="writer">${book.book_writer }</p>
                     </div>
+                    <!-- order_num 숨겨두었음 -->
+                    <div class="order_num">${order_num }</div>
                 </div>
                  
              </div>

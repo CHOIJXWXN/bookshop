@@ -1,9 +1,12 @@
 package com.bookshop.controller;
 
+import java.util.HashMap;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -37,16 +40,21 @@ public class BoardController {
 	// [2] 문의글 쓰기 페이지
 	// url 패턴이 'path/ask/writeAsk'
 	@RequestMapping(value = "/writeAsk", method = RequestMethod.GET)
-	public String writeAsk(RedirectAttributes ra, HttpSession session) throws Exception {
+	public String writeAsk(Model model, String book_id, String order_num, RedirectAttributes ra, HttpSession session) throws Exception {
 		
+		
+		String user_id = (String) session.getAttribute("user_id");
 		// 1) 로그인이 되어있지 않으면 로그인 페이지로 이동시키고 로그인이 필요하다고 알려줌
-		if(session.getAttribute("user_id") == null) {
+		if(user_id == null) {
 			ra.addFlashAttribute("msg", "로그인이 필요합니다.");
 			return "redirect:/login";
 		}
 		
-		// 2) 마이페이지 주문목록
-			
+		// 2) 도서 아이디, 책제목, 작가 / 주문번호를 넘겨줌 
+		model.addAttribute("book", boardService.getBookInfo(book_id));
+		model.addAttribute("order_num", order_num);	
+		
+		
 			return "board/boardWrite";	
 		
 	}

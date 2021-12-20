@@ -80,14 +80,13 @@
                        <!-- 문의, 리뷰, 배송추적 버튼 -->
                        <div class="btn">
                        		<c:if test="${items.orders.order_status eq '입금전' }">
-                            <button type="button" class="ask">문의</button>
-                            <a href="${path }/ask/writeAsk" class="ask">문의</a>
+                            <a href="${path }/ask/writeAsk?book_id=${item.book.book_id}&order_num=${items.orders.order_num }" class="ask">문의</a>
                             </c:if>
                        		<c:if test="${items.orders.order_status eq '배송완료' }">
-                            <button type="button" class="review">리뷰쓰기</button>
+                            <a href="${path }/book/detail?book_id=${item.book.book_id}#book_tab_mn">리뷰쓰기</a>
                             </c:if>
                        		<c:if test="${items.orders.order_status eq '배송중' }">
-                            <button type="button" class="delivery">배송추적</button>
+                            <a href="https://tracker.delivery/#/kr.epost/111111" target="_blank" class="delivery">배송조회</a>
                             </c:if>
                        </div>
                    </div>
