@@ -172,21 +172,39 @@
                     }
                     // 가입한 id 정보 없음 = 1
                     else if (data == 1) {
-                        alert('등록되지 않은 아이디입니다.');
-                        history.back;
+                    	$('#msg_id_name').hide();
+      					$('#msg_id_email').hide();
+        				$('#msg_id_nameP').hide();
+        				$('#msg_id_phone').hide();
+                    	// 모달 띄움
+                        $('#not_exist_msg').show();
                     }
+                    
                     // 이메일이 일치하지 않음 = 2
                     else if (data == 2) {
-                        alert('등록되지 않은 이메일입니다.');
-                        history.back;
+                    	$('#msg_id_name').hide();
+      					$('#msg_id_email').hide();
+        				$('#msg_id_nameP').hide();
+        				$('#msg_id_phone').hide();
+                    	// 모달 띄움
+                        $('#not_exist_msg').show();
                     }
+                   	// 이름이 일치하지 않음 =3
+                   	else if (data == 3) {
+                   		$('#msg_id_name').hide();
+      					$('#msg_id_email').hide();
+        				$('#msg_id_nameP').hide();
+        				$('#msg_id_phone').hide();
+                    	// 모달 띄움
+                        $('#not_exist_msg').show();
+                   	}
+                    
                     // 데이터베이스 오류 = -1
                     else if(data == -1) {
                         alert('데이터베이스 오류가 발상했습니다.')
                         history.back;
                     }
                 }
-
             // ajax    
             });
         // btn_findPWE.click.function 
@@ -313,7 +331,9 @@
       <!-- --------------모달---------------- -->
 		<!-- 모달 띄울 때 display: block; -->
 		<div id="not_exist_msg" style="display:none;">
-		    <h3>입력하신 정보로 가입된 회원 아이디는<br>존재하지 않습니다.</h3>
+		<!-- 아이디찾기, 비밀번호 찾기 조회 실패시 전부 사용하기위해 내용 수정 
+		    <h3>입력하신 정보로 가입된 회원 아이디는<br>존재하지 않습니다.</h3>--> 
+		    <h3>입력하신 정보로 정확한 <br>회원정보가 조회되지 않습니다.</h3>
 		    <a href="../find">확인</a>
 		</div>
     </div>
