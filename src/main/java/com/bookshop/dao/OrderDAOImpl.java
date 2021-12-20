@@ -1,13 +1,16 @@
 package com.bookshop.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.bookshop.vo.Book;
 import com.bookshop.vo.Cart;
 import com.bookshop.vo.CartPlus;
+import com.bookshop.vo.Orders;
 
 @Repository
 public class OrderDAOImpl implements OrderDAO {
@@ -46,6 +49,25 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public int getOrderCntToday() throws Exception {
 		return sqlSession.selectOne(SESSION + ".getOrderCntToday");
+	}
+
+	@Override
+	public int addOrder(Orders order) throws Exception {
+		return sqlSession.insert(SESSION + ".addOrder", order);
+	}
+
+	@Override
+	public void changePoint(String user_id, int point_use, int point_add) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("user_id", user_id);
+		map.put("point_use", point_use);
+		map.put("point_add", point_add);
+		sqlSession.update(SESSION + ".changePoint", map);
+	}
+
+	@Override
+	public void changeSellTot(Cart cart) throws Exception {
+		sqlSession.update(SESSION + ".changeSellTot", cart);
 	}
 	
 }

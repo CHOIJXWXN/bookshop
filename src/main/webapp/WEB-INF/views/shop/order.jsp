@@ -205,8 +205,18 @@
     name = '${selectList[0].book_title} 외 ${fn:length(selectList) - 1}';
     </c:if>
     </c:if>
-    // https://docs.iamport.kr/implementation/payment
-    // 아직 node.js를 몰라서 그 부분은 안했음
+    var point_use = $('#point_use').val();
+    if (point_use == '') {
+    	point_use = 0;
+    }
+    var book_id = [];
+    $('input[type=hidden]').each(function() {
+        book_id.push($(this).val());
+    });
+    var book_cnt = [];
+    $('select').each(function() {
+        b.push($(this).val());
+    });
     // 결제 api
 	var IMP = window.IMP;
 	IMP.init("imp21304345");
@@ -221,30 +231,43 @@
           buyer_email: "${user.user_email}",					// 구매자 이메일
           buyer_name: "${user.user_name}",						// 구매자 이름
           buyer_tel: "${user.user_phone}",						// 구매자 연락처
-      }, function (rsp) { // callback
+      }, function (rsp) {
           if (rsp.success) {
-        	  ajax({
-        		  url: "{서버의 결제 정보를 받는 endpoint}", // 예: https://www.myservice.com/payments/complete
+        	  $.ajax({
+        		  url: "./paid",
             	  method: "POST",
             	  headers: { "Content-Type": "application/json" },
             	  data: {
             		  imp_uid: rsp.imp_uid,
-                	  merchant_uid: rsp.merchant_uid
+                	  merchant_uid: rsp.merchant_uid,
+                	  order_num: "${order_num}",
+                	  user_id: "${user_id}",
+                	  order_name: $('#recipient').val(),
+                	  order_addr: $('#addr_1').val() + '_' + $('#addr_2').val() + '_' + $('#addr_3').val(),
+                	  order_phone: $('#r_phone_num').val(),
+                	  order_tot: parseInt($('#book_price').text()),
+                	  ship_cost: parseInt($('#shippingCost').text()),
+                	  final_cost: parseInt($('.book_price_tot_pt').text()),
+                	  comments: $('#r_comments').val(),
+                	  point_use: point_use,
+                	  point_add: $('span.point').text().replace(/[^0-9]/g, ''),
+                	  book_id: book_id,
+                	  book_cnt: book_cnt
+            	  },
+            	  traditional : true,
+            	  success : function(data) {
+            		  if (data == 0) {
+            			  alert('성공'); 			// 성공 시 orderSuccess로 이동
+            		  } else if (data == 1) {
+            			  alert('실패');			// 실패 시 알림
+            		  }          		  
+            	  },
+            	  error : function(data) {
+            		  
             	  }
-              }).done(function(data) { // 응답 처리
-                  switch(data.status) {
-                    case "vbankIssued":
-                      // 가상계좌 발급 시 로직
-                      break;
-                    case "success":
-                      // 결제 성공 시 로직
-                      break;
-                  }
-              })
-             // 결제 성공 시 로직,
+              });
           } else {
         	  alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
-              // 결제 실패 시 로직,
           }
       });
 	};
@@ -474,7 +497,7 @@
             </div>
             <div class="row">
               <label for="r_phone_num">&nbsp;&nbsp;남기실 말씀</label>
-              <input type="text" id="r_phone_num" name="r_phone_num" >
+              <input type="text" id="r_comments" name="r_comments" >
             </div>
           </div>
         </article>
