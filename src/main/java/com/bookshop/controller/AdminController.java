@@ -97,12 +97,6 @@ public class AdminController {
 		return "redirect:/admin/product";
 	}
 
-	// 상품 수정
-	@RequestMapping(value = "/updateProduct", method = RequestMethod.GET)
-	public String updateProduct(Model model) throws Exception {
-		return "";
-	}
-
 	// 상품 삭제
 	@RequestMapping(value = "/deleteProduct", method = RequestMethod.POST)
 	public String deleteProduct(@RequestParam List<String> book_id, Model model, HttpServletRequest request) throws Exception {
