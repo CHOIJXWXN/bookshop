@@ -198,10 +198,10 @@ public class MainController {
 	// 회원가입 버튼 클릭 하면 정보 저장하고 회원가입 완료 페이지를 출력함
 	
 	@RequestMapping(value = "/joinSuccess", method = RequestMethod.POST)
-	public String joinSuccess(Users users, String addr_1, String addr_2, String addr_3) throws Exception {
+	public String joinSuccess(Users users, String addr_1, String addr_2, String addr_3, String user_email_id, String user_email_domain) throws Exception {
 		users.setUser_addr(addr_1 + "_" +  addr_2 + "_" + addr_3);
+		users.setUser_email(user_email_id +"@"+ user_email_domain);
 		usersService.joinSuccess(users);
-		System.out.println(users.getUser_addr());
 		// users 테이블에 삽입
 		return "main/joinSuccess";
 	}
