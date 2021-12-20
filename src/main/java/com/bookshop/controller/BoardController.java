@@ -1,29 +1,54 @@
 package com.bookshop.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bookshop.service.BoardService;
 
 @Controller
-@RequestMapping(value = "/board/*")
+@RequestMapping(value = "/ask/*")
 public class BoardController {
 	
 	@Inject
 	BoardService boardService;
 	
-	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
-	
-	// 주문 페이지
+	// [1] 문의게시판 리스트 페이지
+	// url 패턴이 'path/ask/'
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String board(Model model) throws Exception {
-		return "board/boardList";
+	public String ask(RedirectAttributes ra, HttpSession session) throws Exception {
+		
+		// 1) 로그인이 되어있지 않으면 로그인 페이지로 이동시키고 로그인이 필요하다고 알려줌
+		if(session.getAttribute("user_id") == null) {
+			ra.addFlashAttribute("msg", "로그인이 필요합니다.");
+			return "redirect:/login";
+		}
+		// 2) 회원 아이디에 일치하는 문의 목록들을 10개씩 리스트로 가져옴.
+			
+			return "board/boardList";	
+		
+	}
+	
+	
+	// [2] 문의글 쓰기 페이지
+	// url 패턴이 'path/ask/writeAsk'
+	@RequestMapping(value = "/writeAsk", method = RequestMethod.GET)
+	public String writeAsk(RedirectAttributes ra, HttpSession session) throws Exception {
+		
+		// 1) 로그인이 되어있지 않으면 로그인 페이지로 이동시키고 로그인이 필요하다고 알려줌
+		if(session.getAttribute("user_id") == null) {
+			ra.addFlashAttribute("msg", "로그인이 필요합니다.");
+			return "redirect:/login";
+		}
+		
+		// 2) 마이페이지 주문목록
+			
+			return "board/boardWrite";	
+		
 	}
 
 }

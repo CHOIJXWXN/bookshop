@@ -6,7 +6,7 @@ import com.bookshop.vo.OrderItem;
 import com.bookshop.vo.Users;
 
 public interface MemberService {
-
+	
 	
 	// (마이페이지) 회원정보 불러오기 service
 	public Users getUserInfo(String user_id) throws Exception;

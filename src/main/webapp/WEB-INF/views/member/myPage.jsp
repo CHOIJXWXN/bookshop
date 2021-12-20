@@ -33,7 +33,7 @@
 	                    </a>
 	                </li>
 	                <li>
-	                    <a class="mn_btn" href="${path }/mypage/profile">
+	                    <a class="mn_btn" href="${path }/mypage/checkUser">
 	                        <img src="../resources/images/mypage_userinfo.gif" alt="icon" width="100" height="100">
 	                        회원 정보 수정
 	                    </a>

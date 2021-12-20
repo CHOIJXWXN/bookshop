@@ -81,6 +81,7 @@
                        <div class="btn">
                        		<c:if test="${items.orders.order_status eq '입금전' }">
                             <button type="button" class="ask">문의</button>
+                            <a href="${path }/ask/writeAsk" class="ask">문의</a>
                             </c:if>
                        		<c:if test="${items.orders.order_status eq '배송완료' }">
                             <button type="button" class="review">리뷰쓰기</button>

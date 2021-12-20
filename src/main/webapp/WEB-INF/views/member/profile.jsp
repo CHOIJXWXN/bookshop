@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="${path }/resources/css/profile.css" />
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="${path }/resources/js/memberjs/profile.js" charset="UTF-8"></script>
+    <%-- 카카오 주소검색 API --%>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="${path }/resources/js/mainjs/kakao.js" charset="UTF-8"></script>
   </head>
   <body>
     <div id="wrap">
@@ -48,11 +51,11 @@
                 </div>
                 <!-- 비밀번호 -->
                 <div class="row">
-                  <label for="user_pw">*&nbsp;비밀번호</label>
-                  <input type="password" id="user_pw" name="user_pw" value="${users.user_pw }" placeholder="영문 대소문자/숫자/특수문자, 10자 ~ 16자">
+                  <label for="user_pw">*&nbsp;변경 비밀번호</label>
+                  <input type="password" id="user_pw" name="user_pw" placeholder="영문 대소문자/숫자/특수문자, 10자 ~ 16자">
                 </div>
                 <!-- 비밀번호 확인 -->
-                <div class="row_msg pw_check">
+                <div class="row pw_check">
                   <label for="user_pw2">*&nbsp;비밀번호 확인</label>
                   <input type="password" id="user_pw2" name="user_pw2">
                   <p class="pass">확인되었습니다.</p>
@@ -83,15 +86,20 @@
                 <div class="row">
                   <label for="phone_num">*&nbsp;휴대폰번호</label>
                   <input type="text" id="user_phone" name="user_phone" value="${users.user_phone}">
-                  <button class="id_check">인증</button>
+                  <button class="phonenum_check">인증</button>
                 </div>
                 <!-- 주소 -->
                 <div class="row_3 final">
                   <label >*&nbsp;주소</label>
-                  <input type="text" id="addr_1" name="addr_1" readonly="true"  value="${addr_1}" />  
-                  <button type="button">우편번호 검색</button> 
-                  <input type="text" id="addr_2" name="addr_2" readonly="true" value="${addr_2}" />              
-                  <input type="text" id="addr_3" name="addr_3" value="${addr_3}" />
+                  <div class="wrap">
+                    <div class="wrap2">
+                        <input type="text" id="addr_1" name="addr_1" readonly="true"  value="${addr_1}" />  
+                        <input type="button" id="findPost" onclick="DaumPostcode()" value="우편번호 검색" />
+                    </div>   
+                    <!-- <button type="button">우편번호 검색</button>  -->
+                    <input type="text" id="addr_2" name="addr_2" readonly="true" value="${addr_2}" />              
+                    <input type="text" id="addr_3" name="addr_3" value="${addr_3}" />
+                  </div>          
                 </div>
                 
                 
