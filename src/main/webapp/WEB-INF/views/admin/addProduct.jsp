@@ -17,17 +17,18 @@
     <!-- [1] 메인 네비게이션 -->
      <jsp:include page="../mainNav.jsp"/>
  	<!-- [2] 메인화면 -->
+ 	  <form action="./addProductAction" enctype="multipart/form-data" method="POST">
       <section id="delivery">
           <!-- 사이드 퀵메뉴 -->
         <div id="sidebar">
             <p id="nav_title">Administrator</p>
-            <a href="orderManage.html">
+            <a href="${path}/admin/order">
                 <span>주문관리&nbsp;&nbsp;</span>
             </a>
-            <a href="prodManage.html">
+            <a href="${path}/admin/product">
                 <span class="on">상품관리&nbsp;&nbsp;</span>
             </a>
-            <a href="inqManage.html" class="active">
+            <a href="${path}/admin/ask">
                 <span>문의관리&nbsp;&nbsp;</span>
             </a>
         </div>
@@ -40,25 +41,25 @@
                 <div class="row">
                     <h3>책제목</h3>
                     <div class="input_box">
-                        <input type="text" id="book_title" />
+                        <input type="text" name="book_title" id="book_title" />
                     </div>
                 </div>
                 <div class="row">
                     <h3>작가</h3>
                     <div class="input_box">
-                        <input type="text" id="book_writer" />
+                        <input type="text" name="book_writer" id="book_writer" />
                     </div>
                 </div>
                 <div class="row">
                     <h3>가격</h3>
                     <div class="input_box">
-                        <input type="text" id="book_price" />
+                        <input type="text" name="book_price" id="book_price" />
                     </div>
                 </div>
                 <div class="row">
                     <h3>출판사</h3>
                     <div class="input_box">
-                        <input type="text" id="book_pub" />
+                        <input type="text" name="book_pub" id="book_pub" />
                     </div>
                 </div>
             </div>
@@ -67,43 +68,44 @@
                 <div class="row2">
                     <h3>ISBN</h3>
                     <div class="input_box">
-                        <input type="text" id="book_id" />
+                        <input type="text" name="book_id" id="book_id" />
                     </div>
                 </div>
                 <div class="row2 row_img">
                     <h3>표지이미지</h3>
                     <!-- 업로드 버튼 -->
-                    <input type="file" id="book_cover_file" palceholder="업로드">
+                    <input type="file" name="book_cover_file" id="book_cover_file" placeholder="업로드" multiple>
                 </div>
                 <div class="row2">
                     <h3>카테고리</h3>
-                    <select name="book_category" class="book_category">
-                        <option value="1" selected="selected">소설</option>
-                        <option value="2">시/에세이</option>
-                        <option value="3">여행</option>
+                    <select name="book_genre" class="book_category">
+                        <option value="소설" selected="selected">소설</option>
+                        <option value="시/에세이">시/에세이</option>
+                        <option value="여행">여행</option>
                     </select>  
                 </div>
                 <div class="row2">
                     <h3>출간일</h3>
                     <div class="input_box">
-                        <input type="date" id="pub_date" />
+                        <input type="date" name="book_date" id="pub_date" />
                     </div>
                 </div>
             </div>
             <!-- 책 목차 쓰는 영역 -->
             <div class="book_contents">
                 <h3>책목차</h3>
-                <input type="textarea" id="book_contents">
+                <input type="textarea" name="book_contents" id="book_contents">
             </div>
             <!-- 책줄거리 쓰는 영역 -->
             <div class="book_story">
                 <h3>책줄거리</h3>
-                <input type="textarea" id="book_story">
+                <input type="textarea" name="book_intro" id="book_story">
             </div>
             
         </div>
-        <button type="button" id="uploadBook">등록하기</button>
-        </section>
+        <button id="uploadBook">등록하기</button>
+      </section>
+      </form>
     </div>
   </body>
 </html>

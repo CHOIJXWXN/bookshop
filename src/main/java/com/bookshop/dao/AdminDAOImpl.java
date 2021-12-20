@@ -74,4 +74,9 @@ public class AdminDAOImpl implements AdminDAO {
 		sqlSession.update(SESSION + ".deleteBook", book_id);
 	}
 
+	@Override
+	public void addBook(Book book) throws Exception {
+		sqlSession.insert(SESSION + ".addBook", book);
+	}
+
 }

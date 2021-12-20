@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.bookshop.service.AdminService;
+import com.bookshop.service.AdminServiceImpl;
+import com.bookshop.vo.Book;
 
 @Controller
 @RequestMapping(value = "/admin/*")
@@ -83,7 +86,15 @@ public class AdminController {
 	// 상품 입력
 	@RequestMapping(value = "/addProduct", method = RequestMethod.GET)
 	public String addProduct(Model model) throws Exception {
-		return "";
+		return "admin/addProduct";
+	}
+	
+	// 상품 입력 기능
+	@RequestMapping(value = "/addProductAction", method = RequestMethod.POST)
+	public String addProductAction(Book book, MultipartFile book_cover_file, HttpServletRequest request, Model model) throws Exception {
+		String path = request.getSession().getServletContext().getRealPath("/resources/images/bookcover/");
+		adminService.addProduct(book, book_cover_file, path);
+		return "redirect:/admin/product";
 	}
 
 	// 상품 수정
