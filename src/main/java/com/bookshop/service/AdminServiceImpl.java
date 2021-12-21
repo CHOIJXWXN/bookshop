@@ -1,13 +1,16 @@
 package com.bookshop.service;
 
+import java.io.File;
 import java.util.HashMap;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.bookshop.dao.AdminDAO;
 import com.bookshop.dao.BookDAO;
+import com.bookshop.vo.Book;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -54,6 +57,15 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void deleteProduct(String book_id) throws Exception {
 		dao.deleteBook(book_id);
+	}
+
+	@Override
+	public void addProduct(Book book, MultipartFile book_cover, String path) throws Exception {
+		dao.addBook(book);
+		if (book_cover.isEmpty()) {
+			return;
+		}
+		book_cover.transferTo(new File(path + book.getBook_id() + ".jpg"));
 	}
 
 }

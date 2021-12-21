@@ -18,5 +18,5 @@ public interface AdminDAO {
 	public int getTotCnt() throws Exception;
 	public List<Book> getBookList(int pageNum) throws Exception;
 	public void deleteBook(String book_id) throws Exception;
-
+	public void addBook(Book book) throws Exception;
 }

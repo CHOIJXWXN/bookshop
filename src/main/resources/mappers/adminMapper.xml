@@ -102,5 +102,11 @@
 		SET available = 1
 		WHERE book_id = #{book_id}
 	</update>
+	
+	<!-- 책 입력 -->
+	<insert id="addBook">
+		INSERT INTO book
+		VALUES (#{book_id}, #{book_title}, #{book_writer}, #{book_pub}, #{book_date}, #{book_price}, #{book_genre}, 0, CONCAT(#{book_id}, '.jpg'), #{book_intro}, #{book_contents}, 0)
+	</insert>
 
 </mapper>
