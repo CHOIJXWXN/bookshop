@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.bookshop.vo.Book;
 import com.bookshop.vo.Cart;
 import com.bookshop.vo.CartPlus;
+import com.bookshop.vo.OrderList;
 import com.bookshop.vo.Orders;
 
 @Repository
@@ -54,6 +55,11 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public int addOrder(Orders order) throws Exception {
 		return sqlSession.insert(SESSION + ".addOrder", order);
+	}
+	
+	@Override
+	public void addOrderlist(OrderList orderList) throws Exception {
+		sqlSession.insert(SESSION + ".addOrderlist", orderList);
 	}
 
 	@Override
