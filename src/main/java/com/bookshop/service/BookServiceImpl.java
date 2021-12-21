@@ -28,7 +28,7 @@ public class BookServiceImpl implements BookService {
 			} else if (order.equals("신규출간순")) {
 				map.put("list", dao.getBookListNew(pageNum));
 				map.put("paging", paging);
-			} else if (order.equals("리뷰순")) {
+			} else if (order.equals("평점순")) {
 				map.put("list", dao.getBookListReview(pageNum));
 				map.put("paging", paging);
 			}	

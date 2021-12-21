@@ -41,30 +41,6 @@ public class BookController {
 	public String book() throws Exception {
 		return "redirect:/book";
 	}
-	
-	// 책 메인 페이지 (all, 신규출간순)
-	@RequestMapping(value = "/recentTop", method = RequestMethod.GET)
-	public String recentTop(Integer pageNum, Model model) throws Exception {
-		if (pageNum == null) {
-			pageNum = 1;
-		}
-		model.addAttribute("map", bookService.book("신규출간순", "-1", pageNum));
-		model.addAttribute("book_genre", "-1");
-		return "shop/books";
-	}
-	
-	// 책 메인 페이지 (all, 리뷰순)
-	@RequestMapping(value = "/reviewTop", method = RequestMethod.GET)
-	public String reviewTop(Integer pageNum, Model model) throws Exception {
-		if (pageNum == null) {
-			pageNum = 1;
-		}
-		model.addAttribute("map", bookService.book("리뷰순", "-1", pageNum));
-		model.addAttribute("book_genre", "-1");
-		return "shop/books";
-	}
-	
-	// 시 소설 에세이 카테고리별 페이지 추가
 
 	// 책 검색 기능 (Ajax)
 	@RequestMapping(value = "/search", method = RequestMethod.GET)

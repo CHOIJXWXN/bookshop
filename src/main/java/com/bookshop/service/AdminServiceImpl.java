@@ -4,7 +4,9 @@ import java.io.File;
 import java.util.HashMap;
 
 import javax.inject.Inject;
+import javax.servlet.ServletContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,7 +20,9 @@ public class AdminServiceImpl implements AdminService {
 	@Inject
 	AdminDAO dao;
 	@Inject
-	BookDAO bdao;
+	BookDAO bdao;	
+	@Autowired
+	ServletContext servletContext;
 
 	@Override
 	public HashMap<String, Object> viewOrder(int pageNum) throws Exception {
@@ -60,12 +64,12 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public void addProduct(Book book, MultipartFile book_cover, String path) throws Exception {
+	public void addProduct(Book book, MultipartFile book_cover) throws Exception {
 		dao.addBook(book);
 		if (book_cover.isEmpty()) {
 			return;
 		}
-		book_cover.transferTo(new File(path + book.getBook_id() + ".jpg"));
+		book_cover.transferTo(new File("../resources/images/bookcover/" + book.getBook_id() + ".jpg"));
 	}
 
 }
