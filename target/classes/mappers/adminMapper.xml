@@ -53,6 +53,10 @@
 		SET order_status = '배송중'
 		WHERE order_num = #{order_num}
 	</update>
+	<insert id="addDelivery" parameterType="hashmap">
+		INSERT delivery
+		VALUES (#{order_num}, #{tracking_num})
+	</insert>
 	
 	<!-- 배송완료 상태 변경 -->
 	<update id="changeToEnd">
@@ -61,11 +65,11 @@
 		WHERE order_num = #{order_num}
 	</update>
 	
-	<!-- 입금전 상태의 주문 개수 -->
+	<!-- 배송준비중 상태의 주문 개수 -->
 	<select id="getBeforeStartCnt" resultType="_int">
 		SELECT COUNT(*)
 		FROM orders
-		WHERE order_status = '입금전'
+		WHERE order_status = '배송준비중'
 	</select>
 	
 	<!-- 배송중 상태의 주문 개수 -->

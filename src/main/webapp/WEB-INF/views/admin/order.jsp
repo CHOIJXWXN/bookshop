@@ -45,7 +45,7 @@
               <span class="title">현재 주문 상황</span>
               <table>
                   <tr>
-                      <th>입금전</th>
+                      <th>배송준비중</th>
                       <th>배송중</th>
                       <th>배송완료</th>
                   </tr>

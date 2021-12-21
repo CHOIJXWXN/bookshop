@@ -2,6 +2,7 @@ package com.bookshop.service;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.Random;
 
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
@@ -39,7 +40,10 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void deliveryStart(String order_num) throws Exception {
 		dao.changeToStart(order_num);
-		
+		Random random = new Random();
+		String first = random.nextInt(100000) + "";
+		String last = random.nextInt(100000) + "";
+		dao.addDelivery(order_num, first+last);		// 10자리 난수 문자열
 	}
 
 	@Override
