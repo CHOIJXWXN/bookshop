@@ -41,44 +41,4 @@
     <filter-name>encodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  <servlet>
-    <description></description>
-    <display-name>BookController</display-name>
-    <servlet-name>BookController</servlet-name>
-    <servlet-class>com.bookshop.Controller.BookController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>BookController</servlet-name>
-    <url-pattern>/BookController</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>AdminController</display-name>
-    <servlet-name>AdminController</servlet-name>
-    <servlet-class>com.bookshop.Controller.AdminController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AdminController</servlet-name>
-    <url-pattern>/AdminController</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>MemberController</display-name>
-    <servlet-name>MemberController</servlet-name>
-    <servlet-class>com.bookshop.Controller.MemberController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>MemberController</servlet-name>
-    <url-pattern>/MemberController</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>OrderController</display-name>
-    <servlet-name>OrderController</servlet-name>
-    <servlet-class>com.bookshop.Controller.OrderController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>OrderController</servlet-name>
-    <url-pattern>/OrderController</url-pattern>
-  </servlet-mapping>
 </web-app>
