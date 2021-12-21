@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.bookshop.dao.OrderDAO;
 import com.bookshop.vo.Cart;
 import com.bookshop.vo.CartPlus;
+import com.bookshop.vo.OrderList;
 import com.bookshop.vo.Orders;
 
 @Service
@@ -51,6 +52,11 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public int addOrder(Orders order) throws Exception {
 		return dao.addOrder(order);
+	}
+
+	@Override
+	public void addOrderlist(OrderList orderList) throws Exception {
+		dao.addOrderlist(orderList);
 	}
 
 	@Override

@@ -12,5 +12,21 @@
 	WHERE book_id = #{book_id}
 </select>
 
+<!-- 문의 내용 저장 -->
+<!-- insert 구문,  -->
+<insert id="setAsk" >
+	insert into ask(writer, ask_title, ask_contents, ask_date, ask_sort, ask_status, available) 
+	values( #{writer}, #{ask_title}, #{ask_contents}, now(), #{ask_sort}, #{ask_status}, 0)
+</insert>
+
+<!-- list -->
+<select id="getAskList" resultType="AskList">
+	SELECT ask_id, book_title, ask_sort, ask_date
+	FROM ASK a, BOOK b
+	WHERE a.book_id = b.book_id
+	AND a.writer = #{writer}
+	
+</select>
+
 
 </mapper>

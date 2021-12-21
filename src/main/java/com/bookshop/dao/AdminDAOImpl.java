@@ -1,5 +1,6 @@
 package com.bookshop.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -36,6 +37,15 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public void changeToStart(String order_num) throws Exception {
 		sqlSession.update(SESSION + ".changeToStart", order_num);
+	}
+	
+	@Override
+	public void addDelivery(String order_num, String tracking_num) throws Exception {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("order_num", order_num);
+		map.put("tracking_num", tracking_num);
+		sqlSession.update(SESSION + ".changeToStart", order_num);
+		sqlSession.insert(SESSION + ".addDelivery", map); 
 	}
 
 	@Override

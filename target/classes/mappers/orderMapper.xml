@@ -52,6 +52,10 @@
    		INSERT INTO orders
    		VALUES (#{order_num}, #{user_id}, #{order_name}, #{order_addr}, #{order_phone}, #{order_tot}, #{ship_cost}, #{final_cost}, #{comments}, NOW(), 1)
    	</insert>
+   	<insert id="addOrderlist">
+   		INSERT INTO orderlist
+   		VALUES (#{order_num}, #{book_id}, #{book_cnt});
+   	</insert>
    	
    	<!-- 포인트 차감 -->
    	<update id="changePoint">

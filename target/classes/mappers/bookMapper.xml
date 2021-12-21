@@ -24,7 +24,7 @@
 	<select id="getBookCntPoem" resultType="_int">
 		SELECT COUNT(*)
 		FROM book
-		WHERE book_genre = '시_에세이'
+		WHERE book_genre = '시/에세이'
 		AND available = 0
 	</select>
 	
@@ -78,7 +78,7 @@
 	<select id="getBookListPoem" resultType="Book">
 		SELECT * 
 		FROM book
-		WHERE book_genre = '시_에세이' AND available = 0
+		WHERE book_genre = '시/에세이' AND available = 0
 		ORDER BY book_sell_tot DESC
 		LIMIT #{start}, 16
 	</select>

@@ -29,9 +29,9 @@
                  <div class="row_h1">
                      <h3>제목</h3>
                      <select name="ask_category" class="ask_category">
-                        <option value="1" selected="selected">상품문의</option>
-                        <option value="2">배송문의</option>
-                        <option value="3">기타문의</option>
+                        <option value="상품문의" selected="selected">상품문의</option>
+                        <option value="배송문의">배송문의</option>
+                        <option value="기타문의">기타문의</option>
                     </select>
                  </div>
                  <div class="row_h2">
