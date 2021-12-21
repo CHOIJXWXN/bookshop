@@ -7,7 +7,7 @@
   <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Book Shop</title>
-  <link rel="stylesheet" href="${path }/resources/css/mainNav.css" />
+  <link rel="stylesheet" href="${path}/resources/css/mainNav.css" />
   <link rel="stylesheet" href="${path}/resources/css/reset.css" />
   <link rel="stylesheet" href="${path}/resources/css/books1.css" />
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -51,9 +51,9 @@
          <!-- 시/소설/에세이 카테고리를 선택하면 띄우지 않음 -->
          <c:if test="${book_genre < 0}">
          <ul class="order_by">
-          <li><a href="${path}/book">판매량순</a></li>
-          <li><a href="${path}/book/recentTop">신규출간순</a></li>
-          <li><a href="${path}/book/reviewTop">평점순</a></li>
+          <li><a href="${path}/book?book_order=판매량순">판매량순</a></li>
+          <li><a href="${path}/book?book_order=신규출간순">신규출간순</a></li>
+          <li><a href="${path}/book?book_order=평점순">평점순</a></li>
          </ul>
          </c:if>
          
