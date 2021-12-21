@@ -44,7 +44,6 @@
                 <span class="title">총 ${map.bookCnt} 권</span>
                 <div class="func_btns">
                     <button type="button" class="btn" onclick="location.href='${path}/admin/addProduct'">새 상품 등록</button>
-                    <button type="button" class="btn" onclick="location.href='${path}/admin/updateProduct'">상품 정보 수정</button>
                     <button class="btn">상품 삭제</button>
                 </div>
               </div>

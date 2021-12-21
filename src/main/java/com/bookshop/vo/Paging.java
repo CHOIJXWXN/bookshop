@@ -15,7 +15,7 @@ public class Paging {
 	public Paging(int pageNumber, int count) {
 		
 		// 한 페이지에 보여줄 게시물의 수
-		final int BOARD_CNT = 10;
+		final int BOARD_CNT = 16;
 		// 한 섹션에 보여줄 페이지의 수
 		final int PAGING_CNT = 5;
 		

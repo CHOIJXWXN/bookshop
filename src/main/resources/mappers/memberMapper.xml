@@ -16,7 +16,7 @@
 <!-- (마이페이지) 회원정보 수정하기 -->
 <update id="profile">
 	UPDATE USERS
-	SET user_pw = #{user_pw}, user_name = #{user_name}, user_birth = #{user_birth}, user_nickname = #{user_nickname}, user_phone = #{user_phone}, user_addr = #{user_addr}
+	SET user_pw = SHA2(#{user_pw}, 256), user_name = #{user_name}, user_birth = #{user_birth}, user_nickname = #{user_nickname}, user_phone = #{user_phone}, user_addr = #{user_addr}
 	WHERE user_id = #{user_id}
 </update>
 

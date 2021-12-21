@@ -22,155 +22,30 @@
              <h2>QnA</h2>
              <div class="table_h">
                  <h3 class="board_id">No.</h3>
+                 <h3 class="board_writer">책제목</h3>
                  <h3 class="board_ttl">제목</h3>
-                 <h3 class="board_writer">작성자</h3>
                  <h3 class="board_date">날짜</h3>
              </div>
              <!-- 아래로 문의 리스트 10개씩 -->
              <!-- 여기부터 반복(10개) -->
+             <c:forEach var="ask" items="${list }">
              <div class="row">
                  <div class="board_id">
-                     <p>000000</p>
-                 </div>
-                 <div class="board_ttl">
-                    <a href="#"><p style="text-align: left;">[문의종류] 상품문의</p></a>                    
+                     <p>${ask.ask_id }</p>
                  </div>
                  <div class="board_writer">
-                    <p>user_id</p>
+                    <p>${ask.book_title }</p>
                  </div>
+                 <div class="board_ttl">
+                    <a href="#"><p style="text-align: left;">[문의종류] ${ask.ask_sort }</p></a>                    
+                 </div>
+                 
                  <div class="board_date">
-                    <p>2021-12-18</p>
+                    <p>${ask.ask_date }</p>
                  </div>
              </div>
-             <!-- 여기까지 반복(10개) -->
-             <!-- 여기부터 삭제 -->
-             <div class="row">
-                <div class="board_id">
-                    <p>000000</p>
-                </div>
-                <div class="board_ttl">
-                   <a href="#"><p style="text-align: left;">[문의종류] 배송문의</p></a>                    
-                </div>
-                <div class="board_writer">
-                   <p>user_id</p>
-                </div>
-                <div class="board_date">
-                   <p>2021-12-18</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="board_id">
-                    <p>000000</p>
-                </div>
-                <div class="board_ttl">
-                   <a href="#"><p style="text-align: left;">[문의종류] 기타문의</p></a>                    
-                </div>
-                <div class="board_writer">
-                   <p>user_id</p>
-                </div>
-                <div class="board_date">
-                   <p>2021-12-18</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="board_id">
-                    <p>000000</p>
-                </div>
-                <div class="board_ttl">
-                   <a href="#"><p style="text-align: left;">[문의종류] 상품문의</p></a>                    
-                </div>
-                <div class="board_writer">
-                   <p>user_id</p>
-                </div>
-                <div class="board_date">
-                   <p>2021-12-18</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="board_id">
-                    <p>000000</p>
-                </div>
-                <div class="board_ttl">
-                   <a href="#"><p style="text-align: left;">[문의종류] 상품문의</p></a>                    
-                </div>
-                <div class="board_writer">
-                   <p>user_id</p>
-                </div>
-                <div class="board_date">
-                   <p>2021-12-18</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="board_id">
-                    <p>000000</p>
-                </div>
-                <div class="board_ttl">
-                   <a href="#"><p style="text-align: left;">[문의종류] 상품문의</p></a>                    
-                </div>
-                <div class="board_writer">
-                   <p>user_id</p>
-                </div>
-                <div class="board_date">
-                   <p>2021-12-18</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="board_id">
-                    <p>000000</p>
-                </div>
-                <div class="board_ttl">
-                   <a href="#"><p style="text-align: left;">[문의종류] 상품문의</p></a>                    
-                </div>
-                <div class="board_writer">
-                   <p>user_id</p>
-                </div>
-                <div class="board_date">
-                   <p>2021-12-18</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="board_id">
-                    <p>000000</p>
-                </div>
-                <div class="board_ttl">
-                   <a href="#"><p style="text-align: left;">[문의종류] 상품문의</p></a>                    
-                </div>
-                <div class="board_writer">
-                   <p>user_id</p>
-                </div>
-                <div class="board_date">
-                   <p>2021-12-18</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="board_id">
-                    <p>000000</p>
-                </div>
-                <div class="board_ttl">
-                   <a href="#"><p style="text-align: left;">[문의종류] 상품문의</p></a>                    
-                </div>
-                <div class="board_writer">
-                   <p>user_id</p>
-                </div>
-                <div class="board_date">
-                   <p>2021-12-18</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="board_id">
-                    <p>000000</p>
-                </div>
-                <div class="board_ttl">
-                   <a href="#"><p style="text-align: left;">[문의종류] 상품문의</p></a>                    
-                </div>
-                <div class="board_writer">
-                   <p>user_id</p>
-                </div>
-                <div class="board_date">
-                   <p>2021-12-18</p>
-                </div>
-            </div>
-             <!-- 여기까지 삭제 -->
+             </c:forEach>
+             
              <!-- 페이징 -->
              <div class="pagebox">
                  <ul class="pagenum_wrap">
