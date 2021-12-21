@@ -12,27 +12,11 @@
 		WHERE available = 0
 	</select>
 	
-	<!-- 소설 책 개수 -->
-	<select id="getBookCntNovel" resultType="_int">
+	<!-- 장르별 책 개수 -->
+	<select id="getGenreBookCnt" resultType="_int">
 		SELECT COUNT(*)
 		FROM book
-		WHERE book_genre = '소설'
-		AND available = 0
-	</select>
-	
-	<!-- 시/에세이 책 개수 -->
-	<select id="getBookCntPoem" resultType="_int">
-		SELECT COUNT(*)
-		FROM book
-		WHERE book_genre = '시/에세이'
-		AND available = 0
-	</select>
-	
-	<!-- 여행 책 개수 -->
-	<select id="getBookCntTravel" resultType="_int">
-		SELECT COUNT(*)
-		FROM book
-		WHERE book_genre = '여행'
+		WHERE book_genre = #{book_genre}
 		AND available = 0
 	</select>
 	
@@ -62,6 +46,15 @@
 		WHERE A.available = 0 
 		GROUP BY A.book_id 
 		ORDER BY COUNT(B.review_id) DESC 
+		LIMIT #{start}, 16
+	</select>
+	
+	<!-- 장르별 판매량 순으로 16개 -->
+	<select id="getGenreBookList" resultType="Book" parameterType="hashmap">
+		SELECT * 
+		FROM book
+		WHERE book_genre = #{book_genre} AND available = 0
+		ORDER BY book_sell_tot DESC
 		LIMIT #{start}, 16
 	</select>
 	
@@ -133,18 +126,22 @@
 	</select>
 	
 	<!-- 베스트 셀러 리스트 -->
-	<select id="getBestSeller" resultType="string">
-		SELECT C.book_id FROM (
-			SELECT B.book_id
-			FROM orders A, orderlist B
-			WHERE A.order_num = B.order_num
-			AND DATEDIFF(NOW(), A.order_date) <![CDATA[<=]]> 30
-			GROUP BY B.book_id
-			ORDER BY SUM(B.book_cnt) DESC
-			LIMIT 0, 8
-		) C, book D
-		WHERE C.book_id = D.book_id
-		AND D.available = 0
+	<select id="getBestSeller" resultType="Book">
+		SELECT *
+		FROM book
+		WHERE book_id IN (
+		    SELECT C.book_id FROM (
+		        SELECT B.book_id
+		        FROM orders A, orderlist B
+		        WHERE A.order_num = B.order_num
+		        AND DATEDIFF(NOW(), A.order_date) <![CDATA[<=]]> 30
+		        GROUP BY B.book_id
+		        ORDER BY SUM(B.book_cnt) DESC
+		        LIMIT 0, 8
+		        ) C, book D
+		    WHERE C.book_id = D.book_id
+		    AND D.available = 0
+		);
 	</select>
 	
 	<!-- 초기 흥미 장르 -->

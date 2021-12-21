@@ -41,7 +41,6 @@ public interface UsersDAO {
 	// 비밀번호 임시 비밀번호로 수정
 	public void updatePw(Users users) throws Exception;
 
-	
-	
+	public Users getAdminAuth(String user_id) throws Exception;
 	
 }

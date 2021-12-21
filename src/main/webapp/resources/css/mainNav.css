@@ -90,10 +90,6 @@ a {
   width: 36px;
   transition: all 0.15s ease;
 }
-#header .main_nav > li:first-child:hover > ul {
-  opacity : 1;
-  visibility: visible;
-}
 /* BOOKS HOVER : 서브메뉴 보이기 */
 
 #header .books_sub_mn {
@@ -104,13 +100,9 @@ a {
   width: 90px;
   height: 60px;
   /* background-color: pink; */
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: space-between;
-  opacity: 0;
-  visibility: hidden;
-  z-index: 1;
-  transition: all 0.2s ease;
 }
 
 #header .books_sub_mn li {
@@ -136,7 +128,6 @@ a {
 #header .info_mn{
   float: right;
   display: block;
-  width: 200px;
   height: 85px;
   /* background-color: lightgreen;   */
 }
@@ -147,8 +138,49 @@ a {
   line-height: 85px;
   color: #1C1A1A;
   padding-right: 10px;
-
+  margin-left: 10px;
+  margin-right: 20px;
 }
-#header .info_mn img {
+
+#header .my_mn {
+  display: flex;
   float: right;
+  flex-direction: column;
+  float: right;
+  align-items: flex-end;
+}
+#header .my_mn ul {
+  display: flex;
+  float: right;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100px;
+  height: 100px;
+}
+#header .my_mn img {
+  float: right;
+  width: 20px;
+  height: 80px;
+  cursor: pointer;
+}
+#header .my_mn a {
+  font-family: 'Goudy Bookletter 1911', serif;
+  font-size: 13px;
+  line-height: 25px;
+  color: #1C1A1A;
+  padding-top: 22px;
+} 
+#header .my_mn ul li {
+  width: 100%;
+  height: 24px;
+  border: 0.4px solid #1C1A1A;
+  border-radius: 13px;
+  text-align: center; 
+  overflow: hidden;
+}
+#header .my_mn ul li:hover {
+  background-color: #1C1A1A;
+}
+#header .my_mn ul li:hover a {
+  color: white;
 }

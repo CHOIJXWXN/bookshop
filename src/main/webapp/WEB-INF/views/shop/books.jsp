@@ -43,6 +43,7 @@
        <!-- [2-3] 정렬 버튼 영역 -->
        <div class="order_btns_wrap">
          <ul class="category">
+           <li><a href="${path}/book?book_genre=-1">전체</a></li>
            <li><a href="${path}/book?book_genre=0">소설</a></li>
            <li><a href="${path}/book?book_genre=1">시/에세이</a></li>
            <li><a href="${path}/book?book_genre=2">여행</a></li>
