@@ -80,19 +80,19 @@
           <ul class="page_num">
           	<!-- 이전 버튼 -->
           	<c:if test = "${map.paging.pageNumber != 1 }">
-            <li><a href="${path }/book?pageNum=${map.paging.before}"><img src="../../resources/images/page_prev.png" alt=""></a></li>
+            <li><a href="${path }/book?pageNum=${map.paging.before}&book_genre=${book_genre}&book_order=${book_order}"><img src="../../resources/images/page_prev.png" alt=""></a></li>
             </c:if>
              <!-- 시작페이지번호 -->
              <c:forEach begin="${map.paging.minPage }" end="${map.paging.maxPage }" var="idx">
              <li>
-               <a href="${path }/book?pageNum=${idx}" class="<c:out value="${map.paging.pageNumber == idx ? 'now' : ''}"/>">${idx}</a>
+               <a href="${path }/book?pageNum=${idx}&book_genre=${book_genre}&book_order=${book_order}" class="<c:out value="${map.paging.pageNumber == idx ? 'now' : ''}"/>">${idx}</a>
                <c:if test = "${map.paging.pageNumber == idx}">
                <div class="page_icon now"></div>
                </c:if>
              </li>
              </c:forEach>
              <c:if test = "${map.paging.next }">
-             <li><a href="${path }/book?pageNum=${map.paging.forward}"><img src="../../resources/images/page_next.png" alt=""></a></li>
+             <li><a href="${path }/book?pageNum=${map.paging.forward}&book_genre=${book_genre}&book_order=${book_order}"><img src="../../resources/images/page_next.png" alt=""></a></li>
              </c:if>
            </ul>
          </div>

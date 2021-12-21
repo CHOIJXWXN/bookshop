@@ -250,6 +250,7 @@ public class MainController {
 		}
 		model.addAttribute("map", bookService.book(book_order, book_genre, pageNum));
 		model.addAttribute("book_genre", book_genre);
+		model.addAttribute("book_order", book_order);
 		return "shop/books";
 	}
 	
