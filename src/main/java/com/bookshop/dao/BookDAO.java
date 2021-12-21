@@ -7,20 +7,19 @@ import com.bookshop.vo.Review;
 public interface BookDAO {
 	
 	public int getBookCnt() throws Exception;
-	public int getBookCntNovel() throws Exception;
-	public int getBookCntPoem() throws Exception;
-	public int getBookCntTravel() throws Exception;
+	public int getGenreBookCnt(String book_genre) throws Exception;
 	public List<Book> getBookListSell(int pageNum) throws Exception;
 	public List<Book> getBookListNew(int pageNum) throws Exception;
 	public List<Book> getBookListReview(int pageNum) throws Exception;
-	public List<Book> getBookListNovel(int pageNum) throws Exception;
-	public List<Book> getBookListPoem(int pageNum) throws Exception;
-	public List<Book> getBookListTravel(int pageNum) throws Exception;
+	public List<Book> getGenreBookList(String book_genre, int pageNum) throws Exception;
+//	public List<Book> getBookListNovel(int pageNum) throws Exception;
+//	public List<Book> getBookListPoem(int pageNum) throws Exception;
+//	public List<Book> getBookListTravel(int pageNum) throws Exception;
 	public List<Book> searchBook(String keyword, int pageNum) throws Exception;
 	public int getSearchBookCnt(String keyword) throws Exception;
 	public List<Book> searchGenreBook(String keyword, String book_genre, int pageNum) throws Exception;
 	public int getSearchGenreBookCnt(String keyword, String book_genre) throws Exception;
-	public List<String> getBestSeller() throws Exception;
+	public List<Book> getBestSeller() throws Exception;
 	public String getInitGenre(String user_id) throws Exception;
 	public String getGenreRecomm(String user_id) throws Exception;
 	public String getWriterRecomm(String user_id) throws Exception;

@@ -24,18 +24,8 @@ public class BookDAOImpl implements BookDAO {
 	}
 	
 	@Override
-	public int getBookCntNovel() throws Exception {
-		return sqlSession.selectOne(SESSION + ".getBookCntNovel");
-	}
-
-	@Override
-	public int getBookCntPoem() throws Exception {
-		return sqlSession.selectOne(SESSION + ".getBookCntPoem");
-	}
-
-	@Override
-	public int getBookCntTravel() throws Exception {
-		return sqlSession.selectOne(SESSION + ".getBookCntTravel");
+	public int getGenreBookCnt(String book_genre) throws Exception {
+		return sqlSession.selectOne(SESSION + ".getGenreBookCnt", book_genre);
 	}
 	
 	@Override
@@ -57,22 +47,31 @@ public class BookDAOImpl implements BookDAO {
 	}
 	
 	@Override
-	public List<Book> getBookListNovel(int pageNum) throws Exception {
+	public List<Book> getGenreBookList(String book_genre, int pageNum) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		int start = (pageNum - 1) * 16;
-		return sqlSession.selectList(SESSION + ".getBookListNovel", start);
+		map.put("start", start);
+		map.put("book_genre", book_genre);
+		return sqlSession.selectList(SESSION + ".getGenreBookList", map);
 	}
-
-	@Override
-	public List<Book> getBookListPoem(int pageNum) throws Exception {
-		int start = (pageNum - 1) * 16;
-		return sqlSession.selectList(SESSION + ".getBookListPoem", start);
-	}
-
-	@Override
-	public List<Book> getBookListTravel(int pageNum) throws Exception {
-		int start = (pageNum - 1) * 16;
-		return sqlSession.selectList(SESSION + ".getBookListTravel", start);
-	}
+	
+//	@Override
+//	public List<Book> getBookListNovel(int pageNum) throws Exception {
+//		int start = (pageNum - 1) * 16;
+//		return sqlSession.selectList(SESSION + ".getBookListNovel", start);
+//	}
+//
+//	@Override
+//	public List<Book> getBookListPoem(int pageNum) throws Exception {
+//		int start = (pageNum - 1) * 16;
+//		return sqlSession.selectList(SESSION + ".getBookListPoem", start);
+//	}
+//
+//	@Override
+//	public List<Book> getBookListTravel(int pageNum) throws Exception {
+//		int start = (pageNum - 1) * 16;
+//		return sqlSession.selectList(SESSION + ".getBookListTravel", start);
+//	}
 
 	@Override
 	public List<Book> searchBook(String keyword, int pageNum) throws Exception {
@@ -107,7 +106,7 @@ public class BookDAOImpl implements BookDAO {
 	}
 	
 	@Override
-	public List<String> getBestSeller() throws Exception {
+	public List<Book> getBestSeller() throws Exception {
 		return sqlSession.selectList(SESSION + ".getBestSeller");
 	}
 	@Override
@@ -164,10 +163,10 @@ public class BookDAOImpl implements BookDAO {
       sqlSession.insert(SESSION + ".addReview", review);
    }
 
-@Override
-public int getReviewFlag(Review review) throws Exception {
-	return sqlSession.selectOne(SESSION + ".getReviewFlag", review);
-}
+   @Override
+   public int getReviewFlag(Review review) throws Exception {
+	   return sqlSession.selectOne(SESSION + ".getReviewFlag", review);
+   }
 
 
 }

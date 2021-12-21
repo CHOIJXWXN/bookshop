@@ -75,6 +75,11 @@ public class UsersDAOImpl implements UsersDAO {
 	public void updatePw(Users users) throws Exception {
 		sqlSession.selectOne(SESSION + ".updatePw", users);
 	}
+
+	@Override
+	public Users getAdminAuth(String user_id) throws Exception {
+		return sqlSession.selectOne(SESSION + ".getAdminAuth", user_id);
+	}
 	
 	
 
