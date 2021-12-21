@@ -238,22 +238,17 @@ public class MainController {
 	 * 				 2 : 여행		  }
 	 */
 	@RequestMapping(value = "/book", method = RequestMethod.GET)
-	public String book(Integer pageNum, Model model, String book_genre) throws Exception {
+	public String book(Integer pageNum, Model model, String book_genre, String book_order) throws Exception {
 		if (pageNum == null) {
 			pageNum = 1;
 		}
 		if (book_genre == null) {
 			book_genre = "-1";
 		}
-		if (book_genre.equals("-1")) {
-			model.addAttribute("map", bookService.book("판매량순", "-1", pageNum));
-		} else if (book_genre.equals("0")) {
-			model.addAttribute("map", bookService.book("판매량순", "0", pageNum));
-		} else if (book_genre.equals("1")) {
-			model.addAttribute("map", bookService.book("판매량순", "1", pageNum));
-		} else if (book_genre.equals("2")) {
-			model.addAttribute("map", bookService.book("판매량순", "2", pageNum));
+		if (book_order == null) {
+			book_order = "판매량순";
 		}
+		model.addAttribute("map", bookService.book(book_order, book_genre, pageNum));
 		model.addAttribute("book_genre", book_genre);
 		return "shop/books";
 	}

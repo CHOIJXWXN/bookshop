@@ -13,5 +13,5 @@ public interface AdminService {
 	public void deliveryEnd(String order_num) throws Exception;
 	public HashMap<String, Object> viewProduct(int pageNum) throws Exception;
 	public void deleteProduct(String book_id) throws Exception;
-	public void addProduct(Book book, MultipartFile book_cover, String path) throws Exception;
+	public void addProduct(Book book, MultipartFile book_cover) throws Exception;
 }
