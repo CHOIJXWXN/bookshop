@@ -1,10 +1,8 @@
 CREATE DATABASE bookshop;
 
 USE bookshop;
-DROP TABLE book;
-SELECT * FROM book;
 
-#회원 테이블 생성
+# 회원 테이블 생성
 CREATE TABLE users (
 	user_id 		VARCHAR(20) 	PRIMARY KEY,
     user_pw 		TEXT			NOT NULL,
@@ -18,6 +16,7 @@ CREATE TABLE users (
     user_admin 		INT 			DEFAULT 0,
     user_init_genre VARCHAR(20)		NOT NULL
 );
+DROP TABLE USERS;
 
 # 상품 테이블 생성
 CREATE TABLE book (
@@ -34,53 +33,60 @@ CREATE TABLE book (
     book_contents	TEXT,
     available		INT 			DEFAULT 0 			# 0:존재 1:삭제
 );
+DROP TABLE BOOK;
 
 # 장바구니 테이블 생성
 CREATE TABLE cart (
 	user_id 	VARCHAR(20),
-    book_id 	INT,
+    book_id 	VARCHAR(20),
     book_cnt 	INT				NOT NULL,
     PRIMARY KEY (user_id, book_id)
 );
+DROP TABLE CART;
 
 # 주문 테이블 생성
 CREATE TABLE orders (
-    order_num       VARCHAR(15) PRIMARY KEY,
-    user_id		    VARCHAR(20) NOT NULL,
-    order_name      VARCHAR(20) NOT NULL,
-    order_addr      TEXT        NOT NULL,
-    order_phone     VARCHAR(11) NOT NULL,
-    order_tot	    INT,
-    ship_cost	    INT 		DEFAULT 3000,
-    final_cost	    INT,
-    comments	    TEXT,
-    order_date	    DATE        NOT NULL,
-    order_status    VARCHAR(20) DEFAULT '배송준비중'		# 배송준비중 / 배송중 / 배송완료
+    order_num       VARCHAR(15) PRIMARY KEY,	# 주문 번호
+    user_id		    VARCHAR(20) NOT NULL,		# 주문자 아이디
+    order_name      VARCHAR(20) NOT NULL,		# 배송받는 사람 이름
+    order_addr      TEXT        NOT NULL,		# 배송받을 주소
+    order_phone     VARCHAR(11) NOT NULL,		# 배송받는 사람 전화번호
+    order_tot	    INT,						# 주문 총 갯수
+    ship_cost	    INT 		DEFAULT 3000,	# 배송비
+    final_cost	    INT,						# 최종 결제 금액
+    comments	    TEXT,						# 배송 메세지
+    order_date	    DATE        NOT NULL,		# 주문 날짜
+    order_status    VARCHAR(20)   				# 주문 상태 -> 입금전 /  배송중 /  배송완료
 );
+DROP TABLE ORDERS;
 
 # 주문 목록 테이블 생성
 CREATE TABLE orderlist (
-	order_num   VARCHAR(15),
-    book_id 	VARCHAR(20),
-    book_cnt 	INT 		NOT NULL,
+	order_num   VARCHAR(15),			# 주문 번호
+    book_id 	VARCHAR(20),			# 주문 상품
+    book_cnt 	INT 		NOT NULL,	# 주문 상품 갯수
     PRIMARY KEY (order_num, book_id)
 );
+DROP TABLE ORDERLIST;
 
 # 배송 테이블 생성
 CREATE TABLE delivery (
 	order_num       VARCHAR(15)		PRIMARY KEY,
     tracking_num 	VARCHAR(20)
 );
+DROP TABLE DELIVERY;
 
 # 문의 테이블 생성
 CREATE TABLE ask (
-	ask_id			INT				PRIMARY KEY		AUTO_INCREMENT,
-    writer			VARCHAR(20)		NOT NULL,
-    ask_title		TEXT			NOT NULL,
-    ask_contents	TEXT			NOT NULL,
-    ask_date		DATE            NOT NULL,
-    ask_sort		VARCHAR(20)
+	ask_id			INT				PRIMARY KEY		AUTO_INCREMENT,	# 문의 번호
+    writer			VARCHAR(20)		NOT NULL,						# 작성자 = user_id
+    ask_title		TEXT			NOT NULL,						# 문의 제목
+    ask_contents	TEXT			NOT NULL,						# 문의 내용
+    ask_date		DATE            NOT NULL,						# 문의 등록 날짜
+    ask_sort		VARCHAR(20),									# 문의 유형 -> 상품문의 / 배송문의 / 기타문의
+    aks_status		VARCHAR(20)										# 문의 상태 -> 답변완료 / 답변 미완료
 );
+DROP TABLE ASK;
 
 # 문의 댓글 테이블 생성
 CREATE TABLE askreply (
@@ -90,6 +96,7 @@ CREATE TABLE askreply (
     askreply_contents	TEXT		NOT NULL,
     askreply_date 		DATE        NOT NULL
 );
+DROP TABLE ASKREPLY;
 
 # 리뷰 테이블 생성
 CREATE TABLE review (
@@ -100,11 +107,12 @@ CREATE TABLE review (
     review_contents     TEXT        NOT NULL,
     review_date         DATE        NOT NULL
 );
+DROP TABLE REVIEW;
 
 # 기록 테이블 생성
 CREATE TABLE record (
     user_id             VARCHAR(20),
-    book_id             INT,
+    book_id             VARCHAR(20),
     record_init_date    DATE            DEFAULT '2000-01-01',
     record_fin_date     DATE            DEFAULT '2999-12-31',
     record_score        INT             NOT NULL,
@@ -112,3 +120,6 @@ CREATE TABLE record (
     record_date         DATE            NOT NULL,
     PRIMARY KEY (user_id, book_id)
 );
+DROP TABLE RECORD;
+
+
