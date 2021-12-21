@@ -58,5 +58,6 @@ public class BoardController {
 			return "board/boardWrite";	
 		
 	}
+	
 
 }
