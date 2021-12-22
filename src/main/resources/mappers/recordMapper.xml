@@ -4,7 +4,49 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bookshop.mappers.record">
-
 	
+	<!-- 기록 12개씩 최근순 -->
+	<select id="getRecord" parameterType="hashmap" resultType="RecordPlus">
+		SELECT B.record_id, A.book_cover, A.book_title, A.book_writer, A.book_pub, B.record_init_date, B.record_fin_date, B.record_score, B.record_contents
+		FROM book A, (
+			SELECT * FROM record
+			WHERE user_id = #{user_id}
+			ORDER BY record_date DESC
+			LIMIT #{start}, 12
+		) B
+		WHERE A.book_id = B.book_id
+	</select>
+	
+	<!-- 키워드 검색 -->
+	<select id="searchBook" parameterType="hashmap" resultType="Book">
+		SELECT *
+		FROM book
+		WHERE (book_title LIKE CONCAT('%', #{keyword}, '%')
+		OR book_writer LIKE CONCAT('%', #{keyword}, '%'))
+		AND available = 0
+		LIMIT #{start}, 3
+	</select>
+	
+	<!-- 기록 입력 -->
+	<insert id="addRecord">
+		INSERT INTO record
+		VALUES(null, #{user_id}, #{book_id}, #{record_init_date}, #{record_fin_date}, #{record_score}, #{record_contents}, NOW())	
+	</insert>
+	
+	<!-- 기록 수정 -->
+	<update id="updateRecord">
+		UPDATE record
+		SET record_init_date = #{record_init_date},
+			record_fin_date = #{record_fin_date},
+			record_score = #{record_score},
+			record_contents = #{record_contents}
+		WHERE record_id = #{record_id}
+	</update>
+	
+	<!-- 기록 삭제 -->
+	<delete id="deleteRecord">
+		DELETE FROM record
+		WHERE record_id = #{record_id}
+	</delete>
 
 </mapper>

@@ -16,6 +16,9 @@
       });
 	  
 	  $('.my_mn').hover(function() {
+		  <c:if test="${admin == 1}">
+		  $('#my_mn').height(130);
+		  </c:if>
 		  $('#my_mn').slideDown(300);
 		  $('#my_mn').css('display', 'flex');
 	  }, function() {
@@ -41,7 +44,7 @@
 	              <li><a href="${path }/book/best">BEST</a></li>
 	            </ul>
               </li>
-              <li class="nav_2"><a href="${path }/record">Diary</a></li>
+              <li class="nav_2"><a href="${path }/record/">Diary</a></li>
               <li class="nav_3"><a href="${path }/ask/">Board</a></li>
             </ul>
             <!-- BOOKS HOVER : 서브메뉴 보이기 -->
@@ -65,8 +68,10 @@
            <img src="../resources/images/mypage.png" alt="">
            <ul id="my_mn" style="display: none;">
 	         <li><a href="${path}/mypage/">MYPAGE</a></li>
-	         <li><a href="${path}/logout/">LOGOUT</a></li>
-	         <c:if test="${admin == 1}"> <!-- 관리자일 때만 보이는 메뉴 -->
+	         <li><a href="${path}/order/cart">CART</a></li>
+	         <li><a href="${path}/logout">LOGOUT</a></li>
+	         <!-- 관리자일 때만 보이는 메뉴 -->
+	         <c:if test="${admin == 1}">
 	         <li><a href="${path}/admin/">ADMIN</a></li>
 	         </c:if>
            </ul>
