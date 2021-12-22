@@ -5,7 +5,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
 	 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+=======
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
+
+>>>>>>> b1c7541514ba1166fef2c67f1f69bc1a42303d08
 <script>
 $(document).ready(function() {
 	  $('.nav_1').hover(function() {		  

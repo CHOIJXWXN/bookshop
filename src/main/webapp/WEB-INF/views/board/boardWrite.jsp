@@ -7,10 +7,17 @@
    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Shop</title> 
+<<<<<<< HEAD
 	<!-- 글쓰기 에디터 라이브러리 -->
    	 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 	 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 	 <link rel="stylesheet" href="${path }/resources/css/reset.css" />
+=======
+    <!-- 글쓰기 에디터 라이브러리 -->
+     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+     <link rel="stylesheet" href="${path }/resources/css/reset.css" />
+>>>>>>> b1c7541514ba1166fef2c67f1f69bc1a42303d08
      <link rel="stylesheet" href="${path }/resources/css/mainNav.css" />
      <link rel="stylesheet" href="${path }/resources/css/writeAsk.css" />
      
@@ -20,13 +27,13 @@
     <div id="wrap">
     <!-- [1] 메인 네비게이션 -->
       <jsp:include page="../mainNav.jsp" />
- 	<!-- [2] 메인화면 -->
+    <!-- [2] 메인화면 -->
       <section id="qna">
       <form id="wrtieAction" method="POST" action="./wrtieAction">
          <div class="container">
              <h2>QnA</h2>
              <div class="table_h">
-             	<!-- ask_sort (글 제목이자 문의종류) -->
+                <!-- ask_sort (글 제목이자 문의종류) -->
                  <div class="row_h1">
                      <h3>제목</h3>
                      <select name="ask_sort" id="ask_sort" class="ask_category">
@@ -56,8 +63,8 @@
              </div>
              <!-- 내용 쓰는 부분 (ask_contents)-->
              <div>
- 				 <textarea id="summernote" name="ask_contents"></textarea>    
-			</div>
+                 <textarea id="summernote" name="ask_contents"></textarea>    
+            </div>
                     
              <!-- 버튼박스 -->
              <div class="btn_box">
@@ -85,7 +92,7 @@
         <!-- <a href="javascript:history.back();">확인</a>  -->
         <a id="confirm">확인</a> 
         <script>
-        	
+            
         </script>
       </div>
     </div>
@@ -105,6 +112,7 @@
        });
  </script>
  <script>
+<<<<<<< HEAD
      	$(document).ready(function() {
     	    $('.goback').click(function(){
     	        $('#go_back_list').show();
@@ -141,5 +149,43 @@
     	    
     	// document.ready.function   
     	});
+=======
+        $(document).ready(function() {
+            $('.goback').click(function(){
+                $('#go_back_list').show();
+            });
+
+            $('#upload').click(function () {
+                var ask_sort = $('#ask_sort').val();
+                var ask_contents = $('#summernote').val();
+                alert(ask_contents);
+                if(ask_sort == '') {
+                    $('#category_null').show();
+                    return;
+                }
+                // 아무 내용 없이 엔터나 띄어쓰기 입력 후 upload 클릭해도 알림 띄우기 -> ??
+                if(ask_contents.replace(/\sl /gi,"") == '') {
+                    $('#contents_null').show();
+                    return;
+                }
+                /*
+                if(ask_contents == '') {
+                    $('#contents_null').show();
+                }*/
+                
+                $('#wrtieAction').submit();
+                
+            // upload.click.function    
+            });
+            
+            // contents_null 모둘 확인창 클릭시
+            $('#confirm').click(function (event){
+                $('#contents_null').hide();
+                event.preventDefault();
+            });
+            
+        // document.ready.function   
+        });
+>>>>>>> b1c7541514ba1166fef2c67f1f69bc1a42303d08
     </script> 
 </html>
