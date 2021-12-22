@@ -1,0 +1,357 @@
+@charset "utf-8";
+
+
+#wrap {
+  width: 100%;
+}
+
+/* [2]메인화면 */
+#diary {
+  float: left;
+  width: 100%;
+  /* height: 260vh; */
+  /* background-image: url("../images/main_bg_10.jpg");
+  background-repeat: no-repeat;
+  background-size: cover; */
+  position: relative;
+}
+
+/* [2-1] 페이지 타이틀 */
+#diary .page_ttl {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 100px;
+  margin-top: 200px;
+}
+#diary .page_ttl h3 {
+ text-align: center;
+  width: 280px;
+  height: 60px;
+  font-family: 'NotoSerifKR';
+  font-size: 24px;
+  line-height: 60px;
+  color: #1C1A1A;
+}
+
+/* [2-2 ] 독서기록 목록*/
+#diary .book_list {
+  margin: 0 auto;
+  width: 1200px;
+}
+/* 기록 추가하기 */
+.add_book {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+}
+.add_book a {
+    float: right;
+    display: block;
+    width: 9.2%;
+    height: 40px;
+    margin-right: 2%;
+}
+.add_book a img {
+    float: left;
+    height: 20px;
+    margin-top: 10px;
+}
+.add_book a span {
+    float: right;
+    font-family: "Pretendard-Regular";
+    font-size: 18px;
+    line-height: 40px;
+    color: #1C1A1A;
+    text-decoration: underline;
+    text-underline-position: under;
+}
+/* 기록 책 리스트 */
+#diary .book_list .book_wrap {
+  width: 100%;
+}
+/* 각각의 책 영역 */
+#diary .book_wrap li {
+  float: left;
+  width: 300px;
+  height: 420px;
+  padding-bottom: 70px;
+}
+#diary .book_wrap li a {
+  display: block;
+}
+/* 책 표지 */
+#diary .book_wrap li .img_wrap {
+  width: 280px;
+  height: 270px;
+  overflow: hidden;
+  text-align: center;
+  margin: 0 10px;
+  background-color: #DFDDD5;
+  padding: 45px 0;
+}
+#diary .book_wrap li .book_cover {
+  height: 100%;
+  filter: drop-shadow(5px 5px 5px #555);
+}
+#diary .book_wrap li .book_cover:hover {
+    opacity:0.8;
+    filter:alpha(opacity=40); 
+}
+/* 책 제목 */
+#diary .book_wrap li .book_ttl {
+    width: 100%;
+  font-family: "Pretendard-Regular";
+  font-size: 18px;
+  line-height: 25px;
+  color: #1C1A1A;
+  padding: 8px 10px;
+  box-sizing: border-box;
+}
+/* 책 가격 */
+#diary .book_wrap li .book_score {
+  display: block;
+  width: 100%;
+  height: 38px;
+  font-family: "Pretendard-Regular";
+  font-size: 14px;
+  line-height: 38px;
+  color: #1C1A1A;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+.fa-star {
+    color: #EFEFEF;
+}
+.book_score .on {
+    color : #F4C01F;
+}
+/* 페이징 */
+.paging_box {
+    float: left;
+    width: 100%;
+    height: 70px;
+    margin-top: 70px;
+    margin-bottom: 200px;
+}
+.page_num {
+    margin: 0 auto;
+    width: 400px;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.page_num > li:first-child, 
+.page_num > li:last-child {
+    width: 10%;
+    height: 70px;
+    text-align: center;
+    position: relative;
+}
+.page_num > li:nth-child(2) {
+    width: 80%;
+    height: 70px;
+}
+.page_num > li > a > img {
+    margin-top: 25px;
+}
+.page_num li ul {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.page_num li ul li {
+    width: 20%;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.page_num li ul li a {
+    display: block;
+    text-align: center;
+    font-family: 'Goudy Bookletter 1911', serif;
+    font-size: 40px;
+    line-height: 50px;
+    color: #B5B1B1;
+}
+  
+.page_num li a.now {
+    color: #1C1A1A;
+}
+
+/* 주석 */
+.page_num li .page_icon {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: transparent;
+    position: absolute;
+    top: 55px;
+    left: 50%;
+    margin-left: -3px;
+}
+.page_num li .page_icon.now {
+    background-color: #1C1A1A;
+}
+
+
+/* 검색모달 */
+/* 접속시레이어팝업 */
+#modal {
+    position:fixed;
+    width:100%;
+    height:100%;
+    z-index:1;
+}
+  
+#modal .modal_content {
+    width: 100%;
+    margin-top: 150px;
+    position: relative;
+} 
+#modal .modal_layer {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color: transparent;
+    z-index:-1;
+}  
+.search_wrap {
+    width: 100%;
+    background-color: rgba(239, 239, 239, 0.93);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} 
+.search_wrap h3 {
+    font-family: 'NotoSerifKR';
+    font-size: 30px;
+    line-height: 150px;
+    color: #1C1A1A;
+}
+.book_search {
+    -webkit-appearance:none;
+    -moz-appearance: none;
+    -o-appearance:none;
+    appearance: none;
+    width: 600px;
+    height: 70px;
+    box-shadow: none;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    border-bottom: 0.8px solid #1C1A1A;
+    font-family: "Pretendard-Regular";
+    font-size: 25px;
+    line-height: 70px;
+    color: #1C1A1A;
+    text-align: center;
+    margin-bottom: 100px;
+    
+}
+input::placeholder {
+    font-family: "Pretendard-Regular";
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 50px;
+    color: #8A8787;   
+}
+.book_box {
+    width: 750px;
+    position: relative;
+    top: -50px;
+    margin-bottom: 30px;
+    display: flex;
+}
+.book_box .book_wrap {
+    width: 250px;
+}
+.img_wrap {
+    width: 210px;
+    height: 270px;
+    overflow: hidden;
+    text-align: center;
+    margin: 0 20px;
+    background-color: #F4C01F;
+    position: relative;
+    cursor: pointer;
+}
+.img_wrap .b_layer {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 210px;
+    height: 270px;
+    background-color: rgb(255, 255, 255, 0.4);
+   z-index: 9999;
+   display: flex;
+   justify-content: center;
+}
+.img_wrap .b_layer a {
+    display: block;
+    width: 110px;
+    height: 50px;
+    background-color: #1C1A1A;
+    font-family: "Pretendard-Regular";
+    font-size: 18px;
+    line-height: 50px;
+    text-align: center;
+    font-weight: 600;
+    color: white;
+    /* box-shadow: 0px 0px 6px 1px #555; */
+    box-shadow: 0px 0px 6px #1C1A1A;
+    margin-top: 150px;
+}
+.img_wrap:hover .b_layer{
+    visibility: visible;
+}
+.img_wrap .book_cover {
+    height: 100%
+}
+.book_box .book_ttl {
+    text-align: center;
+    font-family: "Pretendard-Regular";
+    font-size: 16px;
+    line-height: 20px;
+    color: #1C1A1A;
+    padding: 8px 20px 2px 20px;
+    box-sizing: border-box;
+}
+.book_box .book_writer {
+    display: block;
+    text-align: center;
+    font-family: "Pretendard-Regular";
+    font-size: 14px;
+    line-height: 22px;
+    color: #1C1A1A;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+.close_btn {
+    width: 50px;
+    height: 50px;
+    border: none;
+    margin-top: 20px;
+}
+.close_btn img {
+    width: 98%;
+}
+.prev,
+.next {
+    position: absolute;
+    top: 470px;
+}
+.prev {
+    left: 450px;
+}
+.next {
+    right: 450px;
+}
