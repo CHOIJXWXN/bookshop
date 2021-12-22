@@ -1,6 +1,17 @@
-$(document).ready(function() {
 
+
+$(document).ready(function() {
+	
+	var pageNumber = 1;
+	
+	$('#prev').hide();
+	$('#next').hide();
+
+	
+	
 	function getReview(data) {
+	
+
 		if (data == null) {
 			alert('리뷰를 불러올 수 없습니다');
 			return;
@@ -9,6 +20,24 @@ $(document).ready(function() {
 			var paging = data.paging;		// 리뷰 페이징
 			var cnt = data.cnt;				// 리뷰 총 개수
 			var score = data.score / 10;	// 리뷰 평균 점수
+			
+			if(paging.pageNumber == 1) {
+				$('#prev').hide();
+			}
+			else {
+				$('#prev').show();
+			}
+			
+			
+			
+			if(paging.next) {
+				$('#next').show();
+			}
+			else {
+				$('#next').hide();
+			}
+			
+			pageNumber = paging.pageNumber;
 			
 			var str1 = '';
 			str1 += '<span>등록된 리뷰 수 : ' + cnt + '개</span>';
@@ -47,6 +76,29 @@ $(document).ready(function() {
 			
 		}
 	};
+	
+	function pagingAjax(page_Num) {
+	
+		if($('#tab3').is(':checked')) {
+			var book_id = $('input[type=hidden][name=book_id]').val();
+			$.ajax({
+				type : "GET",
+				url : "./review",
+				data : {
+					book_id : book_id,
+					pageNumber : page_Num
+				},
+				dataType : "json",
+				success : function(data){
+					getReview(data);
+				},
+				error : function(data) {
+					alert('리뷰 보기에 실패했습니다');
+				}
+			});
+		}
+	
+	}
 	
 	// 리뷰 라디오 체크 시 리뷰 불러오기
 	$('#tab3').change(function() {
@@ -151,6 +203,22 @@ $(document).ready(function() {
 				alert('이미 담긴 책입니다');
 			}
 		});
+		
+	
 	});
 	
+	$('#next').click(function(e){
+		e.preventDefault();
+		
+		pagingAjax(pageNumber + 1);
+		
+	});
+	
+	$('#prev').click(function(e){
+		e.preventDefault();
+		
+		pagingAjax(pageNumber - 1);
+		
+	});
+		
 });
