@@ -19,6 +19,7 @@ import com.bookshop.service.MemberService;
 import com.bookshop.service.OrderService;
 import com.bookshop.vo.Cart;
 import com.bookshop.vo.CartPlus;
+import com.bookshop.vo.OrderList;
 import com.bookshop.vo.Orders;
 import com.bookshop.vo.Users;
 
@@ -133,15 +134,19 @@ public class OrderController {
 	@RequestMapping(value = "/paid", method = RequestMethod.POST)
 	@ResponseBody
 	public String paid(String merchant_uid, Orders order, int point_use, int point_add, @RequestParam List<String> book_id, @RequestParam List<Integer> book_cnt) throws Exception {
+		// 주문 추가
 		int result = orderService.addOrder(order);
 		if (result == 1) {
 			// 포인트 차감/적립
 			orderService.point(merchant_uid, point_use, point_add);
-			// 판매량 증가
+			// 판매량 증가 / 주문 목록 추가
 			Cart cart;
+			OrderList orderList;
 			for (int i = 0; i < book_id.size(); i++) {
 				cart = new Cart("", book_id.get(i), book_cnt.get(i));
+				orderList = new OrderList(order.getOrder_num(), book_id.get(i), book_cnt.get(i));
 				orderService.sellTot(cart);
+				orderService.addOrderlist(orderList);
 			}
 		} else {
 			

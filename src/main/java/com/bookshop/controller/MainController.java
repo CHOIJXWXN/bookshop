@@ -59,6 +59,9 @@ public class MainController {
 		int result = usersService.loginAction(users);	
 		if(result == 0) {
 			session.setAttribute("user_id", users.getUser_id());	
+		} else if(result == 1) {
+			session.setAttribute("user_id", users.getUser_id());
+			session.setAttribute("admin", 1);
 		}
 		return result + "";
 	}
@@ -246,6 +249,7 @@ public class MainController {
 		}
 		model.addAttribute("map", bookService.book(book_order, book_genre, pageNum));
 		model.addAttribute("book_genre", book_genre);
+		model.addAttribute("book_order", book_order);
 		return "shop/books";
 	}
 	
