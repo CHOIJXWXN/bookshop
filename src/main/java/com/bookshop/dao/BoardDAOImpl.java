@@ -37,7 +37,6 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.insert(SESSION + ".writeAsk", ask);
 		return ask;
 	}
-
 	
 
 }
