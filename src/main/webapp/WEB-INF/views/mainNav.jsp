@@ -5,7 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
+
 <script>
   $(document).ready(function() {
 	  $('.nav_1').hover(function() {		  

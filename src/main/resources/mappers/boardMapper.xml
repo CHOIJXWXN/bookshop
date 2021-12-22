@@ -14,8 +14,8 @@
 
 <!-- 문의 내용 저장(문의글 쓰기 )-->
 <insert id="writeAsk" >
-	insert into ASK(writer, book_id, ask_contents, ask_date, ask_sort, ask_status, available) 
-	values(${writer}, ${book_id}, ${ask_contents}, now(), ${ask_sort}, ${ask_status} , 0)
+	insert into ASK(writer, book_id, ask_contents, ask_date, ask_sort) 
+	values(#{writer}, #{book_id}, #{ask_contents}, now(), #{ask_sort})
 </insert>
 
 <!-- 문의 글 list -->

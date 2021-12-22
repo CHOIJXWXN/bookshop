@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.bookshop.dao.BoardDAO;
+import com.bookshop.vo.Ask;
 import com.bookshop.vo.AskList;
 import com.bookshop.vo.Book;
 
@@ -28,9 +29,13 @@ public class BoardServiceImpl implements BoardService {
 	// 리스트 불러오기
 	@Override
 	public List<AskList> getAskList(String writer) throws Exception {
-		
-		
 		return dao.getAskList(writer);
+	}
+	
+	// 글쓰기 (writeAction)
+	@Override
+	public void wrtieAction(Ask ask) throws Exception {
+		 dao.writeAsk(ask);
 	}
 
 
