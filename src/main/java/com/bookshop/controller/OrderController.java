@@ -78,6 +78,9 @@ public class OrderController {
 	@RequestMapping(value = "/addCart", method = RequestMethod.GET)
 	@ResponseBody
 	public String addCart(Cart cart) throws Exception {
+		if (cart.getUser_id() == null || cart.getUser_id() == "") {
+			return "로그인이 필요합니다";
+		}
 		return orderService.addCart(cart) + "";
 	}
 	
