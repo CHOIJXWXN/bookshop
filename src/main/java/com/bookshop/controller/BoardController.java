@@ -59,8 +59,11 @@ public class BoardController {
 		
 		
 			return "board/boardWrite";	
-		
 	}
+	
+	// 글쓰기 등록
+	// url이 'path/ask/writeAction'
+	
 	
 
 }

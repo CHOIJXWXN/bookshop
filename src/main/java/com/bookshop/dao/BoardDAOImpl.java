@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.bookshop.vo.Ask;
 import com.bookshop.vo.AskList;
 import com.bookshop.vo.Book;
 
@@ -28,6 +29,13 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public List<AskList> getAskList(String writer) throws Exception {
 		return sqlSession.selectList(SESSION + ".getAskList", writer);
+	}
+	
+	// 게시글 쓰기
+	@Override
+	public Ask writeAsk(Ask ask) throws Exception {
+		sqlSession.insert(SESSION + ".writeAsk", ask);
+		return ask;
 	}
 
 	
