@@ -38,5 +38,12 @@ public class BoardServiceImpl implements BoardService {
 		 dao.writeAsk(ask);
 	}
 
+	// askview 불러오기
+	@Override
+	public Ask boardView(int ask_id) throws Exception {
+		
+		return dao.getAsk(ask_id);
+	}
+
 
 }

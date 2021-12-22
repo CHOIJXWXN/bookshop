@@ -18,5 +18,8 @@ public interface BoardService {
 	// 문의글 쓰기 Action
 	public void wrtieAction(Ask ask) throws Exception;
 	
+	// 문의글 불러오기
+	public Ask boardView(int ask_id) throws Exception;
+	
 	
 }
