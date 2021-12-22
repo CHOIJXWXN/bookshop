@@ -16,7 +16,6 @@ CREATE TABLE users (
     user_admin 		INT 			DEFAULT 0,
     user_init_genre VARCHAR(20)		NOT NULL
 );
-DROP TABLE USERS;
 
 # 상품 테이블 생성
 CREATE TABLE book (
@@ -33,16 +32,15 @@ CREATE TABLE book (
     book_contents	TEXT,
     available		INT 			DEFAULT 0 			# 0:존재 1:삭제
 );
-DROP TABLE BOOK;
 
 # 장바구니 테이블 생성
 CREATE TABLE cart (
 	user_id 	VARCHAR(20),
-    book_id 	VARCHAR(20),
+    book_id 	INT,
     book_cnt 	INT				NOT NULL,
     PRIMARY KEY (user_id, book_id)
 );
-DROP TABLE CART;
+
 
 # 주문 테이블 생성
 CREATE TABLE orders (
@@ -58,35 +56,32 @@ CREATE TABLE orders (
     order_date	    DATE        NOT NULL,		# 주문 날짜
     order_status    VARCHAR(20)   				# 주문 상태 -> 입금전 /  배송중 /  배송완료
 );
-DROP TABLE ORDERS;
 
 # 주문 목록 테이블 생성
 CREATE TABLE orderlist (
 	order_num   VARCHAR(15),			# 주문 번호
-    book_id 	VARCHAR(20),			# 주문 상품
+    book_id 	VARCHAR(20),					# 주문 상품
     book_cnt 	INT 		NOT NULL,	# 주문 상품 갯수
     PRIMARY KEY (order_num, book_id)
 );
-DROP TABLE ORDERLIST;
 
 # 배송 테이블 생성
 CREATE TABLE delivery (
 	order_num       VARCHAR(15)		PRIMARY KEY,
     tracking_num 	VARCHAR(20)
 );
-DROP TABLE DELIVERY;
 
 # 문의 테이블 생성
 CREATE TABLE ask (
 	ask_id			INT				PRIMARY KEY		AUTO_INCREMENT,	# 문의 번호
+    book_id			VARCHAR(20)		NOT NULL,						# book table의 book_id
     writer			VARCHAR(20)		NOT NULL,						# 작성자 = user_id
-    ask_title		TEXT			NOT NULL,						# 문의 제목
     ask_contents	TEXT			NOT NULL,						# 문의 내용
     ask_date		DATE            NOT NULL,						# 문의 등록 날짜
     ask_sort		VARCHAR(20),									# 문의 유형 -> 상품문의 / 배송문의 / 기타문의
-    aks_status		VARCHAR(20)										# 문의 상태 -> 답변완료 / 답변 미완료
+    ask_status		VARCHAR(20)		DEFAULT '답번미완료',				# 문의 상태 -> 답변완료 / 답변미완료
+    available		INT				DEFAULT 0
 );
-DROP TABLE ASK;
 
 # 문의 댓글 테이블 생성
 CREATE TABLE askreply (
@@ -96,7 +91,6 @@ CREATE TABLE askreply (
     askreply_contents	TEXT		NOT NULL,
     askreply_date 		DATE        NOT NULL
 );
-DROP TABLE ASKREPLY;
 
 # 리뷰 테이블 생성
 CREATE TABLE review (
@@ -107,19 +101,18 @@ CREATE TABLE review (
     review_contents     TEXT        NOT NULL,
     review_date         DATE        NOT NULL
 );
-DROP TABLE REVIEW;
 
 # 기록 테이블 생성
 CREATE TABLE record (
-	record_id			INT			PRIMARY KEY		AUTO_INCREMENT,
     user_id             VARCHAR(20),
-    book_id             VARCHAR(20),
+    book_id             INT,
     record_init_date    DATE            DEFAULT '2000-01-01',
     record_fin_date     DATE            DEFAULT '2999-12-31',
     record_score        INT             NOT NULL,
     record_contents     TEXT            NOT NULL,
-    record_date         DATE            NOT NULL
+    record_date         DATE            NOT NULL,
+    PRIMARY KEY (user_id, book_id)
 );
-DROP TABLE RECORD;
+
 
 

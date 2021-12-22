@@ -17,6 +17,13 @@
 		WHERE A.book_id = B.book_id
 	</select>
 	
+	<!-- 특정 유저의 기록 총 개수 -->
+	<select id="getRecordCnt" resultType="_int">
+		SELECT COUNT(*)
+		FROM record
+		WHERE user_id = #{user_id}
+	</select>
+	
 	<!-- 키워드 검색 -->
 	<select id="searchBook" parameterType="hashmap" resultType="Book">
 		SELECT *

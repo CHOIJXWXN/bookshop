@@ -11,7 +11,8 @@
   <link rel="stylesheet" href="${path}/resources/css/reset.css" />
   <link rel="stylesheet" href="${path}/resources/css/recordList.css" />
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+  <script src="${path}/resources/js/recordjs/search.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 </head>
 <body>
   <div id="wrap">
@@ -35,190 +36,25 @@
          <!-- 기록한 책 리스트 -->
          <ul class="book_wrap">      
             <!-- 반복할 li태그  -->
+            <c:forEach var="record" items="${map.list}">
            	<li>
                 <a href="#">
            	    <div class="img_wrap">
-                <img class="book_cover" src="../../resources/images/book_cover_temp5.jpg" alt="book_cover">
+                <img class="book_cover" src="../resources/images/bookcover/${record.book_cover}" alt="book_cover">
                 </div>
-                <h4 class="book_ttl">책 제목</h4>
+                <h4 class="book_ttl">${record.book_title}</h4>
                 <span class="book_score">
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star"></i>
+                	<c:forEach begin="1" end="${record.record_score}">
+                	<i class="fas fa-star on"></i>
+                	</c:forEach>
+                	<c:forEach begin="${record.record_score + 1}" end="5">
+                	<i class="fas fa-star"></i>
+                	</c:forEach>
                 </span>
                 </a>
             </li> 
-            <!-- 반복할 li태그  종료-->    
-            <!-- 여기부터 삭제 -->
-            <li>
-                <a href="#">
-           	    <div class="img_wrap">
-                <img class="book_cover" src="../../resources/images/book_cover_temp6.jpg" alt="book_cover">
-                </div>
-                <h4 class="book_ttl">책 제목 제목책목책 제목책 제목책 책 제목책 제목책 제목</h4>
-                <span class="book_score">
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star"></i>
-                </span>
-                </a>
-            </li> 
-            <li>
-                <a href="#">
-           	    <div class="img_wrap">
-                <img class="book_cover" src="../../resources/images/book_cover_temp7.png" alt="book_cover">
-                </div>
-                <h4 class="book_ttl">책 제목</h4>
-                <span class="book_score">
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star"></i>
-                </span>
-                </a>
-            </li> 
-            <li>
-                <a href="#">
-           	    <div class="img_wrap">
-                <img class="book_cover" src="../../resources/images/book2.jpg" alt="book_cover">
-                </div>
-                <h4 class="book_ttl">책 제목</h4>
-                <span class="book_score">
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star"></i>
-                </span>
-                </a>
-            </li> 
-            <li>
-                <a href="#">
-           	    <div class="img_wrap">
-                <img class="book_cover" src="../../resources/images/book3.jpg" alt="book_cover">
-                </div>
-                <h4 class="book_ttl">책 제목</h4>
-                <span class="book_score">
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star"></i>
-                </span>
-                </a>
-            </li> 
-            <li>
-                <a href="#">
-           	    <div class="img_wrap">
-                <img class="book_cover" src="../../resources/images/book_cover_temp3.gif" alt="book_cover">
-                </div>
-                <h4 class="book_ttl">책 제목</h4>
-                <span class="book_score">
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star"></i>
-                </span>
-                </a>
-            </li> 
-            <li>
-                <a href="#">
-           	    <div class="img_wrap">
-                <img class="book_cover" src="../../resources/images/book_cover_temp3.gif" alt="book_cover">
-                </div>
-                <h4 class="book_ttl">책 제목</h4>
-                <span class="book_score">
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star"></i>
-                </span>
-                </a>
-            </li> 
-            <li>
-                <a href="#">
-           	    <div class="img_wrap">
-                <img class="book_cover" src="../../resources/images/book_cover_temp3.gif" alt="book_cover">
-                </div>
-                <h4 class="book_ttl">책 제목</h4>
-                <span class="book_score">
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star"></i>
-                </span>
-                </a>
-            </li> 
-            <li>
-                <a href="#">
-           	    <div class="img_wrap">
-                <img class="book_cover" src="../../resources/images/book_cover_temp3.gif" alt="book_cover">
-                </div>
-                <h4 class="book_ttl">책 제목</h4>
-                <span class="book_score">
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star"></i>
-                </span>
-                </a>
-            </li> 
-            <li>
-                <a href="#">
-           	    <div class="img_wrap">
-                <img class="book_cover" src="../../resources/images/book_cover_temp3.gif" alt="book_cover">
-                </div>
-                <h4 class="book_ttl">책 제목</h4>
-                <span class="book_score">
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star"></i>
-                </span>
-                </a>
-            </li> 
-            <li>
-                <a href="#">
-           	    <div class="img_wrap">
-                <img class="book_cover" src="../../resources/images/book_cover_temp3.gif" alt="book_cover">
-                </div>
-                <h4 class="book_ttl">책 제목</h4>
-                <span class="book_score">
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star"></i>
-                </span>
-                </a>
-            </li> 
-            <li>
-                <a href="#">
-           	    <div class="img_wrap">
-                <img class="book_cover" src="../../resources/images/book_cover_temp3.gif" alt="book_cover">
-                </div>
-                <h4 class="book_ttl">책 제목</h4>
-                <span class="book_score">
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star"></i>
-                </span>
-                </a>
-            </li> 
-            <!-- 여기까지 삭제 -->
-        </ul>  
+            </c:forEach>
+         </ul>  
          <!-- 페이징 -->
 
         <!-- [2-5] 페이지 번호 -->
@@ -262,6 +98,7 @@
             <button class="close_btn"><img src="images/close_btn.png" alt=""></button>
             <h3>기록할 책을 검색해주세요</h3>
             <input type="text" id="book_search" class="book_search" placeholder="제목, 작가 키워드로 검색하세요."/>
+            <input type="hidden" id="pageNum" value="${pageNum}"/>
             <div class="book_box" >
                 <div class="book_wrap">
                     <div class="img_wrap">

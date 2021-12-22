@@ -6,7 +6,10 @@
 <html>
 <head>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<<<<<<< HEAD
 
+=======
+>>>>>>> db1c5fa2ef794ded6f06a3513b2698dff29df56d
 <script>
 $(document).ready(function() {
 	  $('.nav_1').hover(function() {		  

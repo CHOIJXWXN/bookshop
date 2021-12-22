@@ -31,8 +31,8 @@ public class MainController {
 	
 	// 메인 페이지
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String main(Model model) throws Exception {
-
+	public String main(String msg, Model model) throws Exception {
+		model.addAttribute("msg", msg);
 		return "main/main";
 	}	
 
@@ -41,8 +41,8 @@ public class MainController {
 	// 로그인 페이지
 	// url 패턴이 'path/login'
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(Model model) throws Exception {
-
+	public String login(String msg, Model model) throws Exception {
+		model.addAttribute("msg", msg);
 		return "main/login";
 	}
 	
@@ -253,16 +253,15 @@ public class MainController {
 		return "shop/books";
 	}
 	
-
-
-
-	/*
-	 * 매핑 더 필요함 (회원정보수정, 배송조회, 주문취소, 주문목록 등등) 
-	 */
-	// 마이페이지
-//	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
-//	public String myPage(Model model) throws Exception {
-//		return "member/myPage";
-//	}
+	// 관리자 메인 페이지
+	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	public String admin(HttpSession session, Model model) throws Exception {
+		Integer admin = (Integer) session.getAttribute("admin");
+		if (admin == null || admin != 1) {
+			model.addAttribute("msg", "관리자 권한이 없습니다");
+			return "redirect:/";
+		}
+		return "admin/admin";
+	}
 
 }
