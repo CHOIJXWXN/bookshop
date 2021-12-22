@@ -5,13 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
-	 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-=======
-
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
-
->>>>>>> b1c7541514ba1166fef2c67f1f69bc1a42303d08
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
 $(document).ready(function() {
 	  $('.nav_1').hover(function() {		  
@@ -63,7 +57,7 @@ $(document).ready(function() {
             <img src="${path}/resources/images/login.png" alt="login">
             <span>Log In</span>
           </a>
-          <a href="${path }/join" class="info_mn join">
+          <a href="${path }/joinTerm" class="info_mn join">
             <img src="${path}/resources/images/login.png" alt="join">
             <span>Join</span>
           </a>

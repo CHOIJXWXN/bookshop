@@ -58,7 +58,6 @@ public class BookController {
 	// 책 베스트셀러 페이지
 	@RequestMapping(value = "/best", method = RequestMethod.GET)
 	public String best(HttpSession session, Model model) throws Exception {
-		// (정해진 기간의 베스트 셀러 List<Book> + 유저 기반 추천 도서 List<Book>) HashMap 가져오기
 		String user_id = (String) session.getAttribute("user_id");
 		if (user_id == null) {
 			user_id = "";
@@ -71,7 +70,6 @@ public class BookController {
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public String detail(String book_id, RedirectAttributes ra, HttpSession session, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
-		//user_id = "abcd";
 		Book book = bookService.view(book_id);
 		if (book == null) {
 			ra.addFlashAttribute("msg", "해당 책이 존재하지 않습니다");
@@ -79,20 +77,6 @@ public class BookController {
 		}
 		model.addAttribute("book", book);
 		model.addAttribute("user_id", user_id);
-		return "shop/bookDetail";
-	}
-	
-	// 책 장바구니에 추가 버튼 (수정 필요)
-	@RequestMapping(value = "/detailAction", method = RequestMethod.POST, params="addCart")
-	public String addCart(Cart cart, RedirectAttributes ra, Model model) throws Exception {
-		orderService.addCart(cart);
-		ra.addFlashAttribute("msg", "장바구니에 추가되었습니다");
-		return "";
-	}
-	
-	// 책 바로 주문 버튼 (수정 필요)
-	@RequestMapping(value = "/detailAction", method = RequestMethod.POST, params="buyNow")
-	public String buyNow(String book_id, Model model) throws Exception {
 		return "shop/bookDetail";
 	}
 	
@@ -106,7 +90,7 @@ public class BookController {
 		return bookService.showReview(book_id, pageNum);
 	}
 	
-   // 책 리뷰 추가 기능 (ajax)
+   // 책 리뷰 추가 기능 (Ajax)
    @RequestMapping(value = "/addReview", method = RequestMethod.GET)
    @ResponseBody
    public HashMap<String, Object> addReview(Review review, Integer pageNum) throws Exception {

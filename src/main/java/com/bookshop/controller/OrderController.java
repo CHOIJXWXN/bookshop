@@ -38,7 +38,6 @@ public class OrderController {
 	@RequestMapping(params = "select", value = "/", method = RequestMethod.POST)
 	public String select(@RequestParam List<String> checked_book_id, @RequestParam List<String> book_id, @RequestParam List<Integer> book_cnt, HttpSession session, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
-		//user_id = "abcd";
 		List<CartPlus> cartPlus = new ArrayList<CartPlus>();
 		for (var i = 0; i < book_id.size(); i++) {
 			orderService.updateCart(new Cart(user_id, book_id.get(i), book_cnt.get(i)));
@@ -56,7 +55,6 @@ public class OrderController {
 	@RequestMapping(params = "all", value = "/", method = RequestMethod.POST)
 	public String all(@RequestParam List<String> book_id, @RequestParam List<Integer> book_cnt, HttpSession session, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
-		//user_id = "abcd";
 		for (var i = 0; i < book_id.size(); i++) {
 			orderService.updateCart(new Cart(user_id, book_id.get(i), book_cnt.get(i)));
 		}
@@ -70,7 +68,6 @@ public class OrderController {
 	@RequestMapping(params = "direct", value = "/", method = RequestMethod.GET)
 	public String order(CartPlus cartPlus, HttpSession session, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
-		//user_id = "abcd";
 		model.addAttribute("direct", cartPlus);
 		model.addAttribute("user", memberService.getUserInfo(user_id));
 		model.addAttribute("orderNum", orderService.newOrderNum());
@@ -81,6 +78,9 @@ public class OrderController {
 	@RequestMapping(value = "/addCart", method = RequestMethod.GET)
 	@ResponseBody
 	public String addCart(Cart cart) throws Exception {
+		if (cart.getUser_id() == null || cart.getUser_id() == "") {
+			return "로그인이 필요합니다";
+		}
 		return orderService.addCart(cart) + "";
 	}
 	
@@ -104,7 +104,6 @@ public class OrderController {
 	@RequestMapping(value = "/cart", method = RequestMethod.GET)
 	public String cart(HttpSession session, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
-		//user_id = "abcd";
 		model.addAttribute("list", orderService.viewCart(user_id));
 		return "shop/cart";
 	}

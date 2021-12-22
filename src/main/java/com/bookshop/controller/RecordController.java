@@ -1,5 +1,7 @@
 package com.bookshop.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -9,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bookshop.service.RecordService;
+import com.bookshop.vo.Book;
 
 @Controller
 @RequestMapping(value = "/record/*")
@@ -28,14 +32,18 @@ public class RecordController {
 		if (pageNum == null) {
 			pageNum = 1;
 		}
-		model.addAttribute("list", recordService.view(user_id, pageNum));
-		return "";
+		model.addAttribute("map", recordService.view(user_id, pageNum));	// list, paging
+		return "record/recordList";
 	}
 	
-	// 책 검색 기능
+	// 책 검색 기능 (Ajax)
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public String search(Model model) throws Exception {
-		return "";
+	@ResponseBody
+	public List<Book> search(String keyword, Integer pageNum, Model model) throws Exception {
+		if (pageNum == null) {
+			pageNum = 1;
+		}
+		return recordService.search(keyword, pageNum);
 	}
 	
 	// 기록 입력 페이지

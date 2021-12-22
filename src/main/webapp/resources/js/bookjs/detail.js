@@ -131,6 +131,10 @@ $(document).ready(function() {
 		var user_id = $('input[name=user_id]').val();
 		var book_id = $('input[name=book_id]').val();
 		var book_cnt = $('select[name=book_cnt]').val();
+		if (user_id == '') {
+			alert('로그인이 필요합니다');
+			location.href = '../login';
+		}
 		$.ajax({
 			type : "GET",
 			url : "/order/addCart",
