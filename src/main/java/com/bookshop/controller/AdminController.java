@@ -39,13 +39,7 @@ public class AdminController {
 			pageNum = 1;
 		}
 		// 해당 페이지의 주문 리스트
-		model.addAttribute("listSeparate", adminService.viewOrder(pageNum).get("listSeparate"));
-		model.addAttribute("listUnited", adminService.viewOrder(pageNum).get("listUnited"));
-		// 각각 입금전/배송중/배송완료/총 주문 개수
-		model.addAttribute("before", adminService.viewOrder(pageNum).get("before"));
-		model.addAttribute("start", adminService.viewOrder(pageNum).get("start"));
-		model.addAttribute("end", adminService.viewOrder(pageNum).get("end"));
-		model.addAttribute("tot", adminService.viewOrder(pageNum).get("tot"));
+		model.addAttribute("map", adminService.viewOrder(pageNum)); // listSeparate, listUnited, before, start, end, tot
 		// 페이지 번호
 		model.addAttribute("pageNum", pageNum);
 		return "admin/order";

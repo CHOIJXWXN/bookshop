@@ -125,10 +125,6 @@ public class MainController {
 		
 		return "main/findIdP";
 	}
-	
-
-	
-	
 
 	/* 비밀번호 찾기 관련 주석
 	 // 가입된 아이디 기준으로 비밀번호 찾음
