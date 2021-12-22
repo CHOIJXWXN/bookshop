@@ -4,13 +4,14 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+   <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Shop</title>
     <link rel="stylesheet" href="${path }/resources/css/reset.css" />
     <link rel="stylesheet" href="${path }/resources/css/mainNav.css" />
     <link rel="stylesheet" href="${path }/resources/css/board.css" />
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="${path }/resources/js/memberjs/profile.js" charset="UTF-8"></script>
   </head>
   <body>
     <div id="wrap">
@@ -22,30 +23,33 @@
              <h2>QnA</h2>
              <div class="table_h">
                  <h3 class="board_id">No.</h3>
-                 <h3 class="board_writer">책제목</h3>
+                 <h3 class="book_img"></h3>
+                 <h3 class="ask_category"></h3>
                  <h3 class="board_ttl">제목</h3>
                  <h3 class="board_date">날짜</h3>
              </div>
              <!-- 아래로 문의 리스트 10개씩 -->
              <!-- 여기부터 반복(10개) -->
-             <c:forEach var="askList" items="${list }">
              <div class="row">
                  <div class="board_id">
-                     <p>${askList.ask_id }</p>
+                     <p>000000</p>
                  </div>
-                 <div class="board_writer">
-                    <p>${askList.book_title }</p>
+                 <div class="book_img">
+                  <div class="img_box"><img src="images/book_cover_temp5.jpg" alt=""></div>
                  </div>
+                 <div class="ask_category">
+                    <p>[문의종류] 상품문의</p>
+                </div>
                  <div class="board_ttl">
-                    <a href="#"><p style="text-align: left;">[문의종류] ${askList.ask_sort }</p></a>                    
+                    <a href="#"><p style="text-align: left;">| 달러구트 꿈 꿈백화점달러구트 꿈 꿈백화점달러구트 꿈백화점달러구트 꿈백화점달러구트 꿈백화점</p></a>                    
                  </div>
-                 
                  <div class="board_date">
-                    <p>${askList.ask_date }</p>
+                    <p>2021-12-18</p>
                  </div>
              </div>
-             </c:forEach>
-             
+             <!-- 여기까지 반복(10개) -->                    
+            </div>
+            
              <!-- 페이징 -->
              <div class="pagebox">
                  <ul class="pagenum_wrap">
@@ -53,7 +57,8 @@
                      <li><a href="#" class="next">next&nbsp;</a></li>
                  </ul>
              </div>
-         </div>    
+         </div>
+         
       </section>
     </div>
   </body>
