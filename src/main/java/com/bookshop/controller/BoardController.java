@@ -1,6 +1,6 @@
 package com.bookshop.controller;
 
-import java.util.HashMap;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bookshop.service.BoardService;
+import com.bookshop.vo.AskList;
 
 @Controller
 @RequestMapping(value = "/ask/*")
@@ -23,16 +24,18 @@ public class BoardController {
 	// [1] 문의게시판 리스트 페이지
 	// url 패턴이 'path/ask/'
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String ask(RedirectAttributes ra, HttpSession session) throws Exception {
-		
+	public String ask(RedirectAttributes ra, HttpSession session, Model model) throws Exception {
+		String user_id = (String) session.getAttribute("user_id");
 		// 1) 로그인이 되어있지 않으면 로그인 페이지로 이동시키고 로그인이 필요하다고 알려줌
-		if(session.getAttribute("user_id") == null) {
+		if(user_id == null) {
 			ra.addFlashAttribute("msg", "로그인이 필요합니다.");
 			return "redirect:/login";
 		}
 		// 2) 회원 아이디에 일치하는 문의 목록들을 10개씩 리스트로 가져옴.
-			
-			return "board/boardList";	
+		
+			List<AskList> list = boardService.getAskList(user_id); 
+			model.addAttribute("list", list);
+			return "board/boardList";
 		
 	}
 	

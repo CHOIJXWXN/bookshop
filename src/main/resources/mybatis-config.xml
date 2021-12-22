@@ -5,6 +5,7 @@
 
 <configuration>
 	<typeAliases>
+	<typeAlias alias="AskList" type="com.bookshop.vo.AskList"/>
 	  <typeAlias alias="Ask" type="com.bookshop.vo.Ask"/>
 	  <typeAlias alias="AskReply" type="com.bookshop.vo.AskReply"/>
 	  <typeAlias alias="Book" type="com.bookshop.vo.Book"/>

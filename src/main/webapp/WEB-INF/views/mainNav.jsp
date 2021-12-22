@@ -5,8 +5,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!--  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> -->
-
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+  $(document).ready(function() {
+	  $('.nav_1').hover(function() {		  
+          $('.books_sub_mn').slideDown(300);
+          $('.books_sub_mn').css('display', 'flex');
+      }, function() {
+    	  $('.books_sub_mn').slideUp(300);
+      });
+	  
+	  $('.my_mn').hover(function() {
+		  $('#my_mn').slideDown(300);
+		  $('#my_mn').css('display', 'flex');
+	  }, function() {
+		  $('#my_mn').slideUp(300);
+	  });
+  });
+</script>
 </head>
 <body>
 	<!-- [1] 헤더(메인 네비게이션) -->
@@ -35,18 +51,27 @@
           <!-- case1) 로그아웃 상태 -->
           <c:if test="${empty user_id }">
           <a href="${path }/login" class="info_mn login">
-            <img src="../resources/images/login.png" alt="">
+            <img src="../resources/images/login.png" alt="login">
             <span>Log In</span>
+          </a>
+          <a href="${path }/join" class="info_mn join">
+            <img src="../resources/images/login.png" alt="join">
+            <span>Join</span>
           </a>
           </c:if>
           <!-- case2) 로그인 상태 -->
          <c:if test="${not empty user_id }">
-          <a href="${path }/mypage/" class="info_mn mypage">
-            <img src="../resources/images/mypage.png" alt="">
-            <span>My Page</span>
-          </a>
-           <a href="${path }/logout" class="logout">or&nbsp;&nbsp;Log Out</a>
-          </c:if>
+         <div class="my_mn">
+           <img src="../resources/images/mypage.png" alt="">
+           <ul id="my_mn" style="display: none;">
+	         <li><a href="${path}/mypage/">MYPAGE</a></li>
+	         <li><a href="${path}/logout/">LOGOUT</a></li>
+	         <c:if test="${admin == 1}"> <!-- 관리자일 때만 보이는 메뉴 -->
+	         <li><a href="${path}/admin/">ADMIN</a></li>
+	         </c:if>
+           </ul>
+         </div>
+         </c:if>
         </div>        
       </header>
       <!-- 네비게이션 메뉴 종료 -->

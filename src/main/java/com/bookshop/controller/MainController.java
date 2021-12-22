@@ -59,6 +59,9 @@ public class MainController {
 		int result = usersService.loginAction(users);	
 		if(result == 0) {
 			session.setAttribute("user_id", users.getUser_id());	
+		} else if(result == 1) {
+			session.setAttribute("user_id", users.getUser_id());
+			session.setAttribute("admin", 1);
 		}
 		return result + "";
 	}

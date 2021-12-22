@@ -60,13 +60,17 @@ public class UsersServiceImpl implements UsersService {
 	// 로그인 loginAction 실행
 	@Override
 	public int loginAction(Users users) throws Exception {
-		// users 값이 존재하면 0 반환-> 로그인 성공
+		// users 값이 존재하면 0 반환 -> 로그인 성공
 		// users 값이 존재하지 않으면 -1 반환 -> 로그인 실패
+		// 해당 유저가 관리자이면 1 반환
 		int result = 0;
-		Users rs = dao.login(users);
-		if (rs != null)
-			result = 0;
-		if (rs == null)
+		Users exist = dao.login(users);
+		Users admin = dao.getAdminAuth(users.getUser_id());
+		if (exist != null)
+			if (admin != null)
+				result = 1;
+			else result = 0;
+		if (exist == null)
 			result = -1;
 		return result;
 	}

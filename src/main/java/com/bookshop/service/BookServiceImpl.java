@@ -1,6 +1,5 @@
 package com.bookshop.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javax.inject.Inject;
@@ -33,19 +32,19 @@ public class BookServiceImpl implements BookService {
 				map.put("paging", paging);
 			}	
 		} else if (genre.equals("0")) {
-			int bookCnt = dao.getBookCntNovel();
+			int bookCnt = dao.getGenreBookCnt("소설");
 			Paging paging = new Paging(pageNum, bookCnt);
-			map.put("list", dao.getBookListNovel(pageNum));
+			map.put("list", dao.getGenreBookList("소설", pageNum));
 			map.put("paging", paging);
 		} else if (genre.equals("1")) {
-			int bookCnt = dao.getBookCntPoem();
+			int bookCnt = dao.getGenreBookCnt("시/에세이");
 			Paging paging = new Paging(pageNum, bookCnt);
-			map.put("list", dao.getBookListPoem(pageNum));
+			map.put("list", dao.getGenreBookList("시/에세이", pageNum));
 			map.put("paging", paging);
 		} else if (genre.equals("2")) {
-			int bookCnt = dao.getBookCntTravel();
+			int bookCnt = dao.getGenreBookCnt("여행");
 			Paging paging = new Paging(pageNum, bookCnt);
-			map.put("list", dao.getBookListTravel(pageNum));
+			map.put("list", dao.getGenreBookList("여행", pageNum));
 			map.put("paging", paging);
 		}		
 		return map;
@@ -78,13 +77,8 @@ public class BookServiceImpl implements BookService {
 	public HashMap<String, Object> best(String user_id) throws Exception {
 		int flag = 0;
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		List<String> idList = dao.getBestSeller();
-		List<Book> bookList = new ArrayList<Book>();
 		String book_genre = "";
 		String book_writer = "";
-		for (int i = 0; i < idList.size(); i++) {
-			bookList.add(dao.getBook(idList.get(i)));
-		}
 		if (!user_id.equals("")) {
 			book_genre = dao.getGenreRecomm(user_id);
 			book_writer = dao.getWriterRecomm(user_id);
@@ -103,7 +97,7 @@ public class BookServiceImpl implements BookService {
 				map.put("writerList", dao.getWriterRecommTwo(book_writer));
 			}
 		}
-		map.put("bestSeller", bookList);		
+		map.put("bestSeller", dao.getBestSeller());		
 		map.put("flag", flag);
 		return map;
 	}
