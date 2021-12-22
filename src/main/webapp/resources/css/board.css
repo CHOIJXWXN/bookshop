@@ -1,10 +1,10 @@
-@charset "UTF-8";
+@charset "utf-8";
 
 #wrap {
     width: 100%;
-}
+  }
  
- /* [2]메인화면*/
+  /* [2]메인화면*/
 section {
     float: left;
     width: 100%;
@@ -47,21 +47,38 @@ section {
     color: #FAFAF8;
 }
 .board_id {
-    width: 20%;
+    width: 12%;
+}
+.book_img {
+    width: 15%;
+}
+.book_img .img_box {
+    width: 80%;
+    height: 100%;
+    margin-left: 10%;
+    text-align: center;
+    overflow: hidden;
+    padding: 5px 0;
+    box-sizing: border-box;
+}
+.book_img .img_box img {
+    height: 100%;
+}
+.ask_category {
+    width: 13%;
 }
 .board_ttl {
-    width: 36%;
+    width: 40%;
+    
 }
-.board_writer {
-    width: 18%;
-}
+
 .board_date {
-    width: 26%;
+    width: 20%;
 }
 /* 각 게시글 행 스타일 */
 .row {
     width: 100%;
-    height: 50px;
+    height: 110px;
     border-bottom: 0.5px solid #707070;
     background-color: #f6f6f6;
     display: flex;
@@ -70,12 +87,19 @@ section {
     text-align: center;
     font-family: "Pretendard-Regular";
     font-size: 16px;
-    line-height: 50px;
+    line-height: 110px;
     color: #1C1A1A;
 }
 .board_ttl > a {
     display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
 }
+/* .board_ttl p {
+    text-overflow: ellipsis;
+} */
+
 /* 마지막 row 보더바텀 굵게 */
 .row:last-child {
     border-bottom: 1.5px solid #707070;
@@ -125,3 +149,10 @@ section {
 .pagenum_wrap a:hover:after {
     display: inline-block;
 }
+
+
+
+
+
+  
+  
