@@ -15,7 +15,7 @@
   	<script>
   		$(document).ready(function() {
   			
-  			<c:forEach var="item1" items="${listUnited}">
+  			<c:forEach var="item1" items="${map.listUnited}">
   				var str1 = '';
   				str1 += '<td rowspan="${item1.cnt}"><input type="checkbox" name="order_num" value="${item1.order_num}"></td>';
   				str1 += '<td rowspan="${item1.cnt}">${item1.order_num}</td>';
@@ -50,16 +50,16 @@
                       <th>배송완료</th>
                   </tr>
                   <tr>
-                      <td>${before}건</td>
-                      <td>${start}건</td>
-                      <td>${end}건</td>
+                      <td>${map.before}건</td>
+                      <td>${map.start}건</td>
+                      <td>${map.end}건</td>
                   </tr>
               </table>
             </div>
             <form action="./changeStatus" method="POST">
             <div id="order_info_list">
               <div>
-                <span class="title">주문목록 / 배송조회 내역 총 ${tot} 건</span>
+                <span class="title">주문목록 / 배송조회 내역 총 ${map.tot} 건</span>
                 <div class="func_btns">
                   <button class="btn" name="start" id="startBtn">배송중 처리</button>
                   <button class="btn" name="end" id="endBtn">배송완료 처리</button>
@@ -75,7 +75,7 @@
                   <th>상품금액/수량</th>
                   <th>처리상태</th>
                 </tr>                
-                <c:forEach var="item2" items="${listSeparate}">
+                <c:forEach var="item2" items="${map.listSeparate}">
                 <tr class="${item2.order_num}">
                   <td>${item2.book_id}</td>
                   <td>${item2.book_title} | ${item2.book_writer}</td>

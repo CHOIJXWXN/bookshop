@@ -5,9 +5,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 import javax.inject.Inject;
-import javax.servlet.ServletContext;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,8 +20,6 @@ public class AdminServiceImpl implements AdminService {
 	AdminDAO dao;
 	@Inject
 	BookDAO bdao;	
-	@Autowired
-	ServletContext servletContext;
 
 	@Override
 	public HashMap<String, Object> viewOrder(int pageNum) throws Exception {
@@ -55,9 +51,9 @@ public class AdminServiceImpl implements AdminService {
 	public HashMap<String, Object> viewProduct(int pageNum) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("bookCnt", bdao.getBookCnt());
-		map.put("novelCnt", bdao.getBookCntNovel());
-		map.put("poemCnt", bdao.getBookCntPoem());
-		map.put("travelCnt", bdao.getBookCntTravel());
+		map.put("novelCnt", bdao.getGenreBookCnt("소설"));
+		map.put("poemCnt", bdao.getGenreBookCnt("시/에세이"));
+		map.put("travelCnt", bdao.getGenreBookCnt("여행"));
 		map.put("list", dao.getBookList(pageNum));
 		return map;
 	}
