@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,8 +29,8 @@ public class AdminController {
 	
 	// 관리자 메인 페이지
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String admin(Model model) throws Exception {
-		return "admin/admin";
+	public String admin(HttpSession session, Model model) throws Exception {
+		return "redirect:/admin";
 	}
 	
 	// 주문 관리 페이지

@@ -27,6 +27,11 @@ public class RecordDAOImpl implements RecordDAO {
 		map.put("start", start);
 		return sqlSession.selectList(SESSION + ".getRecord", map);
 	}
+	
+	@Override
+	public int getRecordCnt(String user_id) throws Exception {
+		return sqlSession.selectOne(SESSION + ".getRecordCnt", user_id);
+	}
 
 	@Override
 	public List<Book> searchBook(String keyword, int pageNum) throws Exception {
