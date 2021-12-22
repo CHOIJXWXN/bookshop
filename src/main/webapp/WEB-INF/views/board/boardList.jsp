@@ -28,20 +28,20 @@
              </div>
              <!-- 아래로 문의 리스트 10개씩 -->
              <!-- 여기부터 반복(10개) -->
-             <c:forEach var="ask" items="${list }">
+             <c:forEach var="askList" items="${list }">
              <div class="row">
                  <div class="board_id">
-                     <p>${ask.ask_id }</p>
+                     <p>${askList.ask_id }</p>
                  </div>
                  <div class="board_writer">
-                    <p>${ask.book_title }</p>
+                    <p>${askList.book_title }</p>
                  </div>
                  <div class="board_ttl">
-                    <a href="#"><p style="text-align: left;">[문의종류] ${ask.ask_sort }</p></a>                    
+                    <a href="#"><p style="text-align: left;">[문의종류] ${askList.ask_sort }</p></a>                    
                  </div>
                  
                  <div class="board_date">
-                    <p>${ask.ask_date }</p>
+                    <p>${askList.ask_date }</p>
                  </div>
              </div>
              </c:forEach>

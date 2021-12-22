@@ -39,17 +39,12 @@ public class OrderController {
 	public String select(@RequestParam List<String> checked_book_id, @RequestParam List<String> book_id, @RequestParam List<Integer> book_cnt, HttpSession session, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
 		//user_id = "abcd";
-		Cart cart;
 		List<CartPlus> cartPlus = new ArrayList<CartPlus>();
 		for (var i = 0; i < book_id.size(); i++) {
-			cart = new Cart(user_id, book_id.get(i), book_cnt.get(i));
-			orderService.updateCart(cart);
+			orderService.updateCart(new Cart(user_id, book_id.get(i), book_cnt.get(i)));
 		}
 		for (var i = 0; i < checked_book_id.size(); i++) {
-			cart = new Cart();
-			cart.setUser_id(user_id);
-			cart.setBook_id(checked_book_id.get(i));
-			cartPlus.add(orderService.viewCertainCart(cart));
+			cartPlus.add(orderService.viewCertainCart(new Cart(user_id, checked_book_id.get(i), 0)));
 		}
 		model.addAttribute("selectList", cartPlus);
 		model.addAttribute("user", memberService.getUserInfo(user_id));
@@ -62,10 +57,8 @@ public class OrderController {
 	public String all(@RequestParam List<String> book_id, @RequestParam List<Integer> book_cnt, HttpSession session, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
 		//user_id = "abcd";
-		Cart cart;
 		for (var i = 0; i < book_id.size(); i++) {
-			cart = new Cart(user_id, book_id.get(i), book_cnt.get(i));
-			orderService.updateCart(cart);
+			orderService.updateCart(new Cart(user_id, book_id.get(i), book_cnt.get(i)));
 		}
 		model.addAttribute("allList", orderService.viewCart(user_id));
 		model.addAttribute("user", memberService.getUserInfo(user_id));
@@ -110,7 +103,6 @@ public class OrderController {
 	// 장바구니 페이지
 	@RequestMapping(value = "/cart", method = RequestMethod.GET)
 	public String cart(HttpSession session, Model model) throws Exception {
-		// (해당 유저의 List<Cart>, List<Book>) HashMap
 		String user_id = (String) session.getAttribute("user_id");
 		//user_id = "abcd";
 		model.addAttribute("list", orderService.viewCart(user_id));
