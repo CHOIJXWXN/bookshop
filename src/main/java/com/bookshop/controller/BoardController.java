@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bookshop.service.BoardService;
+import com.bookshop.vo.Ask;
 import com.bookshop.vo.AskList;
 
 @Controller
@@ -32,7 +33,6 @@ public class BoardController {
 			return "redirect:/login";
 		}
 		// 2) 회원 아이디에 일치하는 문의 목록들을 10개씩 리스트로 가져옴.
-		
 			List<AskList> list = boardService.getAskList(user_id); 
 			model.addAttribute("list", list);
 			return "board/boardList";
@@ -64,9 +64,13 @@ public class BoardController {
 	// 글쓰기 등록
 	// url이 'path/ask/writeAction'
 	@RequestMapping (value="/wrtieAction", method = RequestMethod.POST)
-	public String wrtieAction(Model model) throws Exception {
+	public String wrtieAction(Model model, RedirectAttributes ra, HttpSession session, Ask ask) throws Exception {
+			String user_id = (String) session.getAttribute("user_id");
+			ask.setWriter(user_id);
+			
+			boardService.wrtieAction(ask);
 		
-		return null;
+		return "redirect:/ask/";
 	}
 	
 

@@ -26,13 +26,15 @@
     	    $('#upload').click(function () {
   	            var ask_sort = $('#ask_sort').val();
   	            var ask_contents = $('#summernote').val();
-  	            alert(ask_contents);
   	            if(ask_sort == '') {
   	                $('#category_null').show();
   	                return;
   	            }
+  	      		// var test = '';
+  	            // test += ask.replace('<br>', '');
+  	            // test += ask.replace('<p>', '').replace('</p>','' );
   	            // 아무 내용 없이 엔터나 띄어쓰기 입력 후 upload 클릭해도 알림 띄우기 -> ??
-  	            if(ask_contents.replace(/\sl /gi,"") == '') {
+  	            if($.trim(ask_contents) == '') {
   	                $('#contents_null').show();
   	                return;
   	            }
@@ -97,8 +99,7 @@
              <!-- 내용 쓰는 부분 (ask_contents)-->
              <div>
  				 <textarea id="summernote" name="ask_contents"></textarea>    
-			</div>
-                    
+			</div> 
              <!-- 버튼박스 -->
              <div class="btn_box">
                  <button type="button" class="goback">←&nbsp;List</button>
@@ -136,7 +137,7 @@
                 minHeight: 300,             // set minimum height of editor
                 maxHeight: 450,             // set maximum height of editor
                 focus: true,               // set focus to editable area after initializing summernote
-                lang: 'ko-KR' // default: 'en-US'
+                lang: 'ko-KR' 				// default: 'en-US'
               });
           });
     </script>
