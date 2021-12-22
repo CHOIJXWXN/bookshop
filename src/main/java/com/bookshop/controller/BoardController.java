@@ -59,7 +59,14 @@ public class BoardController {
 		
 		
 			return "board/boardWrite";	
+	}
+	
+	// 글쓰기 등록
+	// url이 'path/ask/writeAction'
+	@RequestMapping (value="/wrtieAction", method = RequestMethod.POST)
+	public String wrtieAction(Model model) throws Exception {
 		
+		return null;
 	}
 	
 
