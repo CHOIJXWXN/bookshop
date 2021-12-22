@@ -5,15 +5,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
-  $(document).ready(function() {
+$(document).ready(function() {
 	  $('.nav_1').hover(function() {		  
-          $('.books_sub_mn').slideDown(300);
-          $('.books_sub_mn').css('display', 'flex');
-      }, function() {
-    	  $('.books_sub_mn').slideUp(300);
-      });
+        $('.books_sub_mn').slideDown(300);
+        $('.books_sub_mn').css('display', 'flex');
+    }, function() {
+  	  $('.books_sub_mn').slideUp(300);
+    });
 	  
 	  $('.my_mn').hover(function() {
 		  <c:if test="${admin == 1}">
@@ -24,7 +24,7 @@
 	  }, function() {
 		  $('#my_mn').slideUp(300);
 	  });
-  });
+});
 </script>
 </head>
 <body>
@@ -54,18 +54,18 @@
           <!-- case1) 로그아웃 상태 -->
           <c:if test="${empty user_id }">
           <a href="${path }/login" class="info_mn login">
-            <img src="../resources/images/login.png" alt="login">
+            <img src="${path}/resources/images/login.png" alt="login">
             <span>Log In</span>
           </a>
           <a href="${path }/join" class="info_mn join">
-            <img src="../resources/images/login.png" alt="join">
+            <img src="${path}/resources/images/login.png" alt="join">
             <span>Join</span>
           </a>
           </c:if>
           <!-- case2) 로그인 상태 -->
          <c:if test="${not empty user_id }">
          <div class="my_mn">
-           <img src="../resources/images/mypage.png" alt="">
+           <img src="${path}/resources/images/mypage.png" alt="">
            <ul id="my_mn" style="display: none;">
 	         <li><a href="${path}/mypage/">MYPAGE</a></li>
 	         <li><a href="${path}/order/cart">CART</a></li>
