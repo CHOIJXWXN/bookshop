@@ -6,7 +6,6 @@
 <html>
 <head>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
 <script>
 $(document).ready(function() {
 	  $('.nav_1').hover(function() {		  

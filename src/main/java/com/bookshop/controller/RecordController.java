@@ -49,7 +49,7 @@ public class RecordController {
 	// 기록 입력 페이지
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String write(Model model) throws Exception {
-		return "";
+		return "record/recordWrite";
 	}
 	
 	// 기록 입력 기능
