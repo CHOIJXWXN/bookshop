@@ -127,6 +127,9 @@ $(document).ready(function() {
 		var book_id = $('input[type=hidden][name=book_id]').val();
 		var review_contents = $('#write_review_box').val();
 		var review_score = $('input[type=radio][name=rating]:checked').val();
+		if (review_contents = '') {
+			alert('리뷰를 적으세요');
+		}
 		$.ajax({
 			type : "GET",
 			url : "./addReview",

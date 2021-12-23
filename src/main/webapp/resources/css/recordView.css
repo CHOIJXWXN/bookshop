@@ -1,0 +1,242 @@
+@charset "UTF-8";
+
+
+#wrap {
+  width: 100%;
+  
+}
+body {
+  padding: 0;
+  margin: 0;
+  
+}
+
+/* [2]메인화면*/
+#write_record {
+  float: left;
+  width: 100%;
+  height: 100vh;
+  /* background-image: url("../images/main_bg_10.jpg"); */
+  /* background-repeat: no-repeat;
+  background-size: cover; */
+  background-color: whitesmoke;
+  position: relative;
+}
+#write_record > img {
+  width: 900px;
+  position: absolute;
+  top: 100;
+  left: 50%;
+  margin-left: -450px;
+  z-index: -1;
+}
+.record_box {
+    margin: 0 auto;
+    width: 900px;
+    height: 810px;
+    margin-top: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background-image: url("../images/main_bg_10.jpg"); */
+    /* background-repeat: no-repeat; */
+    /* background-size: cover; */
+  
+    padding-top: 50px;
+}
+/* 책 정보 */
+.book_info {
+  width: 90%;
+  height: 300px;
+  display: flex;
+}
+.contents {
+  width: 90%;
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
+.contents:hover {
+  cursor: context-menu;
+}
+.img_wrap {
+  width: 40%;
+  height: 300px;
+  padding: 20px 0;
+  text-align: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.img_wrap img {
+  height: 100%;
+  filter: drop-shadow(5px 5px 5px #555);
+}
+.info_wrap {
+  width: 60%;
+  height: 290px;
+  margin-top: 10px;
+}
+.info_wrap > div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.info_wrap h3 {
+  width: 24%;
+  font-family: 'NotoSerifKR';
+  font-size: 17px;
+  line-height: 50px;
+  color: #1C1A1A;
+  text-align: right;
+  margin-right: 3%;
+}
+.info_wrap .book_writer,
+.info_wrap .book_pub {
+  width: 68%;
+  font-family: 'NotoSerifKR';
+  font-size: 17px;
+  line-height: 50px;
+  color: #1C1A1A;
+  text-align: left;
+}
+.info_wrap .date_wrap {
+    width: 68%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+.info_wrap .book_score {
+  width: 46%;
+  height: 50px;
+  font-size: 20px;
+  margin-right: 22%;
+  line-height: 50px;
+  color: #1C1A1A;
+  display: flex;
+  align-items: center;
+}
+
+.info_wrap .book_ttl_wrap {
+  width: 68%;
+  padding-top: 13px;
+}
+.book_ttl {
+  font-family: 'NotoSerifKR';
+  font-size: 16px;
+  line-height: 24px;
+  color: #1C1A1A;
+  text-align: left;
+}
+input[type="date"] {
+    width: 110px;
+    height: 40px;
+    font-family: "Pretendard-Regular";
+    font-size: 16px;
+    line-height: 40px;
+    color: #1C1A1A;
+    text-align: left;
+    background: transparent;
+    border: none;
+}
+input[type="date"]::-webkit-clear-button, 
+input[type="date"]::-webkit-inner-spin-button { 
+    display: none; 
+} 
+
+.date_wrap span {
+    font-family: "Pretendard-Regular";
+    padding: 0 10px;
+}
+/* 별점랭킹 input */
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 2rem;
+  line-height: 2.25rem;
+  justify-content: space-around;
+  padding: 0 0.1em;
+  text-align: center;
+  width: 5em;
+ /*  background-color: red; */
+}
+ 
+.star-rating input {
+  display: none;
+}
+ 
+.star-rating label {
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 0.8px;
+  -webkit-text-stroke-color: #1C1A1A;
+  cursor: pointer;
+}
+ 
+.star-rating :checked ~ label {
+  -webkit-text-fill-color: gold;
+}
+ 
+/* .star-rating label:hover,
+.star-rating label:hover ~ label {
+  -webkit-text-fill-color: #fff58c;
+} */
+/* .fa-star {
+    color: #EFEFEF;
+    cursor: pointer;
+} */
+/* .book_score .on {
+    color : #F4C01F;
+} */
+/* 내용 불러오는 폼 */
+.contents_box {
+    width: 100%;
+    height: 300px;
+    background-color: white;
+    resize: none;
+    border: 1px solid #707070;
+    padding: 10px;
+    box-sizing: border-box;
+    outline: none;
+}
+/* 버튼들 */
+.btns_wrap {
+  width: 100%;
+  height: 60px;
+  padding: 0 2%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+.btns_wrap > .edit {
+ 
+  width: 180px;
+  height: 60px;
+  background-color: #1C1A1A;
+  border: none;
+  font-family: 'NotoSerifKR';
+  font-size: 18px;
+  line-height: 60px;
+  color: whitesmoke;
+  text-align: center;
+  margin: 0 30px;
+}
+.btns_wrap > .delete {
+    width: 180px;
+    height: 60px;
+    border: none;
+    font-family: 'NotoSerifKR';
+    font-size: 18px;
+    line-height: 60px;
+    color: #1C1A1A;
+    text-align: center;
+    margin: 0 30px;
+    border: 1px solid #707070;
+  }
+.btns_wrap > .edit:hover {
+  box-shadow: 0 0 6px #1C1A1A;
+  transition: 0.5s all ease;
+}
+.btns_wrap > .delete:hover {
+    background-color: white;
+    box-shadow: 0 0 6px #1C1A1A;
+    transition: 0.5s all ease;
+  }
+
