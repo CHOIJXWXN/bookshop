@@ -11,6 +11,12 @@
 	FROM BOOK
 	WHERE book_id = #{book_id}
 </select>
+<!-- ask table에서 book_id 받아오기 -->
+<select id="getBookid" resultType="string">
+	SELECT book_id 
+	FROM ASK 
+	WHERE ask_id = #{ask_id}
+</select>
 
 <!-- 문의 내용 저장(문의글 쓰기 )-->
 <insert id="writeAsk" >
@@ -35,5 +41,24 @@
 	AND available = 0;
 </select>
 
+<!-- 댓글 작성 -->
+<insert id="insertAskReply">
+	INSERT INTO ASKREPLY (ask_id, writer, askreply_contents, askreply_date)
+	VALUES (#{ask_id}, #{writer}, #{askreply_contents}, now())
+</insert>
+
+<!-- 댓글 불러오기 -->
+<select id="getAskReply" resultType="AskReply">
+	SELECT *
+	FROM ASKREPLY
+	WHERE ask_id = #{ask_id}
+</select>
+
+<!-- 댓글 삭제 -->
+<delete id="deleteAskReply">
+	DELETE 
+	FROM ASKREPLY
+	WHERE askreply_id = #{askreply_id} 
+</delete>
 
 </mapper>
