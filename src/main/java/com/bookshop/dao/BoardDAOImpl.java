@@ -38,5 +38,11 @@ public class BoardDAOImpl implements BoardDAO {
 		return ask;
 	}
 	
+	// 문의글 불러오기
+	@Override
+	public Ask getAsk(int ask_id) throws Exception {
+		return sqlSession.selectOne(SESSION + ".getAsk", ask_id);
+	}
+	
 
 }

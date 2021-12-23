@@ -24,6 +24,15 @@
 	FROM ASK a, BOOK b
 	WHERE a.book_id = b.book_id
 	AND a.writer = #{writer}
+	LIMIT 5
+</select>
+
+<!-- 문의글 불러오기 -->
+<select id="getAsk" resultType="Ask">
+	SELECT *
+	FROM ASK
+	WHERE ask_id = #{ask_id}
+	AND available = 0;
 </select>
 
 
