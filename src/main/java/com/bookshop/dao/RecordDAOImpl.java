@@ -57,4 +57,12 @@ public class RecordDAOImpl implements RecordDAO {
 		sqlSession.delete(SESSION + ".deleteRecord", record_id);
 	}
 
+	@Override
+	public Record getCertainRecord(String user_id, String book_id) throws Exception {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("user_id", user_id);
+		map.put("book_id", book_id);
+		return sqlSession.selectOne(SESSION + ".getCertainRecord", map);
+	}
+
 }

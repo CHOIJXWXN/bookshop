@@ -14,5 +14,5 @@ public interface RecordDAO {
 	public void addRecord(Record record) throws Exception;
 	public void updateRecord(Record record) throws Exception;
 	public void deleteRecord(int record_id) throws Exception;
-
+	public Record getCertainRecord(String user_id, String book_id) throws Exception;
 }

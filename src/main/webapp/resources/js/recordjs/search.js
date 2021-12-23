@@ -22,7 +22,7 @@ $(document).ready(function() {
 						str += '<div class="book_wrap">';
 						str += '<div class="img_wrap">';
 						str += '<img class="book_cover" src="../../resources/images/bookcover/' + searchList[i].book_cover + '" alt="book_cover">';
-						str += '<div class="b_layer"><a href="#">기록하기</a></div>';
+						str += '<div class="b_layer"><a href="../record/write?book_id=' + searchList[i].book_id + '">기록하기</a></div>';
 						str += '</div>';
 						str += '<h4 class="book_ttl">' + searchList[i].book_title + '</h4>';
 						str += '<span class="book_writer">' + searchList[i].book_writer + '</span>'
