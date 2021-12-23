@@ -11,6 +11,14 @@
     <link rel="stylesheet" href="${path }/resources/css/mainNav.css" />
     <link rel="stylesheet" href="${path }/resources/css/viewAsk.css" />
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  	<script>
+  		$(document).ready(function() {
+	    	$('#goback').click(function(){
+	        location.href='../ask/';
+	    	});
+  		});
+  </script>
+  
   </head>
   <body>
     <div id="wrap">
@@ -23,27 +31,27 @@
              <div class="table_h">
                  <div class="row_h1">
                      <h3>제목</h3>
-                     <p class="ask_ttl">문의종류 불러오기</p>
+                     <p class="ask_ttl">${book.book_title }</p>
                  </div>
                  <div class="row_h2">
                     <h3>문의상품</h3>
                     <!-- book_id 숨겨두기 -->
-                    <div class="book_id">book_id불러오기</div>
+                    <div class="book_id">${ask.book_id }</div>
                     <div class="book_thumbnail">
                         <!-- 책표지 불러오기 -->
-                        <img src="../../resources/images/book_cover_temp1.gif" alt="">
+                        <img src="${path}/resources/images/bookcover/${book.book_cover }" alt="">
                     </div>
                     <div class="book_ttl">
-                        <h4 class="ttl">책제목 불러오기</h4>
-                        <p class="writer">책작가 불러오기</p>
+                        <h4 class="ttl">${book.book_title }</h4>
+                        <p class="writer">${book.book_writer }</p>
                     </div>
                     <!-- order_num 숨겨두었음 -->
-                    <div class="order_num">주문번호 불러오기</div>
+                    <div class="order_num">${order_num }</div>
                 </div>               
              </div>        
              <!-- 문의 내용 불러오기 -->
              <div id="ask_contents">
-       			<textarea id="qna_contents" readonly="true">문의내용 불러오기</textarea>
+       			<textarea id="qna_contents" readonly="true">${ask.ask_contents}</textarea>
              </div> 
              <!-- 등록된 댓글 -->
              <div id="ask_reply_box">
@@ -92,13 +100,14 @@
              </div>
              <!-- 삭제버튼 -->
              <div class="btn_box">
-                 <button type="button" class="goback">←&nbsp;List</button>
+                 <button type="button" id="goback" class="goback">←&nbsp;List</button>
                  <button type="button" class="upload_reply">SAVE</button>
                  <!-- <button type="button" class="delete">DELETE</button> -->
              </div>
          </div>
-         
+     
       </section>
     </div>
   </body>
+  
 </html>

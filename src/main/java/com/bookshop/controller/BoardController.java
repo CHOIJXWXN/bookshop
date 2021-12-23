@@ -25,7 +25,7 @@ public class BoardController {
 	// [1] 문의게시판 리스트 페이지
 	// url 패턴이 'path/ask/'
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String ask(RedirectAttributes ra, HttpSession session, Model model) throws Exception {
+	public String ask(RedirectAttributes ra, HttpSession session, Model model, Ask ask) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
 		// 1) 로그인이 되어있지 않으면 로그인 페이지로 이동시키고 로그인이 필요하다고 알려줌
 		if(user_id == null) {
@@ -35,6 +35,7 @@ public class BoardController {
 		// 2) 회원 아이디에 일치하는 문의 목록들을 10개씩 리스트로 가져옴.
 			List<AskList> list = boardService.getAskList(user_id); 
 			model.addAttribute("list", list);
+	
 			return "board/boardList";
 		
 	}
@@ -55,7 +56,7 @@ public class BoardController {
 		
 		// 2) 도서 아이디, 책제목, 작가 / 주문번호를 넘겨줌 
 		model.addAttribute("book", boardService.getBookInfo(book_id));
-		model.addAttribute("order_num", order_num);	
+		model.addAttribute("order_num", order_num);	 
 		
 		
 			return "board/boardWrite";	
@@ -73,5 +74,31 @@ public class BoardController {
 		return "redirect:/ask/";
 	}
 	
+	//
+	@RequestMapping(value="/boardView", method= RequestMethod.GET)
+	public String boardView(Integer ask_id, Model model, HttpSession session, RedirectAttributes ra) throws Exception {
+		
+		String user_id = (String) session.getAttribute("user_id");
+		// 1) 로그인이 되어있지 않으면 로그인 페이지로 이동시키고 로그인이 필요하다고 알려줌
+		if(user_id == null) {
+			ra.addFlashAttribute("msg", "로그인이 필요합니다.");
+			return "redirect:/login";
+		}
+		
+		if(ask_id == null) {
+			ra.addFlashAttribute("msg", "잘못된접근입니다.");
+			return "redirect:/ask/";
+		}
+		
+		Ask ask = boardService.boardView(ask_id);
+		
+		// 2) 도서 아이디, 책제목, 작가 / 주문번호를 넘겨줌 
+		model.addAttribute("book", boardService.getBookInfo(ask.getBook_id()));
+		
+		
+		model.addAttribute("ask", ask);
+		
+		return "board/boardView";
+	}
 
 }

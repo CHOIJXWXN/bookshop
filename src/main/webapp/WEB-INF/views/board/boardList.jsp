@@ -28,26 +28,28 @@
                  <h3 class="board_ttl">제목</h3>
                  <h3 class="board_date">날짜</h3>
              </div>
-             <!-- 아래로 문의 리스트 10개씩 -->
-             <!-- 여기부터 반복(10개) -->
+             <!-- 아래로 문의 리스트 5개씩 -->
+             <!-- 여기부터 반복(5개) -->
+             <c:forEach var="ask" items="${list }">
              <div class="row">
                  <div class="board_id">
-                     <p>000000</p>
+                     <p>${ask.ask_id }</p>
                  </div>
                  <div class="book_img">
-                  <div class="img_box"><img src="images/book_cover_temp5.jpg" alt=""></div>
+                  <div class="img_box"><img src="${path}/resources/images/bookcover/${book.book_cover }" alt=""></div>
                  </div>
                  <div class="ask_category">
-                    <p>[문의종류] 상품문의</p>
+                    <p>${ask.ask_sort }</p>
                 </div>
                  <div class="board_ttl">
-                    <a href="#"><p style="text-align: left;">| 달러구트 꿈 꿈백화점달러구트 꿈 꿈백화점달러구트 꿈백화점달러구트 꿈백화점달러구트 꿈백화점</p></a>                    
+                    <a href="${path}/ask/boardView?ask_id=${ask.ask_id}"><p style="text-align: left;"> ${ask.book_title }</p></a>                    
                  </div>
                  <div class="board_date">
-                    <p>2021-12-18</p>
+                    <p>${ask.ask_date }</p>
                  </div>
              </div>
-             <!-- 여기까지 반복(10개) -->                    
+             </c:forEach>
+             <!-- 여기까지 반복(5개) -->                    
             </div>
             
              <!-- 페이징 -->
@@ -57,9 +59,9 @@
                      <li><a href="#" class="next">next&nbsp;</a></li>
                  </ul>
              </div>
+             </section>
          </div>
          
-      </section>
-    </div>
+
   </body>
 </html>

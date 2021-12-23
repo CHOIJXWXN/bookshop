@@ -18,4 +18,7 @@ public interface BoardDAO {
 	// 문의 글 쓰기
 	public Ask writeAsk(Ask ask) throws Exception;
 	
+	// 문의글 불러오기
+	public Ask getAsk(int ask_id) throws Exception;
+	
 }
