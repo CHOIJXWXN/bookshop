@@ -38,7 +38,7 @@
             <!-- 반복할 li태그  -->
             <c:forEach var="record" items="${map.list}">
            	<li>
-                <a href="#">
+                <a href="./view?record_id=${record.record_id}">
            	    <div class="img_wrap">
                 <img class="book_cover" src="../resources/images/bookcover/${record.book_cover}" alt="book_cover">
                 </div>
@@ -100,30 +100,6 @@
             <input type="text" id="book_search" class="book_search" placeholder="제목, 작가 키워드로 검색하세요."/>
             <input type="hidden" id="pageNum" value="${pageNum}"/>
             <div class="book_box" >
-                <div class="book_wrap">
-                    <div class="img_wrap">
-                        <img class="book_cover" src="images/book_cover_temp1.gif" alt="">
-                        <div class="b_layer"><a href="#">기록하기</a></div>
-                       </div>             
-                       <h4 class="book_ttl">보잘 것행복이에요</h4>
-                       <span class="book_writer">책작가</span>
-                </div>
-                <div class="book_wrap">
-                    <div class="img_wrap">
-                        <img class="book_cover" src="images/book_cover_temp1.gif" alt="">
-                        <div class="b_layer"><a href="#">기록하기</a></div>
-                    </div>             
-                       <h4 class="book_ttl">보잘 것 없는 오늘이 행복이에요보잘 것 없는 오늘이 행복이에요</h4>
-                       <span class="book_writer">책작가</span>
-                </div>
-                <div class="book_wrap">
-                    <div class="img_wrap">
-                        <img class="book_cover" src="images/book_cover_temp1.gif" alt="">
-                        <div class="b_layer"><a href="#">기록하기</a></div>
-                       </div>             
-                       <h4 class="book_ttl">보잘 것 없는 오늘이 행복이에요보잘 것 없는 오늘이 행복이에요</h4>
-                       <span class="book_writer">책작가</span>
-                </div>
             </div>
             
           </div>
@@ -151,11 +127,14 @@
      });
 
     });    
-    
-
   </script>  
   
-
+  <script>
+	$(document).ready(function(){
+		var msg = '${msg}';
+		if(msg != null && msg != '') alert(msg);
+	});
+  </script>
   
 </body>
 </html>

@@ -8,7 +8,7 @@
 	<!-- 주문번호 리스트 -->
 	<select id="getOrderNumList" resultType="string">
 		SELECT order_num
-		FROM orders
+		FROM ORDERS
 		ORDER BY order_num DESC
 		LIMIT #{start}, 20
 		<!-- start : 20 * (pageNum - 1) -->
@@ -19,7 +19,7 @@
 		SELECT C.order_num, C.book_id, D.book_title, D.book_writer, D.book_price, C.book_cnt
 		FROM (
 			SELECT A.order_num, B.user_id, A.book_id, A.book_cnt, B.order_status
-			FROM orderlist A, orders B
+			FROM ORDERLIST A, ORDERS B
 			WHERE A.order_num = B.order_num
 			AND A.order_num IN (
 			<foreach item="item" collection="list" separator=",">
@@ -35,7 +35,7 @@
 		SELECT DISTINCT(C.order_num), C.user_id, C.order_status, COUNT(C.order_num) AS cnt
 		FROM (
 			SELECT A.order_num, B.user_id, A.book_id, A.book_cnt, B.order_status 
-			FROM orderlist A, orders B
+			FROM ORDERLIST A, ORDERS B
 			WHERE A.order_num = B.order_num
 			AND A.order_num IN (
 			<foreach item="item" collection="list" separator=",">
@@ -49,18 +49,18 @@
 	
 	<!-- 배송중 상태 변경 -->
 	<update id="changeToStart">
-		UPDATE orders
+		UPDATE ORDERS
 		SET order_status = '배송중'
 		WHERE order_num = #{order_num}
 	</update>
 	<insert id="addDelivery" parameterType="hashmap">
-		INSERT delivery
+		INSERT DELIVERY
 		VALUES (#{order_num}, #{tracking_num})
 	</insert>
 	
 	<!-- 배송완료 상태 변경 -->
 	<update id="changeToEnd">
-		UPDATE orders
+		UPDATE ORDERS
 		SET order_status = '배송완료'
 		WHERE order_num = #{order_num}
 	</update>
@@ -68,48 +68,48 @@
 	<!-- 배송준비중 상태의 주문 개수 -->
 	<select id="getBeforeStartCnt" resultType="_int">
 		SELECT COUNT(*)
-		FROM orders
+		FROM ORDERS
 		WHERE order_status = '배송준비중'
 	</select>
 	
 	<!-- 배송중 상태의 주문 개수 -->
 	<select id="getStartCnt" resultType="_int">
 		SELECT COUNT(*)
-		FROM orders
+		FROM ORDERS
 		WHERE order_status = '배송중'
 	</select>
 	
 	<!-- 배송완료 상태의 주문 개수 -->
 	<select id="getEndCnt" resultType="_int">
 		SELECT COUNT(*)
-		FROM orders
+		FROM ORDERS
 		WHERE order_status = '배송완료'
 	</select>
 	
 	<!-- 총 주문 개수 -->
 	<select id="getTotCnt" resultType="_int">
 		SELECT COUNT(*)
-		FROM orders
+		FROM ORDERS
 	</select>
 	
 	<!-- 책 20개 리스트 -->
 	<select id="getBookList" resultType="Book">
 		SELECT *
-		FROM book
+		FROM BOOK
 		WHERE available = 0
 		LIMIT #{start}, 20
 	</select>
 	
 	<!-- 책 삭제 -->
 	<update id="deleteBook">
-		UPDATE book
+		UPDATE BOOK
 		SET available = 1
 		WHERE book_id = #{book_id}
 	</update>
 	
 	<!-- 책 입력 -->
 	<insert id="addBook">
-		INSERT INTO book
+		INSERT INTO BOOK
 		VALUES (#{book_id}, #{book_title}, #{book_writer}, #{book_pub}, #{book_date}, #{book_price}, #{book_genre}, 0, CONCAT(#{book_id}, '.jpg'), #{book_intro}, #{book_contents}, 0)
 	</insert>
 

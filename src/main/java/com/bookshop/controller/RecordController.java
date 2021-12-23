@@ -12,9 +12,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.bookshop.service.BookService;
 import com.bookshop.service.RecordService;
 import com.bookshop.vo.Book;
+import com.bookshop.vo.Record;
 
 @Controller
 @RequestMapping(value = "/record/*")
@@ -22,6 +25,8 @@ public class RecordController {
 	
 	@Inject
 	RecordService recordService;
+	@Inject
+	BookService bookService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(RecordController.class);
 	
@@ -48,38 +53,47 @@ public class RecordController {
 	
 	// 기록 입력 페이지
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
-	public String write(Model model) throws Exception {
-		return "record/recordWrite";
+	public String write(String book_id, HttpSession session, RedirectAttributes ra, Model model) throws Exception {
+		String user_id = (String) session.getAttribute("user_id");
+		Record result = recordService.getRecord(user_id, book_id);
+		if (result != null) {
+			ra.addFlashAttribute("msg", "이미 기록 적음");
+			return "redirect:/record/";
+		} else {
+			model.addAttribute("book", bookService.view(book_id));
+			return "record/recordWrite";
+		}	
 	}
 	
 	// 기록 입력 기능
 	@RequestMapping(value = "/addRecord", method = RequestMethod.GET)
-	public String addRecord(Model model) throws Exception {
-		return "";
+	public String addRecord(Record record, HttpSession session, Model model) throws Exception {
+		String user_id = (String) session.getAttribute("user_id");
+		record.setUser_id(user_id);
+		recordService.write(record);
+		return "redirect:/record/";
 	}
 	
 	// 기록 수정 페이지
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public String edit(Model model) throws Exception {
-		return "";
-	}
-	
-	// 기록 수정 기능
-	@RequestMapping(value = "/editRecord", method = RequestMethod.GET)
-	public String editRecord(Model model) throws Exception {
-		return "";
+	public String edit(Record record, Model model) throws Exception {
+		recordService.edit(record);
+		int record_id = record.getRecord_id();
+		return "redirect:/record/view?record_id=" + record_id;
 	}
 	
 	// 기록 삭제 기능
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String delete(Model model) throws Exception {
-		return "";
+	public String delete(int record_id, Model model) throws Exception {
+		recordService.delete(record_id);
+		return "redirect:/record/";
 	}
 	
 	// 기록 상세 페이지
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public String view(Model model) throws Exception {
-		return "";
+	public String view(int record_id, Model model) throws Exception {
+		model.addAttribute("recordPlus", recordService.viewOne(record_id));
+		return "record/recordView";
 	}
 	
 }

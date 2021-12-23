@@ -8,8 +8,8 @@
 	<!-- 기록 12개씩 최근순 -->
 	<select id="getRecord" parameterType="hashmap" resultType="RecordPlus">
 		SELECT B.record_id, A.book_cover, A.book_title, A.book_writer, A.book_pub, B.record_init_date, B.record_fin_date, B.record_score, B.record_contents
-		FROM book A, (
-			SELECT * FROM record
+		FROM BOOK A, (
+			SELECT * FROM RECORD
 			WHERE user_id = #{user_id}
 			ORDER BY record_date DESC
 			LIMIT #{start}, 12
@@ -20,14 +20,14 @@
 	<!-- 특정 유저의 기록 총 개수 -->
 	<select id="getRecordCnt" resultType="_int">
 		SELECT COUNT(*)
-		FROM record
+		FROM RECORD
 		WHERE user_id = #{user_id}
 	</select>
 	
 	<!-- 키워드 검색 -->
 	<select id="searchBook" parameterType="hashmap" resultType="Book">
 		SELECT *
-		FROM book
+		FROM BOOK
 		WHERE (book_title LIKE CONCAT('%', #{keyword}, '%')
 		OR book_writer LIKE CONCAT('%', #{keyword}, '%'))
 		AND available = 0
@@ -36,13 +36,13 @@
 	
 	<!-- 기록 입력 -->
 	<insert id="addRecord">
-		INSERT INTO record
+		INSERT INTO RECORD
 		VALUES(null, #{user_id}, #{book_id}, #{record_init_date}, #{record_fin_date}, #{record_score}, #{record_contents}, NOW())	
 	</insert>
 	
 	<!-- 기록 수정 -->
 	<update id="updateRecord">
-		UPDATE record
+		UPDATE RECORD
 		SET record_init_date = #{record_init_date},
 			record_fin_date = #{record_fin_date},
 			record_score = #{record_score},
@@ -52,8 +52,24 @@
 	
 	<!-- 기록 삭제 -->
 	<delete id="deleteRecord">
-		DELETE FROM record
+		DELETE FROM RECORD
 		WHERE record_id = #{record_id}
 	</delete>
+	
+	<!-- 특정 유저의 특정 책에 대한 기록 -->
+	<select id="getCertainRecord" parameterType="hashmap" resultType="Record">
+		SELECT *
+		FROM RECORD
+		WHERE user_id = #{user_id}
+		AND book_id = #{book_id}
+	</select>
+	
+	<!-- 특정 기록 -->
+	<select id="getCertainRecordPlus" resultType="RecordPlus">
+		SELECT B.record_id, A.book_cover, A.book_title, A.book_writer, A.book_pub, B.record_init_date, B.record_fin_date, B.record_score, B.record_contents
+		FROM BOOK A, RECORD B
+		WHERE A.book_id = B.book_id
+		AND B.record_id = #{record_id}
+	</select>
 
 </mapper>
