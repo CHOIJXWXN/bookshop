@@ -31,8 +31,7 @@ public class MainController {
 	
 	// 메인 페이지
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String main(String msg, Model model) throws Exception {
-		model.addAttribute("msg", msg);
+	public String main(Model model) throws Exception {
 		return "main/main";
 	}	
 
@@ -41,8 +40,7 @@ public class MainController {
 	// 로그인 페이지
 	// url 패턴이 'path/login'
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(String msg, Model model) throws Exception {
-		model.addAttribute("msg", msg);
+	public String login(Model model) throws Exception {
 		return "main/login";
 	}
 	

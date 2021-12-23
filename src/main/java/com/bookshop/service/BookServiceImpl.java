@@ -65,6 +65,7 @@ public class BookServiceImpl implements BookService {
 		map.put("searchPaging", paging);
 		map.put("book_genre", book_genre);
 		map.put("bookCnt", bookCnt);
+		map.put("keyword", keyword);
 		return map;
 	}
 	
