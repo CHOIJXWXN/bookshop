@@ -25,7 +25,7 @@
                  <h3 class="board_id">No.</h3>
                  <h3 class="book_img"></h3>
                  <h3 class="ask_category"></h3>
-                 <h3 class="board_ttl">제목</h3>
+                 <h3 class="board_ttl" style="text-align:left">제목</h3>
                  <h3 class="board_date">날짜</h3>
              </div>
              <!-- 아래로 문의 리스트 5개씩 -->
@@ -36,10 +36,10 @@
                      <p>${ask.ask_id }</p>
                  </div>
                  <div class="book_img">
-                  <div class="img_box"><img src="${path}/resources/images/bookcover/${book.book_cover }" alt=""></div>
+                  <div class="img_box"><img src="${path}/resources/images/bookcover/${ask.book_cover }" alt=""></div>
                  </div>
                  <div class="ask_category">
-                    <p>${ask.ask_sort }</p>
+                    <p>	&#91;&nbsp;${ask.ask_sort }&nbsp;&#93;</p>
                 </div>
                  <div class="board_ttl">
                     <a href="${path}/ask/boardView?ask_id=${ask.ask_id}"><p style="text-align: left;"> ${ask.book_title }</p></a>                    
