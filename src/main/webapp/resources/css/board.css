@@ -68,17 +68,12 @@ section {
     width: 13%;
 }
 .board_ttl {
-    width: 34%;
+    width: 40%;
     
 }
+
 .board_date {
-    width: 13%;
-}
-.delete_btn_box {
-	width : 13%;
-	display : flex;
-	justify-content:center;
-	align-items : center;
+    width: 20%;
 }
 
 /* 각 게시글 행 스타일 */
@@ -103,24 +98,7 @@ section {
     white-space: nowrap;
     overflow: hidden;
 }
-.delete_btn {
-	width: 70px;
-    height: 35px;
-    background-color: transparent;
-    border: 0.5px solid #707070;
-    font-family: "Pretendard-Regular";
-    font-size: 13px;
-    line-height: 35px;
-    color: #1C1A1A;
-    text-align: center;
-    cursor:pointer;
-}
-.delete_btn:hover {
-	background-color: #1C1A1A;
-    transition: 0.5s all ease;
-    color: white;
-    
-}
+
 /* .board_ttl p {
     text-overflow: ellipsis;
 } */

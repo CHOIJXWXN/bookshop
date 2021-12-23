@@ -27,7 +27,6 @@
                  <h3 class="ask_category"></h3>
                  <h3 class="board_ttl" style="text-align:left">제목</h3>
                  <h3 class="board_date">날짜</h3>
-                 <h3 class="delete_btn_box"></h3>
              </div>
              <!-- 아래로 문의 리스트 5개씩 -->
              <!-- 여기부터 반복(5개) -->
@@ -47,9 +46,6 @@
                  </div>
                  <div class="board_date">
                     <p>${ask.ask_date }</p>
-                 </div>
-                 <div class="delete_btn_box">
-                    <button type="button" class="delete_btn">삭제</button>
                  </div>
              </div>
              </c:forEach>
