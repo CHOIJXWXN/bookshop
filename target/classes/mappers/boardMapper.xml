@@ -20,7 +20,7 @@
 
 <!-- 문의 글 list -->
 <select id="getAskList" resultType="AskList">
-	SELECT ask_id, book_title, ask_sort, ask_date
+	SELECT ask_id, book_title, ask_sort, ask_date, book_cover
 	FROM ASK a, BOOK b
 	WHERE a.book_id = b.book_id
 	AND a.writer = #{writer}

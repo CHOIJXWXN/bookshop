@@ -36,7 +36,7 @@
                      <p>${ask.ask_id }</p>
                  </div>
                  <div class="book_img">
-                  <div class="img_box"><img src="${path}/resources/images/bookcover/${book.book_cover }" alt=""></div>
+                  <div class="img_box"><img src="${path}/resources/images/bookcover/${ask.book_cover }" alt=""></div>
                  </div>
                  <div class="ask_category">
                     <p>${ask.ask_sort }</p>
