@@ -54,24 +54,6 @@ public class BookDAOImpl implements BookDAO {
 		map.put("book_genre", book_genre);
 		return sqlSession.selectList(SESSION + ".getGenreBookList", map);
 	}
-	
-//	@Override
-//	public List<Book> getBookListNovel(int pageNum) throws Exception {
-//		int start = (pageNum - 1) * 16;
-//		return sqlSession.selectList(SESSION + ".getBookListNovel", start);
-//	}
-//
-//	@Override
-//	public List<Book> getBookListPoem(int pageNum) throws Exception {
-//		int start = (pageNum - 1) * 16;
-//		return sqlSession.selectList(SESSION + ".getBookListPoem", start);
-//	}
-//
-//	@Override
-//	public List<Book> getBookListTravel(int pageNum) throws Exception {
-//		int start = (pageNum - 1) * 16;
-//		return sqlSession.selectList(SESSION + ".getBookListTravel", start);
-//	}
 
 	@Override
 	public List<Book> searchBook(String keyword, int pageNum) throws Exception {
@@ -131,7 +113,7 @@ public class BookDAOImpl implements BookDAO {
 
 	@Override
 	public List<Book> getWriterRecommTwo(String book_writer) throws Exception {
-		return sqlSession.selectList(SESSION + ".getWriterRecommFour", book_writer);
+		return sqlSession.selectList(SESSION + ".getWriterRecommTwo", book_writer);
 	}
 
 	@Override
