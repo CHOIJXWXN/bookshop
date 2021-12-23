@@ -38,7 +38,7 @@
             <!-- 반복할 li태그  -->
             <c:forEach var="record" items="${map.list}">
            	<li>
-                <a href="#">
+                <a href="./view?record_id=${record.record_id}">
            	    <div class="img_wrap">
                 <img class="book_cover" src="../resources/images/bookcover/${record.book_cover}" alt="book_cover">
                 </div>

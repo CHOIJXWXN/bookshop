@@ -7,14 +7,14 @@
 
 	<!-- 특정 유저 장바구니 -->
    	<select id="getCartPlus" resultType="CartPlus">
-   		SELECT B.book_id, B.book_cover, B.book_title, B.book_writer, A.book_cnt, B.book_price FROM cart A, book B
+   		SELECT B.book_id, B.book_cover, B.book_title, B.book_writer, A.book_cnt, B.book_price FROM CART A, BOOK B
      	WHERE user_id = #{user_id}
      	AND A.book_id = B.book_id
    	</select>
    	
 	<!-- 특정 유저의 특정 책 장바구니 -->
    	<select id="getCertainCartPlus" resultType="CartPlus">
-   		SELECT B.book_id, B.book_cover, B.book_title, B.book_writer, A.book_cnt, B.book_price FROM cart A, book B
+   		SELECT B.book_id, B.book_cover, B.book_title, B.book_writer, A.book_cnt, B.book_price FROM CART A, BOOK B
      	WHERE user_id = #{user_id}
      	AND A.book_id = B.book_id
      	AND A.book_id = ${book_id}
@@ -22,19 +22,19 @@
    	
    	<!-- 상품을 장바구니에 추가 -->
    	<insert id="addCart">
-   		INSERT INTO cart
+   		INSERT INTO CART
    		VALUES (#{user_id}, #{book_id}, #{book_cnt})
    	</insert>
    	
    	<!-- 상품을 장바구니에서 삭제 -->
    	<delete id="deleteCart">
-   		DELETE FROM cart
+   		DELETE FROM CART
    		WHERE user_id = #{user_id} AND book_id = #{book_id}
    	</delete>
    	
    	<!-- 장바구니 수량 변경 -->
    	<update id="updateCntCart">
-   		UPDATE cart
+   		UPDATE CART
    		SET book_cnt = #{book_cnt}
    		WHERE user_id = #{user_id}
    		AND book_id = #{book_id}
@@ -43,30 +43,30 @@
    	<!-- 오늘 총 주문 개수 -->
    	<select id="getOrderCntToday" resultType="_int">
    		SELECT COUNT(*)
-   		FROM orders
+   		FROM ORDERS
    		WHERE DATE_FORMAT(order_date, "%Y-%m-%d") = CURDATE()
    	</select>
    	
    	<!-- 주문 입력 -->
    	<insert id="addOrder">
-   		INSERT INTO orders
+   		INSERT INTO ORDERS
    		VALUES (#{order_num}, #{user_id}, #{order_name}, #{order_addr}, #{order_phone}, #{order_tot}, #{ship_cost}, #{final_cost}, #{comments}, NOW(), 1)
    	</insert>
    	<insert id="addOrderlist">
-   		INSERT INTO orderlist
+   		INSERT INTO ORDERLIST
    		VALUES (#{order_num}, #{book_id}, #{book_cnt});
    	</insert>
    	
    	<!-- 포인트 차감 -->
    	<update id="changePoint">
-   		UPDATE users
+   		UPDATE USERS
    		SET user_point = user_point - #{point_use} + #{point_add}
    		WHERE user_id = #{user_id}
    	</update>
    	
    	<!-- 판매량 증가 -->
    	<update id="changeSellTot">
-   		UPDATE book
+   		UPDATE BOOK
    		SET book_sell_tot = book_sell_tot + #{book_cnt}
    		WHERE book_id = #{book_id}
    	</update>

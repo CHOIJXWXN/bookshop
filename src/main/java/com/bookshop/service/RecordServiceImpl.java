@@ -32,13 +32,28 @@ public class RecordServiceImpl implements RecordService {
 	}
 
 	@Override
-	public void writeRecord(Record record) throws Exception {
+	public void write(Record record) throws Exception {
 		dao.addRecord(record);
 	}
 
 	@Override
 	public Record getRecord(String user_id, String book_id) throws Exception {
 		return dao.getCertainRecord(user_id, book_id);
+	}
+
+	@Override
+	public RecordPlus viewOne(int record_id) throws Exception {
+		return dao.getCertainRecordPlus(record_id);
+	}
+
+	@Override
+	public void edit(Record record) throws Exception {
+		dao.updateRecord(record);
+	}
+
+	@Override
+	public void delete(int record_id) throws Exception {
+		dao.deleteRecord(record_id);
 	}
 
 }

@@ -55,6 +55,9 @@ body {
   padding-top: 20px;
   margin-bottom: 20px;
 }
+.contents:hover {
+  cursor: context-menu;
+}
 .img_wrap {
   width: 40%;
   height: 300px;
