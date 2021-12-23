@@ -208,6 +208,7 @@ body {
   width: 100%;
   display: flex;
   justify-content: space-between;
+ 
 }
 .info_wrap h3 {
   width: 24%;
@@ -226,6 +227,13 @@ body {
   line-height: 50px;
   color: #1C1A1A;
   text-align: left;
+}
+.info_wrap .date_wrap {
+ width: 68%;
+ height: 50px;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
 }
 .info_wrap .book_score {
   width: 46%;
@@ -250,15 +258,15 @@ body {
   text-align: left;
 }
 input[type="date"] {
-  width: 150px;
+  width: 130px;
   height: 40px;
   font-family: "Pretendard-Regular";
   font-size: 16px;
   line-height: 40px;
   color: #1C1A1A;
   text-align: left;
-  margin-top: 5px;
-  margin-right: 37%;
+  background: transparent;
+  border: none;
 }
 
 /* 별점랭킹 input */

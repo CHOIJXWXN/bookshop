@@ -45,7 +45,11 @@
                 </div>
                 <div class="time">
                   <h3>독서기간</h3>
-                  <input type="date" class="read_time">
+                  <div class="date_wrap">
+                  	<input type="date" class="read_time">
+	                <span>~</span>
+	                <input type="date" class="read_time">
+                  </div>
                 </div>
                 <div class="score">
                   <h3>평점</h3>
