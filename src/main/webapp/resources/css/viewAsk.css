@@ -88,7 +88,7 @@ section {
     height: 100%;
 }
 .row_h2 .book_ttl {
-    width: 57%;
+    width: 60%;
     height: 95px;
 }
 .row_h2 .book_ttl .ttl {
@@ -102,12 +102,6 @@ section {
     font-size: 15px;
     line-height: 47.5px;
     color: #1C1A1A;
-}
-.order_num {
-	display:none;
-	width : 150px;
-	height: 95px;
-	background-color: white
 }
 /* 문의내용 */
 #ask_contents {
@@ -127,8 +121,6 @@ section {
     font-size: 16px;
     line-height: 25px;
     color: #1C1A1A;
-    outline:none;
-    resize:none;
 }
 /* 댓글 박스 */
 #ask_reply_box {
@@ -155,16 +147,38 @@ section {
     border-bottom: 0.5px solid #707070;
 }
 .reply_row .reply_contents {
-    width: 65%;
+    width: 60%;
     padding: 1% 3%;
     box-sizing: border-box;
 }
 .reply_row .reply_writer {
-    width: 23%;
+    width: 20%;
 }
-.reply_now .reply_date {
-    width: 12%;
-    background-color: aquamarine;
+.reply_row .reply_date {
+    width: 10%;
+}
+.reply_row .delete {
+    width: 10%;
+    display: flex;
+    justify-content:center;
+	align-items : center;
+}
+.delete_btn {
+    width: 70px;
+    height: 35px;
+    background-color: transparent;
+    border: 0.5px solid #707070;
+    font-family: "Pretendard-Regular";
+    font-size: 13px;
+    line-height: 35px;
+    color: #1C1A1A;
+    text-align: center;
+    cursor:pointer;
+}
+.delete_btn:hover {
+    background-color: #1C1A1A;
+    transition: 0.5s all ease;
+    color: white;
 }
 .reply_row p {
     font-family: "Pretendard-Regular";
@@ -178,6 +192,7 @@ section {
 .reply_row .reply_writer p{
     text-align: center;
 }
+
 /* 아래 작동안함 */
 .reply_now .reply_date p {
     text-align: center;
@@ -196,8 +211,7 @@ section {
     padding-left: 2%;
     box-sizing: border-box;
 }
-
-.write_reply textarea {
+.write_reply input {
     width: 98%;
     height: 100px;
     margin-left: 1%;
@@ -206,11 +220,6 @@ section {
     overflow: scroll;
     background-color: #f6f6f6;
     border: 0.5px solid #707070;
-    resize:none;
-    font-family: "Pretendard-Regular";
-    font-size: 15px;
-    line-height: 25px;
-    color: #1C1A1A;
 }
 /* 삭제 버튼 */
 .btn_box {

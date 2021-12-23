@@ -75,6 +75,7 @@ section {
 .board_date {
     width: 20%;
 }
+
 /* 각 게시글 행 스타일 */
 .row {
     width: 100%;
@@ -82,6 +83,7 @@ section {
     border-bottom: 0.5px solid #707070;
     background-color: #f6f6f6;
     display: flex;
+    
 }
 .row > div p {
     text-align: center;
@@ -96,6 +98,7 @@ section {
     white-space: nowrap;
     overflow: hidden;
 }
+
 /* .board_ttl p {
     text-overflow: ellipsis;
 } */

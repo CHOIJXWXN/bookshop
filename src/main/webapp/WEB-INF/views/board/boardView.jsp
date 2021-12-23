@@ -56,7 +56,7 @@
              <!-- 등록된 댓글 -->
              <div id="ask_reply_box">
                  <h2>Reply</h2>
-                 <!-- 댓글 수 만큼 반복 시작 -->
+                  <!-- 댓글 수 만큼 반복 시작 -->
                  <div class="reply_row">
                      <div class="reply_contents">
                          <p>댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.</p>
@@ -67,32 +67,12 @@
                      <div class="reply_date">
                         <p>2021-12-18</p>
                      </div>
+                     <div class="delete">
+                        <button type="button" class="delete_btn">삭제</button>
+                     </div>
                  </div>
                  <!-- 댓글 수 만큼 반복 끝-->
-                 <!-- 여기부터 삭제 -->
-                 <div class="reply_row">
-                    <div class="reply_contents">
-                        <p>댓글내용입니다.댓글내용입니다.댓글내용입니다.</p>
-                    </div>
-                    <div class="reply_writer">
-                        <p>관리자</p>
-                    </div>
-                    <div class="reply_date">
-                       <p>2021-12-19</p>
-                    </div>
-                </div>
-                <div class="reply_row">
-                    <div class="reply_contents">
-                        <p>댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.</p>
-                    </div>
-                    <div class="reply_writer">
-                        <p>gingerbeerlemonlime</p>
-                    </div>
-                    <div class="reply_date">
-                       <p>2021-12-20</p>
-                    </div>
-                </div>
-                <!-- 여기까지 삭제 -->
+                 
              </div>
              <div class="write_reply">
                 <h2>Write</h2>
