@@ -20,7 +20,7 @@ public class BookServiceImpl implements BookService {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		if (genre.equals("-1")) {
 			int bookCnt = dao.getBookCnt();
-			Paging paging = new Paging(pageNum, bookCnt);
+			Paging paging = new Paging(pageNum, bookCnt, 16, 5);
 			if (order.equals("판매량순")) {
 				map.put("list", dao.getBookListSell(pageNum));
 				map.put("paging", paging);
@@ -33,17 +33,17 @@ public class BookServiceImpl implements BookService {
 			}	
 		} else if (genre.equals("0")) {
 			int bookCnt = dao.getGenreBookCnt("소설");
-			Paging paging = new Paging(pageNum, bookCnt);
+			Paging paging = new Paging(pageNum, bookCnt, 16, 5);
 			map.put("list", dao.getGenreBookList("소설", pageNum));
 			map.put("paging", paging);
 		} else if (genre.equals("1")) {
 			int bookCnt = dao.getGenreBookCnt("시/에세이");
-			Paging paging = new Paging(pageNum, bookCnt);
+			Paging paging = new Paging(pageNum, bookCnt, 16, 5);
 			map.put("list", dao.getGenreBookList("시/에세이", pageNum));
 			map.put("paging", paging);
 		} else if (genre.equals("2")) {
 			int bookCnt = dao.getGenreBookCnt("여행");
-			Paging paging = new Paging(pageNum, bookCnt);
+			Paging paging = new Paging(pageNum, bookCnt, 16, 5);
 			map.put("list", dao.getGenreBookList("여행", pageNum));
 			map.put("paging", paging);
 		}		
@@ -61,7 +61,7 @@ public class BookServiceImpl implements BookService {
 			bookCnt = dao.getSearchGenreBookCnt(keyword, book_genre);
 			map.put("searchList", dao.searchGenreBook(keyword, book_genre, pageNum));
 		}
-		Paging paging = new Paging(pageNum, bookCnt);
+		Paging paging = new Paging(pageNum, bookCnt, 16, 5);
 		map.put("searchPaging", paging);
 		map.put("book_genre", book_genre);
 		map.put("bookCnt", bookCnt);
@@ -108,11 +108,11 @@ public class BookServiceImpl implements BookService {
 	}
 	
 	@Override
-	public HashMap<String, Object> showReview(String book_id, int pageNum) throws Exception {
+	public HashMap<String, Object> showReview(String book_id, int pageNumber) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		int reviewCnt = dao.getReviewCnt(book_id);
-		List<Review> list = dao.getReview(book_id, pageNum);
-		Paging paging = new Paging(pageNum, reviewCnt);
+		List<Review> list = dao.getReview(book_id, pageNumber);
+		Paging paging = new Paging(pageNumber, reviewCnt, 3, 1);
 		Integer avgScore = dao.getBookScore(book_id);
 		if (avgScore == null) {
 			avgScore = 0;

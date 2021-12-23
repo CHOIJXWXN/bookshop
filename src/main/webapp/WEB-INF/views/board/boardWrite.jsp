@@ -6,16 +6,14 @@
   <head>
    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Book Shop</title>
+
+  <title>Book Shop</title>
 	<!-- 글쓰기 에디터 라이브러리 -->
-   	 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+   <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 	 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 	 <link rel="stylesheet" href="${path }/resources/css/reset.css" />
-
-     <link rel="stylesheet" href="${path }/resources/css/mainNav.css" />
-     <link rel="stylesheet" href="${path }/resources/css/writeAsk.css" />
-     
-     
+   <link rel="stylesheet" href="${path }/resources/css/mainNav.css" />
+   <link rel="stylesheet" href="${path }/resources/css/writeAsk.css" />  
   </head>
   <body>
     <div id="wrap">

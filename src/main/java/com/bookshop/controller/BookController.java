@@ -83,11 +83,11 @@ public class BookController {
 	// 책 리뷰 탭 기능 (Ajax)
 	@RequestMapping(value = "/review", method = RequestMethod.GET)
 	@ResponseBody
-	public HashMap<String, Object> review(String book_id, Integer pageNum) throws Exception {
-		if (pageNum == null) {
-			pageNum = 1;
+	public HashMap<String, Object> review(String book_id, Integer pageNumber) throws Exception {
+		if (pageNumber == null) {
+			pageNumber = 1;
 		}
-		return bookService.showReview(book_id, pageNum);
+		return bookService.showReview(book_id, pageNumber);
 	}
 	
    // 책 리뷰 추가 기능 (Ajax)
@@ -97,13 +97,15 @@ public class BookController {
       if (pageNum == null) {
          pageNum = 1;
       }
-      HashMap<String, Object> map = bookService.showReview(review.getBook_id(), pageNum);      
-      if (bookService.flag(review) == 0) {
+      int flag = 0;
+      if(bookService.flag(review) == 0) {
     	  bookService.addReview(review);
-    	  map.put("flag", 0);
       } else {
-    	  map.put("flag", 1);	// 이미 존재할 때
+    	  flag = 1;	//이미 존재할 때
       }
+      HashMap<String, Object> map = bookService.showReview(review.getBook_id(), pageNum);      
+      map.put("flag", flag);
+      
       return map;
    }
 

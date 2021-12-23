@@ -116,12 +116,15 @@
         <!-- [2-3] 책 탭메뉴 영역 -->
         <article id="book_tab_mn">
           <div id="book_tab_box">
+            
+            <input type="radio" id="tab1" name="tab" checked/>
             <label for="tab1">배송 안내</label>
-            <input type="radio" id="tab1" name="tab" checked />
-            <label for="tab2">교환 반품</label>
+            
             <input type="radio" id="tab2" name="tab" />
-            <label for="tab3">책 리뷰</label>
+            <label for="tab2">교환 반품</label>
+            
             <input type="radio" id="tab3" name="tab" />
+            <label for="tab3">책 리뷰</label>
 
               <!-- 탭 내용 영역 -->
               <section class="delivery">delivery
@@ -154,15 +157,15 @@
                         <h3>이 책 어떠셨나요?</h3>
                         <div class="review_score star-rating">
                           <input type="radio" id="5-stars" name="rating" value="5" v-model="ratings" checked/>
-                          <label for="5-stars" class="star pr-4">★</label>
+                          <label for="5-stars" class="fas fa-star"></label>
                           <input type="radio" id="4-stars" name="rating" value="4" v-model="ratings"/>
-                          <label for="4-stars" class="star">★</label>
+                          <label for="4-stars" class="fas fa-star"></label>
                           <input type="radio" id="3-stars" name="rating" value="3" v-model="ratings"/>
-                          <label for="3-stars" class="star">★</label>
+                          <label for="3-stars" class="fas fa-star"></label>
                           <input type="radio" id="2-stars" name="rating" value="2" v-model="ratings"/>
-                          <label for="2-stars" class="star">★</label>
+                          <label for="2-stars" class="fas fa-star"></label>
                           <input type="radio" id="1-star" name="rating" value="1" v-model="ratings" />
-                          <label for="1-star" class="star">★</label>
+                          <label for="1-star" class="fas fa-star"></label>
                         </div>
                       </div>
                     </header>
@@ -185,8 +188,8 @@
                 </div>
                 <!-- 페이징처리 -->
                 <ul class="page_num">
-                  <li><a href="#">prev</a></li>
-                  <li><a href="#">next</a></li>
+                  <li><a id="prev" href="">prev</a></li>
+                  <li><a id="next" href="">next</a></li>
                 </ul>
                 <!-- 빈공간 -->
                 <div class="blank"></div>
