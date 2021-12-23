@@ -70,32 +70,30 @@ public class RecordController {
 	public String addRecord(Record record, HttpSession session, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
 		record.setUser_id(user_id);
-		recordService.writeRecord(record);
+		recordService.write(record);
 		return "redirect:/record/";
 	}
 	
 	// 기록 수정 페이지
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public String edit(Model model) throws Exception {
-		return "";
-	}
-	
-	// 기록 수정 기능
-	@RequestMapping(value = "/editRecord", method = RequestMethod.GET)
-	public String editRecord(Model model) throws Exception {
-		return "";
+	public String edit(Record record, Model model) throws Exception {
+		recordService.edit(record);
+		int record_id = record.getRecord_id();
+		return "redirect:/record/view?record_id=" + record_id;
 	}
 	
 	// 기록 삭제 기능
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String delete(Model model) throws Exception {
-		return "";
+	public String delete(int record_id, Model model) throws Exception {
+		recordService.delete(record_id);
+		return "redirect:/record/";
 	}
 	
 	// 기록 상세 페이지
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public String view(Model model) throws Exception {
-		return "";
+	public String view(int record_id, Model model) throws Exception {
+		model.addAttribute("recordPlus", recordService.viewOne(record_id));
+		return "record/recordView";
 	}
 	
 }

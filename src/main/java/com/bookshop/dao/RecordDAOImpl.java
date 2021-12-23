@@ -65,4 +65,9 @@ public class RecordDAOImpl implements RecordDAO {
 		return sqlSession.selectOne(SESSION + ".getCertainRecord", map);
 	}
 
+	@Override
+	public RecordPlus getCertainRecordPlus(int record_id) throws Exception {
+		return sqlSession.selectOne(SESSION + ".getCertainRecordPlus", record_id);
+	}
+
 }

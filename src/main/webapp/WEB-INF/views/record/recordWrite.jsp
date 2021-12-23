@@ -86,7 +86,7 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
   	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
-      $(document).ready(function() {
+      $(document).ready(function() {   
           $('#summernote').summernote({
               height: 300,                 // set editor height
               minHeight: 200,             // set minimum height of editor
