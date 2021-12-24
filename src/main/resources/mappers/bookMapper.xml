@@ -58,33 +58,6 @@
 		LIMIT #{start}, 16
 	</select>
 	
-	<!-- 장르별 판매량 순으로 16개 (1) -->
-	<select id="getBookListNovel" resultType="Book">
-		SELECT * 
-		FROM BOOK
-		WHERE book_genre = '소설' AND available = 0
-		ORDER BY book_sell_tot DESC
-		LIMIT #{start}, 16
-	</select>
-	
-	<!-- 장르별 판매량 순으로 16개 (2) -->
-	<select id="getBookListPoem" resultType="Book">
-		SELECT * 
-		FROM BOOK
-		WHERE book_genre = '시/에세이' AND available = 0
-		ORDER BY book_sell_tot DESC
-		LIMIT #{start}, 16
-	</select>
-	
-	<!-- 장르별 판매량 순으로 16개 (3) -->
-	<select id="getBookListTravel" resultType="Book">
-		SELECT * 
-		FROM BOOK
-		WHERE book_genre = '여행' AND available = 0
-		ORDER BY book_sell_tot DESC
-		LIMIT #{start}, 16
-	</select>
-	
 	<!-- 키워드 검색 -->
 	<select id="searchBook" parameterType="hashmap" resultType="Book">
 		SELECT *

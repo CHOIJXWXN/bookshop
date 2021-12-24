@@ -60,43 +60,23 @@
 		WHERE rownum = #{pageNumber};
 	</select>
 	
-	<!-- 배송중 상태 변경 -->
-	<update id="changeToStart">
+	<!-- 주문 상태 변경 -->
+	<update id="changeStatus">
 		UPDATE ORDERS
-		SET order_status = '배송중'
+		SET order_status = #{order_status}
 		WHERE order_num = #{order_num}
 	</update>
+
 	<insert id="addDelivery" parameterType="hashmap">
 		INSERT DELIVERY
 		VALUES (#{order_num}, #{tracking_num})
 	</insert>
 	
-	<!-- 배송완료 상태 변경 -->
-	<update id="changeToEnd">
-		UPDATE ORDERS
-		SET order_status = '배송완료'
-		WHERE order_num = #{order_num}
-	</update>
-	
-	<!-- 배송준비중 상태의 주문 개수 -->
-	<select id="getBeforeStartCnt" resultType="_int">
+	<!-- 주문상태별 주문 개수 -->
+	<select id="getOrderCnt" resultType="_int">
 		SELECT COUNT(*)
 		FROM ORDERS
-		WHERE order_status = '배송준비중'
-	</select>
-	
-	<!-- 배송중 상태의 주문 개수 -->
-	<select id="getStartCnt" resultType="_int">
-		SELECT COUNT(*)
-		FROM ORDERS
-		WHERE order_status = '배송중'
-	</select>
-	
-	<!-- 배송완료 상태의 주문 개수 -->
-	<select id="getEndCnt" resultType="_int">
-		SELECT COUNT(*)
-		FROM ORDERS
-		WHERE order_status = '배송완료'
+		WHERE order_status = #{order_status}
 	</select>
 	
 	<!-- 총 주문 개수 -->
