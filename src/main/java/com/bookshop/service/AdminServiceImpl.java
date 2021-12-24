@@ -2,6 +2,7 @@ package com.bookshop.service;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 import javax.inject.Inject;
@@ -23,9 +24,13 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public HashMap<String, Object> viewOrder(int pageNum) throws Exception {
+		
+		List<String> orderNumList = dao.getOrderNumList(pageNum);
+		System.out.println(orderNumList.size());
+		
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("listSeparate", dao.getOrderListSeparate(dao.getOrderNumList(pageNum)));
-		map.put("listUnited", dao.getOrderListUnited(dao.getOrderNumList(pageNum)));
+		map.put("listSeparate", dao.getOrderListSeparate(orderNumList));
+		map.put("listUnited", dao.getOrderListUnited(orderNumList));
 		map.put("before", dao.getBeforeStartCnt());
 		map.put("start", dao.getStartCnt());
 		map.put("end", dao.getEndCnt());
@@ -33,6 +38,14 @@ public class AdminServiceImpl implements AdminService {
 		return map;
 	}
 
+	@Override
+	public boolean getNextPage(int pageNum) throws Exception {
+		
+		int pageNumer = (pageNum * 20) + 1;
+		
+		return dao.getNextPage(pageNumer) != null;
+	}
+	
 	@Override
 	public void deliveryStart(String order_num) throws Exception {
 		dao.changeToStart(order_num);
@@ -71,5 +84,7 @@ public class AdminServiceImpl implements AdminService {
 		}
 		book_cover.transferTo(new File("../resources/images/bookcover/" + book.getBook_id() + ".jpg"));
 	}
+
+	
 
 }

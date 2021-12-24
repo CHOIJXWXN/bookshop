@@ -8,7 +8,9 @@ import com.bookshop.vo.Book;
 
 public interface AdminService {
 	
+	
 	public HashMap<String, Object> viewOrder(int pageNum) throws Exception;
+	public boolean getNextPage(int pageNum) throws Exception;
 	public void deliveryStart(String order_num) throws Exception;
 	public void deliveryEnd(String order_num) throws Exception;
 	public HashMap<String, Object> viewProduct(int pageNum) throws Exception;

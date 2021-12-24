@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 /* ===============frame=============== */
 
 #wrap {
@@ -17,76 +19,109 @@
 /* ===============frame=============== */
 
 
-#section {
+section {
+    width: 100%;
+    
+
+}
+#all_box {
+    width: 100%;
     display: flex;
-    justify-content: space-around;
-    margin: 200px auto;
+    margin-top: 200px;
 }
 
 #sidebar {
-    display: flex;
-    width: 10%;
-    height: 100%;
-    flex-direction: column;
+    float: left;
+    width: 180px;
+    height: 200px;
+    margin-left: 13%;
 }
 #nav_title {
-    width: 120px;
+    width: 180px;
     height: 50px;
-    font-weight: bold;
+    font-size: 25px;
     margin-bottom: 0;
     line-height: 50px;
-    border-bottom: 1px black solid;
+    border-bottom: 1px #1C1A1A solid;
+    box-sizing: border-box;
+    font-family: 'Goudy Bookletter 1911', serif;
+    padding-left: 5px;
 }
 #sidebar a {
-    width: 80px;
+    display: block;
+    width: 180px;
     height: 50px;
+    border-bottom: 0.5px solid #707070; 
+}
+#sidebar span {
+    font-family: "Pretendard-Regular";
+    font-weight: 600;
+    font-size: 15px;
     line-height: 50px;
-    text-decoration: none;
-    color: #ccc;
-    border-bottom: 1px #ccc solid; 
+    color: #B5B1B1;;
+}
+#sidebar a:hover span{
+    padding-left: 10px;
+    font-size: 17px;
+    color: #1C1A1A;
+}
+#sidebar a:hover span::after {
+    content: ">";
 }
 #sidebar .active {
     color: black;
     border-bottom: 1px black solid;
 }
-#sidebar .active::after {
-    content: " >";
-}
 
 #container {
-    width: 1000px;
+    width: 53%;
+    margin-left: 200px;
 }
 
 .title {
-    font-weight: bold;
+    width: 100%;
+    font-family: "Pretendard-Regular";
+    font-weight: 600;
     font-size: 20px;
+    line-height: 50px;
+    color: #1C1A1A;
 }
-
+.title2 {
+    width : 70%;
+}
 #order_info {
     display: flex;
     flex-direction: column;
     width: 700px;
     margin-bottom: 50px;
 }
-
 table {
-    border: 1px #555 solid;
+    border: 1px #707070 solid;
     border-collapse: collapse;
-    margin-top: 20px;
 }
 th {
-    border: 1px #555 solid;
+    border: 1px #707070 solid;
+    background-color: rgba(28, 26, 26, 0.65);
     border-bottom: none;
-    background-color: #ccc;
     height: 40px;
     vertical-align: middle;
+    font-family: "Pretendard-Regular";
+    font-size: 16px;
+    line-height: 40px;
+    color: #FAFAF8;
+    text-align: center;
 }
 td {
-    border: 1px #555 solid;
+    border: 1px #707070 solid;
     border-top: none;
     text-align: center;
-    height: 50px;
+    height: 40px;
     vertical-align: middle;
+    font-family: "Pretendard-Regular";
+    font-size: 16px;
+    line-height: 40px;
+    color: #1C1A1A;
+    background-color : white;
 }
 
 .btn {
@@ -98,7 +133,71 @@ td {
     flex-direction: column;
     width: 1000px;
 }
-
+#order_info_list > div {
+    display: flex;
+}
 .func_btns {
+    width: 30%;
     float: right;
+}
+.func_btns .btn {
+    float: right;
+    width: 110px;
+    height: 40px;
+    background-color:#1C1A1A;
+    text-align: center;
+    font-family: "Pretendard-Regular";
+    font-size: 15px;
+    line-height: 38px;
+    color: #FAFAF8;
+    margin-top: 5px;
+}
+/* 페이징 */
+.pagebox {
+    width: 100%;
+    height: 60px;
+    margin-top: 30px; 
+    margin-bottom : 300px;
+}
+.pagenum_wrap {
+    margin: 0 auto;
+    width: 30%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+   
+}
+.pagenum_wrap li {
+    width: 50%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pagenum_wrap a {
+    display: block;
+    width: 70%;
+    height: 40px;
+    text-align: center;
+    font-family: 'Goudy Bookletter 1911', serif;
+    font-size: 22px;
+    line-height: 40px;
+    color: #1C1A1A;
+}
+.pagenum_wrap a.prev::before {
+    content: "<";
+    display: none;
+}
+.pagenum_wrap a.next::after {
+    content: ">";
+    display: none;
+}
+.pagenum_wrap a:hover:before {
+    display: inline-block;
+}
+.pagenum_wrap a:hover:after {
+    display: inline-block;
+}
+button {
+	cursor: pointer;
 }
