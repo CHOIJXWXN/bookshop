@@ -34,4 +34,6 @@ public interface BoardDAO {
 	// 댓글 삭제
 	public void deleteAskReply(int askreply_id) throws Exception;
 	
+	// 댓글 갯수 update
+	public void updateAskreplyCount(int ask_id) throws Exception;
 }

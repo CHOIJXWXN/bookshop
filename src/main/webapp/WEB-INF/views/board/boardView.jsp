@@ -124,7 +124,7 @@ function deleteAskReply(askreply_id) {
              <h2>QnA</h2>
              <div class="table_h">
                  <div class="row_h1">
-                     <h3>제목</h3>
+                     <h3>제목</h3> 
                      <p class="ask_ttl">${book.book_title }</p>
                  </div>
                  <!-- 문의 번호 -hidden으로 숨김 -->
