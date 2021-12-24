@@ -16,19 +16,25 @@ $(document).ready(function() {
 					return;
 				} else {
 					$('.book_box').empty();
-					var searchList = data;
-					for (var i = 0; i < searchList.length; i++) {
+					for (var i = 0; i < data.list.length; i++) {
 						var str = '';
 						str += '<div class="book_wrap">';
 						str += '<div class="img_wrap">';
-						str += '<img class="book_cover" src="../../resources/images/bookcover/' + searchList[i].book_cover + '" alt="book_cover">';
-						str += '<div class="b_layer"><a href="../record/write?book_id=' + searchList[i].book_id + '">기록하기</a></div>';
+						str += '<img class="book_cover" src="../../resources/images/bookcover/' + data.list[i].book_cover + '" alt="book_cover">';
+						str += '<div class="b_layer"><a href="../record/write?book_id=' + data.list[i].book_id + '">기록하기</a></div>';
 						str += '</div>';
-						str += '<h4 class="book_ttl">' + searchList[i].book_title + '</h4>';
-						str += '<span class="book_writer">' + searchList[i].book_writer + '</span>'
+						str += '<h4 class="book_ttl">' + data.list[i].book_title + '</h4>';
+						str += '<span class="book_writer">' + data.list[i].book_writer + '</span>'
 						str += '</div>';
 						$('.book_box').append(str);
 					}
+					if (data.paging.pageNumber == 1) {
+						$('.prev').hide();
+					} else {
+						$('.prev').show();
+					}
+					$('.prev').attr('id', data.paging.pageNumber - 1);
+					$('.next').attr('id', data.paging.pageNumber + 1);
 				}
 			}
 		});
@@ -38,9 +44,6 @@ $(document).ready(function() {
 	$('#book_search').keyup(function(event) {		
 		var keyword = $('#book_search').val();
 		var pageNum = 1;
-		if ($('#pageNum').val() != '') {
-			pageNum = $('#pageNum').val();
-		}
 		if (event.keyCode == 13) {
 			if (keyword == '') {
 				alert('검색어를 입력하세요');
@@ -49,4 +52,17 @@ $(document).ready(function() {
 			search(keyword, pageNum);
 		}
 	});
+	
+	$('.prev').click(function() {
+		var keyword = $('#book_search').val();
+		var pageNum = $('.prev').attr('id');
+		search(keyword, pageNum);
+	});
+	
+	$('.next').click(function() {
+		var keyword = $('#book_search').val();
+		var pageNum = $('.next').attr('id');
+		search(keyword, pageNum);
+	});
+	
 });

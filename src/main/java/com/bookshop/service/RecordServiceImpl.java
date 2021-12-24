@@ -27,8 +27,12 @@ public class RecordServiceImpl implements RecordService {
 	}
 
 	@Override
-	public List<Book> search(String keyword, int pageNum) throws Exception {
-		return dao.searchBook(keyword, pageNum);
+	public HashMap<String, Object> search(String keyword, int pageNum) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		Paging paging = new Paging(pageNum, dao.searchBookCnt(keyword), 3, 2);
+		map.put("list", dao.searchBook(keyword, pageNum));
+		map.put("paging", paging);
+		return map;
 	}
 
 	@Override
