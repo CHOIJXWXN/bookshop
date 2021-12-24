@@ -23,14 +23,10 @@ public class AdminServiceImpl implements AdminService {
 	BookDAO bdao;	
 
 	@Override
-	public HashMap<String, Object> viewOrder(int pageNum) throws Exception {
-		
-		List<String> orderNumList = dao.getOrderNumList(pageNum);
-		System.out.println(orderNumList.size());
-		
+	public HashMap<String, Object> viewOrder(int pageNum) throws Exception {		
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("listSeparate", dao.getOrderListSeparate(orderNumList));
-		map.put("listUnited", dao.getOrderListUnited(orderNumList));
+		map.put("listSeparate", dao.getOrderListSeparate(pageNum));
+		map.put("listUnited", dao.getOrderListUnited(pageNum));
 		map.put("before", dao.getOrderCnt("배송준비중"));
 		map.put("start", dao.getOrderCnt("배송중"));
 		map.put("end", dao.getOrderCnt("배송완료"));

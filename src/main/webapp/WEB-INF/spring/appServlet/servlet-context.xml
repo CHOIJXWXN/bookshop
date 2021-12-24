@@ -34,7 +34,8 @@
 		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/order/*"/>
-			<beans:bean id="Orderinterceptor" class="com.bookshop.interceptor.Orderinterceptor"/>
+			<mvc:mapping path="/record/*"/>
+			<beans:bean id="Logininterceptor" class="com.bookshop.interceptor.Logininterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
 
