@@ -4,12 +4,14 @@ import java.util.List;
 
 import com.bookshop.vo.Book;
 import com.bookshop.vo.OrderPlus;
+import com.bookshop.vo.Orders;
 
 public interface AdminDAO {
 
 	public List<String> getOrderNumList(int pageNum) throws Exception;
 	public List<OrderPlus> getOrderListSeparate(List<String> list) throws Exception;
 	public List<OrderPlus> getOrderListUnited(List<String> list) throws Exception;
+	public Orders getNextPage(int pageNumber) throws Exception;
 	public void changeToStart(String order_num) throws Exception;
 	public void addDelivery(String order_num, String tracking_num) throws Exception;
 	public void changeToEnd(String order_num) throws Exception;
