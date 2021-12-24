@@ -104,15 +104,14 @@ CREATE TABLE review (
 
 # 기록 테이블 생성
 CREATE TABLE record (
+	record_id			INT      		PRIMARY KEY		AUTO_INCREMENT,
     user_id             VARCHAR(20),
-    book_id             INT,
+    book_id             VARCHAR(20),
     record_init_date    DATE            DEFAULT '2000-01-01',
     record_fin_date     DATE            DEFAULT '2999-12-31',
     record_score        INT             NOT NULL,
     record_contents     TEXT            NOT NULL,
-    record_date         DATE            NOT NULL,
-    PRIMARY KEY (user_id, book_id)
+    record_date         DATE            NOT NULL
 );
-
 
 
