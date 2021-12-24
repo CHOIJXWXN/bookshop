@@ -1,9 +1,11 @@
 package com.bookshop.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.bookshop.vo.Ask;
 import com.bookshop.vo.AskList;
+import com.bookshop.vo.AskReply;
 import com.bookshop.vo.Book;
 
 public interface BoardService {
@@ -12,6 +14,9 @@ public interface BoardService {
 	// 도서정보 불러오기 service
 	public Book getBookInfo(String book_id) throws Exception;
 	
+	// 북 아이디 넘겨받기 ask 테이블에서
+	public String getBookid(int ask_id) throws Exception;
+	
 	// 리스트불러오기
 	public List<AskList> getAskList(String writer) throws Exception;
 	
@@ -19,7 +24,16 @@ public interface BoardService {
 	public void wrtieAction(Ask ask) throws Exception;
 	
 	// 문의글 불러오기
-	public Ask boardView(int ask_id) throws Exception;
+	// public Ask boardView(int ask_id) throws Exception;
+	public HashMap<String, Object> boardView(int ask_id) throws Exception;
+	
+	
+	// 댓글 작성 & 불러오기 (ajax)
+	// 반환 타입 : List<AskReply>, 파라미터 : askreply (받아와서 사용할 값)
+	public List<AskReply> insertAskReply(AskReply askreply) throws Exception;
+	
+	// 댓글 삭제
+	public List<AskReply> deleteAskReply(AskReply askreply) throws Exception;
 	
 	
 }

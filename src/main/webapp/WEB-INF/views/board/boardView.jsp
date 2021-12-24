@@ -11,13 +11,107 @@
     <link rel="stylesheet" href="${path }/resources/css/mainNav.css" />
     <link rel="stylesheet" href="${path }/resources/css/viewAsk.css" />
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  	<script>
-  		$(document).ready(function() {
+<script>
+$(document).ready(function() {
+  			
 	    	$('#goback').click(function(){
 	        location.href='../ask/';
 	    	});
-  		});
-  </script>
+	    	
+	    	  // 댓글 등록 + 보이기
+	        $('#upload_reply').click(function() {
+	           var ask_id = '${map.ask.ask_id }';
+	           var askreply_contents = $('#write_reply').val();
+	           
+	           $.ajax({
+	                type: 'GET',
+	                url: './insertAskReply',
+	                data: {
+	                	ask_id: ask_id,
+	                	askreply_contents: askreply_contents
+	                },
+
+	                dataType: 'JSON',
+	                success: function(data) {
+	                	 $('#replybody').empty();
+
+	                    for (var i = 0; data.length; i++ ) {
+	                        var str = '';
+	                        str += '<div class="reply_row" >';
+	                        str += '<div class="reply_contents" id="reply_contents">';
+	                        str += '<p>' + data[i].askreply_contents + '</p>';
+	                        str += '</div>';
+	                        str += '<div class="reply_writer" id="reply_writer">';
+	                        str += '<p>' + data[i].writer + '</p>';
+	                        str += '</div>';
+	                        str += '<div class="reply_date" id="reply_date">';
+	                        str += '<p>' + data[i].askreply_date + '</p>'; 
+	                        str += '</div>';
+	                        str += '<div class="delete"> <button type="button" id="delete_btn" class="delete_btn">삭제</button></div>';
+	                        str += '</div>'
+	                        $('#replybody').append(str);
+	                        
+	                    // 반복문    
+	                    }
+	                // success
+	                }
+	           // ajax     
+	           });
+				$('#write_reply').val('');
+	         // upload_reply.click.fucntion   
+	        })
+      
+ // document.ready.function    
+});
+</script>
+<script>
+
+// 댓글 삭제
+function deleteAskReply(askreply_id) {
+    var ask_id = '${map.ask.ask_id }';
+    $.ajax({
+        type: 'GET',
+        url: './deleteAskReply',
+        data: {
+            askreply_id: askreply_id,
+            ask_id: ask_id
+        },
+
+        dataType: 'JSON',
+        success: function(data) {
+           
+             $('#replybody').empty();
+
+            for (var i = 0; data.length; i++ ) {
+                var str = '';
+                str += '<div class="reply_row" >';
+                str += '<div class="reply_contents" id="reply_contents">';
+                str += '<p>' + data[i].askreply_contents + '</p>';
+                str += '</div>';
+                str += '<div class="reply_writer" id="reply_writer">';
+                str += '<p>' + data[i].writer + '</p>';
+                str += '</div>';
+                str += '<div class="reply_date" id="reply_date">';
+                str += '<p>' + data[i].askreply_date + '</p>'; 
+                str += '</div>';
+                if('${user_id}' == data[i].writer) {
+                    str += '<div class="delete">';
+                    str += '<button type="button" id="delete_btn" class="delete_btn" onclick="deleteAskReply('+ data[i].askreply_id +')">삭제</button>'; 
+                    str += '</div>';
+                }
+                str += '</div>'
+                $('#replybody').append(str);
+                
+            // 반복문    
+            }
+        // success
+        }
+   // ajax     
+   });
+
+// function deleteAskReply
+}
+</script>
   
   </head>
   <body>
@@ -33,10 +127,12 @@
                      <h3>제목</h3>
                      <p class="ask_ttl">${book.book_title }</p>
                  </div>
+                 <!-- 문의 번호 -hidden으로 숨김 -->
+                 <input type="hidden" id="ask_id" value="${map.ask.ask_id }">
                  <div class="row_h2">
                     <h3>문의상품</h3>
                     <!-- book_id 숨겨두기 -->
-                    <div class="book_id">${ask.book_id }</div>
+                    <div class="book_id">${map.ask.book_id }</div>
                     <div class="book_thumbnail">
                         <!-- 책표지 불러오기 -->
                         <img src="${path}/resources/images/bookcover/${book.book_cover }" alt="">
@@ -45,43 +141,52 @@
                         <h4 class="ttl">${book.book_title }</h4>
                         <p class="writer">${book.book_writer }</p>
                     </div>
+                    <!-- 문의글 작성자 불러오기-->
+                    <div class="user_id">${map.ask.writer }</div>
                     <!-- order_num 숨겨두었음 -->
                     <div class="order_num">${order_num }</div>
                 </div>               
              </div>        
              <!-- 문의 내용 불러오기 -->
              <div id="ask_contents">
-       			<textarea id="qna_contents" readonly="true">${ask.ask_contents}</textarea>
+       			<textarea id="qna_contents" readonly="true">${map.ask.ask_contents}</textarea>
              </div> 
              <!-- 등록된 댓글 -->
              <div id="ask_reply_box">
                  <h2>Reply</h2>
-                  <!-- 댓글 수 만큼 반복 시작 -->
-                 <div class="reply_row">
-                     <div class="reply_contents">
-                         <p>댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.댓글내용입니다.</p>
+                  <div id="replybody">
+                   <!-- 댓글 수 만큼 반복 시작 -->
+                  <c:forEach var="askreply" items="${map. askreplyList}">
+                	 <div class="reply_row" >
+                     <div class="reply_contents" id="reply_contents">
+                         <p><!-- 내용 -->${askreply.askreply_contents}</p>
                      </div>
-                     <div class="reply_writer">
-                         <p>gingerbeerlemonlime</p>
+                     <div class="reply_writer" id="reply_writer">
+                         <p><!-- 작성자 -->${askreply.writer}</p>
                      </div>
-                     <div class="reply_date">
-                        <p>2021-12-18</p>
+                     <div class="reply_date" id="reply_date">
+                        <p><!-- 작성 날짜 -->${askreply.askreply_date}</p>
                      </div>
+                     <c:if test="${user_id == askreply.writer }">
                      <div class="delete">
-                        <button type="button" class="delete_btn">삭제</button>
+                        <button type="button" id="delete_btn" class="delete_btn" onclick="deleteAskReply(${askreply.askreply_id})">삭제</button>
                      </div>
-                 </div>
-                 <!-- 댓글 수 만큼 반복 끝-->
-                 
+                     </c:if>
+               		</div>
+                  </c:forEach>
+                   <!-- 댓글 수 만큼 반복 끝-->
+                </div>
              </div>
-             <div class="write_reply">
+             
+             <!-- 댓글 등록 공간-->
+             <div class="write_reply" >
                 <h2>Write</h2>
                 <textarea id="write_reply" placeholder="댓글을 남겨주세요."></textarea>
              </div>
              <!-- 삭제버튼 -->
              <div class="btn_box">
                  <button type="button" id="goback" class="goback">←&nbsp;List</button>
-                 <button type="button" class="upload_reply">SAVE</button>
+                 <button type="button" id="upload_reply" class="upload_reply">SAVE</button>
                  <!-- <button type="button" class="delete">DELETE</button> -->
              </div>
          </div>
