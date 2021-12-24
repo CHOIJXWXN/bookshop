@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bookshop.vo.Book;
 import com.bookshop.vo.OrderPlus;
+import com.bookshop.vo.Orders;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO {
@@ -20,7 +21,9 @@ public class AdminDAOImpl implements AdminDAO {
 	
 	@Override
 	public List<String> getOrderNumList(int pageNum) throws Exception {
+		System.out.println(pageNum);
 		int start = 20 * (pageNum - 1);
+		System.out.println(start);
 		return sqlSession.selectList(SESSION + ".getOrderNumList", start);
 	}
 
@@ -34,6 +37,12 @@ public class AdminDAOImpl implements AdminDAO {
 		return sqlSession.selectList(SESSION + ".getOrderListUnited", list);
 	}
 
+	@Override
+	public Orders getNextPage(int pageNumber) throws Exception {
+		
+		return sqlSession.selectOne(SESSION + ".getNextPage", pageNumber);
+	}
+	
 	@Override
 	public void changeToStart(String order_num) throws Exception {
 		sqlSession.update(SESSION + ".changeToStart", order_num);
@@ -88,5 +97,7 @@ public class AdminDAOImpl implements AdminDAO {
 	public void addBook(Book book) throws Exception {
 		sqlSession.insert(SESSION + ".addBook", book);
 	}
+
+	
 
 }

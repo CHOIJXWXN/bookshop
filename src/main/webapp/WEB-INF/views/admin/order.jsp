@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -33,16 +33,23 @@
     <div id="wrap">
       <jsp:include page="../mainNav.jsp"/>
       <section>
-        <div id="section">
+        <div id="all_box">
           <div id="sidebar">
             <p id="nav_title">Administrator</p>
-            <a href="${path}/admin/order" class="active">주문 관리</a>
-            <a href="${path}/admin/product">상품 관리</a>
-            <a href="${path}/admin/ask">문의 관리</a>
+            <a href="${path}/admin/order" class="active">
+              <span>주문 관리&nbsp;&nbsp;</span>
+            </a>
+            <a href="${path}/admin/product">
+              <span>상품 관리&nbsp;&nbsp;</span>
+            </a>
+            <a href="${path}/admin/ask">
+              <span>문의 관리&nbsp;&nbsp;</span>
+            </a>
           </div>
+          
           <div id="container">
             <div id="order_info">
-              <span class="title">현재 주문 상황</span>
+              <h2 class="title">현재 주문 상황</h2>
               <table>
                   <tr>
                       <th>배송준비중</th>
@@ -59,7 +66,7 @@
             <form action="./changeStatus" method="POST">
             <div id="order_info_list">
               <div>
-                <span class="title">주문목록 / 배송조회 내역 총 ${map.tot} 건</span>
+                <h2 class="title title2">주문목록 / 배송조회 내역 총 ${map.tot} 건</h2>
                 <div class="func_btns">
                   <button class="btn" name="start" id="startBtn">배송중 처리</button>
                   <button class="btn" name="end" id="endBtn">배송완료 처리</button>
@@ -85,7 +92,19 @@
               </table>
             </div>
             </form>
+            <!-- 페이징 -->
+            <div class="pagebox">
+                 <ul class="pagenum_wrap">
+                 	 <c:if test = "${pageNum != 1 }">
+                     <li><a href="./order?pageNum=${pageNum-1 }" class="prev">&nbsp;prev</a></li>
+                     </c:if>
+                     <c:if test = "${isNext eq true}">
+                     <li><a href="./order?pageNum=${pageNum+1 }" class="next">next&nbsp;</a></li>
+                     </c:if>
+                 </ul>
+             </div>
           </div>
+          
         </div>
       </section>
     </div>
