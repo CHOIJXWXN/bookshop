@@ -8,9 +8,8 @@ import com.bookshop.vo.Orders;
 
 public interface AdminDAO {
 
-	public List<String> getOrderNumList(int pageNum) throws Exception;
-	public List<OrderPlus> getOrderListSeparate(List<String> list) throws Exception;
-	public List<OrderPlus> getOrderListUnited(List<String> list) throws Exception;
+	public List<OrderPlus> getOrderListSeparate(int pageNum) throws Exception;
+	public List<OrderPlus> getOrderListUnited(int pageNum) throws Exception;
 	public Orders getNextPage(int pageNumber) throws Exception;	
 	public void changeStatus(String order_status, String order_num) throws Exception;
 	public void addDelivery(String order_num, String tracking_num) throws Exception;
