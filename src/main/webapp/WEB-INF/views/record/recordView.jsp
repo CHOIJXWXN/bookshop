@@ -78,8 +78,9 @@
             </div>
             <!-- 버튼 -->
              <div class="btns_wrap">
-              <button class="edit" style="display:none;">EDIT</button>
+              <button class="edit">EDIT</button>
               <button type="button" class="delete" onclick="location.href='./delete?record_id=${recordPlus.record_id}'">DELETE</button>
+              <button class="save">SAVE</button>
             </div>
         </div>
         </form>
