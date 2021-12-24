@@ -47,7 +47,7 @@ $(document).ready(function() {
 	                        str += '<div class="reply_date" id="reply_date">';
 	                        str += '<p>' + data[i].askreply_date + '</p>'; 
 	                        str += '</div>';
-	                        str += '<div class="delete"> <button type="button" id="delete_btn" class="delete_btn">삭제</button></div>';
+	                        str += '<div class="delete"> <button type="button" id="delete_btn" class="delete_btn" onclick="deleteAskReply('+ data[i].askreply_id +')">삭제</button></div>';
 	                        str += '</div>'
 	                        $('#replybody').append(str);
 	                        
@@ -149,7 +149,7 @@ function deleteAskReply(askreply_id) {
              </div>        
              <!-- 문의 내용 불러오기 -->
              <div id="ask_contents">
-       			<textarea id="qna_contents" readonly="true">${map.ask.ask_contents}</textarea>
+       			${map.ask.ask_contents}
              </div> 
              <!-- 등록된 댓글 -->
              <div id="ask_reply_box">
