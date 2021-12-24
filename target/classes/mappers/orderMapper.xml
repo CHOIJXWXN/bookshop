@@ -50,7 +50,7 @@
    	<!-- 주문 입력 -->
    	<insert id="addOrder">
    		INSERT INTO ORDERS
-   		VALUES (#{order_num}, #{user_id}, #{order_name}, #{order_addr}, #{order_phone}, #{order_tot}, #{ship_cost}, #{final_cost}, #{comments}, NOW(), 1)
+   		VALUES (#{order_num}, #{user_id}, #{order_name}, #{order_addr}, #{order_phone}, #{order_tot}, #{ship_cost}, #{final_cost}, #{comments}, NOW(), '배송준비중')
    	</insert>
    	<insert id="addOrderlist">
    		INSERT INTO ORDERLIST

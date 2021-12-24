@@ -63,13 +63,13 @@
                   </tr>
               </table>
             </div>
-            <form action="./changeStatus" method="POST">
+            <form action="./changeStatus" method="GET">
             <div id="order_info_list">
               <div>
                 <h2 class="title title2">주문목록 / 배송조회 내역 총 ${map.tot} 건</h2>
                 <div class="func_btns">
-                  <button class="btn" name="start" id="startBtn">배송중 처리</button>
-                  <button class="btn" name="end" id="endBtn">배송완료 처리</button>
+                  <button class="btn" name="status" id="startBtn" value="배송중">배송중 처리</button>
+                  <button class="btn" name="status" id="endBtn" value="배송완료">배송완료 처리</button>
                 </div>
               </div>
               <table id="table">

@@ -44,8 +44,11 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 	
 	@Override
-	public void changeToStart(String order_num) throws Exception {
-		sqlSession.update(SESSION + ".changeToStart", order_num);
+	public void changeStatus(String order_status, String order_num) throws Exception {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("order_status", order_status);
+		map.put("order_num", order_num);
+		sqlSession.update(SESSION + ".changeStatus", map);
 	}
 	
 	@Override
@@ -58,23 +61,8 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public void changeToEnd(String order_num) throws Exception {
-		sqlSession.update(SESSION + ".changeToEnd", order_num);
-	}
-
-	@Override
-	public int getBeforeStartCnt() throws Exception {
-		return sqlSession.selectOne(SESSION + ".getBeforeStartCnt");
-	}
-
-	@Override
-	public int getStartCnt() throws Exception {
-		return sqlSession.selectOne(SESSION + ".getStartCnt");
-	}
-
-	@Override
-	public int getEndCnt() throws Exception {
-		return sqlSession.selectOne(SESSION + ".getEndCnt");
+	public int getOrderCnt(String order_status) throws Exception {
+		return sqlSession.selectOne(SESSION + ".getOrderCnt", order_status);
 	}
 
 	@Override

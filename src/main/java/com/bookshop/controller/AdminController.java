@@ -48,20 +48,10 @@ public class AdminController {
 	}
 	
 	// 배송중 변경 기능
-	@RequestMapping(params = "start", value = "/changeStatus", method = RequestMethod.POST)
-	public String start(@RequestParam List<String> order_num, HttpServletRequest request, Model model) throws Exception {
+	@RequestMapping(params = "status", value = "/changeStatus", method = RequestMethod.GET)
+	public String start(@RequestParam List<String> order_num, String status, HttpServletRequest request, Model model) throws Exception {
 		for (var i = 0; i < order_num.size(); i++) {
-			adminService.deliveryStart(order_num.get(i));
-		}
-		String referer = request.getHeader("Referer");
-		return "redirect:" + referer;
-	}
-
-	// 배송완료 변경 기능
-	@RequestMapping(params = "end", value = "/changeStatus", method = RequestMethod.POST)
-	public String end(@RequestParam List<String> order_num, HttpServletRequest request, Model model) throws Exception {
-		for (var i = 0; i < order_num.size(); i++) {
-			adminService.deliveryEnd(order_num.get(i));
+			adminService.delivery(status, order_num.get(i));
 		}
 		String referer = request.getHeader("Referer");
 		return "redirect:" + referer;
