@@ -43,7 +43,7 @@ public class AdminController {
 		model.addAttribute("map", adminService.viewOrder(pageNum)); // listSeparate, listUnited, before, start, end, tot
 		// 페이지 번호
 		model.addAttribute("pageNum", pageNum);
-		model.addAttribute("isNext", adminService.getNextPage(pageNum));
+		model.addAttribute("isNext", adminService.getNextPage(pageNum, "orders"));             
 		return "admin/order";
 	}
 	
@@ -64,6 +64,8 @@ public class AdminController {
 			pageNum = 1;
 		}
 		model.addAttribute("map", adminService.viewProduct(pageNum));
+		model.addAttribute("isNext", adminService.getNextPage(pageNum, "book"));   
+		model.addAttribute("pageNum", pageNum);
 		return "admin/product";
 	}
 	

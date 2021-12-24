@@ -63,16 +63,10 @@ public class UsersServiceImpl implements UsersService {
 		// users 값이 존재하면 0 반환 -> 로그인 성공
 		// users 값이 존재하지 않으면 -1 반환 -> 로그인 실패
 		// 해당 유저가 관리자이면 1 반환
-		int result = 0;
 		Users exist = dao.login(users);
-		Users admin = dao.getAdminAuth(users.getUser_id());
-		if (exist != null)
-			if (admin != null)
-				result = 1;
-			else result = 0;
-		if (exist == null)
-			result = -1;
-		return result;
+		if (exist == null) return -1;
+		
+		return exist.getUser_admin();
 	}
 
 	// 아이디 찾기 (이메일을 이용해서 찾기)
