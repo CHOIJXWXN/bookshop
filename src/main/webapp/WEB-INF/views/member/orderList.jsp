@@ -79,7 +79,7 @@
                        </div>
                        <!-- 문의, 리뷰, 배송추적 버튼 -->
                        <div class="btn">
-                       		<c:if test="${items.orders.order_status eq '입금전' }">
+                       		<c:if test="${items.orders.order_status eq '배송준비중' }">
                             <a href="${path }/ask/writeAsk?book_id=${item.book.book_id}&order_num=${items.orders.order_num }" class="ask">문의</a>
                             </c:if>
                        		<c:if test="${items.orders.order_status eq '배송완료' }">

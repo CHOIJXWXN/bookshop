@@ -124,8 +124,10 @@ function deleteAskReply(askreply_id) {
              <h2>QnA</h2>
              <div class="table_h">
                  <div class="row_h1">
-                     <h3>제목</h3>
+                     <h3 class="ask_ttl_h">제목</h3>
                      <p class="ask_ttl">${book.book_title }</p>
+                     <h3 class="ask_writer_h">작성자</h3>
+                     <p class="ask_writer">${map.ask.writer }</p>
                  </div>
                  <!-- 문의 번호 -hidden으로 숨김 -->
                  <input type="hidden" id="ask_id" value="${map.ask.ask_id }">
@@ -141,8 +143,6 @@ function deleteAskReply(askreply_id) {
                         <h4 class="ttl">${book.book_title }</h4>
                         <p class="writer">${book.book_writer }</p>
                     </div>
-                    <!-- 문의글 작성자 불러오기-->
-                    <div class="user_id">${map.ask.writer }</div>
                     <!-- order_num 숨겨두었음 -->
                     <div class="order_num">${order_num }</div>
                 </div>               
