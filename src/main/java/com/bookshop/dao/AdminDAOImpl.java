@@ -18,23 +18,25 @@ public class AdminDAOImpl implements AdminDAO {
 	SqlSession sqlSession;
 	
 	final String SESSION = "com.bookshop.mappers.admin";
-	
+
 	@Override
-	public List<String> getOrderNumList(int pageNum) throws Exception {
-		System.out.println(pageNum);
-		int start = 20 * (pageNum - 1);
-		System.out.println(start);
-		return sqlSession.selectList(SESSION + ".getOrderNumList", start);
+	public List<OrderPlus> getOrderListSeparate(int pageNum) throws Exception {
+		int start = 20 * (pageNum - 1) + 1;
+		int end = 20 * pageNum;
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", start);
+		map.put("end", end);
+		return sqlSession.selectList(SESSION + ".getOrderListSeparate", map);
 	}
 
 	@Override
-	public List<OrderPlus> getOrderListSeparate(List<String> list) throws Exception {
-		return sqlSession.selectList(SESSION + ".getOrderListSeparate", list);
-	}
-
-	@Override
-	public List<OrderPlus> getOrderListUnited(List<String> list) throws Exception {
-		return sqlSession.selectList(SESSION + ".getOrderListUnited", list);
+	public List<OrderPlus> getOrderListUnited(int pageNum) throws Exception {
+		int start = 20 * (pageNum - 1) + 1;
+		int end = 20 * pageNum;
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", start);
+		map.put("end", end);
+		return sqlSession.selectList(SESSION + ".getOrderListUnited", map);
 	}
 
 	@Override
@@ -56,7 +58,7 @@ public class AdminDAOImpl implements AdminDAO {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("order_num", order_num);
 		map.put("tracking_num", tracking_num);
-		sqlSession.update(SESSION + ".changeToStart", order_num);
+		sqlSession.update(SESSION + ".changeStatus", order_num);
 		sqlSession.insert(SESSION + ".addDelivery", map); 
 	}
 

@@ -12,9 +12,9 @@ import org.springframework.web.servlet.ModelAndViewDefiningException;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
-public class Orderinterceptor extends HandlerInterceptorAdapter {
+public class Logininterceptor extends HandlerInterceptorAdapter {
 
-	private static final Logger logger = LoggerFactory.getLogger(Orderinterceptor.class);
+	private static final Logger logger = LoggerFactory.getLogger(Logininterceptor.class);
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {	
