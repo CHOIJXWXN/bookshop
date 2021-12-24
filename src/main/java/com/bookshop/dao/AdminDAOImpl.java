@@ -18,23 +18,25 @@ public class AdminDAOImpl implements AdminDAO {
 	SqlSession sqlSession;
 	
 	final String SESSION = "com.bookshop.mappers.admin";
-	
+
 	@Override
-	public List<String> getOrderNumList(int pageNum) throws Exception {
-		System.out.println(pageNum);
-		int start = 20 * (pageNum - 1);
-		System.out.println(start);
-		return sqlSession.selectList(SESSION + ".getOrderNumList", start);
+	public List<OrderPlus> getOrderListSeparate(int pageNum) throws Exception {
+		int start = 20 * (pageNum - 1) + 1;
+		int end = 20 * pageNum;
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", start);
+		map.put("end", end);
+		return sqlSession.selectList(SESSION + ".getOrderListSeparate", map);
 	}
 
 	@Override
-	public List<OrderPlus> getOrderListSeparate(List<String> list) throws Exception {
-		return sqlSession.selectList(SESSION + ".getOrderListSeparate", list);
-	}
-
-	@Override
-	public List<OrderPlus> getOrderListUnited(List<String> list) throws Exception {
-		return sqlSession.selectList(SESSION + ".getOrderListUnited", list);
+	public List<OrderPlus> getOrderListUnited(int pageNum) throws Exception {
+		int start = 20 * (pageNum - 1) + 1;
+		int end = 20 * pageNum;
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", start);
+		map.put("end", end);
+		return sqlSession.selectList(SESSION + ".getOrderListUnited", map);
 	}
 
 	@Override
@@ -44,8 +46,11 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 	
 	@Override
-	public void changeToStart(String order_num) throws Exception {
-		sqlSession.update(SESSION + ".changeToStart", order_num);
+	public void changeStatus(String order_status, String order_num) throws Exception {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("order_status", order_status);
+		map.put("order_num", order_num);
+		sqlSession.update(SESSION + ".changeStatus", map);
 	}
 	
 	@Override
@@ -53,28 +58,13 @@ public class AdminDAOImpl implements AdminDAO {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("order_num", order_num);
 		map.put("tracking_num", tracking_num);
-		sqlSession.update(SESSION + ".changeToStart", order_num);
+		sqlSession.update(SESSION + ".changeStatus", order_num);
 		sqlSession.insert(SESSION + ".addDelivery", map); 
 	}
 
 	@Override
-	public void changeToEnd(String order_num) throws Exception {
-		sqlSession.update(SESSION + ".changeToEnd", order_num);
-	}
-
-	@Override
-	public int getBeforeStartCnt() throws Exception {
-		return sqlSession.selectOne(SESSION + ".getBeforeStartCnt");
-	}
-
-	@Override
-	public int getStartCnt() throws Exception {
-		return sqlSession.selectOne(SESSION + ".getStartCnt");
-	}
-
-	@Override
-	public int getEndCnt() throws Exception {
-		return sqlSession.selectOne(SESSION + ".getEndCnt");
+	public int getOrderCnt(String order_status) throws Exception {
+		return sqlSession.selectOne(SESSION + ".getOrderCnt", order_status);
 	}
 
 	@Override

@@ -208,7 +208,6 @@ body {
   width: 100%;
   display: flex;
   justify-content: space-between;
- 
 }
 .info_wrap h3 {
   width: 24%;
@@ -261,7 +260,7 @@ input[type="date"] {
   width: 130px;
   height: 40px;
   font-family: "Pretendard-Regular";
-  font-size: 16px;
+  font-size: 14.5px;
   line-height: 40px;
   color: #1C1A1A;
   text-align: left;
