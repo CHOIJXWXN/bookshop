@@ -35,11 +35,9 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public boolean getNextPage(int pageNum) throws Exception {
+	public boolean getNextPage(int pageNum, String type) throws Exception {
 		
-		int pageNumer = (pageNum * 20) + 1;
-		
-		return dao.getNextPage(pageNumer) != null;
+		return dao.getNextPage((pageNum * 20) + 1, type) != null;
 	}
 	
 	@Override

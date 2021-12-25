@@ -40,9 +40,18 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public Orders getNextPage(int pageNumber) throws Exception {
+	public Object getNextPage(int pageNumber, String type) throws Exception {
 		
-		return sqlSession.selectOne(SESSION + ".getNextPage", pageNumber);
+		Object obj = null;
+		
+		if(type.equals("book")) {
+			obj = sqlSession.selectOne(SESSION + ".getNextPageBook", pageNumber);
+		}
+		else if(type.equals("orders")) {
+			obj = sqlSession.selectOne(SESSION + ".getNextPageOrders", pageNumber);
+		}
+		
+		return obj;
 	}
 	
 	@Override
