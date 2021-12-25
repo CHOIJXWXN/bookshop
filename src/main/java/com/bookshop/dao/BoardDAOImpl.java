@@ -69,6 +69,13 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.delete(SESSION + ".deleteAskReply", askreply_id);
 	}
 	
+	// 댓글 갯수 update
+	@Override
+	public void updateAskreplyCount(int ask_id) throws Exception {
+		sqlSession.update(SESSION + ".updateAskreplyCount", ask_id);
+		
+	}
+	
 
 
 }

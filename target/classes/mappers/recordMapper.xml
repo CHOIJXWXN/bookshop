@@ -34,6 +34,15 @@
 		LIMIT #{start}, 3
 	</select>
 	
+	<!-- 검색된 책 수 -->
+	<select id="searchBookCnt" resultType="_int">
+		SELECT COUNT(*)
+		FROM BOOK
+		WHERE (book_title LIKE CONCAT('%', #{keyword}, '%')
+		OR book_writer LIKE CONCAT('%', #{keyword}, '%'))
+		AND available = 0
+	</select>
+	
 	<!-- 기록 입력 -->
 	<insert id="addRecord">
 		INSERT INTO RECORD

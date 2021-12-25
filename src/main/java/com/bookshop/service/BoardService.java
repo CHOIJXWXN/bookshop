@@ -35,5 +35,8 @@ public interface BoardService {
 	// 댓글 삭제
 	public List<AskReply> deleteAskReply(AskReply askreply) throws Exception;
 	
+	// 댓글 갯수 추가
+	public void updateAskreplyCount(int ask_id) throws Exception;
+	
 	
 }

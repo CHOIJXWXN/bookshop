@@ -10,12 +10,14 @@ public class Ask {
 	private String ask_date;
 	private String ask_sort;
 	private String ask_status;
+	private int askreply_count;
 	private int available;
 	
 	public Ask() {}
 
 	public Ask(int ask_id, String writer, String book_id, String ask_title, String ask_contents, String ask_date,
-			String ask_sort, String ask_status, int available) {
+			String ask_sort, String ask_status, int askreply_count, int available) {
+	
 		this.ask_id = ask_id;
 		this.writer = writer;
 		this.book_id = book_id;
@@ -24,6 +26,7 @@ public class Ask {
 		this.ask_date = ask_date;
 		this.ask_sort = ask_sort;
 		this.ask_status = ask_status;
+		this.askreply_count = askreply_count;
 		this.available = available;
 	}
 
@@ -91,6 +94,14 @@ public class Ask {
 		this.ask_status = ask_status;
 	}
 
+	public int getAskreply_count() {
+		return askreply_count;
+	}
+
+	public void setAskreply_count(int askreply_count) {
+		this.askreply_count = askreply_count;
+	}
+
 	public int getAvailable() {
 		return available;
 	}
@@ -98,6 +109,13 @@ public class Ask {
 	public void setAvailable(int available) {
 		this.available = available;
 	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
