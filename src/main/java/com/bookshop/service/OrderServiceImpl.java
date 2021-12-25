@@ -2,9 +2,12 @@ package com.bookshop.service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
 import javax.inject.Inject;
 import org.springframework.stereotype.Service;
+
+import com.bookshop.dao.MemberDAO;
 import com.bookshop.dao.OrderDAO;
 import com.bookshop.vo.Cart;
 import com.bookshop.vo.CartPlus;
@@ -16,6 +19,8 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Inject
 	OrderDAO dao;
+	@Inject
+	MemberDAO mdao;
 
 	@Override
 	public List<CartPlus> viewCart(String user_id) throws Exception {
@@ -67,6 +72,14 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public void sellTot(Cart cart) throws Exception {
 		dao.changeSellTot(cart);
+	}
+
+	@Override
+	public HashMap<String, Object> orderInfo(String user_id) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("order", dao.getOrderInfo(user_id));
+		map.put("point", mdao.getPoint(user_id));
+		return map;
 	}
 
 }
