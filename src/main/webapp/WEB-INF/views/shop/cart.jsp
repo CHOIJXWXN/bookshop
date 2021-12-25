@@ -98,7 +98,7 @@
         <header class="order_ttl">
             <h2>CART</h2>
             <div class="process">
-                <img src="images/process_step1.png" alt="">
+                <img src="../../resources/images/process_step1.png" alt="">
             </div>
         </header>
         <!-- [2-2] 주문상세내역 -->
@@ -156,7 +156,9 @@
                 </tbody>
               </table>
                <!-- [2-3] 선택상품 삭제 -->
-              <button type="button" class="chk_delete" id="deleteBtn">선택 상품 삭제</button>
+              <button type="button" class="chk_delete" id="deleteBtn">
+              	<h4>선택 상품 삭제</h4>
+              </button>
               <!-- [2-4] 장바구니 합계 (주문 넘기기전 상태) -->
               <div class="order_prev_check_wrap">
                 <div class="cart_tot">
@@ -185,8 +187,12 @@
                 </div>
                 <!-- [2-5] 주문 버튼 -->
                 <ul class="order_btns_wrap">
-                    <li class="chk_only"><button name="select" disabled>선택 상품 주문</button><!-- <a href="./getOrderSelect">선택 상품 주문</a> --></li>
-                    <li class="all"><button name="all">전체 상품 주문</button><!-- <a href="./getOrderAll">전체 상품 주문</a> --></li>
+                    <li class="chk_only"><button name="select" disabled>
+                     <h4>선택 상품 주문</h4>
+                    </button></li>
+                    <li class="all"><button name="all">
+                     <h4>전체 상품 주문</h4>
+                    </button></li>
                 </ul>
               </div>
               

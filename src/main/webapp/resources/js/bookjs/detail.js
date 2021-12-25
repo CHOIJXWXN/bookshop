@@ -22,19 +22,19 @@ $(document).ready(function() {
 			var score = data.score / 10;	// 리뷰 평균 점수
 			
 			if(paging.pageNumber == 1) {
-				$('#prev').hide();
+			    $('#prev').css({"display":"none"});
 			}
 			else {
-				$('#prev').show();
+				$('#prev').css({"display":"block"});
 			}
 			
 			
 			
 			if(paging.next) {
-				$('#next').show();
+				$('#next').css({"display":"block"});
 			}
 			else {
-				$('#next').hide();
+				$('#next').css({"display":"none"});
 			}
 			
 			pageNumber = paging.pageNumber;
@@ -63,7 +63,7 @@ $(document).ready(function() {
 				str2 += '</div>';
 				str2 += '<div class="review_star">';
 				for (var j = 0; j < list[i].review_score; j++) {
-					str2 += '<label class="star" style="-webkit-text-fill-color: yellow; -webkit-text-stroke-width: 0.8px;">★</label>';
+					str2 += '<label class="fas fa-star" style="-webkit-text-fill-color: yellow; -webkit-text-stroke-width: 0.8px; margin-right:2px;"></label>';
 				}
 				str2 += '</div>';
 				str2 += '<div class="view_review">';

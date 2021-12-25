@@ -9,20 +9,20 @@
 <script>
 $(document).ready(function() {
 	  $('.nav_1').hover(function() {		  
-        $('.books_sub_mn').slideDown(300);
+        $('.books_sub_mn').stop().slideDown(300);
         $('.books_sub_mn').css('display', 'flex');
     }, function() {
-  	  $('.books_sub_mn').slideUp(300);
+  	  $('.books_sub_mn').stop().slideUp(300);
     });
 	  
 	  $('.my_mn').hover(function() {
 		  <c:if test="${admin == 1}">
 		  $('#my_mn').height(130);
 		  </c:if>
-		  $('#my_mn').slideDown(300);
+		  $('#my_mn').stop().slideDown(300);
 		  $('#my_mn').css('display', 'flex');
 	  }, function() {
-		  $('#my_mn').slideUp(300);
+		  $('#my_mn').stop().slideUp(300);
 	  });
 });
 </script>
