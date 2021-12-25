@@ -63,6 +63,10 @@
     						alert('비밀번호가 일치하지 않습니다.');
     						$('#user_pw').attr('value', '');
     					}
+    					// 관리자일 때
+    					else if(data == 1) {
+    						location.href = "./profile";
+    					}
     					// 데이터베이스 오류
     					else {
     						alert('데이터베이스 오류가 발생했습니다.');
