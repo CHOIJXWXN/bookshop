@@ -97,7 +97,6 @@ public class BoardController {
 		// Ask ask = boardService.boardView(ask_id);
 		HashMap<String, Object> map = boardService.boardView(ask_id);
 		
-		
 		// 2) 도서 아이디, 책제목, 작가 / 주문번호를 넘겨줌 
 		// model.addAttribute("book", boardService.getBookInfo(ask.getBook_id()));
 		// model.addAttribute("ask", ask);
@@ -118,6 +117,8 @@ public class BoardController {
 		askreply.setWriter(user_id);
 		
 		List<AskReply> list = boardService.insertAskReply(askreply);
+		
+		boardService.updateAskreplyCount(askreply.getAsk_id());
 		return list;
 	}
 	
@@ -132,6 +133,8 @@ public class BoardController {
 		askreply.setWriter(user_id);
 		
 		List<AskReply> list = boardService.deleteAskReply(askreply);
+		
+		boardService.updateAskreplyCount(askreply.getAsk_id());
 		return list;
 	}
 	

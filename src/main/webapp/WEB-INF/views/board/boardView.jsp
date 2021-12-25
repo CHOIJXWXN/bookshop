@@ -124,8 +124,9 @@ function deleteAskReply(askreply_id) {
              <h2>QnA</h2>
              <div class="table_h">
                  <div class="row_h1">
-                     <h3 class="ask_ttl_h">제목</h3>
-                     <p class="ask_ttl">${book.book_title }</p>
+                     <!-- <h3>제목</h3> --> 
+                     <h3 class="ask_ttl_h">문의종류</h3> <!-- 문의 종류 -->
+                     <p class="ask_ttl">${map.ask.ask_sort }</p>	<!-- 제목 -> 문의 종류 값 -->
                      <h3 class="ask_writer_h">작성자</h3>
                      <p class="ask_writer">${map.ask.writer }</p>
                  </div>

@@ -42,7 +42,12 @@
                     <p>	&#91;&nbsp;${ask.ask_sort }&nbsp;&#93;</p>
                 </div>
                  <div class="board_ttl">
-                    <a href="${path}/ask/boardView?ask_id=${ask.ask_id}"><p style="text-align: left;"> ${ask.book_title }</p></a>                    
+                    <a href="${path}/ask/boardView?ask_id=${ask.ask_id}"><p style="text-align: left;"> ${ask.book_title }</p>
+                    	<!-- 댓글이 존재하면 댓글 갯수 표시 -->
+                    	<c:if test="${ask.askreply_count ne 0}">
+                    		<b><c:out value="${ask.askreply_count }"></c:out></b>
+                    	</c:if>
+                    </a>            
                  </div>
                  <div class="board_date">
                     <p>${ask.ask_date }</p>

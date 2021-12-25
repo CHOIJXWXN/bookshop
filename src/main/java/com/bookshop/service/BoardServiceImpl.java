@@ -83,6 +83,12 @@ public class BoardServiceImpl implements BoardService {
 		dao.deleteAskReply(askreply.getAskreply_id());
 		return dao.getAskReplyList(askreply.getAsk_id());
 	}
+	
+	// 댓글 개수 추가
+	@Override
+	public void updateAskreplyCount(int ask_id) throws Exception {
+		dao.updateAskreplyCount(ask_id);
+	}
 
 	
 	

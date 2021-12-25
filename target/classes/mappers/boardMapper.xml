@@ -20,13 +20,13 @@
 
 <!-- 문의 내용 저장(문의글 쓰기 )-->
 <insert id="writeAsk" >
-	insert into ASK(writer, book_id, ask_contents, ask_date, ask_sort) 
-	values(#{writer}, #{book_id}, #{ask_contents}, now(), #{ask_sort})
+	INSERT INTO ASK(writer, book_id, ask_contents, ask_date, ask_sort) 
+	VALUES(#{writer}, #{book_id}, #{ask_contents}, now(), #{ask_sort})
 </insert>
 
 <!-- 문의 글 list -->
 <select id="getAskList" resultType="AskList">
-	SELECT ask_id, book_title, ask_sort, ask_date, book_cover
+	SELECT ask_id, book_title, ask_sort, ask_date, book_cover, askreply_count
 	FROM ASK a, BOOK b
 	WHERE a.book_id = b.book_id
 	AND a.writer = #{writer}
@@ -60,5 +60,15 @@
 	FROM ASKREPLY
 	WHERE askreply_id = #{askreply_id} 
 </delete>
+
+<!-- ASK 테이블에 댓글 수 추가하기 -->
+<update id="updateAskreplyCount" >
+	UPDATE ASK 
+	SET askreply_count = 
+		(SELECT count(ask_id)
+		 FROM ASKREPLY
+		 WHERE ask_id = #{ask_id})
+	WHERE ask_id = #{ask_id};
+</update>
 
 </mapper>
