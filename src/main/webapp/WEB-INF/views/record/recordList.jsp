@@ -60,31 +60,24 @@
         <!-- [2-5] 페이지 번호 -->
         <div class='paging_box'>
            <ul class="page_num">
-               <!-- 이전, 다음 버튼 없을 때 a태그만 안나오도록 li도 같이 지우면 안됨 -->
                 <li><a href="#"><img src="../../resources/images/page_prev.png" alt=""></a></li>
                 <li>
-                    <ul>
-                        <li>
-                            <a href="#" class="now">1</a>
-                            <div class="page_icon now"></div>
-                        </li>
-                        <li><a href="#">
-                            <a href="#">2</a>
-                            <div class="page_icon"></div>
-                        </a></li>
-                        <li><a href="#">
-                            <a href="#">3</a>
-                            <div class="page_icon"></div>
-                        </a></li>
-                        <li><a href="#">
-                            <a href="#">4</a>
-                            <div class="page_icon"></div>
-                        </a></li>
-                        <li><a href="#">
-                            <a href="#">5</a>
-                            <div class="page_icon"></div>
-                        </a></li>
-                    </ul>
+                  <ul>
+                    <c:if test = "${map.paging.pageNumber != 1}">
+			        <li><a href="${path}/record/?pageNum=${map.paging.before}"><img src="../../resources/images/page_prev.png" alt=""></a></li>
+		            </c:if>
+		            <c:forEach begin="${map.paging.minPage}" end="${map.paging.maxPage}" var="idx">
+		            <li>
+		              <a href="${path}/record/?pageNum=${idx}" class="<c:out value="${map.paging.pageNumber == idx ? 'now' : ''}"/>">${idx}</a>
+		              <c:if test = "${map.paging.pageNumber == idx}">
+		              <div class="page_icon now"></div>
+		              </c:if>
+		            </li>
+		            </c:forEach>
+		            <c:if test = "${map.paging.next}">
+		            <li><a href="${path}/record/?pageNum=${map.paging.forward}"><img src="../../resources/images/page_next.png" alt=""></a></li>
+		            </c:if>
+                  </ul>
                 </li>
                 <li><a href="#"><img src="../../resources/images/page_next.png" alt=""></a></li>
            </ul>
@@ -98,17 +91,16 @@
             <button class="close_btn"><img src="images/close_btn.png" alt=""></button>
             <h3>기록할 책을 검색해주세요</h3>
             <input type="text" id="book_search" class="book_search" placeholder="제목, 작가 키워드로 검색하세요."/>
-            <input type="hidden" id="pageNum" value="${pageNum}"/>
             <div class="book_box" >
+            </div>            
+            <div class="page">
+              <a class="prev">prev</a>        
+              <a class="next">next</a>
             </div>
-            
-          </div>
-            <a href="#" class="prev">prev</a>
-            <a href="#" class="next">next</a>
+          <div class="modal_layer"></div>
         </div>
-        <div class="modal_layer"></div>
+      </div>
     </div>
-  </div>
   <!-- 모달 스크립트 -->
   <!-- 모달 창 클릭했을 때 보이고 바깥 레이어 클릭했을 때 숨기기 -->
   <script>

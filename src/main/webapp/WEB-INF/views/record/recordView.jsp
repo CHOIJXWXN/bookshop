@@ -49,23 +49,23 @@
                 <div class="time">
                   <h3>독서기간</h3>
                   <div class="date_wrap">
-                  	<input type="date" class="read_time" name="record_init_date" value="${recordPlus.record_init_date}">
+                  	<input type="date" class="read_time" name="record_init_date" value="${recordPlus.record_init_date}" readonly>
 	                <span>~</span>
-	                <input type="date" class="read_time" name="record_fin_date" value="${recordPlus.record_fin_date}">
+	                <input type="date" class="read_time" name="record_fin_date" value="${recordPlus.record_fin_date}" readonly>
                   </div>
                 </div>
                 <div class="score">
                  <h3>평점</h3>
-                 <div class="book_score star-rating">
-                 	<!-- 채워진 별 -->
-                 	<c:forEach var="i" begin="1" end="${recordPlus.record_score}">
-                 	<input type="radio" id="1-star" name="record_score" value="1" v-model="ratings" style=""  disabled/>
-                    <label for="1-star" class="fas fa-star"></label>
-                 	</c:forEach>
+                 <div class="book_score old-star-rating">             	
                  	<!-- 빈 별 -->
                  	<c:forEach var="i" begin="${recordPlus.record_score +1}" end="5">
-                 	<input type="radio" id="1-star" name="record_score" value="1" v-model="ratings" style=""  disabled/>
-                    <label for="1-star" class="fas fa-star"></label>
+                 	<input type="radio" id="star" name="old_record_score" v-model="ratings" disabled/>
+                    <label for="star" class="fas fa-star"></label>
+                 	</c:forEach>
+                 	<!-- 채워진 별 -->
+                 	<c:forEach var="i" begin="1" end="${recordPlus.record_score}">
+                 	<input type="radio" id="star" name="old_record_score" v-model="ratings" disabled/>
+                    <label for="star" class="fas fa-star filled"></label>
                  	</c:forEach>
                   </div>
                 </div>
@@ -78,9 +78,9 @@
             </div>
             <!-- 버튼 -->
              <div class="btns_wrap">
-              <button class="edit">EDIT</button>
+              <button type="button" class="edit">EDIT</button>
               <button type="button" class="delete" onclick="location.href='./delete?record_id=${recordPlus.record_id}'">DELETE</button>
-              <button class="save">SAVE</button>
+              <button class="save" style="display: none;">SAVE</button>
             </div>
         </div>
         </form>
@@ -90,12 +90,31 @@
   	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   	<script>
   		$(document).ready(function() {
-  			$('.contents').one("click", function() {
+  			$('.edit').click(function() {
     			$('#old_contents').remove();
     			$('#editor').show();
-    			$('.edit').show();
+    			$('.save').show();
+    			$('.edit').hide();
     			$('.delete').hide();
-    			$('.contents:hover').css('cursor', 'auto');
+    			$('input[type=date]').attr('readonly', false);
+    			$('div.note-insert').hide();
+    			$('div.note-view').hide();
+    			$('.old-star-rating').remove();
+    			var str = '';
+    			str += '<div class="book_score star-rating">';
+    			str += '<input type="radio" id="5-stars" name="record_score" value="5" v-model="ratings"/>';
+    			str += '<label for="5-stars" class="fas fa-star"></label>';
+    			str += '<input type="radio" id="4-stars" name="record_score" value="4" v-model="ratings"/>';
+    			str += '<label for="4-stars" class="fas fa-star"></label>'; 
+    			str += '<input type="radio" id="3-stars" name="record_score" value="3" v-model="ratings"/>';
+    			str += '<label for="3-stars" class="fas fa-star"></label>'; 
+    			str += '<input type="radio" id="2-stars" name="record_score" value="2" v-model="ratings"/>';
+    			str += '<label for="2-stars" class="fas fa-star"></label>'; 
+    			str += '<input type="radio" id="1-stars" name="record_score" value="1" v-model="ratings"/>';
+    			str += '<label for="1-stars" class="fas fa-star"></label>';
+    			str += '</div>';
+    			$('.score').append(str);
+    			$('input[type=radio][value=${recordPlus.record_score}]').prop('checked', true);
     	    });
   			
   			$('#summernote').summernote({

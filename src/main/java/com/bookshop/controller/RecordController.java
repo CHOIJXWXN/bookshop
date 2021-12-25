@@ -1,5 +1,6 @@
 package com.bookshop.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -44,7 +45,7 @@ public class RecordController {
 	// 책 검색 기능 (Ajax)
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Book> search(String keyword, Integer pageNum, Model model) throws Exception {
+	public HashMap<String, Object> search(String keyword, Integer pageNum, Model model) throws Exception {
 		if (pageNum == null) {
 			pageNum = 1;
 		}
