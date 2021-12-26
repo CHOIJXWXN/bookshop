@@ -459,6 +459,7 @@ body {
 	font-size: 28px;
 	height: 80px;
 	line-height: 60px;
+	text-overflow: ellipsis;
 }
 
 /* 리뷰 타이틀 */
