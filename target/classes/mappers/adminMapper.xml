@@ -43,7 +43,7 @@
    </select>
    
    <!-- 페이징 -->
-   <select id="getNextPage" resultType="Orders">
+   <select id="getNextPageOrders" resultType="Orders">
 		SELECT A.*
 		FROM (SELECT @ROWNUM := @ROWNUM + 1 AS rownum, O.*
 				FROM (SELECT @ROWNUM := 0) R,
@@ -52,7 +52,15 @@
 					  ORDER BY order_num DESC) O) A
 		WHERE rownum = #{pageNumber};
 	</select>
-	
+	<!-- 페이징 -->
+   <select id="getNextPageBook" resultType="Book">
+		SELECT A.*
+		FROM (SELECT @ROWNUM := @ROWNUM + 1 AS rownum, O.*
+				FROM (SELECT @ROWNUM := 0) R,
+					 (SELECT *
+					  FROM BOOK) O) A
+		WHERE rownum = #{pageNumber};
+	</select>
 	<!-- 주문 상태 변경 -->
 	<update id="changeStatus">
 		UPDATE ORDERS

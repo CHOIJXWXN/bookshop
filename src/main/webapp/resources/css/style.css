@@ -52,6 +52,34 @@
   top: 960px;
   right:0;
 }
+#main .err_code {
+  font-family: 'Arial', sans-serif;
+  font-size: 140px;
+  line-height: 120px;
+  color: #2D2B2B;
+  position: absolute;
+  top: 275px;
+  left: 250px;
+  border-bottom: 1px solid #1C1A1A;
+}
+#main .err_msg {
+  font-family: 'Arial', sans-serif;
+  font-size: 60px;
+  line-height: 40px;
+  color: #2D2B2B;
+  position: absolute;
+  top: 455px;
+  left: 350px;
+}
+#main .err_cnt {
+  font-family: 'Arial', sans-serif;
+  font-size: 30px;
+  line-height: 40px;
+  color: #aaaaaa;
+  position: absolute;
+  top: 605px;
+  left: 350px;
+}
 /* 푸터 */
 #footer {
   float: left;

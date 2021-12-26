@@ -19,9 +19,15 @@
         <div id="section">
           <div id="sidebar">
             <p id="nav_title">Administrator</p>
-            <a href="${path}/admin/order">주문 관리</a>
-            <a href="${path}/admin/product" class="active">상품 관리</a>
-            <a href="${path}/admin/ask">문의 관리</a>
+            <a href="${path}/admin/order">
+                <span>주문 관리&nbsp;&nbsp;</span>
+            </a>
+            <a href="${path}/admin/product" class="active">
+                <span>상품 관리&nbsp;&nbsp;</span>
+            </a>
+            <a href="${path}/admin/ask">
+                <span>문의 관리&nbsp;&nbsp;</span>
+            </a>
           </div>
           <div id="container">
             <div id="order_info">
@@ -41,7 +47,7 @@
             <form action="./deleteProduct" method="POST">
             <div id="order_info_list">
               <div>
-                <span class="title">총 ${map.bookCnt} 권</span>
+                <h2 class="title">총 ${map.bookCnt} 권</h2>
                 <div class="func_btns">
                     <button type="button" class="btn" onclick="location.href='${path}/admin/addProduct'">새 상품 등록</button>
                     <button class="btn">상품 삭제</button>
@@ -69,6 +75,17 @@
               </table>
             </div>
             </form>
+             <!-- 페이징 -->
+             <div class="pagebox">
+                <ul class="pagenum_wrap">
+                    <c:if test = "${pageNum != 1 }">
+                    <li><a href="./product?pageNum=${pageNum - 1 }" class="prev">&nbsp;prev</a></li>
+                    </c:if>
+                    <c:if test = "${isNext eq true}">
+                    <li><a href="./product?pageNum=${pageNum + 1 }" class="next">next&nbsp;</a></li>
+                    </c:if>
+                </ul>
+            </div>
           </div>
         </div>
       </section>

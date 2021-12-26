@@ -16,17 +16,12 @@
     <div id="wrap">
       <jsp:include page="../mainNav.jsp" />
       <section id="main">
-        <!-- 대표 메뉴 -->
-        <ul class="q_mn">
-          <li><a href="${path }/record/">diary 독서기록</a></li>
-          <li><a href="${path }/book">book shop 책 쇼핑몰</a></li>
-        </ul>
         <!-- 배경 요소-->
-        <h1 class="bg_msg">
-        READ<br>
-        AND WRITE
-        </h1>
-        <div class="bg_line"></div>
+        <h4 class="err_code">
+        	500 ERROR
+        </h4>
+        <h5 class="err_msg"> 서버 문제가 발생했습니다. <br><br>지속적으로 발생시 관리자에게 문의바랍니다. </h5>
+        <a class="err_cnt" href="#">관리자에게 문의하기</a>
       </section>
       <!-- 푸터 -->
       <footer id="footer">

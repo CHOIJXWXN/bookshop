@@ -55,9 +55,6 @@ body {
   padding-top: 20px;
   margin-bottom: 20px;
 }
-.contents:hover {
-  cursor: context-menu;
-}
 .img_wrap {
   width: 40%;
   height: 300px;
@@ -148,6 +145,7 @@ input[type="date"]::-webkit-inner-spin-button {
     padding: 0 10px;
 }
 /* 별점랭킹 input */
+.old-star-rating,
 .star-rating {
   display: flex;
   flex-direction: row-reverse;
@@ -160,10 +158,12 @@ input[type="date"]::-webkit-inner-spin-button {
  /*  background-color: red; */
 }
  
+.old-star-rating input,
 .star-rating input {
   display: none;
 }
  
+.old-star-rating label,
 .star-rating label {
   -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
   -webkit-text-stroke-width: 0.8px;
@@ -171,18 +171,21 @@ input[type="date"]::-webkit-inner-spin-button {
   cursor: pointer;
 }
  
+.old-star-rating label.filled {
+  -webkit-text-fill-color: gold;
+}
 .star-rating :checked ~ label {
   -webkit-text-fill-color: gold;
 }
  
-/* .star-rating label:hover,
+.star-rating label:hover,
 .star-rating label:hover ~ label {
   -webkit-text-fill-color: #fff58c;
-} */
-/* .fa-star {
+}
+.fa-star {
     color: #EFEFEF;
     cursor: pointer;
-} */
+}
 /* .book_score .on {
     color : #F4C01F;
 } */

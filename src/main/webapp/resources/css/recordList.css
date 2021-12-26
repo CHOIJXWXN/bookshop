@@ -213,6 +213,10 @@
     width: 100%;
     margin-top: 150px;
     position: relative;
+}
+#modal .modal_content .prev,
+#modal .modal_content .next {
+	cursor: pointer;
 } 
 #modal .modal_layer {
     position:fixed;
