@@ -127,13 +127,11 @@
             <label for="tab3">책 리뷰</label>
 
               <!-- 탭 내용 영역 -->
-              <section class="delivery">delivery
-                <!-- 빈공간 -->
-                <div class="blank"></div>
+              <section class="delivery">
+             	<img src="../../resources/images/tab_delivery.png" alt="">
               </section>
-              <section class="change">change
-                <!-- 빈공간 -->
-                <div class="blank"></div>
+              <section class="change">
+               	<img src="../../resources/images/tab_refund.png" alt="">
               </section>
               <!-- **탭메뉴-3**리뷰페이지 -->
               <section class="review">
@@ -187,10 +185,12 @@
                 <div class="review_list">
                 </div>
                 <!-- 페이징처리 -->
-                <ul class="page_num">
-                  <li><a id="prev" href="">prev</a></li>
-                  <li><a id="next" href="">next</a></li>
-                </ul>
+                <div class="pagebox">
+                 <ul class="pagenum_wrap">
+                     <li><a href="" id="prev" class="prev">&nbsp;prev</a></li>
+                     <li><a href="" id="next" class="next">next&nbsp;</a></li>
+                 </ul>
+                </div>
                 <!-- 빈공간 -->
                 <div class="blank"></div>
               </section>             

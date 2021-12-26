@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="${path}/resources/css/order.css" />
     <link rel="stylesheet" href="${path}/resources/css/mainNav.css" />
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <%-- 카카오 주소검색 API --%>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="${path }/resources/js/mainjs/kakao.js" charset="UTF-8"></script>
+    <!-- 결제 api -->
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
     <script>
     $(document).ready(function() {
@@ -349,8 +353,12 @@
                   <tr class="row_style">
                     <td class="hidden_col"><input type="hidden" value="${direct.book_id}"></td>
                     <td class="book_name" style="text-align: left;">
-                        <img src="../resources/images/bookcover/${direct.book_cover}" alt="">
-                        <span>${direct.book_title}&nbsp;|&nbsp;${direct.book_writer}</span>
+                    	<div class="img_box">
+                        	<img src="../resources/images/bookcover/${direct.book_cover}" alt="">
+                        </div>
+                        <div class="ttl_writer_wrap">
+                        	<p>${direct.book_title}&nbsp;|&nbsp;${direct.book_writer}</p>
+                        </div>
                     </td>
                     <td> 
                       <select name="book_num" class="book_num" id="book_cnt_${direct.book_id}">
@@ -380,8 +388,12 @@
                     </td>
                     <td class="hidden_col"><input type="hidden" value="${all.book_id}"></td>
                     <td class="book_name" style="text-align: left;">
-                        <img src="../resources/images/bookcover/${all.book_cover}" alt="">
-                        <span>${all.book_title}&nbsp;|&nbsp;${all.book_writer}</span>
+                    	<div class="img_box">
+                        	<img src="../resources/images/bookcover/${all.book_cover}" alt="">
+                        </div>
+                        <div class="ttl_writer_wrap">
+                        	<p>${all.book_title}&nbsp;|&nbsp;${all.book_writer}</p>
+                        </div>
                     </td>
                     <td> 
                       <select name="book_num" class="book_num" id="book_cnt_${all.book_id}">
@@ -412,8 +424,12 @@
                     </td>
                     <td class="hidden_col"><input type="hidden" value="${select.book_id}"></td>
                     <td class="book_name" style="text-align: left;">
-                        <img src="../resources/images/bookcover/${select.book_cover}" alt="">
-                        <span>${select.book_title}&nbsp;|&nbsp;${select.book_writer}</span>
+                    	<div class="img_box">
+                        	<img src="../resources/images/bookcover/${select.book_cover}" alt="">
+                        </div>
+                        <div class="ttl_writer_wrap">
+                        	<p>${select.book_title}&nbsp;|&nbsp;${select.book_writer}</p>
+                        </div>
                     </td>
                     <td> 
                       <select name="book_num" class="book_num" id="book_cnt_${select.book_id}">
@@ -480,8 +496,9 @@
           <div class="container">
             <!-- 소제목 -->
             <div class="ttl">
-              <img src="../resources/images/order_ttl_icon.png" alt="">
+              <img src="../resources/images/order_ttl_icon.png" alt=""/>
                <h3>주문자 정보</h3>
+               <h6>* 필수 입력 사항입니다.</h6>
             </div>
             <!-- 입력 폼 -->
             <div class="row">
@@ -504,10 +521,12 @@
                <h3>배송정보</h3>
             </div>
             <!-- 입력 폼 -->
-            <div class="row">
-              <label for="user_name">*&nbsp;배송지</label>
-              <input type="radio" name="delivery" value="direct" checked>직접 입력
-              <input type="radio" name="delivery" value="indirect">주문자 정보와 동일
+            <div class="delivery_row">
+              <h2 for="user_name">*&nbsp;배송지</h2>
+              <input type="radio" name="delivery" value="direct" id="direct" checked>
+              <label style="font-family: 'Pretendard-Regular'; font-size: 15px;"class="direct_lb" for="direct">직접 입력</label>
+              <input type="radio" name="delivery" value="indirect">
+              <label class="indirect_lb" for="indirect">주문자 정보와 동일</label>
             </div>
             <div class="row">
               <label for="recipient">*&nbsp;받으실 분</label>
@@ -515,10 +534,15 @@
             </div>
             <div class="row_3" id="addr">
               <label>*&nbsp;받으실 곳</label>
-              <button class="find_post">우편번호 검색</button>
-              <input type="text" id="addr_1" name="addr_1" readonly>
-              <input type="text" id="addr_2" name="addr_2" readonly>
-              <input type="text" id="addr_3" name="addr_3" placeholder="상세주소 입력">
+              <div class="wrap">
+                    <div class="wrap2">
+                        <input type="text" id="addr_1" name="addr_1" readonly="true" />  
+                        <input type="button" id="findPost" onclick="DaumPostcode()" value="우편번호 검색" />
+                    </div>   
+                    <!-- <button type="button">우편번호 검색</button>  -->
+                    <input type="text" id="addr_2" name="addr_2" readonly="true" />              
+                    <input type="text" id="addr_3" name="addr_3"/>
+               </div>  
             </div>
             <div class="row">
               <label for="r_phone_num">*&nbsp;휴대폰번호</label>
@@ -563,6 +587,26 @@
             </div>
           </div>
         </article>
+        <!-- [2-6] 결제 수단 -->
+        <article id="order_pay_method">
+          <div class="container">
+            <!-- 소제목 -->
+            <div class="ttl">
+              <img src="../resources/images/order_ttl_icon.png" alt="">
+               <h3>결제수단</h3>
+            </div>
+            <!-- 입력 폼 -->
+            <div class="pay_row">
+              <h2 for="r_phone_num">&nbsp;&nbsp;일반 결제</h2>
+              <input type="radio" id="pay_option" checked />
+              <label for="pay_option">카드결제</label>
+            </div>
+           <!--  <div class="row">
+              <label for="r_phone_num">&nbsp;&nbsp;무통장 입금</label>
+              <input type="text" id="r_phone_num" name="r_phone_num" placeholder="- 없이 입력하세요." >
+            </div> -->
+          </div>
+        </article>
         <!-- 최종 결제 안내 -->
         <article id="order_agree_wrap">
           <div class="order_price_sum">
@@ -571,11 +615,13 @@
           </div>
           <div class="agree_chk">
             <input type="checkbox" id="order_agree" name="order_agree">
-            <label for="order_agree">[필수] 구매하실 상품의 결제정보를 확인하였으며, 구매진행에 동의합니다.</label>
+            <label for="order_agree"><span>[필수]</span>구매하실 상품의 결제정보를 확인하였으며, 구매진행에 동의합니다.</label>
           </div>
           <!-- 결제버튼 -->
 		  <!-- <input type="submit" name="order_set" id="order_set" value="결제하기"> -->
- 		  <button type="button" id="pay_btn">결제하기</button>
+
+ 		  <button type="button" class="pay_btn" id="pay_btn">결제하기</button>
+
         </article>
       </section>
     </div>
