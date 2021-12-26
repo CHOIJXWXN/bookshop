@@ -32,9 +32,14 @@ $(document).ready(function() {
 						$('.prev').hide();
 					} else {
 						$('.prev').show();
-					}
+					}				
 					$('.prev').attr('id', data.paging.pageNumber - 1);
 					$('.next').attr('id', data.paging.pageNumber + 1);
+					if (data.paging.next) {
+						$('.next').show();
+					} else {
+						$('.next').hide();
+					}
 				}
 			}
 		});

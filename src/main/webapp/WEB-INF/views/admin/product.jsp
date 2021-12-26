@@ -55,7 +55,7 @@
               </div>
               <table>
                 <tr>
-                  <th><input type="checkbox"></th>
+                  <th><input type="hidden"></th>
                   <th>상품ID</th>
                   <th>상품 구분</th>
                   <th>상품명</th>

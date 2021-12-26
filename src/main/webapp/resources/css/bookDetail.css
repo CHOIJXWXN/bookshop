@@ -3,7 +3,7 @@
 body {
 	padding: 0;
 	margin: 0;
-	background-color: white;
+	background-color: #EFF0F2;
 }
 #wrap {
   width: 100%;
@@ -39,7 +39,7 @@ body {
   width: 490px;
   height: 470px;
  /*  background-color: #DFDDD5; */
-  background-color: #F8F5F3;  
+  background-color: #FDFFFE;  
   margin: 20px 0 0 15px;
   box-shadow: 0px 0px 6px #777;
   text-align:center;
@@ -190,22 +190,19 @@ body {
 .book_buy_info .buy_btns {
   width: 100%;
   height: 60px;
-  /* background-color: darkseagreen; */
   margin-top: 40px;
-  position: relative;
-  
+  position: relative; 
 }
 .book_buy_info .buy_btns li {
   text-align: center;
   position:absolute;
   top: 0;
-  
 }
 .book_buy_info .buy_btns li:first-child {
-  right: 260px;
+  right: 35%;
 }
 .book_buy_info .buy_btns li:last-child {
-  right: 30px;
+  right: 0;
 }
 .book_buy_info .buy_btns li input[type=submit],
 .book_buy_info .buy_btns li .addCart {
@@ -219,11 +216,14 @@ body {
   line-height: 58px;
   color: #1C1A1A; 
   cursor: pointer;
+  background-color: transparent;
 }
 .book_buy_info .buy_btns li input:hover,
 .book_buy_info .buy_btns li .addCart:hover {
   background-color: #1C1A1A;
   color: white;
+  box-shadow: 0 0 6px #777;
+  transition: 0.3s all ease;
 }
 
 /* [2-2] 책 상세페이지 영역 */
@@ -232,7 +232,7 @@ body {
   margin: 0 auto;
   margin-top: 70px;
   width: 1000px;
-  background-color: #F1F1F1;
+  background-color: #FDFFFE;
   border-bottom: 0.6px solid #1C1A1A;;
 
 }
@@ -324,7 +324,7 @@ body {
 /* 나중에 높이 지우기 */
 #book_tab_box {
   margin: 0 auto;
-  width: 1200px;
+  width: 62.5%;
   /* height: 1000px; */
   background-color: teal;
   position: relative;
@@ -333,12 +333,12 @@ body {
   display: none;
 }
 #book_tab_box > label {
-   display: block;
+  display: block;
   float: left;
   width: 33.333%;
   height: 90px;
-  background-color: white;
-  font-family: 'NotoSerifKR';
+  background-color: #FDFFFE;
+  font-family: 'MaruBuri-Regular';
   font-size: 19px;
   font-weight: 900;
   color: #1C1A1A;
@@ -347,6 +347,10 @@ body {
   border: 1px solid #707070;
   box-sizing: border-box;
   cursor: pointer;
+}
+#book_tab_box > label:first-child,
+#book_tab_box > label:nth-child(2) {
+	border-right: 0;
 }
 #tab1:checked + label {
   border-bottom: 10px solid #1C1A1A;
@@ -359,8 +363,7 @@ body {
 }
 /* 나중에 높이 지우기 */
 #book_tab_box section {
-  width: 1200px;
-  height: 800px;
+  width: 100%;
   position: absolute;
   top: 90px;
   left: 0px;
@@ -370,10 +373,12 @@ body {
 }
 
 #book_tab_box section.delivery {
-  background-color: burlywood;
+  background-color: transparent;
+  height: 900px;
 }
 #book_tab_box section.change {
-  background-color: rebeccapurple;
+  background-color: transparent;
+  height: 1000px;
 }
 #book_tab_box section.review {
   /* background-color: whitesmoke; */
@@ -387,6 +392,23 @@ body {
 #book_tab_box #tab3:checked ~ .review {
   display: block;
 }
+/* 탭메뉴-1 배송안내 */
+
+#book_tab_box section.delivery img {
+  border: 1px solid #1C1A1A;
+  border-top: 0;
+  width: 100%;
+  margin-bottom: 200px;
+  box-sizing: border-box;
+}
+/* 탭메뉴-1 교환반품 */
+#book_tab_box section.change img {
+  border: 1px solid #1C1A1A;
+  border-top: 0;
+  width: 100%;
+  margin-bottom: 200px;
+  box-sizing: border-box;
+}
 /* **탭메뉴-3** 리뷰 페이지 */
 /* 리뷰 입력 박스 */
 #book_tab_box .write_form {
@@ -394,8 +416,8 @@ body {
   margin-top: 70px;
   width: 90%;
   /* height: 600px; */
-  border: 2px solid #707070;
-  background-color: white;
+  border: 1px solid #707070;
+  background-color: #FDFFFE;
 }
 /* 리뷰 입력 박스 헤더 */
 #book_tab_box .write_form header {
@@ -410,12 +432,14 @@ body {
   float: left;
   width: 140px;
   height: 180px;
-  /* background-color: gray; */
   margin-right: 5%;
   overflow: hidden;
+  text-align: center;
+  padding: 3px 0;
 }
 .write_form .book_img img {
-  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 3px #999;
 }
 /* 책 요약 */
 .write_form .book_info {
@@ -434,7 +458,8 @@ body {
 .write_form .book_info li:first-child {
 	font-size: 28px;
 	height: 80px;
-	line-height: 80px;
+	line-height: 60px;
+	text-overflow: ellipsis;
 }
 
 /* 리뷰 타이틀 */
@@ -458,18 +483,17 @@ body {
 /* 별점 */
 .write_form .review_score {
   float: right;
-  width: 70%;
+  width: 80%;
   height: 50px;
-  /* background-color: blue; */
 }
 /* 별점랭킹 input */
 .star-rating {
   display: flex;
   flex-direction: row-reverse;
   font-size: 2rem;
-  line-height: 2.25rem;
+  line-height: 50px;
   justify-content: space-around;
-  padding: 0 0.1em;
+  padding: 0 0.4em;
   text-align: center;
   width: 5em;
  /*  background-color: red; */
@@ -585,35 +609,50 @@ body {
   color: #1C1A1A;
 }
 
-/* 페이징처리 */
-.page_num {
-  margin: 0 auto;
-  width: 300px;
-  height: 50px;
-  /* background-color: magenta; */
-  display: flex;
-  justify-content: space-between;
-  margin-top: 50px;
+/* 페이징 */
+.pagebox {
+  width: 100%;
+  height: 60px;
+  margin-top: 30px; 
   margin-bottom: 200px;
 }
-.page_num li {
+.pagenum_wrap {
+  margin: 0 auto;
+  width: 30%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+}
+.pagenum_wrap li {
   width: 50%;
-  height: 50px;
-  
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.page_num a {
-  text-align: center;
+.pagenum_wrap a {
   display: block;
-  font-family: "Pretendard-Regular";
-  font-size: 15px;
-  line-height: 50px;
+  width: 70%;
+  height: 40px;
+  text-align: center;
+  font-family: 'Goudy Bookletter 1911', serif;
+  font-size: 22px;
+  line-height: 40px;
   color: #1C1A1A;
-  
 }
-.page_num a:hover {
-  font-size: 17px;
+.pagenum_wrap a.prev::before {
+  content: "<";
+  display: none;
 }
-.blank {
-  width: 100%;
-  height: 200px;
+.pagenum_wrap a.next::after {
+  content: ">";
+  display: none;
 }
+.pagenum_wrap a:hover:before {
+  display: inline-block;
+}
+.pagenum_wrap a:hover:after {
+  display: inline-block;
+}
+
+

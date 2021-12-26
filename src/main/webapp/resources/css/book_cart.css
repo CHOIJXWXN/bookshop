@@ -8,9 +8,10 @@
 #book_order {
   float: left;
   width: 100%;
-  background-image: url("../images/main_bg_4.jpg");
+  background-color: #EFF0F2;
+/*   background-image: url("../images/main_bg_4.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
   position: relative;
 }
 /* [2-1] 제목*/
@@ -55,7 +56,7 @@
 }
 #order_detail .container table {
   width: 100%;
-  background-color: #FAFAF8;
+  background-color: white;
 }
 #order_detail .container table th {
   height: 70px;
@@ -134,20 +135,25 @@ input[type=checkbox] {
     float: left;
     display: block;
     width: 140px;
-    height: 33px;
+    height: 35px;
     border: 1px solid #707070;
-    text-align: center;
-    font-family: 'NotoSerifKR';
-    font-size: 15px;
-    line-height: 33px;
-    color: rgba(46, 45, 45, 1);
     margin-top: 18px;
+    cursor: pointer;
+}
+#order_detail .container .chk_delete h4 {
+	text-align: center;
+	font-family: 'NotoSerifKR';
+    font-size: 15px;
+    line-height: 35px;
+    color: rgba(46, 45, 45, 1);
+    position:relative;
+    top:-2px;
 }
 #order_detail .container .chk_delete:hover {
-    background-color: rgba(28, 26, 26, 0.75);
-    color: whitesmoke;
+    background-color: white;
     transition: 0.3s;
 }
+
 /* [2-4] 장바구니 합계 (주문 넘기기전 상태) */
 .order_prev_check_wrap {
     float: right;
@@ -219,22 +225,36 @@ input[type=checkbox] {
 .order_btns_wrap li button {
     display: block;
     width: 225px;
-    height:60px;
-    text-align: center;
-    font-family: 'NotoSerifKR';
+    height:60px;   
+    background-color: transparent;
+    border: 0px;
+    cursor: pointer;
+}
+.order_btns_wrap li h4 {
+	text-align: center;
+	font-family: 'NotoSerifKR';
     font-size: 22px;
     line-height: 60px;
     color: #1C1A1A;
-    background-color: transparent;
-    border: 0px;
+    position: relative;
+    top: -2px;
 }
-.order_btns_wrap li button:hover {
+
+.order_btns_wrap li.chk_only:hover {
 	cursor: pointer;
+	background-color : white;
+	box-shadow: 0 0 6px #999;
 }
 .order_btns_wrap li button[disabled]:hover {
 	cursor: not-allowed;
+	background-color : transparent;
+	box-shadow: none;
 }
-.order_btns_wrap li.all button {
-  color: whitesmoke;
-  font-weight: lighter;
+.order_btns_wrap li.all:hover {
+	box-shadow: 0 0 6px #000;
 }
+.order_btns_wrap li.all h4 {
+	color: whitesmoke;
+  	font-weight: lighter;
+}
+

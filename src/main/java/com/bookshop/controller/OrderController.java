@@ -124,12 +124,24 @@ public class OrderController {
 	
 	@RequestMapping(value = "/paid", method = RequestMethod.POST)
 	@ResponseBody
-	public String paid(String merchant_uid, Orders order, int point_use, int point_add, @RequestParam List<String> book_id, @RequestParam List<Integer> book_cnt) throws Exception {
+	public String paid(String merchant_uid, Orders order, @RequestParam Integer point_use, @RequestParam Integer point_add, @RequestParam List<String> book_id, @RequestParam List<Integer> book_cnt) throws Exception {
+		if (point_use == null) {
+			point_use = 0;
+		}
+		if (point_add == null) {
+			point_add = 0;
+		}
+		if (book_id.contains("none")) {
+			return "-1";
+		}
+		if (book_cnt.contains(0)) {
+			return "-1";
+		}
 		// 주문 추가
 		int result = orderService.addOrder(order);
 		if (result == 1) {
 			// 포인트 차감/적립
-			orderService.point(merchant_uid, point_use, point_add);
+			orderService.point(order.getUser_id(), point_use, point_add);
 			// 판매량 증가 / 주문 목록 추가
 			Cart cart;
 			OrderList orderList;
@@ -140,9 +152,17 @@ public class OrderController {
 				orderService.addOrderlist(orderList);
 			}
 		} else {
-			
+			result = 0;
 		};
 		return result + "";
 	}
+	
+	// 전체 상품 주문 기능
+		@RequestMapping(value = "/orderSuccess", method = RequestMethod.GET)
+		public String orderSuccess(HttpSession session, Model model) throws Exception {
+			String user_id = (String) session.getAttribute("user_id");
+			model.addAttribute("map", orderService.orderInfo(user_id)); // order, point
+			return "shop/orderSuccess";
+		}
 
 }

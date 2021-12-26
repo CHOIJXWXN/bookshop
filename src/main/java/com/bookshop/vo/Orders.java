@@ -6,6 +6,7 @@ public class Orders {
 	private String user_id;
 	private String order_name;
 	private String order_addr;
+	private String order_phone;
 	private int order_tot;
 	private int ship_cost;
 	private int final_cost;
@@ -17,13 +18,14 @@ public class Orders {
 
 	}
 
-	public Orders(String order_num, String user_id, String order_name, String order_addr, int order_tot, int ship_cost,
+	public Orders(String order_num, String user_id, String order_name, String order_addr, String order_phone, int order_tot, int ship_cost,
 			int final_cost, String comments, String order_date, String order_status) {
 		
 		this.order_num = order_num;
 		this.user_id = user_id;
 		this.order_name = order_name;
 		this.order_addr = order_addr;
+		this.order_phone = order_phone;
 		this.order_tot = order_tot;
 		this.ship_cost = ship_cost;
 		this.final_cost = final_cost;
@@ -62,6 +64,14 @@ public class Orders {
 
 	public void setOrder_addr(String order_addr) {
 		this.order_addr = order_addr;
+	}
+	
+	public String getOrder_phone() {
+		return order_phone;
+	}
+	
+	public void setOrder_phone(String order_phone) {
+		this.order_phone = order_phone;
 	}
 
 	public int getOrder_tot() {
