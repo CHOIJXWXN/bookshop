@@ -18,7 +18,31 @@
     <!-- 결제 api -->
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
     <script>
-    $(document).ready(function() {  	
+    $(document).ready(function() {
+    	
+    	// 결제 전 입력 공란 검증
+        $('#pay_btn').click(function() {
+            if ($('#recipient').val() == '') {
+            	alert('받으시는 분 이름을 적어주세요');
+            } else if (($('#addr1').val() == '' && $('#addr2').val() == '' && $('#addr3').val() == '') || $('#addr4').val() == '') {
+            	alert('받으시는 분 주소를 적어주세요');
+            } else if ($('#r_phone_num').val() == '') {
+            	alert('받으시는 분 연락처를 적어주세요');
+            } else if (!$('#order_agree').prop('checked')) {
+            	alert('약관에 동의해주세요');
+            } else {
+          	  requestPay();
+            }
+        });
+    	
+    	$('input.chk_box').click(function() {
+    		if ($('input.chk_box:checked').length == 0) {
+    			$('input[type=checkbox]').prop('checked', false);
+    		} else {
+    			$('input[type=checkbox]').prop('checked', true);  			
+    		}
+    	});
+    	
     	// 포인트 변화 기능
     	var point = 0;
 		$('#point_use').on("keyup change", function() {
@@ -186,7 +210,7 @@
     			var str = '';
     			str += '<div class="row" id="addr">';
     			str += '<label>*&nbsp;받으실 곳</label>';
-    			str += '<input type="text" value="${user.user_addr}" readonly>';
+    			str += '<input type="text" id="addr4" value="${user.user_addr}" readonly>';
     			str += '</div>';
     			$('#addr').replaceWith(str);	
     		}
@@ -209,18 +233,6 @@
     name = '${selectList[0].book_title} 외 ${fn:length(selectList) - 1}';
     </c:if>
     </c:if>
-    var point_use = $('#point_use').val();
-    if (point_use == '') {
-    	point_use = 0;
-    }
-    var book_id = [];
-    $('input[type=hidden]').each(function() {
-        book_id.push($(this).val());
-    });
-    var book_cnt = [];
-    $('select').each(function() {
-        b.push($(this).val());
-    });
     // 결제 api
 	var IMP = window.IMP;
 	IMP.init("imp21304345");
@@ -234,17 +246,34 @@
           amount: parseInt($('.book_price_tot_pt').text()),		// 결제 가격
           buyer_email: "${user.user_email}",					// 구매자 이메일
           buyer_name: "${user.user_name}",						// 구매자 이름
-          buyer_tel: "${user.user_phone}",						// 구매자 연락처
+          buyer_tel: "${user.user_phone}"						// 구매자 연락처
       }, function (rsp) {
           if (rsp.success) {
+        	  var point_use = $('#point_use').val();
+	       	  if (point_use == '') {
+	       		  point_use = 0;
+	       	  }
+	       	  var book_id = [];
+	       	  $('input[type=hidden]').each(function() {
+	       	      book_id.push($(this).val());
+	       	  });
+	       	  if (book_id.length == 0) {
+	       		  book_id = ["none"];
+	       	  }
+	       	  var book_cnt = [];
+	       	  $('select').each(function() {
+	       	      book_cnt.push($(this).val());
+	       	  });
+	       	  if (book_cnt.length == 0) {
+	       		  book_cnt = [0];
+	       	  }
         	  $.ajax({
         		  url: "./paid",
             	  method: "POST",
-            	  headers: { "Content-Type": "application/json" },
             	  data: {
             		  imp_uid: rsp.imp_uid,
                 	  merchant_uid: rsp.merchant_uid,
-                	  order_num: "${order_num}",
+                	  order_num: "${orderNum}",
                 	  user_id: "${user_id}",
                 	  order_name: $('#recipient').val(),
                 	  order_addr: $('#addr_1').val() + '_' + $('#addr_2').val() + '_' + $('#addr_3').val(),
@@ -253,28 +282,31 @@
                 	  ship_cost: parseInt($('#shippingCost').text()),
                 	  final_cost: parseInt($('.book_price_tot_pt').text()),
                 	  comments: $('#r_comments').val(),
-                	  point_use: point_use,
-                	  point_add: $('span.point').text().replace(/[^0-9]/g, ''),
+                	  point_use: parseInt(point_use),
+                	  point_add: parseInt($('span.point').text().replace(/[^0-9]/g, '')),
                 	  book_id: book_id,
                 	  book_cnt: book_cnt
             	  },
             	  traditional : true,
             	  success : function(data) {
-            		  if (data == 0) {
+            		  if (data == 1) {
             			  location.href = "./orderSuccess";
             			  alert('성공'); 			// 성공 시 orderSuccess로 이동
-            		  } else if (data == 1) {
+            		  } else if (data == 0) {
             			  alert('실패');			// 실패 시 알림
-            		  }          		  
+            		  } else if (data == -1) {
+            			  alert('주문한 상품이 없습니다');
+            		  }         		  
             	  },
             	  error : function(data) {
-            		  
+            		  alert('ajax오류');
             	  }
               });
           } else {
         	  alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
           }
       });
+      
 	};
    
     </script>
@@ -305,9 +337,8 @@
               <table>
                 <thead>
                   <tr>
-                    <th width="5%"><input type="checkbox" name="order_check" class="chk_box"></th>
                     <th width="0"><!--book_id--></th>
-                    <th width="40%">상품/옵션 정보</th>
+                    <th width="43%">상품/옵션 정보</th>
                     <th width="10%">수량</th>
                     <th width="11%">금액</th>
                     <th width="11%">할인/적립</th>
@@ -320,9 +351,6 @@
                 <!-- 바로 주문하기 -->
                 <c:if test="${not empty direct}">
                   <tr class="row_style">
-                    <td>
-                      <input type="checkbox" name="order_check">
-                    </td>
                     <td class="hidden_col"><input type="hidden" value="${direct.book_id}"></td>
                     <td class="book_name" style="text-align: left;">
                     	<div class="img_box">
@@ -425,7 +453,7 @@
                 </tbody>
               </table>
               <!-- [2-2-2] 장바구니 돌아가기 버튼 -->
-              <a href="#" class="go_back">장바구니 가기</a>
+              <a href="${path}/order/cart" class="go_back">장바구니 가기</a>
                <!-- [2-2-3] 주문 합계-->
                <div class="order_check_wrap">
                 <div class="order_tot">
@@ -591,7 +619,9 @@
           </div>
           <!-- 결제버튼 -->
 		  <!-- <input type="submit" name="order_set" id="order_set" value="결제하기"> -->
- 		  <button onclick="requestPay()" class="pay_btn">결제하기</button>
+
+ 		  <button type="button" class="pay_btn" id="pay_btn">결제하기</button>
+
         </article>
       </section>
     </div>

@@ -58,7 +58,7 @@ public class RecordController {
 		String user_id = (String) session.getAttribute("user_id");
 		Record result = recordService.getRecord(user_id, book_id);
 		if (result != null) {
-			ra.addFlashAttribute("msg", "이미 기록 적음");
+			ra.addFlashAttribute("msg", "이미 기록한 책입니다");
 			return "redirect:/record/";
 		} else {
 			model.addAttribute("book", bookService.view(book_id));

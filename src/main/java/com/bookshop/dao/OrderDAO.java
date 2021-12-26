@@ -19,4 +19,6 @@ public interface OrderDAO {
 	public void addOrderlist(OrderList orderList) throws Exception;
 	public void changePoint(String user_id, int point_use, int point_add) throws Exception;
 	public void changeSellTot(Cart cart) throws Exception;
+	public Orders getOrderInfo(String user_id) throws Exception;
+
 }

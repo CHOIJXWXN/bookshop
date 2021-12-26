@@ -74,7 +74,7 @@
               </div>
               <table id="table">
                 <tr>
-                  <th><input type="checkbox"></th>
+                  <th><input type="hidden"></th>
                   <th>주문번호</th>
                   <th>주문자</th>
                   <th>상품ID</th>
