@@ -70,5 +70,14 @@
    		SET book_sell_tot = book_sell_tot + #{book_cnt}
    		WHERE book_id = #{book_id}
    	</update>
+   	
+   	<!-- 특정 유저 가장 최근 주문 정보 -->
+   	<select id="getOrderInfo" resultType="Orders">
+   		SELECT *
+   		FROM ORDERS
+   		WHERE user_id = #{user_id}
+   		ORDER BY order_num DESC
+   		LIMIT 1
+   	</select>
    
 </mapper>

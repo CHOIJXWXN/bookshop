@@ -24,6 +24,14 @@
     		}
     	})
     	
+    	$('input.chk_box').click(function() {
+    		if ($('input.chk_box:checked').length == 0) {
+    			$('input[type=checkbox]').prop('checked', false);
+    		} else {
+    			$('input[type=checkbox]').prop('checked', true);  			
+    		}
+    	});
+    	
     	$('#deleteBtn').click(function() {
     		var book_id = [];
     		$('input[type=checkbox]:checked').each(function(i){//체크된 리스트 저장
@@ -111,7 +119,7 @@
               <table>
                 <thead>
                   <tr>
-                    <th width="5%"><input type="checkbox" name="order_check" class="chk_box"></th>
+                    <th width="5%"><input type="checkbox" class="chk_box"></th>
                     <th width="0"><!--book_id--></th>
                     <th width="40%">상품/옵션 정보</th>
                     <th width="10%">수량</th>

@@ -42,40 +42,34 @@
             <div class="ttl">
               <img src="../resources/images/order_ttl_icon.png" alt="">
                <h3>주문 | 결제 정보</h3>
-               <p>2021-12-14</p>
+               <p>${map.order.order_date}</p>
             </div>
             <!-- 입력 폼 -->
             <div class="row">
               <label>&nbsp;&nbsp;주문번호</label>
-              <p>00000000-00000000</p>
+              <p>${map.order.order_num}</p>
             </div>
             <div class="row_3">
               <label>&nbsp;&nbsp;배송지정보</label>
-              <p>user_name,phone_number,address</p>
+              <p>${map.order.order_name}, ${map.order.order_phone}, ${map.order.order_addr}</p>
             </div>
             <div class="row">
               <label>&nbsp;&nbsp;총 결제금액</label>
               <p>
-                45,000원
+                ${map.order.final_cost}원
               </p>
             </div>
             <div class="row">
               <label>&nbsp;&nbsp;적립 후 보유 포인트</label>
               <p>
-                12,000원
-              </p>
-            </div>
-            <div class="row">
-              <label>&nbsp;&nbsp;결제수단</label>
-              <p>
-                KB 카드 0000000000000
+                ${map.point}원
               </p>
             </div>
           </div>         
         </article>
         <div class="btns_group">
-          <a href="#" class="order_view">배송조회</a>
-          <a href="#" class="shop_view">SHOP</a>      
+          <a href="${path}/mypage/delivery" class="order_view">배송조회</a>
+          <a href="${path}/book/" class="shop_view">SHOP</a>      
         </div>
         
 

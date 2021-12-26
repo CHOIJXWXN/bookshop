@@ -1,5 +1,6 @@
 package com.bookshop.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.bookshop.vo.Cart;
@@ -19,5 +20,6 @@ public interface OrderService {
 	public void addOrderlist(OrderList orderList) throws Exception;
 	public void point(String user_id, int point_use, int point_add) throws Exception;
 	public void sellTot(Cart cart) throws Exception;
+	public HashMap<String, Object> orderInfo(String user_id) throws Exception;
 	
 }
