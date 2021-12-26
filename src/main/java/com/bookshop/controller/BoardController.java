@@ -102,6 +102,7 @@ public class BoardController {
 		// model.addAttribute("ask", ask);
 		model.addAttribute("book", boardService.getBookInfo(boardService.getBookid(ask_id)));
 		model.addAttribute("map", map);
+		model.addAttribute("user", boardService.getUserInfo(user_id));
 		
 		return "board/boardView";
 	}

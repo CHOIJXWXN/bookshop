@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bookshop.service.AdminService;
+import com.bookshop.vo.AskList;
 import com.bookshop.vo.Book;
 
 @Controller
@@ -95,14 +96,22 @@ public class AdminController {
 	
 	// 문의 관리 페이지
 	@RequestMapping(value = "/ask", method = RequestMethod.GET)
-	public String ask(Model model) throws Exception {
+	public String ask(Model model, AskList asklist, String book_id) throws Exception {
+		
+		List<AskList> list = adminService.getAdminAskList(asklist);
+		
+		model.addAttribute("list", list);
+		
 		return "admin/ask";
 	}
+	
 	
 	// 문의 관리 페이지
 	@RequestMapping(value = "/viewAsk", method = RequestMethod.GET)
 	public String viewAsk(Model model) throws Exception {
-		return "admin/ask";
+		
+		return "redirect:/ask";
 	}
+	
 	
 }

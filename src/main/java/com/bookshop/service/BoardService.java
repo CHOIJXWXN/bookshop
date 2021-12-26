@@ -7,6 +7,7 @@ import com.bookshop.vo.Ask;
 import com.bookshop.vo.AskList;
 import com.bookshop.vo.AskReply;
 import com.bookshop.vo.Book;
+import com.bookshop.vo.Users;
 
 public interface BoardService {
 
@@ -37,6 +38,9 @@ public interface BoardService {
 	
 	// 댓글 갯수 추가
 	public void updateAskreplyCount(int ask_id) throws Exception;
+	
+	// 유저 아이디 불러오기
+	public Users getUserInfo(String user_id) throws Exception;
 	
 	
 }

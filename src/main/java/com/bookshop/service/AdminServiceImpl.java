@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.bookshop.dao.AdminDAO;
 import com.bookshop.dao.BookDAO;
+import com.bookshop.vo.AskList;
 import com.bookshop.vo.Book;
 
 @Service
@@ -75,6 +76,13 @@ public class AdminServiceImpl implements AdminService {
 		}
 		book_cover.transferTo(new File("../resources/images/bookcover/" + book.getBook_id() + ".jpg"));
 	}
+
+	@Override
+	public List<AskList> getAdminAskList(AskList asklist) throws Exception {
+		
+		return dao.getAdminAskList(asklist);
+	}
+
 
 	
 

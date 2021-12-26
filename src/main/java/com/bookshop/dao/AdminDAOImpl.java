@@ -4,12 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.bookshop.vo.AskList;
 import com.bookshop.vo.Book;
 import com.bookshop.vo.OrderPlus;
-import com.bookshop.vo.Orders;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO {
@@ -96,6 +97,15 @@ public class AdminDAOImpl implements AdminDAO {
 	public void addBook(Book book) throws Exception {
 		sqlSession.insert(SESSION + ".addBook", book);
 	}
+
+	
+	@Override
+	public List<AskList> getAdminAskList(AskList asklist) throws Exception {
+		
+		return sqlSession.selectList(SESSION + ".getAdminAskList", asklist);
+	}
+
+	
 
 	
 

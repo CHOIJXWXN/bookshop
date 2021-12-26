@@ -12,6 +12,7 @@ import com.bookshop.vo.Ask;
 import com.bookshop.vo.AskList;
 import com.bookshop.vo.AskReply;
 import com.bookshop.vo.Book;
+import com.bookshop.vo.Users;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -88,6 +89,13 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void updateAskreplyCount(int ask_id) throws Exception {
 		dao.updateAskreplyCount(ask_id);
+	}
+	
+	// 유저 정보 불러오기
+	@Override
+	public Users getUserInfo(String user_id) throws Exception {
+		Users users = dao.getUserInfo(user_id);
+		return users;
 	}
 
 	
