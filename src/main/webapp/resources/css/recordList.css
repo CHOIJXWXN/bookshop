@@ -1,4 +1,4 @@
-@charset "utf-8";
+@charset "UTF-8";
 
 
 #wrap {
@@ -9,10 +9,9 @@
 #diary {
   float: left;
   width: 100%;
-  /* height: 260vh; */
-  /* background-image: url("../images/main_bg_10.jpg");
+  background-image: url("../images/diary_bg_4.jpg");
   background-repeat: no-repeat;
-  background-size: cover; */
+  background-size: cover;
   position: relative;
 }
 
@@ -24,7 +23,7 @@
   justify-content: center;
   align-items: flex-end;
   margin-bottom: 100px;
-  margin-top: 200px;
+  margin-top: 120px;
 }
 #diary .page_ttl h3 {
  text-align: center;
@@ -89,16 +88,17 @@
   overflow: hidden;
   text-align: center;
   margin: 0 10px;
-  background-color: #DFDDD5;
+  background-color: #CECFC9;
   padding: 45px 0;
+  box-shadow: 0 0 4px #999;
 }
 #diary .book_wrap li .book_cover {
   height: 100%;
   filter: drop-shadow(5px 5px 5px #555);
 }
-#diary .book_wrap li .book_cover:hover {
-    opacity:0.8;
-    filter:alpha(opacity=40); 
+#diary .img_wrap:hover{
+    opacity:0.95;
+    filter:alpha(opacity=95); 
 }
 /* 책 제목 */
 #diary .book_wrap li .book_ttl {
@@ -213,10 +213,6 @@
     width: 100%;
     margin-top: 150px;
     position: relative;
-}
-#modal .modal_content .prev,
-#modal .modal_content .next {
-	cursor: pointer;
 } 
 #modal .modal_layer {
     position:fixed;
@@ -268,14 +264,55 @@ input::placeholder {
     color: #8A8787;   
 }
 .book_box {
-    width: 750px;
+    width: 950px;
     position: relative;
     top: -50px;
     margin-bottom: 30px;
     display: flex;
+    justify-content: space-between;
+}
+.book_box .prev,
+.book_box .next {
+    display: block;
+    width: 100px;
+    height: 270px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.book_box .prev span::before {
+    content: "<";
+    display: none;
+  }
+.book_box .next span::after {
+    content: ">";
+    display: none;
+  }
+.book_box .prev:hover span::before {
+    display: inline-block;
+}
+.book_box .next:hover span::after {
+    display: inline-block;
+}
+.book_box a span {
+    display: block;
+    width: 50px;
+    height: 40px;
+    font-family: "Pretendard-Regular";
+    font-size: 17px;
+    line-height: 40px;
+    text-align: center;
+    color: #1C1A1A;
+    cursor: pointer;
+}
+.book_box .book_rewrap {
+    width: 750px;
+    display: flex;
+    justify-content: space-between;
 }
 .book_box .book_wrap {
     width: 250px;
+    
 }
 .img_wrap {
     width: 210px;
@@ -283,7 +320,6 @@ input::placeholder {
     overflow: hidden;
     text-align: center;
     margin: 0 20px;
-    background-color: #F4C01F;
     position: relative;
     cursor: pointer;
 }
@@ -294,10 +330,10 @@ input::placeholder {
     left: 0;
     width: 210px;
     height: 270px;
-    background-color: rgb(255, 255, 255, 0.4);
-   z-index: 9999;
-   display: flex;
-   justify-content: center;
+    background-color: transparent;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
 }
 .img_wrap .b_layer a {
     display: block;
@@ -319,6 +355,10 @@ input::placeholder {
 }
 .img_wrap .book_cover {
     height: 100%
+}
+.img_wrap:hover .book_cover {
+    opacity: 0.5; 
+    filter: alpha(opacity=50);
 }
 .book_box .book_ttl {
     text-align: center;
@@ -345,17 +385,8 @@ input::placeholder {
     border: none;
     margin-top: 20px;
 }
-.close_btn img {
-    width: 98%;
+.close_btn i {
+    color: #BDBEBB;
+    cursor: pointer;
 }
-.prev,
-.next {
-    position: absolute;
-    top: 470px;
-}
-.prev {
-    left: 450px;
-}
-.next {
-    right: 450px;
-}
+

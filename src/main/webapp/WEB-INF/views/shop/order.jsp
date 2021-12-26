@@ -337,8 +337,9 @@
               <table>
                 <thead>
                   <tr>
-                    <th width="0"><!--book_id--></th>
-                    <th width="43%">상품/옵션 정보</th>
+                  	<!-- <th width="5%"><input type="checkbox" name="order_check" class="chk_box"></th> -->
+                    <th width="0%"><!--book_id--></th>
+                    <th width="45%">상품/옵션 정보</th>
                     <th width="10%">수량</th>
                     <th width="11%">금액</th>
                     <th width="11%">할인/적립</th>
@@ -351,6 +352,9 @@
                 <!-- 바로 주문하기 -->
                 <c:if test="${not empty direct}">
                   <tr class="row_style">
+                  	<!-- <td>
+                      <input type="checkbox" name="order_check">
+                    </td> -->
                     <td class="hidden_col"><input type="hidden" value="${direct.book_id}"></td>
                     <td class="book_name" style="text-align: left;">
                     	<div class="img_box">
@@ -383,9 +387,9 @@
                 <c:if test="${not empty allList}">
                 <c:forEach var="all" items="${allList}">
                   <tr class="row_style">
-                    <td>
+                    <!-- <td>
                       <input type="checkbox" name="order_check">
-                    </td>
+                    </td> -->
                     <td class="hidden_col"><input type="hidden" value="${all.book_id}"></td>
                     <td class="book_name" style="text-align: left;">
                     	<div class="img_box">
@@ -419,9 +423,9 @@
                 <c:if test="${not empty selectList}">
                 <c:forEach var="select" items="${selectList}">
                   <tr class="row_style">
-                    <td>
+                    <!-- <td>
                       <input type="checkbox" name="order_check">
-                    </td>
+                    </td> -->
                     <td class="hidden_col"><input type="hidden" value="${select.book_id}"></td>
                     <td class="book_name" style="text-align: left;">
                     	<div class="img_box">

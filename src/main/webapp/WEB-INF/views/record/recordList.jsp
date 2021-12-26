@@ -88,18 +88,22 @@
     <div id="modal">
         <div class="modal_content">
           <div class="search_wrap">
-            <button class="close_btn"><img src="images/close_btn.png" alt=""></button>
+            <button class="close_btn"><i class="far fa-times-circle fa-3x"></i></button>
             <h3>기록할 책을 검색해주세요</h3>
             <input type="text" id="book_search" class="book_search" placeholder="제목, 작가 키워드로 검색하세요."/>
             <div class="book_box" >
-            </div>            
-            <div class="page">
-              <a class="prev">prev</a>        
-              <a class="next">next</a>
-            </div>
-          <div class="modal_layer"></div>
+            	<a class="prev">
+                    <span>&nbsp;prev</span>
+                </a>
+                 <div class="book_rewrap">
+                 </div>
+                <a class="next">
+                    <span>next&nbsp;</span>
+                </a>
+            </div>  
         </div>
       </div>
+      <div class="modal_layer"></div>
     </div>
   <!-- 모달 스크립트 -->
   <!-- 모달 창 클릭했을 때 보이고 바깥 레이어 클릭했을 때 숨기기 -->
