@@ -159,8 +159,22 @@
 .page_num > li > a > img {
     margin-top: 25px;
 }
-
-
+.page_num li a.now {
+    color: #1C1A1A;
+}
+.page_num li .page_icon {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: transparent;
+    position: absolute;
+    top: 55px;
+    left: 50%;
+    margin-left: -3px;
+}
+.page_num li .page_icon.now {
+    background-color: #1C1A1A;
+}
 /* 검색모달 */
 /* 접속시레이어팝업 */
 #modal {
@@ -232,40 +246,44 @@ input::placeholder {
     display: flex;
     justify-content: space-between;
 }
-.book_box .prev,
-.book_box .next {
+.book_box a {
     display: block;
     width: 100px;
     height: 270px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-.book_box .prev span::before {
-    content: "<";
-    display: none;
-  }
-.book_box .next span::after {
-    content: ">";
-    display: none;
-  }
-.book_box .prev:hover span::before {
-    display: inline-block;
-}
-.book_box .next:hover span::after {
-    display: inline-block;
-}
-.book_box a span {
-    display: block;
-    width: 50px;
-    height: 40px;
-    font-family: "Pretendard-Regular";
-    font-size: 17px;
-    line-height: 40px;
-    text-align: center;
-    color: #1C1A1A;
     cursor: pointer;
 }
+.book_box a div {
+    width: 60px;
+    height: 10px;
+    border-radius: 30px 30px 30px 30px;
+    position: relative;
+    background-color: #BDBEBB;
+}
+.book_box a:hover div{
+	background-color: #B8B7A3;
+	transition: 0.3s all ease;
+}
+.prev_t {
+    transform: rotate(315deg);
+    top: -12.5px;
+}
+.prev_b {
+    transform: rotate(45deg);
+    top: 12.6px;
+}
+.next_t {
+    transform: rotate(45deg);
+    top: -12.5px;
+}
+.next_b {
+    transform: rotate(315deg);
+    top: 12.6px;
+}
+
 .book_box .book_rewrap {
     width: 750px;
     display: flex;
@@ -350,4 +368,10 @@ input::placeholder {
     color: #BDBEBB;
     cursor: pointer;
 }
+.close_btn i:hover {
+	color: #B8B7A3;
+	transition: 0.3s all ease;
+
+}
+
 

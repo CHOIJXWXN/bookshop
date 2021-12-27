@@ -64,22 +64,22 @@
         </div>
        <!-- [2-2] 페이지 타이틀 -->
        <header class="page_ttl">
-       	 <h3>ALL BOOKS</h3>
-<%--     <c:if test="${empty book_genre}">
+       	 <!-- <h3>ALL BOOKS</h3> -->
+	     <c:if test="${empty book_genre}">
          <h3>ALL BOOKS</h3>
          </c:if>
-       	 <c:if test="${book_genre = 0 }">
+       	 <c:if test="${book_genre eq 0 }">
          <h3>NOVEL</h3>
          </c:if>
-         <c:if test="${book_genre = 1 }">
-         <h3>POEM & ESSAY</h3>
+         <c:if test="${book_genre eq 1 }">
+         <h3>POEM&nbsp;&#183;&nbsp;ESSAY</h3>
          </c:if>
-         <c:if test="${book_genre = 2 }">
+         <c:if test="${book_genre eq 2 }">
          <h3>TRAVEL</h3>
          </c:if>
-         <c:if test="${book_genre = -1 }">
+         <c:if test="${book_genre eq -1 }">
          <h3>ALL BOOKS</h3>
-         </c:if> --%>
+         </c:if>
        </header>
        <!-- [2-3] 정렬 버튼 영역 -->
        <div class="order_btns_wrap">

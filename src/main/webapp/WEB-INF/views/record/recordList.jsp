@@ -86,13 +86,15 @@
             <h3>기록할 책을 검색해주세요</h3>
             <input type="text" id="book_search" class="book_search" placeholder="제목, 작가 키워드로 검색하세요."/>
             <div class="book_box" >
-            	<a class="prev">
-                    <span>&nbsp;prev</span>
+            	<a class="m_prev">
+                    <div class="prev_t"></div>
+                    <div class="prev_b"></div>
                 </a>
                  <div class="book_rewrap">
                  </div>
-                <a class="next">
-                    <span>next&nbsp;</span>
+                <a class="m_next">
+                    <div class="next_t"></div>
+                    <div class="next_b"></div>
                 </a>
             </div>  
         </div>

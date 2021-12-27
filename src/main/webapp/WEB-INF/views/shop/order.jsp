@@ -322,7 +322,19 @@
         <header class="order_ttl">
             <h2>ORDER</h2>
             <div class="process">
-                <img src="../resources/images/process_step2.png" alt="">
+               <div class="process_wrap">
+                 <!-- 원아이콘 -->
+                 <ul class="circle">
+                   <li></li>
+                   <li class="now"></li>
+                   <li></li>
+                 </ul>
+                 <ul class="pro_name">
+                   <li>STEP 1 | 장바구니</li>
+                   <li class="now">STEP 2 | 주문서 작성 & 결제</li>
+                   <li>STEP 3 | 주문완료</li>
+                 </ul>
+               </div>
             </div>
         </header>
         <!-- [2-2] 주문상세내역 -->

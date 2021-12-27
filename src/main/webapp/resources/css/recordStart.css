@@ -1,0 +1,97 @@
+@charset "UTF-8";
+
+
+#wrap {
+  width: 100%;
+  
+}
+/* [2]메인화면*/
+#record_start {
+  float: left;
+  width: 100%;
+  height: 100vh;
+  background-image: url("../images/diary_bg_4.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(5px 5px 5px #000);
+}
+.start_form {
+    margin-top: 50px;
+    width: 500px;
+    height: 650px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url("../images/record_start_cover3.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+.fa-book-open {
+    color: #A5A58D;
+    position: relative;
+    top: 90px;
+    font-size: 18px;
+}
+.start_form h3 {
+    text-align: center;
+    font-family: 'RIDIBatang';
+    font-size: 30px;
+    line-height: 40px;
+    color: #1C1A1A;
+    margin-top: 120px;
+}
+.start_form p {
+    text-align: center;
+    font-family: 'NotoSerifKR';
+    font-size: 18px;
+    line-height: 28px;
+    color: #1C1A1A;
+    margin-top: 60px;
+}
+.start_form input[type="text"] {
+    width: 70%;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #1C1A1A;
+    outline: none;
+    margin-top: 60px;
+    font-family: 'RIDIBatang';
+    font-size: 20px;
+    line-height: 50px;
+    color: #1C1A1A;
+    text-align: center;
+}
+.start_form .btns_wrap {
+    width: 100%;
+    height: 50px;
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.start_form .btns_wrap .start_btn {
+    width: 45%;
+    height: 50px;
+    border: 0.6px solid #1C1A1A;
+}
+.start_form .btns_wrap .start_btn a {
+    text-align: center;
+    display: block;
+    font-family: 'NotoSerifKR';
+  font-size: 18px;
+  line-height: 50px;
+  color: #1C1A1A;
+}
+.start_form .btns_wrap .start_btn a:hover {
+    background-color: #EEEFEA;
+    transition: 0.5s all ease;
+    box-shadow: 0 0 6px #707070;
+}
+
