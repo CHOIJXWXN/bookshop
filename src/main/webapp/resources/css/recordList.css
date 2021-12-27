@@ -141,44 +141,25 @@
     width: 400px;
     height: 70px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
 }
-.page_num > li:first-child, 
-.page_num > li:last-child {
-    width: 10%;
-    height: 70px;
-    text-align: center;
-    position: relative;
+.page_num li {
+	width: 30px;
+	height: 70px;
+	text-align: center;
+	position: relative;
 }
-.page_num > li:nth-child(2) {
-    width: 80%;
-    height: 70px;
+.page_num li a {
+	font-family: 'Goudy Bookletter 1911', serif;
+	font-size: 40px;
+	line-height: 50px;
+	color: #B5B1B1;
 }
 .page_num > li > a > img {
     margin-top: 25px;
 }
-.page_num li ul {
-    width: 100%;
-    height: 70px;
-    display: flex;
-    justify-content: space-evenly;
-}
-.page_num li ul li {
-    width: 20%;
-    height: 70px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-}
-.page_num li ul li a {
-    display: block;
-    text-align: center;
-    font-family: 'Goudy Bookletter 1911', serif;
-    font-size: 40px;
-    line-height: 50px;
-    color: #B5B1B1;
-}
+
   
 .page_num li a.now {
     color: #1C1A1A;

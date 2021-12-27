@@ -125,9 +125,9 @@ $(document).ready(function() {
 	$('#upload_review').click(function() {
 		var user_id = $('input[type=hidden][name=user_id]').val();
 		var book_id = $('input[type=hidden][name=book_id]').val();
-		var review_contents = $('#write_review_box').val();
+		var review_contents = $('input[name=write_review]').val();
 		var review_score = $('input[type=radio][name=rating]:checked').val();
-		if (review_contents = '') {
+		if (review_contents == '') {
 			alert('리뷰를 적으세요');
 		}
 		$.ajax({

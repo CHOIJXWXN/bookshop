@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bookshop.service.AdminService;
 import com.bookshop.vo.AskList;
@@ -85,7 +86,11 @@ public class AdminController {
 
 	// 상품 삭제
 	@RequestMapping(value = "/deleteProduct", method = RequestMethod.POST)
-	public String deleteProduct(@RequestParam List<String> book_id, Model model, HttpServletRequest request) throws Exception {
+	public String deleteProduct(@RequestParam List<String> book_id, Model model, HttpServletRequest request, RedirectAttributes ra) throws Exception {
+		if (book_id == null) {
+			ra.addFlashAttribute("msg", "상품이 선택되지 않았습니다");
+			return "redirect:/admin/product";
+		}
 		for (int i = 0; i < book_id.size(); i++) {
 			adminService.deleteProduct(book_id.get(i));
 		}
