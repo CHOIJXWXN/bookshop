@@ -2,9 +2,9 @@ package com.bookshop.dao;
 
 import java.util.List;
 
+import com.bookshop.vo.AskList;
 import com.bookshop.vo.Book;
 import com.bookshop.vo.OrderPlus;
-import com.bookshop.vo.Orders;
 
 public interface AdminDAO {
 
@@ -18,5 +18,7 @@ public interface AdminDAO {
 	public List<Book> getBookList(int pageNum) throws Exception;
 	public void deleteBook(String book_id) throws Exception;
 	public void addBook(Book book) throws Exception;
+	
+	public List<AskList> getAdminAskList(AskList asklist) throws Exception;
 	
 }

@@ -6,6 +6,7 @@ import com.bookshop.vo.Ask;
 import com.bookshop.vo.AskList;
 import com.bookshop.vo.AskReply;
 import com.bookshop.vo.Book;
+import com.bookshop.vo.Users;
 
 public interface BoardDAO {
 
@@ -36,4 +37,7 @@ public interface BoardDAO {
 	
 	// 댓글 갯수 update
 	public void updateAskreplyCount(int ask_id) throws Exception;
+	
+	// 유저 정보 불러오기
+	public Users getUserInfo(String user_id) throws Exception;
 }

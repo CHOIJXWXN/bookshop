@@ -33,76 +33,23 @@
                 <th>날짜</th>
                 <th>상태</th>
               </tr>
+              <!-- 반복, 10개  limit 10 -->
+              <c:forEach var="ask" items="${list }">
               <tr>
-                <td>00000000</td>
-                <td><a href="${path}/ask/viewAsk?ask_id=${ask_id}">[문의종류] 제목</a></td>
-                <td>abcd</td>
-                <td>2021-12-09</td>
-                <td class="notdone">미답변</td>
+                <td>${ask.ask_id }</td> <!-- ask_id -->
+                <td><a href="${path}/ask/boardView?ask_id=${ask.ask_id}">[${ask.ask_sort}] ${ask.book_title}</a></td> <!-- [ask_sort],[book_title]  -->
+                <td>${ask.writer }</td> <!-- ask_writer -->
+                <td>${ask.ask_date}</td>	<!-- ask_date --> 
+              	<!-- if, askreply_count == 0 -> ask_status :  미답변 -->
+              	<c:if test="${ask.askreply_count == 0 }">
+              	<td class="notdone">미답변</td>
+              	</c:if>
+              	<c:if test="${ask.askreply_count != 0 }">
+              	<td class="notdone">답변완료</td>
+              	</c:if>
               </tr>
-              <tr>
-                <td>00000000</td>
-                <td><a href="${path}/ask/viewAsk?ask_id=${ask_id}">[문의종류] 제목</a></td>
-                <td>abcd</td>
-                <td>2021-12-09</td>
-                <td class="done">답변완료</td>
-              </tr>
-              <tr>
-                <td>00000000</td>
-                <td><a href="${path}/ask/viewAsk?ask_id=${ask_id}">[문의종류] 제목</a></td>
-                <td>abcd</td>
-                <td>2021-12-09</td>
-                <td class="notdone">미답변</td>
-              </tr>
-              <tr>
-                <td>00000000</td>
-                <td><a href="${path}/ask/viewAsk?ask_id=${ask_id}">[문의종류] 제목</a></td>
-                <td>abcd</td>
-                <td>2021-12-09</td>
-                <td class="done">답변완료</td>
-              </tr>
-              <tr>
-                <td>00000000</td>
-                <td><a href="${path}/ask/viewAsk?ask_id=${ask_id}">[문의종류] 제목</a></td>
-                <td>abcd</td>
-                <td>2021-12-09</td>
-                <td class="notdone">미답변</td>
-              </tr>
-              <tr>
-                <td>00000000</td>
-                <td><a href="${path}/ask/viewAsk?ask_id=${ask_id}">[문의종류] 제목</a></td>
-                <td>abcd</td>
-                <td>2021-12-09</td>
-                <td class="done">답변완료</td>
-              </tr>
-              <tr>
-                <td>00000000</td>
-                <td><a href="${path}/ask/viewAsk?ask_id=${ask_id}">[문의종류] 제목</a></td>
-                <td>abcd</td>
-                <td>2021-12-09</td>
-                <td class="notdone">미답변</td>
-              </tr>
-              <tr>
-                <td>00000000</td>
-                <td><a href="${path}/ask/viewAsk?ask_id=${ask_id}">[문의종류] 제목</a></td>
-                <td>abcd</td>
-                <td>2021-12-09</td>
-                <td class="done">답변완료</td>
-              </tr>
-              <tr>
-                <td>00000000</td>
-                <td><a href="${path}/ask/viewAsk?ask_id=${ask_id}">[문의종류] 제목</a></td>
-                <td>abcd</td>
-                <td>2021-12-09</td>
-                <td class="notdone">미답변</td>
-              </tr>
-              <tr>
-                <td>00000000</td>
-                <td><a href="${path}/ask/viewAsk?ask_id=${ask_id}">[문의종류] 제목</a></td>
-                <td>abcd</td>
-                <td>2021-12-09</td>
-                <td class="done">답변완료</td>
-              </tr>       
+              </c:forEach>
+              
             </table>
         </div>
         </div>
