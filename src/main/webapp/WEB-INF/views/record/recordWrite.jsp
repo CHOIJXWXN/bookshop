@@ -49,9 +49,9 @@
                 <div class="time">
                   <h3>독서기간</h3>
                   <div class="date_wrap">
-                  	<input type="date" class="read_time" name="record_init_date">
+                  	<input type="date" class="read_time" name="record_init_date" value="2022-01-01">
 	                <span>~</span>
-	                <input type="date" class="read_time" name="record_fin_date">
+	                <input type="date" class="read_time" name="record_fin_date" value="2022-12-31">
                   </div>
                 </div>
                 <div class="score">

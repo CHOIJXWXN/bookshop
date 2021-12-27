@@ -123,7 +123,7 @@
          <div class="paging_box">
           <ul class="page_num">
           	<!-- 이전 버튼 -->
-          	<c:if test = "${map.paging.pageNumber != 1 }">
+          	<c:if test = "${map.paging.pageNumber > 5}">
             <li><a href="${path }/book?pageNum=${map.paging.before}&book_genre=${book_genre}&book_order=${book_order}"><img src="../../resources/images/page_prev.png" alt=""></a></li>
             </c:if>
              <div class="num_wrap">
