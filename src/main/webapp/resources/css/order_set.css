@@ -9,9 +9,10 @@
 #order_set {
   float: left;
   width: 100%;
-  background-image: url("../images/main_bg_4.jpg");
+  background-color: #EFF0F2;
+/*   background-image: url("../images/main_bg_4.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
   position: relative;
 }
 /* [2-1] 제목*/
@@ -94,18 +95,19 @@
 #order_summary .ttl img {
   float: left;
   margin-top: 17px;
+  margin-left: 10px;
 }
 #order_summary .ttl h3{
   float: left;
   font-family: "Pretendard-Regular";
   font-size: 18px;
   line-height: 45px;
-  padding-left: 20px;
+  padding-left: 10px;
 }
 #order_summary .ttl p {
   float: right;
   font-family: "Pretendard-Regular";
-  font-size: 16px;
+  font-size: 18px;
   line-height: 45px;
   padding-right: 20px;
 }
@@ -127,6 +129,7 @@
   padding-bottom: 2px;
   padding-top: 2px;
   background-clip: content-box;
+  display: flex;
 }
 .container .row:last-child {
   border-bottom: 1.5px solid #707070;
@@ -136,7 +139,7 @@
   display: inline-block;
   width: 300px;
   height: 66px;
-  background-color: rgba(28, 26, 26, 0.05);  
+  background-color: #DFE0E2;  
   font-family: 'NotoSerifKR';
   font-size: 19px;
   color: #2E2D2D;
@@ -144,49 +147,62 @@
   padding-left: 15px;
 }
 .row_3 label {
-  display: inline-block;
   width: 300px;
   height: 216px;
-  background-color: rgba(28, 26, 26, 0.05);  
+  background-color: #DFE0E2;   
   font-family: 'NotoSerifKR';
-  font-size: 21px;
+  font-size: 19px;
   color: #2E2D2D;
   line-height: 216px;
   padding-left: 15px;
 }
 .row p {
   display: inline-block;
-  font-family: 'NotoSerifKR';
+  font-family: "Pretendard-Regular";
   font-size: 19px;
   color: #2E2D2D;
   line-height: 66px;
   margin-left: 15px;
   
 }
+.delivery_info {
+  width: 985px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10px 0 10px 5px;
+  box-sizing: border-box;
+}
 .row_3 p {
   display: inline-block;
-  font-family: 'NotoSerifKR';
+   font-family: "Pretendard-Regular";
   font-size: 19px;
   color: #2E2D2D;
-  line-height: 66px;
+  line-height: 40px;
   margin-left: 15px;
 }
 /* 링크 버튼 */
 #order_set .btns_group {
   margin: 0 auto;
-  width: 706px;
+  width: 27%;
   height: 90px;
-  margin-top: 100px;
+  margin-top: 30px;
   margin-bottom: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 #order_set a {
   text-align: center;
-  display: inline-block;
-  width: 350px;
-  height: 85px;
+  width: 45%;
+  height: 60px;
   background-color: #1C1A1A;
   color: white;
   font-family: 'NotoSerifKR';
-  font-size: 22px;
-  line-height: 85px;
+  font-size: 20px;
+  line-height: 60px;
+}
+#order_set a:hover {
+  box-shadow: 0 0 6px #1C1A1A;
 }

@@ -51,7 +51,12 @@
             </div>
             <div class="row_3">
               <label>&nbsp;&nbsp;배송지정보</label>
-              <p>${map.order.order_name}, ${map.order.order_phone}, ${map.order.order_addr}</p>
+              <div class="delivery_info">
+                <p>${map.order.order_name}</p>
+                <p>${map.order.order_phone}</p>
+                <p>${map.order.order_addr}</p>
+                <p>${map.order.comments}</p>
+              </div>
             </div>
             <div class="row">
               <label>&nbsp;&nbsp;총 결제금액</label>

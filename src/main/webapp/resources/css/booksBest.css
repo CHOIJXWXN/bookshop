@@ -75,7 +75,7 @@
 }
 #all_books .book_prod_wrap li .book_cover {
   height: 100%;
-  filter: drop-shadow(5px 5px 5px #000);
+  filter: drop-shadow(5px 5px 5px #555);
 }
 /* 책 제목 */
 #all_books .book_prod_wrap li .book_ttl {

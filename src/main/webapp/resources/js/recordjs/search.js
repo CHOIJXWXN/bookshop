@@ -1,5 +1,6 @@
 $(document).ready(function() {
-	
+	$('.prev').hide();
+	$('.next').hide();
 	// 검색 함수
 	function search(keyword, pageNum) {
 		$.ajax({
@@ -15,7 +16,7 @@ $(document).ready(function() {
 					alert('검색어를 입력하세요');
 					return;
 				} else {
-					$('.book_box').empty();
+					$('.book_rewrap').empty();
 					for (var i = 0; i < data.list.length; i++) {
 						var str = '';
 						str += '<div class="book_wrap">';
@@ -26,19 +27,23 @@ $(document).ready(function() {
 						str += '<h4 class="book_ttl">' + data.list[i].book_title + '</h4>';
 						str += '<span class="book_writer">' + data.list[i].book_writer + '</span>'
 						str += '</div>';
-						$('.book_box').append(str);
+						$('.book_rewrap').append(str);
 					}
 					if (data.paging.pageNumber == 1) {
-						$('.prev').hide();
+					    $('.prev').show();
+						$('.prev span').hide();
 					} else {
-						$('.prev').show();
+					    $('.prev').show();
+						$('.prev span').show();
 					}				
 					$('.prev').attr('id', data.paging.pageNumber - 1);
 					$('.next').attr('id', data.paging.pageNumber + 1);
 					if (data.paging.next) {
-						$('.next').show();
+					    $('.next').show();
+						$('.next span').show();
 					} else {
-						$('.next').hide();
+					    $('.next').show();
+						$('.next span').hide();
 					}
 				}
 			}
