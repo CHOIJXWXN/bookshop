@@ -80,6 +80,8 @@ $(document).ready(function() {
              // 사용 가능한 id (database에 동일 id가 없음)
              // service impl 에서 result 0 (null): data == 0, 
                if(data == 0) {
+                 $('#id_pass').parent('div').removeClass('row');
+                 $('#id_pass').parent('div').addClass('row_msg');
                  $('#id_pass').show();
                  $('#id_fail').hide();
                  id_check_flag = true;
@@ -87,6 +89,8 @@ $(document).ready(function() {
              // 사용중인 id (database에 동일 id 있음)
              // service impl result 1 (!null): data == 1
                 else if(data == 1) {
+                 $('#id_fail').parent('div').removeClass('row');
+                 $('#id_fail').parent('div').addClass('row_msg');
                  $('#id_pass').hide();
                  $('#id_fail').show();
                  $('#user_id').attr('value', '');
@@ -114,6 +118,8 @@ $(document).ready(function() {
          var pwReg = /^[A-za-z0-9~!@#$%^&*()_+|<>?:{}]{8,16}$/;
         
         if(!pwReg.test(user_pw)) {
+            $('#pw_pass').parent('div').removeClass('row');
+            $('#pw_pass').parent('div').addClass('row_msg');
        		$('#pw_pass').hide();
         	$('#pw_fail').hide();
        		$('#pw_check').show();
@@ -121,6 +127,8 @@ $(document).ready(function() {
        }
  
  	   else if(user_pw != user_pw2) {
+ 	   		 $('#pw_pass').parent('div').removeClass('row');
+             $('#pw_pass').parent('div').addClass('row_msg');
              $('#pw_pass').hide();
              $('#pw_fail').show();
              $('#pw_check').hide();
@@ -128,6 +136,8 @@ $(document).ready(function() {
          }
          
        else if (user_pw == user_pw2) {
+             $('#pw_pass').parent('div').removeClass('row');
+             $('#pw_pass').parent('div').addClass('row_msg');
              $('#pw_pass').show();
              $('#pw_fail').hide();
              $('#pw_check').hide();
@@ -179,6 +189,8 @@ $(document).ready(function() {
               // 사용 가능한 email (database에 동일 email이 없음)
               // service impl 에서 result 0 (null): data == 0, 
               if(data == 0) {
+              	 $('#email_pass').parent('div').removeClass('row');
+                 $('#email_pass').parent('div').addClass('row_msg');
                  $('#email_pass').show();
                  $('#email_fail').hide();
                  email_check_flag = true;
@@ -186,6 +198,8 @@ $(document).ready(function() {
               // 사용중인 email (database에 동일 email 있음)
               // service impl result 1 (!null): data == 1
               else if(data == 1) {
+                 $('#email_pass').parent('div').removeClass('row');
+                 $('#email_pass').parent('div').addClass('row_msg');
                  $('#email_pass').hide();
                  $('#email_fail').show();
                  $('#user_email').attr('value', '');

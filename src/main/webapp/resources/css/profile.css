@@ -186,17 +186,18 @@ section {
     font-family: "Pretendard-Regular";
   }
   #addr_1 {
-      width: 220px;
+      width: 230px;
       outline:none;
   }
   #findPost {
       width: 150px;
-      margin-left: 15px;
+      margin-left: 5px;
       text-align: center;
-      padding-left: 0;
+      padding-left: 5px;
       background-color: #1C1A1A;
       font-family: "Pretendard-Regular";
       color: whitesmoke;
+      cursor: pointer;
   }
   #addr_2 {
       width: 390px;
@@ -242,7 +243,7 @@ p.on {
 	background-color: #1C1A1A;
 	font-family: "Pretendard-Regular";
   	line-height: 45px;
-  	color: whitesmoke;
+  	color: white;
   	border: none;
 }
   /* 셀렉트박스 커스텀 */
