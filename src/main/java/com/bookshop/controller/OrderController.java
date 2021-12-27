@@ -21,7 +21,6 @@ import com.bookshop.vo.Cart;
 import com.bookshop.vo.CartPlus;
 import com.bookshop.vo.OrderList;
 import com.bookshop.vo.Orders;
-import com.bookshop.vo.Users;
 
 @Controller
 @RequestMapping(value = "/order/*")
@@ -39,14 +38,19 @@ public class OrderController {
 	public String select(@RequestParam List<String> checked_book_id, @RequestParam List<String> book_id, @RequestParam List<Integer> book_cnt, HttpSession session, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
 		List<CartPlus> cartPlus = new ArrayList<CartPlus>();
+		// 각 상품의 수량 수정
 		for (var i = 0; i < book_id.size(); i++) {
 			orderService.updateCart(new Cart(user_id, book_id.get(i), book_cnt.get(i)));
 		}
+		// 선택된 상품 리스트
 		for (var i = 0; i < checked_book_id.size(); i++) {
 			cartPlus.add(orderService.viewCertainCart(new Cart(user_id, checked_book_id.get(i), 0)));
 		}
+		// 선택된 상품 리스트
 		model.addAttribute("selectList", cartPlus);
+		// 유저 정보
 		model.addAttribute("user", memberService.getUserInfo(user_id));
+		// 주문 번호
 		model.addAttribute("orderNum", orderService.newOrderNum());
 		return "shop/order";
 	}
@@ -55,11 +59,15 @@ public class OrderController {
 	@RequestMapping(params = "all", value = "/", method = RequestMethod.POST)
 	public String all(@RequestParam List<String> book_id, @RequestParam List<Integer> book_cnt, HttpSession session, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
+		// 각 상품의 수량 수정
 		for (var i = 0; i < book_id.size(); i++) {
 			orderService.updateCart(new Cart(user_id, book_id.get(i), book_cnt.get(i)));
 		}
+		// 해당 유저의 장바구니 모든 상품 리스트
 		model.addAttribute("allList", orderService.viewCart(user_id));
+		// 유저 정보
 		model.addAttribute("user", memberService.getUserInfo(user_id));
+		// 주문 번호
 		model.addAttribute("orderNum", orderService.newOrderNum());
 		return "shop/order";
 	}
@@ -68,8 +76,11 @@ public class OrderController {
 	@RequestMapping(params = "direct", value = "/", method = RequestMethod.GET)
 	public String order(CartPlus cartPlus, HttpSession session, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
+		// 선택된 상품 정보
 		model.addAttribute("direct", cartPlus);
+		// 유저 정보
 		model.addAttribute("user", memberService.getUserInfo(user_id));
+		// 주문 번호
 		model.addAttribute("orderNum", orderService.newOrderNum());
 		return "shop/order";
 	}
@@ -78,13 +89,10 @@ public class OrderController {
 	@RequestMapping(value = "/addCart", method = RequestMethod.GET)
 	@ResponseBody
 	public String addCart(Cart cart) throws Exception {
-		if (cart.getUser_id() == null || cart.getUser_id() == "") {
-			return "로그인이 필요합니다";
-		}
 		return orderService.addCart(cart) + "";
 	}
 	
-	// 장바구니 상품 삭제 기능 (Ajax)
+	// 장바구니 상품 삭제 기능
 	@RequestMapping(value = "/deleteCart", method = RequestMethod.GET)
 	@ResponseBody
 	public String deleteCart(@RequestParam List<String> book_id, String user_id) throws Exception {
@@ -92,6 +100,7 @@ public class OrderController {
 			return "-1"; // 아무 것도 선택하지 않고 삭제 버튼을 누르면 -1 반환
 		} else {
 			Cart cart;
+			// 선택된 상품 각각 삭제
 			for (int i = 0; i < book_id.size(); i++) {
 				cart = new Cart(user_id, book_id.get(i), 0);
 				orderService.deleteCart(cart);
@@ -104,6 +113,7 @@ public class OrderController {
 	@RequestMapping(value = "/cart", method = RequestMethod.GET)
 	public String cart(HttpSession session, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
+		// 해당 유저의 장바구니 리스트
 		model.addAttribute("list", orderService.viewCart(user_id));
 		return "shop/cart";
 	}
@@ -111,6 +121,7 @@ public class OrderController {
 	// 선택 상품 주문 기능
 	@RequestMapping(value = "/getOrderSelect", method = RequestMethod.GET)
 	public String getOrderSelect(CartPlus cartPlus, Model model) throws Exception {
+		// 선택된 cartPlus
 		model.addAttribute("cartPlus", cartPlus);
 		return "redirect:/order/";
 	}
@@ -118,13 +129,21 @@ public class OrderController {
 	// 전체 상품 주문 기능
 	@RequestMapping(value = "/getOrderAll", method = RequestMethod.GET)
 	public String getOrderAll(String user_id, Model model) throws Exception {
+		// 해당 유저의 전체 cartPlus
 		model.addAttribute("cartPlus", orderService.viewCart(user_id));
 		return "redirect:/order/";
 	}
 	
+	// 결제 기능
+	/*
+	 * return { 0 : 결제 완료
+	 * 			1 : 결제 실패
+	 * 		  				}
+	 */
 	@RequestMapping(value = "/paid", method = RequestMethod.POST)
 	@ResponseBody
 	public String paid(String merchant_uid, Orders order, @RequestParam Integer point_use, @RequestParam Integer point_add, @RequestParam List<String> book_id, @RequestParam List<Integer> book_cnt) throws Exception {
+		// 입력값 누락 처리
 		if (point_use == null) {
 			point_use = 0;
 		}
@@ -153,16 +172,17 @@ public class OrderController {
 			}
 		} else {
 			result = 0;
-		};
+		}
 		return result + "";
 	}
 	
-	// 전체 상품 주문 기능
-		@RequestMapping(value = "/orderSuccess", method = RequestMethod.GET)
-		public String orderSuccess(HttpSession session, Model model) throws Exception {
-			String user_id = (String) session.getAttribute("user_id");
-			model.addAttribute("map", orderService.orderInfo(user_id)); // order, point
-			return "shop/orderSuccess";
-		}
+	// 결제 성공 페이지
+	@RequestMapping(value = "/orderSuccess", method = RequestMethod.GET)
+	public String orderSuccess(HttpSession session, Model model) throws Exception {
+		String user_id = (String) session.getAttribute("user_id");
+		// 주문 정보
+		model.addAttribute("map", orderService.orderInfo(user_id)); // order, point
+		return "shop/orderSuccess";
+	}
 
 }

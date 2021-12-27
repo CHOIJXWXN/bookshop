@@ -15,6 +15,8 @@ public class BookServiceImpl implements BookService {
 	@Inject
 	BookDAO dao;
 
+	// 책 메인 페이지
+	// 각 정렬순서와 카테고리에 맞는 책 리스트, 페이징
 	@Override
 	public HashMap<String, Object> book(String order, String genre, int pageNum) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -50,6 +52,8 @@ public class BookServiceImpl implements BookService {
 		return map;
 	}
 
+	// 책 찾기 기능
+	// 키워드에 부합하는 책 리스트, 페이징, 책 장르, 책 수량, 키워드
 	@Override
 	public HashMap<String, Object> searchBook(String keyword, String book_genre, int pageNum) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -69,6 +73,8 @@ public class BookServiceImpl implements BookService {
 		return map;
 	}
 	
+	// 베스트 셀러 페이지
+	// 베스트셀러 책 리스트, 장르 추천 책 리스트, 작가 추천 책 리스트, 플래그
 	/*
 	 * flag { 0 : 작가 추천 0개 / 장르 추천 4개
 	 * 		  1 : 작가 추천 1개 / 장르 추천 3개
@@ -103,11 +109,14 @@ public class BookServiceImpl implements BookService {
 		return map;
 	}
 
+	// 책 상세 페이지
+	// 해당 책 정보
 	@Override
 	public Book view(String book_id) throws Exception {
 		return dao.getBook(book_id);
 	}
 	
+	// 해당 책의 리뷰 리스트, 페이징, 리뷰 개수, 평점 평균
 	@Override
 	public HashMap<String, Object> showReview(String book_id, int pageNumber) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -125,11 +134,13 @@ public class BookServiceImpl implements BookService {
 		return map;
 	}
 
+	// 리뷰 추가
 	@Override
 	public void addReview(Review review) throws Exception {
 		dao.addReview(review);
 	}
 
+	// 해당 유저가 해당 책 리뷰를 쓴 적 있는지 검증
 	@Override
 	public int flag(Review review) throws Exception {
 		return dao.getReviewFlag(review);
