@@ -27,7 +27,19 @@
         <header class="join1_header">
             <h2>JOIN US!</h2>
             <div class="process">
-                <img src="../../resources/images/join_step2.png" alt="">
+               <div class="process_wrap">
+                 <!-- 원아이콘 -->
+                 <ul class="circle">
+                   <li></li>
+                   <li class="now"></li>
+                   <li></li>
+                 </ul>
+                 <ul class="pro_name">
+                   <li>STEP 1 | 약관 동의</li>
+                   <li class="now">STEP 2 | 회원정보 입력</li>
+                   <li>STEP 3 | 가입완료</li>
+                 </ul>
+               </div>
             </div>
         </header>
         <!-- [2-2] 회원 정보 입력 -->
@@ -39,7 +51,7 @@
             <div class="container">
               <!-- 입력 폼 -->
               <!-- 아이디 -->
-              <div class="row_msg">
+              <div class="row">
                 <label for="user_id">*&nbsp;아이디</label>
                 <input type="text" id="user_id" name="user_id" placeholder="영문소문자/숫자, 4 ~ 16 자리">
                 <p class="pass" id="id_pass">사용가능한 아이디입니다.</p>
@@ -55,7 +67,7 @@
               </div>
               <!-- 비밀번호 확인 -->
               <!-- type ="text를 type="password" 로 변경 -->
-              <div class="row_msg">
+              <div class="row">
                 <label for="user_pw2">*&nbsp;비밀번호 확인</label>
                 <input type="password" id="user_pw2" name="user_pw2">
                 <p class="pass" id="pw_pass">확인되었습니다.</p>
@@ -79,18 +91,19 @@
               </div>
                <!-- 이메일 -->
                <!-- 이메일 확인 알림을 위한 p 태그 추가 -->
-               <div class="row_msg">
+               <div class="row email">
                 <label for="user_email">*&nbsp;이메일</label>
                 <!-- 이메일 도메인 주소넣기 위해 input창 추가, 넓이 120으로 축소 
                 <input type="text" id="user_email" name="user_email" style="width: 240px">-->
-                <input type="text" id="user_email_id" name="user_email_id" style="width: 150px">@
-                <input type="text" id="user_email_domain" name="user_email_domain" style="width: 150px">
+                <input type="text" id="user_email_id" name="user_email_id" style="width: 110px">
+                <span>@</span>
+                <input type="text" id="user_email_domain" name="user_email_domain" style="width: 110px">
                 <select name="user_email_domain_S" id="user_email_domain_S" class="book_num">
                   <option value="" selected="selected">직접 입력</option>
                   <option value="naver.com">naver.com</option>
                   <option value="hanmail.com">hanmail.com</option>
                   <option value="gmail.com">gmail.com</option>
-              </select>
+              	</select>
              	<p class="pass" id="email_pass">사용가능한 이메일입니다.</p>
                	<p class="fail" id="email_fail">이미 존재하는 이메일입니다.</p>
                 <button type="button" class="checkEmail" id="checkEmail">중복확인</button>
@@ -101,32 +114,35 @@
                 <input type="text" id="user_phone" name="user_phone" placeholder="- 없이 입력하세요">
                 <button type="button" class="authPhone" id="authPhone">인증</button>
               </div>
-      
-               <!-- 주소 (카카오 연동) -->
-              <div class="row_3">
-                <label >*&nbsp;주소</label>
-                <input type="text" name="addr_1" id="addr_1" placeholder="우편번호">
-				<input type="button" onclick="DaumPostcode()" value="우편번호 검색"><br>
-				<input type="text" name="addr_2" id="addr_2" placeholder="주소"><br>
-				<input type="text" name="addr_3" id="addr_3" placeholder="상세주소">
-              </div>
-              
-
+              <!-- 주소 -->
+                <div class="row_3">
+                  <label >*&nbsp;주소</label>
+                  <div class="wrap">
+                    <div class="wrap2">
+                        <input type="text" id="addr_1" name="addr_1" readonly="true" placeholder="우편번호" />  
+                        <input type="button" id="findPost" onclick="DaumPostcode()" value="우편번호 검색" />
+                    </div>   
+                    <input type="text" id="addr_2" name="addr_2" readonly="true" placeholder="주소" />              
+                    <input type="text" id="addr_3" name="addr_3" placeholder="상세주소" />
+                  </div>          
+                </div>
 			  <!-- 좋아하는 장르 -->
               <div class="row final">
                 <label>*&nbsp;가장 좋아하는 장르</label>
-                <input type="radio" name="user_init_genre" value="소설" checked>소설
-                <input type="radio" name="user_init_genre" value="시/에세이">시/에세이
-                <input type="radio" name="user_init_genre" value="여행">여행
+                <input type="radio" name="user_init_genre" value="소설" checked>
+                <span>소설</span>
+                <input type="radio" name="user_init_genre" value="시/에세이">
+                <span>시/에세이</span>
+                <input type="radio" name="user_init_genre" value="여행">
+                <span>여행</span>
+                <p>초기 도서 추천에 이용됩니다. RECOMMEND에서 확인해보세요!</p>
               </div>
-            
             <!-- container class div 종료 --> 
             </div>
             <!-- 제출 -form --> 
-            <div class="submit_btn">
-              <input type="submit" value="회원가입">
+            <div class="submit_btn_wrap">
+              <input type="submit" class="submit_btn" value="JOIN">
             </div>
-            
             <!-- id=join_fron div 종료 -->
           </div>
         </form>

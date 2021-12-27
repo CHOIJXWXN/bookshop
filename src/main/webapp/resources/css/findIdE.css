@@ -1,4 +1,4 @@
-@charset "utf-8";
+@charset "UTF-8";
 
 
 #wrap {
@@ -28,7 +28,7 @@
     text-align: center;
     font-family: 'NotoSerifKR';
     font-size: 25px;
-    line-height: 40px;
+    line-height: 50px;
     color: #1C1A1A;
 }
 .findId_success p {
@@ -43,12 +43,17 @@
     height: 60px;
     /* background-color: lightseagreen; */
     margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .findId_success .row input {
-    margin-left: 30%;
+    margin-right: 2%;
+    position: relative;
+    top: -2px;
 }
 .findId_success .row > label {
-    text-align: center;
+    text-align: left;
     font-family: "Pretendard-Regular";
     font-size: 15px;
     line-height: 60px;
@@ -63,7 +68,7 @@
     justify-content: space-between;
 }
 .findId_success .btns_wrap li {
-    width: 49.5%;
+    width: 49%;
     height: 100%;
     background-color: #1C1A1A;
 }
@@ -71,7 +76,11 @@
     text-align: center;
     display: block;
     font-family: 'NotoSerifKR';
-  font-size: 18px;
-  line-height: 60px;
-  color: #f8f5f5;
+    font-size: 18px;
+    line-height: 60px;
+    color: #f8f5f5;
+}
+.findId_success .btns_wrap li a:hover {
+	box-shadow: 0 0 6px #333;
+	transition: 0.3s all ease;
 }

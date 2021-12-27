@@ -196,7 +196,12 @@
               </section>             
           </div>         
         </article>              
-      </section>       
+      </section>    
+      <!-- 문의버튼 -->
+      <a href="#" class="ask_btn">
+        <i class="fas fa-book"></i>
+        <p>1 : 1<br />문의</p>
+      </a>   
     </div>
     
     <script>

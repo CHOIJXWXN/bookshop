@@ -3,7 +3,7 @@
 body {
 	padding: 0;
 	margin: 0;
-	background-color: #EFF0F2;
+	background-color: #F2F2F2;
 }
 #wrap {
   width: 100%;
@@ -48,7 +48,7 @@ body {
 }
 #book_info .book_img_box .book_thum img {
 	height: 100%;
-	filter: drop-shadow(5px 5px 5px #000);
+	filter: drop-shadow(5px 5px 5px #555);
 }
 #book_info .book_img_box .zoom_btn {
   width: 100px;
@@ -381,7 +381,7 @@ body {
   height: 1000px;
 }
 #book_tab_box section.review {
-  /* background-color: whitesmoke; */
+  background-color: white;
 }
 #book_tab_box #tab1:checked ~ .delivery {
   display: block;
@@ -417,7 +417,8 @@ body {
   width: 90%;
   /* height: 600px; */
   border: 1px solid #707070;
-  background-color: #FDFFFE;
+  background-color: #EFF0F2;
+  box-shadow : 0 0 2px #333;
 }
 /* 리뷰 입력 박스 헤더 */
 #book_tab_box .write_form header {
@@ -550,17 +551,21 @@ body {
   margin-bottom: 50px;
   cursor: pointer;
 }
+#upload_review:hover {
+	box-shadow: 0 0 6px #999;
+	transition: 0.3s all ease;
+}
 /* 등록된 리뷰수, 평점 평균 */
 .review_status {
   width: 94%;
-  height: 50px;
+  height: 60px;
   padding-left: 6%;
   border-bottom: 0.6px solid #1C1A1A;
 }
 .review_status span {
   font-family: 'NotoSerifKR';
   font-size: 18px;
-  line-height: 50px;
+  line-height: 60px;
   color: #1C1A1A;
 }
 /* 등록된 리뷰 리스트 3개씩 */
@@ -655,4 +660,38 @@ body {
   display: inline-block;
 }
 
+/* 문의버튼 */
+.ask_btn {
+  position: fixed;
+  bottom: 100px;
+  right: 90px;
+  display: block;
+  width: 70px;
+  height: 120px;
+  background-color: white;
+  border-radius: 30px;
+  box-shadow: 0 0 3px #777;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.ask_btn:hover {
+  box-shadow: 0 0 6px #777;
+  transition: 0.5s all ease;
+}
+.fa-book {
+  font-size: 20px;
+  color: #1C1A1A;
+  margin-top: 15px;
+}
+.ask_btn p {
+  text-align: center;
+  font-family: "Pretendard-Regular";
+  font-weight: 600;
+  font-size: 16px;
+  color: #1C1A1A;
+  line-height: 27px;
+  margin-bottom: 8px;
+}
 
