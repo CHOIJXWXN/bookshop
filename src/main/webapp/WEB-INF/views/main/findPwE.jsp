@@ -69,8 +69,6 @@
             
             <ul class="btns_wrap">
                 <li class="login_btn"><a href="../login">LOGIN</a></li>
-                <!-- 버튼으로 변경
-                <li class="resend_btn"><a href="#">재전송</a></li> -->
                 <button type="button" id="resend_btn">재전송</button>
             </ul>
         </div>

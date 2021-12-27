@@ -21,6 +21,12 @@
         $('#msg_id_email').hide();
         $('#msg_id_nameP').hide();
         $('#msg_id_phone').hide();
+        $('#msg_pw_nameE').hide();
+        $('#msg_pw_idE').hide();
+        $('#msg_pw_emailE').hide();
+        $('#msg_pw_nameP').hide();
+        $('#msg_pw_idP').hide();
+        $('#msg_pw_phoneP').hide();
         
         // 아이디 찾기 (이메일 이용)
         $('#btn_findIdE').click(function(event){
@@ -136,19 +142,25 @@
             var user_email = $('#user_email_fwe').val();
 
             if(user_id == "") {
-                alert('아이디를 입력하세요');
+            	$('#msg_pw_nameE').hide();
+                $('#msg_pw_idE').show();
+                $('#msg_pw_emailE').hide();
                 event.preventDefault();
                 $('#user_id_fwe').focus();
                 return;
             }
             else if(user_name == "") {
-                alert('이름을 입력하세요');
+            	$('#msg_pw_nameE').show();
+                $('#msg_pw_idE').hide();
+                $('#msg_pw_emailE').hide();
                 event.preventDefault();
                 $('#user_name_fwe').focus();
                 return;
             }
             else if(user_email == ""){
-                alert('이메일을 입력하세요.');
+            	$('#msg_pw_nameE').hide();
+                $('#msg_pw_idE').hide();
+                $('#msg_pw_emailE').show();
                 event.preventDefault();
                 $('#user_email_fwe').focus();
                 return;
@@ -210,6 +222,31 @@
         // btn_findPWE.click.function 
         });
         
+        
+        
+        // 아이디 찾기/비밀번호 아이콘 표시 제이쿼리
+        // 1) 아이디 찾기 아이콘 표시 제이쿼리
+        $('.id_phone_icon').css({"display":"none"});
+        $('.pw_phone_icon').css({"display":"none"});
+        $("#findId_tab_box > input").click(function(){	
+        	var chk1 = $('#tab1').is(":checked");
+        	var chk2 = $('#tab2').is(":checked");
+        	var chk3 = $('#pw_tab1').is(":checked");
+        	var chk4 = $('#pw_tab2').is(":checked");
+        	//1) 아이디찾기 - 이메일로 찾기 선택시
+            if(chk1) $('.id_email_icon').css({"display":"inline-block"});
+            else if(!chk1) $('.id_email_icon').css({"display":"none"});
+            //2) 아이디찾기 - 휴대폰번호로 찾기 선택시 
+            if(chk2) $('.id_phone_icon').css({"display":"inline-block"});
+            else if(!chk2) $('.id_phone_icon').css({"display":"none"});
+          	//3) 비밀번호찾기 - 이메일로 찾기 선택시 
+            if(chk3) $('.pw_email_icon').css({"display":"inline-block"});
+            else if(!chk3) $('.pw_email_icon').css({"display":"none"});
+          	//4) 비밀번호찾기 - 휴대폰번호로 찾기 선택시 
+            if(chk4) $('.pw_phone_icon').css({"display":"inline-block"});
+            else if(!chk4) $('.pw_phone_icon').css({"display":"none"});
+            
+        });       
     // document.ready.function    
     });
     </script>
@@ -229,9 +266,9 @@
           <!-- 제목 -->
           <h2>FIND ID</h2>
           <div id="findId_tab_box">
-            <label for="tab1"><img src="../../resources/images/findIdPw_icon.png" alt="">이메일로 찾기</label>
+            <label for="tab1"><img class="id_email_icon" src="../../resources/images/findIdPw_icon.png" alt="">이메일로 찾기</label>
             <input type="radio" id="tab1" name="tab" checked/>            
-            <label for="tab2"><img src="../../resources/images/findIdPw_icon.png" alt="">휴대폰 번호로 찾기</label>
+            <label for="tab2"><img class="id_phone_icon" src="../../resources/images/findIdPw_icon.png" alt="">휴대폰 번호로 찾기</label>
             <input type="radio" id="tab2" name="tab" />         
             <!-- ------------------------------------ -->
             <!-- 위의 탭박스 선택에 따라 아래 탭 컨텐츠 달라짐 -->
@@ -263,7 +300,7 @@
                 </div>
                 <div class="row">
                   <label>휴대폰번호</label>
-                   <input type="text" id="user_phone_IdP" name="user_phone" placeholder="- 없이 입력해주세요">
+                   <input type="text" id="user_phone_IdP" name="user_phone" placeholder="- 없이 입력해주세요.">
                 </div>
                 <!-- 알림 문구 추가 -->
                  <P id ="msg_id_nameP">이름을 입력해주세요.</P>
@@ -279,11 +316,11 @@
           <h2>FIND PASSWORD</h2>
           <div id="findId_tab_box">
             <label for="pw_tab1">
-              <img src="../../resources/images/findIdPw_icon.png" alt="">
+              <img class="pw_email_icon" src="../../resources/images/findIdPw_icon.png" alt="">
               이메일로 찾기
             </label>
             <input type="radio" id="pw_tab1" name="pw_tab" checked/>            
-            <label for="pw_tab2"><img src="../../resources/images/findIdPw_icon.png" alt="">휴대폰 번호로 찾기</label>
+            <label for="pw_tab2"><img class="pw_phone_icon" src="../../resources/images/findIdPw_icon.png" alt="">휴대폰 번호로 찾기</label>
             <input type="radio" id="pw_tab2" name="pw_tab" /> 
             <!-- ------------------------------------ -->
             <!-- 위의 탭박스 선택에 따라 아래 탭 컨텐츠 달라짐 -->
@@ -302,6 +339,10 @@
                   <label for="email">이메일</label>
                   <input type="text" id="user_email_fwe" name="user_email" >
                 </div>
+                <!-- 알림 문구 추가 -->
+                 <P id="msg_pw_nameE">이름을 입력해주세요.</P>
+                 <p id="msg_pw_idE">아이디를 입력해주세요.</p>
+                 <p id="msg_pw_emailE">이메일을 입력해주세요.</p>
                 <input type="button" id="btn_findPWE" value="SEARCH">
                 </form>
             </section>
@@ -318,8 +359,12 @@
                 </div>
                 <div class="row">
                   <label>휴대폰번호</label>
-                  <input type="text" id="user_phone_2" name="user_phone_2" placeholder="- 없이 입력해주세요">
+                  <input type="text" id="user_phone_2" name="user_phone_2" placeholder="- 없이 입력해주세요.">
                 </div>
+                <!-- 알림 문구 추가 -->
+                 <P id="msg_pw_nameP">이름을 입력해주세요.</P>
+                 <p id="msg_pw_idP">아이디를 입력해주세요.</p>
+                 <p id="msg_pw_phoneP">휴대폰번호를 입력해주세요.</p>
                 <input type="button" id="btn_findPwP" value="SEARCH">
              </form>
             </section>
