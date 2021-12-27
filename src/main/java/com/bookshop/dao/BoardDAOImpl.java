@@ -11,6 +11,7 @@ import com.bookshop.vo.Ask;
 import com.bookshop.vo.AskList;
 import com.bookshop.vo.AskReply;
 import com.bookshop.vo.Book;
+import com.bookshop.vo.Users;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -75,6 +76,14 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.update(SESSION + ".updateAskreplyCount", ask_id);
 		
 	}
+	
+	// 유저 아이디 받아오기
+	@Override
+	public Users getUserInfo(String user_id) throws Exception {
+		return sqlSession.selectOne(SESSION + ".getUserInfo", user_id);
+	}
+	
+
 	
 
 

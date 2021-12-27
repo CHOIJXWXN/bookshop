@@ -18,6 +18,10 @@ $(document).ready(function() {
 	        location.href='../ask/';
 	    	});
 	    	
+	    	$('#gobackAdmin').click(function(){
+		        location.href='../admin/ask';
+		    });
+	    	
 	    	  // 댓글 등록 + 보이기
 	        $('#upload_reply').click(function() {
 	           var ask_id = '${map.ask.ask_id }';
@@ -186,7 +190,14 @@ function deleteAskReply(askreply_id) {
              </div>
              <!-- 삭제버튼 -->
              <div class="btn_box">
+             	<!-- 회원 로그인시 목록가기 -->
+             	<c:if test="${user.user_admin eq 0}">
                  <button type="button" id="goback" class="goback">←&nbsp;List</button>
+                 </c:if>
+                 <!-- 관리자 로그인시 목록가기 -->
+                 <c:if test="${user.user_admin eq 1}">
+                 <button type="button" id="gobackAdmin" class="goback">←&nbsp;AdminList</button>
+                 </c:if>
                  <button type="button" id="upload_reply" class="upload_reply">SAVE</button>
                  <!-- <button type="button" class="delete">DELETE</button> -->
              </div>
