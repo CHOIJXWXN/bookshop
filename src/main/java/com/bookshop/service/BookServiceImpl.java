@@ -21,34 +21,24 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public HashMap<String, Object> book(String order, String genre, int pageNum) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		if (genre.equals("-1")) {
-			int bookCnt = dao.getBookCnt();
-			Paging paging = new Paging(pageNum, bookCnt, 16, 5);
+		if (genre.equals("-1")) {			
 			if (order.equals("판매량순")) {
-				map.put("list", dao.getBookListSell(pageNum));
-				map.put("paging", paging);
+				map.put("list", dao.getBookListSell(pageNum));				
 			} else if (order.equals("신규출간순")) {
 				map.put("list", dao.getBookListNew(pageNum));
-				map.put("paging", paging);
 			} else if (order.equals("평점순")) {
 				map.put("list", dao.getBookListReview(pageNum));
-				map.put("paging", paging);
 			}	
+			map.put("paging", new Paging(pageNum, dao.getBookCnt(), 16, 5));
 		} else if (genre.equals("0")) {
-			int bookCnt = dao.getGenreBookCnt("소설");
-			Paging paging = new Paging(pageNum, bookCnt, 16, 5);
 			map.put("list", dao.getGenreBookList("소설", pageNum));
-			map.put("paging", paging);
+			map.put("paging", new Paging(pageNum, dao.getGenreBookCnt("소설"), 16, 5));
 		} else if (genre.equals("1")) {
-			int bookCnt = dao.getGenreBookCnt("시/에세이");
-			Paging paging = new Paging(pageNum, bookCnt, 16, 5);
 			map.put("list", dao.getGenreBookList("시/에세이", pageNum));
-			map.put("paging", paging);
+			map.put("paging", new Paging(pageNum, dao.getGenreBookCnt("시/에세이"), 16, 5));
 		} else if (genre.equals("2")) {
-			int bookCnt = dao.getGenreBookCnt("여행");
-			Paging paging = new Paging(pageNum, bookCnt, 16, 5);
 			map.put("list", dao.getGenreBookList("여행", pageNum));
-			map.put("paging", paging);
+			map.put("paging", new Paging(pageNum, dao.getGenreBookCnt("여행"), 16, 5));
 		}		
 		return map;
 	}
@@ -126,13 +116,12 @@ public class BookServiceImpl implements BookService {
 		for (int i = 0; i < list.size(); i++) {
 			list.get(i).setReview_contents(Xss.setXss(list.get(i).getReview_contents()));
 		}
-		Paging paging = new Paging(pageNumber, reviewCnt, 3, 1);
 		Integer avgScore = dao.getBookScore(book_id);
 		if (avgScore == null) {
 			avgScore = 0;
 		}
 		map.put("list", list);
-		map.put("paging", paging);
+		map.put("paging", new Paging(pageNumber, reviewCnt, 3, 1));
 		map.put("cnt", reviewCnt);
 		map.put("score", avgScore);
 		return map;

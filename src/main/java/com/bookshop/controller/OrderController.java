@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bookshop.service.MemberService;
 import com.bookshop.service.OrderService;
@@ -170,12 +169,8 @@ public class OrderController {
 			// 포인트 차감/적립
 			orderService.point(order.getUser_id(), point_use, point_add);
 			// 판매량 증가 / 주문 목록 추가
-			Cart cart;
-			OrderList orderList;
 			for (int i = 0; i < book_id.size(); i++) {
-				cart = new Cart("", book_id.get(i), book_cnt.get(i));
-				orderList = new OrderList(order.getOrder_num(), book_id.get(i), book_cnt.get(i));
-				orderService.paid(cart, orderList);
+				orderService.paid(new Cart("", book_id.get(i), book_cnt.get(i)), new OrderList(order.getOrder_num(), book_id.get(i), book_cnt.get(i)));
 			}
 		}
 		return result + "";
