@@ -9,7 +9,7 @@ section {
     float: left;
     width: 100%;
     height: 160vh;
-    background-image: url("../images/main_bg_4.jpg");
+    background-image: url("../images/main_bg_6.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -46,6 +46,7 @@ section {
 }
 #sidebar span {
     font-family: "Pretendard-Regular";
+    font-weight: 600;
     font-size: 15px;
     line-height: 50px;
     color: #B5B1B1;;
@@ -58,7 +59,14 @@ section {
 #sidebar a:hover span::after {
     content: ">";
 }
-
+#sidebar a.active span {
+    padding-left: 10px;
+    font-size: 17px;
+    color: #1c1a1a;
+}
+#sidebar a.active span::after {
+    content: " >";
+}
 /* 회원정보 수정 */
 /* 필수입력사항 가이드메시지 */
 .guide_msg {
@@ -281,4 +289,8 @@ p.on {
       line-height: 50px;
       color: #F8F5F5; 
       cursor: pointer;
+    }
+    input[type="submit"]:hover {
+    	box-shadow: 0 0 6px #999;
+    	transition: 0.5s all ease;
     }
