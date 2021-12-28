@@ -18,6 +18,10 @@
     <script>
     $(document).ready(function() {
     	
+    	if ("${length}" == 0) {
+    		$('button[name=all]').attr('disabled', true);
+    	}
+    	
     	$('input[type=checkbox]').click(function() {
     		if ($('input[type=checkbox]:checked').length > 0) {
     			$('button[name=select]').attr('disabled', false);

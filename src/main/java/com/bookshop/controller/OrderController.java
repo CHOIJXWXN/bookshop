@@ -1,6 +1,6 @@
 package com.bookshop.controller;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bookshop.service.MemberService;
 import com.bookshop.service.OrderService;
@@ -37,17 +38,18 @@ public class OrderController {
 	@RequestMapping(params = "select", value = "/", method = RequestMethod.POST)
 	public String select(@RequestParam List<String> checked_book_id, @RequestParam List<String> book_id, @RequestParam List<Integer> book_cnt, HttpSession session, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
-		List<CartPlus> cartPlus = new ArrayList<CartPlus>();
 		// 각 상품의 수량 수정
 		for (var i = 0; i < book_id.size(); i++) {
 			orderService.updateCart(new Cart(user_id, book_id.get(i), book_cnt.get(i)));
 		}
+//		HashMap<String, Object> map = new HashMap<String, Object>();
+//		map.put("selectList", orderService.viewCertainCart(user_id, checked_book_id));
+//		map.put("user", memberService.getUserInfo(user_id));
+//		map.put("orderNum", orderService.newOrderNum());
+//		model.addAttribute("map", map);
+		
 		// 선택된 상품 리스트
-		for (var i = 0; i < checked_book_id.size(); i++) {
-			cartPlus.add(orderService.viewCertainCart(new Cart(user_id, checked_book_id.get(i), 0)));
-		}
-		// 선택된 상품 리스트
-		model.addAttribute("selectList", cartPlus);
+		model.addAttribute("selectList", orderService.viewCertainCart(user_id, checked_book_id));
 		// 유저 정보
 		model.addAttribute("user", memberService.getUserInfo(user_id));
 		// 주문 번호
@@ -63,6 +65,12 @@ public class OrderController {
 		for (var i = 0; i < book_id.size(); i++) {
 			orderService.updateCart(new Cart(user_id, book_id.get(i), book_cnt.get(i)));
 		}
+//		HashMap<String, Object> map = new HashMap<String, Object>();
+//		map.put("allList", orderService.viewCart(user_id));
+//		map.put("user", memberService.getUserInfo(user_id));
+//		map.put("orderNum", orderService.newOrderNum());
+//		model.addAttribute("map", map);
+		
 		// 해당 유저의 장바구니 모든 상품 리스트
 		model.addAttribute("allList", orderService.viewCart(user_id));
 		// 유저 정보
@@ -76,6 +84,11 @@ public class OrderController {
 	@RequestMapping(params = "direct", value = "/", method = RequestMethod.GET)
 	public String order(CartPlus cartPlus, HttpSession session, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
+//		HashMap<String, Object> map = new HashMap<String, Object>();
+//		map.put("direct", cartPlus);
+//		map.put("user", memberService.getUserInfo(user_id));
+//		map.put("orderNum", orderService.newOrderNum());
+//		model.addAttribute("map", map);
 		// 선택된 상품 정보
 		model.addAttribute("direct", cartPlus);
 		// 유저 정보
@@ -99,12 +112,7 @@ public class OrderController {
 		if (book_id.contains("none")) {
 			return "-1"; // 아무 것도 선택하지 않고 삭제 버튼을 누르면 -1 반환
 		} else {
-			Cart cart;
-			// 선택된 상품 각각 삭제
-			for (int i = 0; i < book_id.size(); i++) {
-				cart = new Cart(user_id, book_id.get(i), 0);
-				orderService.deleteCart(cart);
-			}
+			orderService.deleteCart(user_id, book_id);
 			return "0";  // 삭제했으면 0 반환
 		}
 	}

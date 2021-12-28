@@ -56,11 +56,12 @@ public class BookDAOImpl implements BookDAO {
 	}
 
 	@Override
-	public List<Book> searchBook(String keyword, int pageNum) throws Exception {
+	public List<Book> searchBook(String keyword, int pageNum, int cnt) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		int start = (pageNum - 1) * 16;
+		int start = (pageNum - 1) * cnt;
 		map.put("keyword", keyword);
 		map.put("start", start);
+		map.put("cnt", cnt);
 		return sqlSession.selectList(SESSION + ".searchBook", map);
 	}
 

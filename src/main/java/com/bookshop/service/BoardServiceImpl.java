@@ -8,6 +8,8 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.bookshop.dao.BoardDAO;
+import com.bookshop.dao.BookDAO;
+import com.bookshop.dao.UsersDAO;
 import com.bookshop.vo.Ask;
 import com.bookshop.vo.AskList;
 import com.bookshop.vo.AskReply;
@@ -19,12 +21,16 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Inject
 	BoardDAO dao;
+	@Inject
+	UsersDAO udao;
+	@Inject
+	BookDAO bdao;
 	
 	// 도서정보 불러오기
 	@Override
 	public Book getBookInfo(String book_id) throws Exception {
 		
-		Book book = dao.getBookInfo(book_id);
+		Book book = bdao.getBook(book_id);
 		
 		return book;
 	}
@@ -99,7 +105,7 @@ public class BoardServiceImpl implements BoardService {
 	// 유저 정보 불러오기
 	@Override
 	public Users getUserInfo(String user_id) throws Exception {
-		Users users = dao.getUserInfo(user_id);
+		Users users = udao.getUserInfo(user_id);
 		return users;
 	}
 	

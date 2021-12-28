@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 import javax.inject.Inject;
 import org.springframework.stereotype.Service;
+
+import com.bookshop.dao.BookDAO;
 import com.bookshop.dao.RecordDAO;
 import com.bookshop.util.Xss;
 import com.bookshop.vo.Paging;
@@ -15,15 +17,16 @@ public class RecordServiceImpl implements RecordService {
 	
 	@Inject
 	RecordDAO dao;
+	@Inject
+	BookDAO bdao;
 
 	// 기록 메인 페이지
 	// 기록 리스트, 페이징
 	@Override
 	public HashMap<String, Object> view(String user_id, int pageNum) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		Paging paging = new Paging(pageNum, dao.getRecordCnt(user_id), 12, 5);
 		map.put("list", dao.getRecord(user_id, pageNum));
-		map.put("paging", paging);
+		map.put("paging", new Paging(pageNum, dao.getRecordCnt(user_id), 12, 5));
 		return map;
 	}
 
@@ -31,9 +34,8 @@ public class RecordServiceImpl implements RecordService {
 	@Override
 	public HashMap<String, Object> search(String keyword, int pageNum) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		Paging paging = new Paging(pageNum, dao.searchBookCnt(keyword), 3, 2);
-		map.put("list", dao.searchBook(keyword, pageNum));
-		map.put("paging", paging);
+		map.put("list", bdao.searchBook(keyword, pageNum, 3));
+		map.put("paging", new Paging(pageNum, bdao.getSearchBookCnt(keyword), 3, 2));
 		return map;
 	}
 
@@ -55,7 +57,7 @@ public class RecordServiceImpl implements RecordService {
 	@Override
 	public RecordPlus viewOne(int record_id) throws Exception {
 		RecordPlus recordPlus = dao.getCertainRecordPlus(record_id);
-//		recordPlus.setRecord_contents(Xss.setXss(recordPlus.getRecord_contents()));
+		recordPlus.setRecord_contents(Xss.setXssScript(recordPlus.getRecord_contents()));
 		return recordPlus;
 	}
 	

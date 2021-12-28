@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.bookshop.vo.Book;
 import com.bookshop.vo.Record;
 import com.bookshop.vo.RecordPlus;
 
@@ -31,20 +30,6 @@ public class RecordDAOImpl implements RecordDAO {
 	@Override
 	public int getRecordCnt(String user_id) throws Exception {
 		return sqlSession.selectOne(SESSION + ".getRecordCnt", user_id);
-	}
-
-	@Override
-	public List<Book> searchBook(String keyword, int pageNum) throws Exception {
-		int start = (pageNum - 1) * 3;
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("keyword", keyword);
-		map.put("start", start);
-		return sqlSession.selectList(SESSION + ".searchBook", map);
-	}
-	
-	@Override
-	public int searchBookCnt(String keyword) throws Exception {
-		return sqlSession.selectOne(SESSION + ".searchBookCnt", keyword);
 	}
 
 	@Override

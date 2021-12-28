@@ -63,11 +63,4 @@
 		WHERE 	user_id = #{user_id}
 	</update>
 
-	<!-- 관리자 여부 체크 -->
-	<select id="getAdminAuth" resultType="Users">
-		SELECT * FROM USERS
-		WHERE user_id = #{user_id}
-		AND user_admin = 1
-	</select>
-
 </mapper>

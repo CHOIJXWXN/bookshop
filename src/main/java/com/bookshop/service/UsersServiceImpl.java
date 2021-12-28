@@ -96,7 +96,7 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	public int findPwEAction(Users users) throws Exception {
 		int result = 0;			
-		Users exist = dao.getUserInfo(users);
+		Users exist = dao.getUserInfo(users.getUser_id());
 		if (exist == null) {
 			result = 1;
 		} else if (!users.getUser_email().equals(exist.getUser_email())) {
@@ -159,7 +159,7 @@ public class UsersServiceImpl implements UsersService {
 	// 유저 정보 (이메일)
 	@Override
 	public Users findPwE(Users users) throws Exception {		
-		return dao.getUserInfo(users);
+		return dao.getUserInfo(users.getUser_id());
 	}	
 
 }

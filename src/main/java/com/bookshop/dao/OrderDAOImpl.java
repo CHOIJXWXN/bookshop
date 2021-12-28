@@ -26,8 +26,11 @@ public class OrderDAOImpl implements OrderDAO {
 	}
 	
 	@Override
-	public CartPlus getCertainCartPlus(Cart cart) throws Exception {
-		return sqlSession.selectOne(SESSION + ".getCertainCartPlus", cart);
+	public List<CartPlus> getCertainCartPlus(String user_id, List<String> checked_book_id) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("user_id", user_id);
+		map.put("checked_book_id", checked_book_id);
+		return sqlSession.selectList(SESSION + ".getCertainCartPlus", map);
 	}
 
 	@Override
@@ -37,8 +40,11 @@ public class OrderDAOImpl implements OrderDAO {
 	}
 
 	@Override
-	public void deleteCart(Cart cart) throws Exception {
-		sqlSession.delete(SESSION + ".deleteCart", cart);
+	public void deleteCart(String user_id, List<String> book_id) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("user_id", user_id);
+		map.put("book_id", book_id);
+		sqlSession.delete(SESSION + ".deleteCart", map);
 	}
 
 	@Override

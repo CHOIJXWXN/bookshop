@@ -31,8 +31,8 @@ public class OrderServiceImpl implements OrderService {
 	
 	// 특정 책 cartPlus
 	@Override
-	public CartPlus viewCertainCart(Cart cart) throws Exception {
-		return dao.getCertainCartPlus(cart);
+	public List<CartPlus> viewCertainCart(String user_id, List<String> checked_book_id) throws Exception {
+		return dao.getCertainCartPlus(user_id, checked_book_id);
 	}
 
 	// 장바구니에 추가
@@ -43,8 +43,8 @@ public class OrderServiceImpl implements OrderService {
 
 	// 장바구니에서 삭제
 	@Override
-	public void deleteCart(Cart cart) throws Exception {
-		dao.deleteCart(cart);
+	public void deleteCart(String user_id, List<String> book_id) throws Exception {
+		dao.deleteCart(user_id, book_id);
 	}
 
 	// 장바구니 수정

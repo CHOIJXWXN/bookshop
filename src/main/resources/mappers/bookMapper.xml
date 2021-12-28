@@ -65,7 +65,7 @@
 		WHERE (book_title LIKE CONCAT('%', #{keyword}, '%')
 		OR book_writer LIKE CONCAT('%', #{keyword}, '%'))
 		AND available = 0
-		LIMIT #{start}, 16
+		LIMIT #{start}, #{cnt}
 	</select>
 	
 	<!-- 검색된 책 개수 -->

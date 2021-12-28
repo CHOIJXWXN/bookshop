@@ -10,9 +10,9 @@ import com.bookshop.vo.Orders;
 public interface OrderDAO {
 	
 	public List<CartPlus> getCartPlus(String user_id) throws Exception;
-	public CartPlus getCertainCartPlus(Cart cart) throws Exception;
+	public List<CartPlus> getCertainCartPlus(String user_id, List<String> checked_book_id) throws Exception;
 	public int addCart(Cart cart) throws Exception;
-	public void deleteCart(Cart cart) throws Exception;
+	public void deleteCart(String user_id, List<String> book_id) throws Exception;
 	public void updateCntCart(Cart cart) throws Exception;
 	public int getOrderCntToday() throws Exception;
 	public int addOrder(Orders order) throws Exception;

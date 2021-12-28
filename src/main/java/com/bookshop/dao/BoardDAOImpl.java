@@ -21,12 +21,6 @@ public class BoardDAOImpl implements BoardDAO {
 	SqlSession sqlSession;
 	
 	final String SESSION = "com.bookshop.mappers.board";
-
-	// 도서정보 불러오기
-	@Override
-	public Book getBookInfo(String book_id) throws Exception {
-		return sqlSession.selectOne(SESSION + ".getBookInfo", book_id);
-	}
 	
 	// ASK table에서 Book_id 불러오기
 	@Override
@@ -92,12 +86,6 @@ public class BoardDAOImpl implements BoardDAO {
 	public void updateAskreplyCount(int ask_id) throws Exception {
 		sqlSession.update(SESSION + ".updateAskreplyCount", ask_id);
 		
-	}
-	
-	// 유저 아이디 받아오기
-	@Override
-	public Users getUserInfo(String user_id) throws Exception {
-		return sqlSession.selectOne(SESSION + ".getUserInfo", user_id);
 	}
 	
 	// 답변 상태 update( Ask_status update)

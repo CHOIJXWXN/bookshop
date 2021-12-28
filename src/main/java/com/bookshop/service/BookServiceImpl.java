@@ -61,7 +61,7 @@ public class BookServiceImpl implements BookService {
 		int bookCnt = 0;
 		if (book_genre.equals("-1")) {
 			bookCnt = dao.getSearchBookCnt(keyword);
-			map.put("searchList", dao.searchBook(keyword, pageNum));
+			map.put("searchList", dao.searchBook(keyword, pageNum, 16));
 		} else {
 			bookCnt = dao.getSearchGenreBookCnt(keyword, book_genre);
 			map.put("searchList", dao.searchGenreBook(keyword, book_genre, pageNum));

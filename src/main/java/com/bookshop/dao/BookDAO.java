@@ -12,10 +12,7 @@ public interface BookDAO {
 	public List<Book> getBookListNew(int pageNum) throws Exception;
 	public List<Book> getBookListReview(int pageNum) throws Exception;
 	public List<Book> getGenreBookList(String book_genre, int pageNum) throws Exception;
-//	public List<Book> getBookListNovel(int pageNum) throws Exception;
-//	public List<Book> getBookListPoem(int pageNum) throws Exception;
-//	public List<Book> getBookListTravel(int pageNum) throws Exception;
-	public List<Book> searchBook(String keyword, int pageNum) throws Exception;
+	public List<Book> searchBook(String keyword, int pageNum, int cnt) throws Exception;
 	public int getSearchBookCnt(String keyword) throws Exception;
 	public List<Book> searchGenreBook(String keyword, String book_genre, int pageNum) throws Exception;
 	public int getSearchGenreBookCnt(String keyword, String book_genre) throws Exception;

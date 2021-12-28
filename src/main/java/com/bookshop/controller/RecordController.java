@@ -50,7 +50,7 @@ public class RecordController {
 	public String write(String book_id, HttpSession session, RedirectAttributes ra, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
 		Record result = recordService.getRecord(user_id, book_id);
-		// 입력값 누락 처리
+		// 이전 이미 기록한 책인지 검증
 		if (result != null) {
 			ra.addFlashAttribute("msg", "이미 기록한 책입니다");
 			return "redirect:/record/";
