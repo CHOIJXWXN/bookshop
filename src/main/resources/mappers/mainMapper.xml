@@ -8,7 +8,7 @@
 	<!-- 회원가입 SQL -->
 	<insert id ="join">
 		INSERT INTO USERS
-		VALUES (#{user_id}, SHA2(#{user_pw}, 256), #{user_name}, #{user_birth}, #{user_nickname}, #{user_email}, #{user_phone}, #{user_addr}, 0, 0, #{user_init_genre});
+		VALUES (#{user_id}, SHA2(#{user_pw}, 256), #{user_name}, #{user_birth}, #{user_nickname}, #{user_email}, #{user_phone}, #{user_addr}, 0, 0, #{user_init_genre}, NULL);
 	</insert>
 
 	<!-- 아이디 중복체크 SQL -->

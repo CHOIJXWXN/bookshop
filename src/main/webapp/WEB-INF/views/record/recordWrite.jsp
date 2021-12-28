@@ -87,14 +87,23 @@
   	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
       $(document).ready(function() {   
-          $('#summernote').summernote({
-              height: 300,                 // set editor height
+          
+    	  $('#summernote').summernote({
+    		  height: 300,                 // set editor height
               minHeight: 200,             // set minimum height of editor
               maxHeight: 250,             // set maximum height of editor
               focus: true,               // set focus to editable area after initializing summernote
               lang: 'ko-KR' // default: 'en-US'
-            });
-        });
+          });
+          
+          $('form').submit(function(event) {
+        	  if ($('.note-editable p').text() == '') {      		  
+        		  alert('기록이 비어있습니다');
+        		  event.preventDefault();
+        	  }
+          });
+          
+      });
   </script>
   </body>
 </html>

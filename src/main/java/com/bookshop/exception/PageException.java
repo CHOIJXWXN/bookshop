@@ -27,11 +27,11 @@ public class PageException {
 		return "error/500";
 	}
 	
-	// 500 에러 / 일반적인 서버 에러 메세지로 요청 사항을 이행할 수 없는 상태
-	@ExceptionHandler(Exception.class)
-	public String internalServerError(Exception e, Model model) {
-		model.addAttribute("error_msg", e.getCause());		
-		return "error/500";
-	}
+//	// 500 에러 / 일반적인 서버 에러 메세지로 요청 사항을 이행할 수 없는 상태
+//	@ExceptionHandler(Exception.class)
+//	public String internalServerError(Exception e, Model model) {
+//		model.addAttribute("error_msg", e.getCause());		
+//		return "error/500";
+//	}
 
 }

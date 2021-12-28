@@ -11,6 +11,7 @@ import com.bookshop.util.Xss;
 import com.bookshop.vo.Paging;
 import com.bookshop.vo.Record;
 import com.bookshop.vo.RecordPlus;
+import com.bookshop.vo.Users;
 
 @Service
 public class RecordServiceImpl implements RecordService {
@@ -27,6 +28,7 @@ public class RecordServiceImpl implements RecordService {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("list", dao.getRecord(user_id, pageNum));
 		map.put("paging", new Paging(pageNum, dao.getRecordCnt(user_id), 12, 5));
+		map.put("title", Xss.setXss(dao.getRecordTitle(user_id)));
 		return map;
 	}
 
@@ -71,6 +73,18 @@ public class RecordServiceImpl implements RecordService {
 	@Override
 	public void delete(int record_id) throws Exception {
 		dao.deleteRecord(record_id);
+	}
+
+	// 기록장 이름 설정 여부
+	@Override
+	public String title(String user_id) throws Exception {		
+		return dao.getRecordTitle(user_id);
+	}
+
+	// 기록장 이름 설정
+	@Override
+	public void setTitle(Users users) throws Exception {
+		dao.addRecordTitle(users);
 	}
 
 }

@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.bookshop.service.BookService;
 import com.bookshop.service.RecordService;
 import com.bookshop.vo.Record;
+import com.bookshop.vo.Users;
 
 @Controller
 @RequestMapping(value = "/record/*")
@@ -32,6 +33,20 @@ public class RecordController {
 	// 기록 메인 페이지
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String record(Model model) throws Exception {
+		return "redirect:/record";
+	}
+	
+	// 기록장 이름 설정 페이지
+	@RequestMapping(value = "/intro", method = RequestMethod.GET)
+	public String intro(Model model) throws Exception {
+		return "record/recordStart";
+	}
+	
+	// 기록장 이름 입력
+	@RequestMapping(value = "/addTitle", method = RequestMethod.GET)
+	public String addTitle(Users users, HttpSession session, Model model) throws Exception {
+		users.setUser_id((String) session.getAttribute("user_id"));
+		recordService.setTitle(users);
 		return "redirect:/record";
 	}
 	

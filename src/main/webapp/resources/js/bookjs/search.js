@@ -3,7 +3,7 @@ $(document).ready(function() {
 	// 검색 후 데이터 출력 함수
 	function print(data) {
 		if (data == null) {
-			alert('검색어를 입력하세요');
+			alert('해당 상품이 없습니다');
 			return;
 		} else {
 			$('.book_prod_wrap li').remove();
@@ -107,6 +107,10 @@ $(document).ready(function() {
 	$('#search_btn').click(function() {
 		var keyword = $('#book_keyword').val();	
 		var book_genre = $('#book_genre').val();
+		if (keyword == '') {
+			alert('검색어를 입력하세요');
+			return;
+		}
 		$.ajax({
 			type : "GET",
 			url : "../book/search",

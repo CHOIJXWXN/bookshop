@@ -90,6 +90,7 @@
   	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   	<script>
   		$(document).ready(function() {
+  			
   			$('.edit').click(function() {
     			$('#old_contents').remove();
     			$('#editor').show();
@@ -123,7 +124,15 @@
   				maxHeight: 250,             
   				focus: true,               
   				lang: 'ko-KR'
-  			}); 
+  			});
+  			
+  			$('form').submit(function(event) {
+          	  if ($('.note-editable p').text() == '') {      		  
+          		  alert('기록이 비어있습니다');
+          		  event.preventDefault();
+          	  }
+            });
+  			
   		});
   	</script>
   </body>

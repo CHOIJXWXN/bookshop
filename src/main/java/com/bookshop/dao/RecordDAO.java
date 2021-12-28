@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.bookshop.vo.Record;
 import com.bookshop.vo.RecordPlus;
+import com.bookshop.vo.Users;
 
 public interface RecordDAO {
 
@@ -14,5 +15,7 @@ public interface RecordDAO {
 	public void deleteRecord(int record_id) throws Exception;
 	public Record getCertainRecord(String user_id, String book_id) throws Exception;
 	public RecordPlus getCertainRecordPlus(int record_id) throws Exception;
+	public String getRecordTitle(String user_id) throws Exception;
+	public void addRecordTitle(Users users) throws Exception;
 
 }

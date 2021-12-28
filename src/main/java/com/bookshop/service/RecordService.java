@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import com.bookshop.vo.Record;
 import com.bookshop.vo.RecordPlus;
+import com.bookshop.vo.Users;
 
 public interface RecordService {
 
@@ -26,5 +27,11 @@ public interface RecordService {
 	public void edit(Record record) throws Exception;
 	// 기록 삭제
 	public void delete(int record_id) throws Exception;
+	
+	// 기록 이름 설정 페이지
+	// 기록장 이름 설정 여부
+	public String title(String user_id) throws Exception;
+	// 기록장 이름 설정
+	public void setTitle(Users users) throws Exception;
 	
 }

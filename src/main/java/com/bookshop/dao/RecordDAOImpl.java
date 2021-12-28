@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bookshop.vo.Record;
 import com.bookshop.vo.RecordPlus;
+import com.bookshop.vo.Users;
 
 @Repository
 public class RecordDAOImpl implements RecordDAO {
@@ -58,6 +59,16 @@ public class RecordDAOImpl implements RecordDAO {
 	@Override
 	public RecordPlus getCertainRecordPlus(int record_id) throws Exception {
 		return sqlSession.selectOne(SESSION + ".getCertainRecordPlus", record_id);
+	}
+
+	@Override
+	public String getRecordTitle(String user_id) throws Exception {
+		return sqlSession.selectOne(SESSION + ".getRecordTitle", user_id);
+	}
+
+	@Override
+	public void addRecordTitle(Users users) throws Exception {
+		sqlSession.update(SESSION + ".addRecordTitle", users);
 	}
 
 }

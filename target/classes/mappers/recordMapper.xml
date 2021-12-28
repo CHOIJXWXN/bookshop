@@ -61,5 +61,19 @@
 		WHERE A.book_id = B.book_id
 		AND B.record_id = #{record_id}
 	</select>
+	
+	<!-- 기록장 이름 -->
+	<select id="getRecordTitle" resultType="string">
+		SELECT user_title
+		FROM USERS
+		WHERE user_id = #{user_id}
+	</select>
+	
+	<!-- 기록장 이름 추가 -->
+	<update id="addRecordTitle">
+		UPDATE USERS
+		SET user_title = #{user_title}
+		WHERE user_id = #{user_id}
+	</update>
 
 </mapper>
