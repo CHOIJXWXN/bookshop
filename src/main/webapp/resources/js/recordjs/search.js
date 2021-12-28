@@ -66,12 +66,20 @@ $(document).ready(function() {
 	$('.m_prev').click(function() {
 		var keyword = $('#book_search').val();
 		var pageNum = $('.m_prev').attr('id');
+		if ($('.m_prev div').css('display') == 'none') {
+			$('.m_prev').css('cursor', 'auto');
+			return;
+		}
 		search(keyword, pageNum);
 	});
 	
 	$('.m_next').click(function() {
 		var keyword = $('#book_search').val();
 		var pageNum = $('.m_next').attr('id');
+		if ($('.m_next div').css('display') == 'none') {
+			$('.m_next').css('cursor', 'auto');
+			return;
+		}
 		search(keyword, pageNum);
 	});
 	

@@ -55,7 +55,7 @@ public class RecordServiceImpl implements RecordService {
 	@Override
 	public RecordPlus viewOne(int record_id) throws Exception {
 		RecordPlus recordPlus = dao.getCertainRecordPlus(record_id);
-		recordPlus.setRecord_contents(Xss.setXss(recordPlus.getRecord_contents()));
+//		recordPlus.setRecord_contents(Xss.setXss(recordPlus.getRecord_contents()));
 		return recordPlus;
 	}
 	
