@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.bookshop.vo.AskList;
+import com.bookshop.vo.AskReply;
 import com.bookshop.vo.Book;
 import com.bookshop.vo.OrderPlus;
 
@@ -50,6 +51,8 @@ public class AdminDAOImpl implements AdminDAO {
 		}
 		else if(type.equals("orders")) {
 			obj = sqlSession.selectOne(SESSION + ".getNextPageOrders", pageNumber);
+		} else if(type.equals("ask")) {
+			obj = sqlSession.selectOne(SESSION + ".getNextPageAsk", pageNumber);
 		}
 		
 		return obj;
@@ -100,13 +103,10 @@ public class AdminDAOImpl implements AdminDAO {
 
 	
 	@Override
-	public List<AskList> getAdminAskList(AskList asklist) throws Exception {
-		
-		return sqlSession.selectList(SESSION + ".getAdminAskList", asklist);
+	public List<AskList> getAdminAskList(int pageNum) throws Exception {
+		int start = 20 * (pageNum - 1);
+		return sqlSession.selectList(SESSION + ".getAdminAskList", start);
 	}
-
-	
-
 	
 
 }

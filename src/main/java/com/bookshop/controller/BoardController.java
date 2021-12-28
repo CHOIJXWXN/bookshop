@@ -28,16 +28,22 @@ public class BoardController {
 	// [1] 문의게시판 리스트 페이지
 	// url 패턴이 'path/ask/'
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String ask(RedirectAttributes ra, HttpSession session, Model model, Ask ask, String book_id) throws Exception {
+	public String ask(RedirectAttributes ra, HttpSession session, Model model, Ask ask, String book_id, Integer pageNumber) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
 		// 1) 로그인이 되어있지 않으면 로그인 페이지로 이동시키고 로그인이 필요하다고 알려줌
 		if(user_id == null) {
 			ra.addFlashAttribute("msg", "로그인이 필요합니다.");
 			return "redirect:/login";
 		}
+		if(pageNumber == null) {
+			pageNumber = 1;
+		}
 		// 2) 회원 아이디에 일치하는 문의 목록들을 5개씩 리스트로 가져옴.
-			List<AskList> list = boardService.getAskList(user_id); 
+			List<AskList> list = boardService.getAskList(user_id, pageNumber); 
 			model.addAttribute("list", list);
+			
+			model.addAttribute("pageNumber", pageNumber);
+			model.addAttribute("isNext", boardService.getNextPage(user_id, pageNumber));
 			
 			return "board/boardList";
 		
@@ -72,7 +78,7 @@ public class BoardController {
 			String user_id = (String) session.getAttribute("user_id");
 			ask.setWriter(user_id);
 			
-			boardService.wrtieAction(ask);
+			boardService.writeAction(ask);
 		
 		return "redirect:/ask/";
 	}
@@ -111,14 +117,17 @@ public class BoardController {
 	// url 패턴이 'path/ask/insertAskReply'
 	@RequestMapping(value="/insertAskReply", method= RequestMethod.GET)
 	@ResponseBody
-	public List<AskReply> insertAskReply(AskReply askreply, HttpSession session) throws Exception {
+	public List<AskReply> insertAskReply(Ask ask, AskReply askreply, HttpSession session) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
-		
+		Integer admin = (Integer) session.getAttribute("admin");
 		// 댓글 작성자에 로그인 되어있는 user_id 값을 넣어줌
 		askreply.setWriter(user_id);
 		
 		List<AskReply> list = boardService.insertAskReply(askreply);
-		
+		if(admin != null) {
+			boardService.updateAskstatusA(ask);
+		}
+		if(admin == null) boardService.updateAskstatusU(ask);
 		boardService.updateAskreplyCount(askreply.getAsk_id());
 		return list;
 	}
