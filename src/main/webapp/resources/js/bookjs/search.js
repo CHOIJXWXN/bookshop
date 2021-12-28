@@ -18,30 +18,30 @@ $(document).ready(function() {
 				str += '<span class="book_price">' + searchList[i].book_price + '원</span>';
 				str += '</a></li>';
 				$('.book_prod_wrap').append(str);
-		}
+			}
 			
-		$('.page_num').empty();
-		var paging = data.searchPaging;
-		var str2 = '';
-		if (paging.before > 0) {
-			str2 += '<li><a class="search" id="' + paging.before + '" href=""><img src="../../resources/images/page_prev.png" alt=""></a></li>';
-		}
-		for (var i = paging.minPage; i <= paging.maxPage; i++) {
-			str2 += '<li>';
-			if (paging.pageNumber == i) {
-				str2 += '<a class="now search" id="' + i + '" href="">' + i + '</a>';
-			} else {
-				str2 += '<a class="search" id="' + i + '" href="">' + i + '</a>';
+			$('.page_num').empty();
+			var paging = data.searchPaging;
+			var str2 = '';
+			if (paging.before > 0) {
+				str2 += '<li><a class="search" id="' + paging.before + '" href=""><img src="../../resources/images/page_prev.png" alt=""></a></li>';
 			}
-			if (paging.pageNumber == i) {
-				str2 += '<div class="page_icon now"></div>';
+			for (var i = paging.minPage; i <= paging.maxPage; i++) {
+				str2 += '<li>';
+				if (paging.pageNumber == i) {
+					str2 += '<a class="now search" id="' + i + '" href="">' + i + '</a>';
+				} else {
+					str2 += '<a class="search" id="' + i + '" href="">' + i + '</a>';
+				}
+				if (paging.pageNumber == i) {
+					str2 += '<div class="page_icon now"></div>';
+				}
+				str2 += '</li>';
 			}
-			str2 += '</li>';
-		}
-		if (paging.next) {
-			str2 += '<li><a class="search" id="' + paging.forward + '" href=""><img src="../../resources/images/page_next.png" alt=""></a></li>';
-		}
-		$('.page_num').append(str2);
+			if (paging.next) {
+				str2 += '<li><a class="search" id="' + paging.forward + '" href=""><img src="../../resources/images/page_next.png" alt=""></a></li>';
+			}
+			$('.page_num').append(str2);
 		}
 		
 		$('.search').click(function(e) {
