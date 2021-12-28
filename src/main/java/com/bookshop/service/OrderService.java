@@ -27,12 +27,11 @@ public interface OrderService {
 	public String newOrderNum() throws Exception;
 	// 주문 추가
 	public int addOrder(Orders order) throws Exception;
-	// 주문목록 추가
-	public void addOrderlist(OrderList orderList) throws Exception;
+	// 판매량 증가, 주문목록 추가
+	public void paid(Cart cart, OrderList orderList) throws Exception;
 	// 포인트 적립/차감
 	public void point(String user_id, int point_use, int point_add) throws Exception;
-	// 판매량 수정
-	public void sellTot(Cart cart) throws Exception;
+
 	
 	// 주문 완료 페이지
 	// 주문 정보

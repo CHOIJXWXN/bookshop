@@ -64,7 +64,7 @@
 	</select>
 	
 	<!-- 주문 상태 변경 -->
-	<update id="changeStatus">
+	<update id="changeStatus" parameterType="hashmap">
 		UPDATE ORDERS
 		SET order_status = #{order_status}
 		WHERE order_num = #{order_num}

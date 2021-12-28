@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bookshop.service.BookService;
+import com.bookshop.service.RecordService;
 import com.bookshop.service.UsersService;
 import com.bookshop.vo.Users;
 
@@ -23,6 +24,8 @@ public class MainController {
 	UsersService usersService;
 	@Inject
 	BookService bookService;
+	@Inject
+	RecordService recordService;
 
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);	
 	
@@ -217,6 +220,24 @@ public class MainController {
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String admin(HttpSession session, Model model) throws Exception {
 		return "admin/admin";
+	}
+	
+	// 마이페이지 메인 페이지
+	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
+	public String mypage(Model model) throws Exception {
+		return "member/myPage";		
+	}
+	
+	// 기록 메인 페이지
+	@RequestMapping(value = "/record", method = RequestMethod.GET)
+	public String record(Integer pageNum, HttpSession session, Model model) throws Exception {
+		String user_id = (String) session.getAttribute("user_id");
+		if (pageNum == null) {
+			pageNum = 1;
+		}
+		// 모든 기록 리스트 및 페이징 (12개씩)
+		model.addAttribute("map", recordService.view(user_id, pageNum)); // list, paging
+		return "record/recordList";
 	}
 
 }

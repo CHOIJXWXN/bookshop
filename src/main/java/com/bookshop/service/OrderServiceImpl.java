@@ -67,10 +67,11 @@ public class OrderServiceImpl implements OrderService {
 	public int addOrder(Orders order) throws Exception {
 		return dao.addOrder(order);
 	}
-
-	// 주문목록 추가
+	
+	// 판매량 증가, 주문목록 추가
 	@Override
-	public void addOrderlist(OrderList orderList) throws Exception {
+	public void paid(Cart cart, OrderList orderList) throws Exception {
+		dao.changeSellTot(cart);
 		dao.addOrderlist(orderList);
 	}
 
@@ -78,12 +79,6 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public void point(String user_id, int point_use, int point_add) throws Exception {
 		dao.changePoint(user_id, point_use, point_add);
-	}
-
-	// 판매량 수정
-	@Override
-	public void sellTot(Cart cart) throws Exception {
-		dao.changeSellTot(cart);
 	}
 
 	// 주문 완료 페이지

@@ -27,6 +27,7 @@ public class Admininterceptor extends HandlerInterceptorAdapter {
 		} else {
 			return true;
 		}
+		
 	}
 
 }

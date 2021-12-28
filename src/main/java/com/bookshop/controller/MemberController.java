@@ -26,7 +26,7 @@ public class MemberController {
 	// 마이페이지 메인 페이지
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String mypage(Model model) throws Exception {
-		return "member/myPage";		
+		return "redirect:/mypage";		
 	}
 
 	// 회원정보 수정 전 비밀번호 재확인 페이지

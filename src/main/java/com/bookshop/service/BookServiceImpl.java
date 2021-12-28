@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import com.bookshop.dao.BookDAO;
+import com.bookshop.util.Xss;
 import com.bookshop.vo.Book;
 import com.bookshop.vo.Paging;
 import com.bookshop.vo.Review;
@@ -122,6 +123,9 @@ public class BookServiceImpl implements BookService {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		int reviewCnt = dao.getReviewCnt(book_id);
 		List<Review> list = dao.getReview(book_id, pageNumber);
+		for (int i = 0; i < list.size(); i++) {
+			list.get(i).setReview_contents(Xss.setXss(list.get(i).getReview_contents()));
+		}
 		Paging paging = new Paging(pageNumber, reviewCnt, 3, 1);
 		Integer avgScore = dao.getBookScore(book_id);
 		if (avgScore == null) {

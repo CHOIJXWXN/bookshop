@@ -5,6 +5,7 @@ import java.util.HashMap;
 import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import com.bookshop.dao.RecordDAO;
+import com.bookshop.util.Xss;
 import com.bookshop.vo.Paging;
 import com.bookshop.vo.Record;
 import com.bookshop.vo.RecordPlus;
@@ -53,7 +54,9 @@ public class RecordServiceImpl implements RecordService {
 	// 기록 보기
 	@Override
 	public RecordPlus viewOne(int record_id) throws Exception {
-		return dao.getCertainRecordPlus(record_id);
+		RecordPlus recordPlus = dao.getCertainRecordPlus(record_id);
+		recordPlus.setRecord_contents(Xss.setXss(recordPlus.getRecord_contents()));
+		return recordPlus;
 	}
 	
 	// 기록 수정
