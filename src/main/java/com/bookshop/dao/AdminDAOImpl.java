@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.bookshop.vo.AskList;
+import com.bookshop.vo.AskReply;
 import com.bookshop.vo.Book;
 import com.bookshop.vo.OrderPlus;
 
@@ -100,13 +101,10 @@ public class AdminDAOImpl implements AdminDAO {
 
 	
 	@Override
-	public List<AskList> getAdminAskList(AskList asklist) throws Exception {
+	public List<AskList> getAdminAskList() throws Exception {
 		
-		return sqlSession.selectList(SESSION + ".getAdminAskList", asklist);
+		return sqlSession.selectList(SESSION + ".getAdminAskList");
 	}
-
-	
-
 	
 
 }

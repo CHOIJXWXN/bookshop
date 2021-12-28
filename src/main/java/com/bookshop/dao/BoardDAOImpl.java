@@ -1,5 +1,6 @@
 package com.bookshop.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -35,8 +36,24 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	// 목록 불러오기
 	@Override
-	public List<AskList> getAskList(String writer) throws Exception {
-		return sqlSession.selectList(SESSION + ".getAskList", writer);
+	public List<AskList> getAskList(String writer, int pageNumber) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int start = (pageNumber - 1) * 5;
+		map.put("start", start);
+		map.put("writer", writer);
+		
+		return sqlSession.selectList(SESSION + ".getAskList", map);
+	}
+	
+	// 다음 페이지 존재하는지
+	@Override
+	public AskList getNextPage(String writer, int pageNumber) throws Exception {
+		
+		HashMap<String, Object> pageMap = new HashMap<String, Object>();
+		pageMap.put("writer", writer);
+		pageMap.put("pageNumber", pageNumber);
+		
+		return sqlSession.selectOne(SESSION + ".getNextPage", pageMap);
 	}
 	
 	// 게시글 쓰기
@@ -82,6 +99,8 @@ public class BoardDAOImpl implements BoardDAO {
 	public Users getUserInfo(String user_id) throws Exception {
 		return sqlSession.selectOne(SESSION + ".getUserInfo", user_id);
 	}
+	
+	
 	
 
 	

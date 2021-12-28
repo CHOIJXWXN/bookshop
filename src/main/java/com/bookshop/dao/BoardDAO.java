@@ -18,7 +18,10 @@ public interface BoardDAO {
 	public String getBookid(int ask_id) throws Exception;
 	
 	// 목록 불러오기
-	public List<AskList> getAskList(String writer) throws Exception;
+	public List<AskList> getAskList(String writer, int pageNumber) throws Exception;
+	
+	// 다음페이지 존재
+	public AskList getNextPage(String writer, int pageNumber) throws Exception;
 	
 	// 문의 글 쓰기
 	public Ask writeAsk(Ask ask) throws Exception;

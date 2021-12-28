@@ -3,6 +3,7 @@ package com.bookshop.dao;
 import java.util.List;
 
 import com.bookshop.vo.AskList;
+import com.bookshop.vo.AskReply;
 import com.bookshop.vo.Book;
 import com.bookshop.vo.OrderPlus;
 
@@ -19,6 +20,7 @@ public interface AdminDAO {
 	public void deleteBook(String book_id) throws Exception;
 	public void addBook(Book book) throws Exception;
 	
-	public List<AskList> getAdminAskList(AskList asklist) throws Exception;
+	public List<AskList> getAdminAskList() throws Exception;
+
 	
 }

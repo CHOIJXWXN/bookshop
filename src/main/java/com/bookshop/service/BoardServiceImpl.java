@@ -38,9 +38,18 @@ public class BoardServiceImpl implements BoardService {
 	
 	// 문의리스트 불러오기
 	@Override
-	public List<AskList> getAskList(String writer) throws Exception {
-		return dao.getAskList(writer);
+	public List<AskList> getAskList(String writer, int pageNumber) throws Exception {
+		return dao.getAskList(writer, pageNumber);
 	}
+	
+	// 다음 페이지 존재하는지
+	@Override
+	public boolean getNextPage(String writer, int pageNumber) throws Exception {
+		int pageNum = (pageNumber * 5) + 1;
+		
+		return dao.getNextPage(writer, pageNum) != null;
+	}
+
 	
 	// 글쓰기 (writeAction)
 	@Override
@@ -48,12 +57,6 @@ public class BoardServiceImpl implements BoardService {
 		 dao.writeAsk(ask);
 	}
 
-	/* AskView 불러오기
-	@Override
-	public Ask boardView(int ask_id) throws Exception {
-		
-		return dao.getAsk(ask_id);
-	}*/
 	// AskView 불러오기
 	@Override
 	public HashMap<String, Object> boardView(int ask_id) throws Exception {
@@ -67,6 +70,8 @@ public class BoardServiceImpl implements BoardService {
 		
 		return map;
 	}
+	
+	
 	
 	// 댓글 작성
 	@Override
@@ -97,6 +102,7 @@ public class BoardServiceImpl implements BoardService {
 		Users users = dao.getUserInfo(user_id);
 		return users;
 	}
+	
 
 	
 	

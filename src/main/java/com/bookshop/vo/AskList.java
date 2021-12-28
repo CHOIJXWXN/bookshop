@@ -9,11 +9,12 @@ public class AskList {
 	private String book_cover;
 	private int askreply_count;
 	private String writer;
+	private int askreply_id;
 	
 	public AskList() {}
 
 	public AskList(int ask_id, String book_title, String ask_sort, String ask_date, String book_cover,
-			int askreply_count, String writer) {
+			int askreply_count, String writer, int askreply_id) {
 		this.ask_id = ask_id;
 		this.book_title = book_title;
 		this.ask_sort = ask_sort;
@@ -21,6 +22,7 @@ public class AskList {
 		this.book_cover = book_cover;
 		this.askreply_count = askreply_count;
 		this.writer = writer;
+		this.askreply_id = askreply_id;
 	}
 
 	public int getAsk_id() {
@@ -77,6 +79,14 @@ public class AskList {
 
 	public void setWriter(String writer) {
 		this.writer = writer;
+	}
+	
+	public int getAskreply_id() {
+		return askreply_id;
+	}
+
+	public void setAskreply_id(int askreply_id) {
+		this.askreply_id = askreply_id;
 	}
 	
 	

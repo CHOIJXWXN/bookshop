@@ -19,7 +19,10 @@ public interface BoardService {
 	public String getBookid(int ask_id) throws Exception;
 	
 	// 리스트불러오기
-	public List<AskList> getAskList(String writer) throws Exception;
+	public List<AskList> getAskList(String writer, int pageNumber) throws Exception;
+
+	// 다음페이지 존재하는지
+	public boolean getNextPage(String writer, int pageNumber) throws Exception;
 	
 	// 문의글 쓰기 Action
 	public void wrtieAction(Ask ask) throws Exception;

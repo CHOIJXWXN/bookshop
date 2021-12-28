@@ -108,12 +108,29 @@
 	</insert>
 	
 	<!-- 문의 불러오기 -->
-	<select id="getAdminAskList" resultType="AskList">
-		SELECT ask_id, book_title, ask_sort, ask_date, book_cover, askreply_count, writer
-		FROM ASK a, BOOK b
-		WHERE a.book_id = b.book_id
-		AND a.available = 0
-		LIMIT 10
+	<select id="getAdminAskList" resultType="AskList">	
+	SELECT e.ask_id, e.book_title, e.ask_sort, e.ask_date, e.book_cover, e.askreply_count, e.writer, e.askreply_id, f.user_admin 
+	FROM   (SELECT c.ask_id, c.book_title, c.ask_sort, c.ask_date, c.book_cover, c.askreply_count, c.writer, d.writer AS reply_writer, d.askreply_id 
+				FROM (SELECT a.ask_id, book_title, ask_sort, ask_date, book_cover, askreply_count, writer
+					  FROM ASK a, BOOK b
+					  WHERE a.book_id = b.book_id
+					  AND a.available = 0) c
+				LEFT JOIN ASKREPLY d ON c.ask_id = d.ask_id
+    			WHERE askreply_id IN 
+    				(SELECT MAX(askreply_id) 
+    				 FROM ASKREPLY GROUP BY ask_id) 
+    		OR c.askreply_count = 0) e, USERS f
+	WHERE e.reply_writer = f.user_id;
 	</select>
+	
+	<!-- 댓글 마지막 답글자 불러오기 
+	<select id="getLastReplyWriter"  resultType="_int">
+		SELECT a.user_admin 
+		FROM USERS a, ASKREPLY b 
+		WHERE b.ask_id = #{ask_id} 
+		AND b.writer = a.user_id
+		ORDER BY askreply_id DESC 
+		LIMIT 1
+	</select> -->
 
 </mapper>

@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.bookshop.dao.AdminDAO;
 import com.bookshop.dao.BookDAO;
 import com.bookshop.vo.AskList;
+import com.bookshop.vo.AskReply;
 import com.bookshop.vo.Book;
 
 @Service
@@ -78,9 +79,9 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<AskList> getAdminAskList(AskList asklist) throws Exception {
-		
-		return dao.getAdminAskList(asklist);
+	public List<AskList> getAdminAskList() throws Exception {
+		List<AskList> list = dao.getAdminAskList();
+		return list;
 	}
 
 

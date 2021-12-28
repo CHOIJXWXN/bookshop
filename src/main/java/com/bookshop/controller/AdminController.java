@@ -96,9 +96,9 @@ public class AdminController {
 	
 	// 문의 관리 페이지
 	@RequestMapping(value = "/ask", method = RequestMethod.GET)
-	public String ask(Model model, AskList asklist, String book_id) throws Exception {
+	public String ask(Model model, String book_id) throws Exception {
 		
-		List<AskList> list = adminService.getAdminAskList(asklist);
+		List<AskList> list = adminService.getAdminAskList();
 		
 		model.addAttribute("list", list);
 		
