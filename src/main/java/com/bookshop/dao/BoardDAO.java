@@ -43,4 +43,7 @@ public interface BoardDAO {
 	
 	// 유저 정보 불러오기
 	public Users getUserInfo(String user_id) throws Exception;
+	
+	// 답변상태 update
+	public void updateAsk_status(Ask ask) throws Exception;
 }

@@ -100,6 +100,12 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectOne(SESSION + ".getUserInfo", user_id);
 	}
 	
+	// 답변 상태 update( Ask_status update)
+	@Override
+	public void updateAsk_status(Ask ask) throws Exception {
+		sqlSession.selectOne(SESSION + ".updateAsk_status", ask);
+	}
+	
 	
 	
 

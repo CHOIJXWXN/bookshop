@@ -117,14 +117,17 @@ public class BoardController {
 	// url 패턴이 'path/ask/insertAskReply'
 	@RequestMapping(value="/insertAskReply", method= RequestMethod.GET)
 	@ResponseBody
-	public List<AskReply> insertAskReply(AskReply askreply, HttpSession session) throws Exception {
+	public List<AskReply> insertAskReply(Ask ask, AskReply askreply, HttpSession session) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
-		
+		Integer admin = (Integer) session.getAttribute("admin");
 		// 댓글 작성자에 로그인 되어있는 user_id 값을 넣어줌
 		askreply.setWriter(user_id);
 		
 		List<AskReply> list = boardService.insertAskReply(askreply);
-		
+		if(admin != null) {
+			boardService.updateAskstatusA(ask);
+		}
+		if(admin == null) boardService.updateAskstatusU(ask);
 		boardService.updateAskreplyCount(askreply.getAsk_id());
 		return list;
 	}

@@ -51,6 +51,8 @@ public class AdminDAOImpl implements AdminDAO {
 		}
 		else if(type.equals("orders")) {
 			obj = sqlSession.selectOne(SESSION + ".getNextPageOrders", pageNumber);
+		} else if(type.equals("ask")) {
+			obj = sqlSession.selectOne(SESSION + ".getNextPageAsk", pageNumber);
 		}
 		
 		return obj;
@@ -101,9 +103,9 @@ public class AdminDAOImpl implements AdminDAO {
 
 	
 	@Override
-	public List<AskList> getAdminAskList(AskList asklist) throws Exception {
-		
-		return sqlSession.selectList(SESSION + ".getAdminAskList");
+	public List<AskList> getAdminAskList(int pageNum) throws Exception {
+		int start = 20 * (pageNum - 1);
+		return sqlSession.selectList(SESSION + ".getAdminAskList", start);
 	}
 	
 

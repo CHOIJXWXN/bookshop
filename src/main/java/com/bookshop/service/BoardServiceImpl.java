@@ -103,6 +103,22 @@ public class BoardServiceImpl implements BoardService {
 		return users;
 	}
 	
+	// 답변 상태 update admin 
+	@Override
+	public void updateAskstatusA(Ask ask) throws Exception {
+		String ask_status = "답변완료";
+		ask.setAsk_status(ask_status);
+		dao.updateAsk_status(ask);
+	}
+	
+	// 답변상태 user
+	@Override
+	public void updateAskstatusU(Ask ask) throws Exception {
+		String ask_status = "답변미완료";
+		ask.setAsk_status(ask_status);
+		dao.updateAsk_status(ask);
+	}
+	
 
 	
 	

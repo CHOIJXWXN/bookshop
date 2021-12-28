@@ -29,7 +29,7 @@ public interface AdminService {
 	
 	// 문의 관리 페이지
 	// 모든 문의 리스트
-	public List<AskList> getAdminAskList(AskList asklist) throws Exception;
+	public List<AskList> getAdminAskList(int pageNum) throws Exception;
 
 	
 }

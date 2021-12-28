@@ -20,7 +20,7 @@ public interface AdminDAO {
 	public void deleteBook(String book_id) throws Exception;
 	public void addBook(Book book) throws Exception;
 	
-	public List<AskList> getAdminAskList(AskList asklist) throws Exception;
+	public List<AskList> getAdminAskList(int pageNum) throws Exception;
 
 	
 }

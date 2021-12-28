@@ -93,4 +93,12 @@
 	WHERE user_id = #{user_id}
 </select>
 
+<!-- 답변 상태 admin update -->
+<update id="updateAsk_status">
+	UPDATE ASK 
+	SET ask_status = #{ask_status} 
+	WHERE ask_id = #{ask_id};
+</update>
+
+
 </mapper>

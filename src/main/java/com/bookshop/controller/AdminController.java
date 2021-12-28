@@ -109,9 +109,13 @@ public class AdminController {
 	
 	// 문의 관리 페이지
 		@RequestMapping(value = "/ask", method = RequestMethod.GET)
-		public String ask(Model model, AskList asklist, String book_id) throws Exception {
+		public String ask(Model model, AskList asklist, Integer pageNum,  String book_id) throws Exception {
 			// 모든 문의 리스트 (10개씩)
-			model.addAttribute("list", adminService.getAdminAskList(asklist));
+			if(pageNum == null) pageNum = 1;
+			
+			model.addAttribute("list", adminService.getAdminAskList(pageNum));
+			model.addAttribute("isNext", adminService.getNextPage(pageNum, "ask"));   
+			model.addAttribute("pageNum", pageNum);
 			return "admin/ask";
 		}
 	

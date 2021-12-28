@@ -40,17 +40,23 @@
                 <td><a href="${path}/ask/boardView?ask_id=${ask.ask_id}">[${ask.ask_sort}] ${ask.book_title}</a></td> <!-- [ask_sort],[book_title]  -->
                 <td>${ask.writer }</td> <!-- ask_writer -->
                 <td>${ask.ask_date}</td>	<!-- ask_date --> 
-              	<!-- if, askreply_count == 0 -> ask_status :  미답변 -->
-              	<c:if test="${ask.askreply_count == 0 }">
-              	<td class="notdone">미답변</td>
-              	</c:if>
-              	<c:if test="${ask.askreply_count != 0 }">
-              	<td class="notdone">답변완료</td>
-              	</c:if>
+              	<td class="notdone">${ask.ask_status}</td>
               </tr>
               </c:forEach>
               
             </table>
+            
+              <!-- 페이징 -->
+            <div class="pagebox">
+                 <ul class="pagenum_wrap">
+                 	 <c:if test = "${pageNum != 1 }">
+                     <li><a href="${path}/admin/ask?pageNum=${pageNum-1 }" class="prev">&nbsp;prev</a></li>
+                     </c:if>
+                     <c:if test = "${isNext eq true}">
+                     <li><a href="${path}/admin/ask?pageNum=${pageNum+1 }" class="next">next&nbsp;</a></li>
+                     </c:if>
+                 </ul>
+             </div>
         </div>
         </div>
       </section>
