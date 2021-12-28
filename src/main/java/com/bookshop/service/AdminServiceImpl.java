@@ -14,6 +14,7 @@ import com.bookshop.dao.AdminDAO;
 import com.bookshop.dao.BookDAO;
 import com.bookshop.util.Xss;
 import com.bookshop.vo.AskList;
+import com.bookshop.vo.AskReply;
 import com.bookshop.vo.Book;
 
 @Service
@@ -88,8 +89,10 @@ public class AdminServiceImpl implements AdminService {
 	// 문의 관리 페이지
 	// 모든 문의 리스트
 	@Override
-	public List<AskList> getAdminAskList(AskList asklist) throws Exception {		
-		return dao.getAdminAskList(asklist);
+
+	public List<AskList> getAdminAskList(int pageNum) throws Exception {		
+		return dao.getAdminAskList(pageNum);
 	}	
+
 
 }

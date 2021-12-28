@@ -25,12 +25,27 @@
 </insert>
 
 <!-- 문의 글 list -->
-<select id="getAskList" resultType="AskList">
+<select id="getAskList" resultType="AskList" parameterType="hashmap">
 	SELECT ask_id, book_title, ask_sort, ask_date, book_cover, askreply_count, writer
 	FROM ASK a, BOOK b
 	WHERE a.book_id = b.book_id
 	AND a.writer = #{writer}
-	LIMIT 5
+	ORDER BY ask_id DESC
+	LIMIT #{start}, 5
+</select>
+
+<!-- 다음 페이지가 존재확인 -->
+<select id="getNextPage" parameterType="hashmap" resultType="AskList">
+	 SELECT A.*
+		FROM (SELECT @ROWNUM := @ROWNUM + 1 AS rownum, O.*
+				FROM (SELECT @ROWNUM := 0) R,
+					 ( SELECT ask_id, book_title, ask_sort, ask_date, book_cover, askreply_count, writer
+						FROM ASK a, BOOK b
+						WHERE a.book_id = b.book_id
+						AND a.writer = #{writer}
+						ORDER BY ask_id DESC) O) A
+		WHERE rownum = #{pageNumber};
+	
 </select>
 
 <!-- 문의글 불러오기 -->
@@ -77,5 +92,13 @@
 	FROM Users
 	WHERE user_id = #{user_id}
 </select>
+
+<!-- 답변 상태 admin update -->
+<update id="updateAsk_status">
+	UPDATE ASK 
+	SET ask_status = #{ask_status} 
+	WHERE ask_id = #{ask_id};
+</update>
+
 
 </mapper>
