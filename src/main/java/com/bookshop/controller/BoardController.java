@@ -78,7 +78,7 @@ public class BoardController {
 			String user_id = (String) session.getAttribute("user_id");
 			ask.setWriter(user_id);
 			
-			boardService.wrtieAction(ask);
+			boardService.writeAction(ask);
 		
 		return "redirect:/ask/";
 	}

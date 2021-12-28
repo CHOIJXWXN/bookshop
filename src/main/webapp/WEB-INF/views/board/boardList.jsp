@@ -61,10 +61,10 @@
              <div class="pagebox">
                  <ul class="pagenum_wrap">
                 	 <c:if test = "${pageNumber != 1 }">
-                     <li><a href="./ask?pageNum=${pageNumber - 1 }" class="prev">&nbsp;prev</a></li>
+                     <li><a href="/ask/?pageNumber=${pageNumber - 1 }" class="prev">&nbsp;prev</a></li>
                      </c:if>
                      <c:if test = "${isNext eq true}">
-                     <li><a href="./ask?pageNum=${pageNumber + 1 }" class="next">next&nbsp;</a></li>
+                     <li><a href="/ask/?pageNumber=${pageNumber + 1 }" class="next">next&nbsp;</a></li>
                      </c:if>
                  </ul>
              </div>

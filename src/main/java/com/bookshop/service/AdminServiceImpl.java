@@ -88,18 +88,10 @@ public class AdminServiceImpl implements AdminService {
 	// 문의 관리 페이지
 	// 모든 문의 리스트
 	@Override
-<<<<<<< HEAD
-	public List<AskList> getAdminAskList() throws Exception {
-		List<AskList> list = dao.getAdminAskList();
-		return list;
-	}
 
-
-	
-=======
 	public List<AskList> getAdminAskList(AskList asklist) throws Exception {		
 		return dao.getAdminAskList(asklist);
 	}	
->>>>>>> 3a1efe3ca68261c36137ccc052484498060009c0
+
 
 }

@@ -101,7 +101,7 @@ public class AdminDAOImpl implements AdminDAO {
 
 	
 	@Override
-	public List<AskList> getAdminAskList() throws Exception {
+	public List<AskList> getAdminAskList(AskList asklist) throws Exception {
 		
 		return sqlSession.selectList(SESSION + ".getAdminAskList");
 	}

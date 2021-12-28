@@ -108,21 +108,12 @@ public class AdminController {
 	}
 	
 	// 문의 관리 페이지
-	@RequestMapping(value = "/ask", method = RequestMethod.GET)
-<<<<<<< HEAD
-	public String ask(Model model, String book_id) throws Exception {
-		
-		List<AskList> list = adminService.getAdminAskList();
-		
-		model.addAttribute("list", list);
-		
-=======
-	public String ask(Model model, AskList asklist, String book_id) throws Exception {
-		// 모든 문의 리스트 (10개씩)
-		model.addAttribute("list", adminService.getAdminAskList(asklist));
->>>>>>> 3a1efe3ca68261c36137ccc052484498060009c0
-		return "admin/ask";
-	}	
+		@RequestMapping(value = "/ask", method = RequestMethod.GET)
+		public String ask(Model model, AskList asklist, String book_id) throws Exception {
+			// 모든 문의 리스트 (10개씩)
+			model.addAttribute("list", adminService.getAdminAskList(asklist));
+			return "admin/ask";
+		}
 	
 	// 문의 관리 페이지
 	@RequestMapping(value = "/viewAsk", method = RequestMethod.GET)

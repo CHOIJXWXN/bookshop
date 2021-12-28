@@ -19,9 +19,6 @@ public interface AdminService {
 	// 배송중/배송완료 변경, 배송중 변경 시 랜덤 운송장번호 생성 및 배송 테이블에 데이터 입력
 	public void delivery(String order_status, String order_num) throws Exception;
 	
-<<<<<<< HEAD
-	public List<AskList> getAdminAskList() throws Exception;
-=======
 	// 상품 관리 페이지
 	// 모든 책 수량, 소설 책 수량, 시/에세이 책 수량, 여행 책 수량, 모든 책 리스트)
 	public HashMap<String, Object> viewProduct(int pageNum) throws Exception;
@@ -33,6 +30,6 @@ public interface AdminService {
 	// 문의 관리 페이지
 	// 모든 문의 리스트
 	public List<AskList> getAdminAskList(AskList asklist) throws Exception;
->>>>>>> 3a1efe3ca68261c36137ccc052484498060009c0
+
 	
 }
