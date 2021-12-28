@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.bookshop.vo.Book;
 import com.bookshop.vo.Cart;
 import com.bookshop.vo.CartPlus;
 import com.bookshop.vo.OrderList;

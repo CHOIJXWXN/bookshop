@@ -23,129 +23,95 @@ public class UsersServiceImpl implements UsersService {
 	@Inject
 	UsersDAO dao;
 
-	// [1] 회원가입 관련 service
-
-	// 아이디 중복확인 checkId 실행
+	// 회원가입
+	// 아이디 중복 체크
 	@Override
 	public int checkId(String user_id) throws Exception {
-		// DB에 입력받은 user_id가 없으면 0 결과값 반환
-		// DB에 입력받은 user_id가 있으면 1 결과값 반환
 		int result = 0;
 		if (dao.checkId(user_id) != null)
 			result = 1;
-
 		return result;
 	}
 
-	// 이메일 확인 checkEmail 실행
+	// 이메일 중복 체크
 	@Override
 	public int checkEmail(String user_email) throws Exception {
-		// DB에 입력받은 user_email 없으면 0 결과값 반환
-		// DB에 입력받은 user_email 있으면 1 결과값 반환
 		int result = 0;
 		if (dao.checkEmail(user_email) != null)
 			result = 1;
-
 		return result;
 	}
 
-	// 회원가입 joinSuccess 실행
+	// 유저 추가
 	@Override
 	public void joinSuccess(Users users) throws Exception {
-		// dao.join 실행
 		dao.join(users);
 	}
 
-	// [2] 로그인 (login) 관련 service
-	// 로그인 loginAction 실행
+	// 로그인
 	@Override
 	public int loginAction(Users users) throws Exception {
-		// users 값이 존재하면 0 반환 -> 로그인 성공
-		// users 값이 존재하지 않으면 -1 반환 -> 로그인 실패
-		// 해당 유저가 관리자이면 1 반환
 		Users exist = dao.login(users);
-		if (exist == null) return -1;
-		
+		if (exist == null) {
+			return -1;		
+		}
 		return exist.getUser_admin();
 	}
 
-	// 아이디 찾기 (이메일을 이용해서 찾기)
-	// 존재하면 0, 아이디 찾기 가능
-	// 존재하지 않으면 -1, 아이디찾기 불가능
+
+	// 아이디/비밀번호 찾기
+	// 아이디 찾기 (이메일)
 	@Override
 	public int findIdEAction(Users users) throws Exception {
 		int result = 0;
-		Users rs = dao.getIdE(users);
-
-		if (rs != null)
-			result = 0;
-		else if (rs == null)
+		if (dao.getIdE(users) == null) {
 			result = -1;
-
+		}
 		return result;
 	}
-	// 아이디 찾기 (휴대폰 이용해서 찾기)
-	// 존재하면 0, 존재하지 않으면 -1 반환
+	
+	// 아이디 찾기 (휴대폰)
 	@Override
 	public int findIdPAction(Users users) throws Exception {
 		int result = 0;
-		Users rs = dao.getIdP(users);
-		if(rs == null) result = -1;
-		
+		if(dao.getIdP(users) == null) {
+			result = -1;
+		}		
 		return result;
 	}
 
-	// 아이디 찾기 값을 전달하기 위한 service(email)
+	// 유저 정보 (이메일)
 	@Override
 	public Users findIdE(Users users) throws Exception {
-
 		return dao.getIdE(users);
 	}
 	
-	// 아이디 찾기 값을 전달하기 위한 service(phone)
+	// 유저 정보 (핸드폰)
 	@Override
-	public Users findIdP(Users users) throws Exception {
-		
+	public Users findIdP(Users users) throws Exception {		
 		return dao.getIdP(users);
 	}
 
-	// 비밀번호 찾기 메일전송
-	// 회원정보 존재하면 = 0, 아이디 일치하지 않음 = 1, 이메일 일치하지 않음 = 2, 데이터베이스 오류 = -1
+	// 비밀번호 수정 및 전송
 	@Override
 	public int findPwEAction(Users users) throws Exception {
-		int result = 0;	
-		
+		int result = 0;			
 		Users exist = dao.getUserInfo(users);
-		
-		
-		// 가입한 id 정보가 없음
-		if(exist == null) {
-				result = 1;
-			}
-		
-		 //  가입한 email 정보가 일치하지 않음
-		else if(!users.getUser_email().equals(exist.getUser_email())) {
-				result = 2;
-			}
-		
-		else if(!users.getUser_name().equals(exist.getUser_name())) {
+		if (exist == null) {
+			result = 1;
+		} else if (!users.getUser_email().equals(exist.getUser_email())) {
+			result = 2;
+		} else if (!users.getUser_name().equals(exist.getUser_name())) {
 			result = 3;
-		}
-		
-		
-		// 가입한 정보 있음
-			
-		else if(exist != null){
+		} else if (exist != null) {
 			// 랜덤 비밀번호 생성
 			String pw = "";
 			for(int i = 0; i < 12; i++) {
 				pw += (char) ((Math.random() * 26) + 97);
-			}
-			
+			}			
 			// 생성 비밀번호로 변경
 			users.setUser_pw(pw);
-			dao.updatePw(users);
-			
+			dao.updatePw(users);			
 			// 메일 정보
 			String from = "teambook3lcy@gmail.com";
 			String to = users.getUser_email();
@@ -182,24 +148,18 @@ public class UsersServiceImpl implements UsersService {
 				
 				Transport.send(msg);
 				result = 0;
-			} catch(Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 				result = -1;
 			}
 		}
-
 		return result;
 	}
 	
-	// 비밀번호 찾기 결과완료 알려주기 위한 service(findPwE)
+	// 유저 정보 (이메일)
 	@Override
-	public Users findPwE(Users users) throws Exception {
-		
+	public Users findPwE(Users users) throws Exception {		
 		return dao.getUserInfo(users);
-	}
-
-	
-
-	
+	}	
 
 }

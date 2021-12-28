@@ -1,7 +1,5 @@
 package com.bookshop.dao;
 
-import java.util.List;
-
 import com.bookshop.vo.Users;
 
 public interface UsersDAO {

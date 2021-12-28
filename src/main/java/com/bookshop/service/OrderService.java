@@ -10,16 +10,32 @@ import com.bookshop.vo.Orders;
 
 public interface OrderService {
 	
+	// 장바구니 페이지
+	// 장바구니
 	public List<CartPlus> viewCart(String user_id) throws Exception;
+	// 특정 책 cartPlus
 	public CartPlus viewCertainCart(Cart cart) throws Exception;
+	// 장바구니에 추가
 	public int addCart(Cart cart) throws Exception;
+	// 장바구니에서 삭제
 	public void deleteCart(Cart cart) throws Exception;
+	// 장바구니 수정
 	public void updateCart(Cart cart) throws Exception;
+	
+	// 주문 페이지
+	// 주문 번호 생성
 	public String newOrderNum() throws Exception;
+	// 주문 추가
 	public int addOrder(Orders order) throws Exception;
+	// 주문목록 추가
 	public void addOrderlist(OrderList orderList) throws Exception;
+	// 포인트 적립/차감
 	public void point(String user_id, int point_use, int point_add) throws Exception;
+	// 판매량 수정
 	public void sellTot(Cart cart) throws Exception;
+	
+	// 주문 완료 페이지
+	// 주문 정보
 	public HashMap<String, Object> orderInfo(String user_id) throws Exception;
 	
 }

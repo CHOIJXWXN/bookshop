@@ -15,49 +15,45 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.bookshop.service.BookService;
 import com.bookshop.service.UsersService;
 import com.bookshop.vo.Users;
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
 @Controller
 public class MainController {
 	
 	@Inject
 	UsersService usersService;
-
 	@Inject
 	BookService bookService;
 
-	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
-	
+	private static final Logger logger = LoggerFactory.getLogger(MainController.class);	
 	
 	// 메인 페이지
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String main(Model model) throws Exception {
 		return "main/main";
 	}	
-
-	// --- 로그인(login) 관련 ---
-
+	
 	// 로그인 페이지
-	// url 패턴이 'path/login'
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model) throws Exception {
 		return "main/login";
 	}
 	
-	// 로그인 실행 기능 (Ajax)
-	//  url 패턴이 'path/loginAction
-	// 유저 아이디/비밀번호 확인
-	// 맞으면 return 0	view에서 data == 0이면  location.href 써서 메인 페이지로
-	// 틀리면 return -1	view에서 data == -1이면 정보 불일치 띄우기
-	// int result = userService.mtehod();
-	// service 에서 반환된 result 값을 받아옴
+	// 로그인 실행 기능
+	/*
+	 * return { 0 : 일반 유저
+	 * 			1 : 관리자
+	 * 		   -1 : 불일치
+	 * 		  				}
+	 */
 	@RequestMapping(value = "/loginAction", method = RequestMethod.POST)
 	@ResponseBody
 	public String loginAction(Users users, HttpSession session, RedirectAttributes ra) throws Exception {
-		int result = usersService.loginAction(users);	
-		if(result == 0) {
+		// 아이디와 비밀번호 검증
+		int result = usersService.loginAction(users);
+		// 일치 시 세션에 user_id로 해당 유저 아이디 값 저장 (관리자일 때는 admin 이름으로 1 값 저장)
+		if (result == 0) {
 			session.setAttribute("user_id", users.getUser_id());	
-		} else if(result == 1) {
+		} else if (result == 1) {
 			session.setAttribute("user_id", users.getUser_id());
 			session.setAttribute("admin", 1);
 		}
@@ -65,169 +61,133 @@ public class MainController {
 	}
 		
 	// 아이디/비밀번호 찾기 페이지
-	// url 패턴이 'path/find' 
 	@RequestMapping(value = "/find", method = RequestMethod.GET)
 	public String find(Model model) throws Exception {
 		return "main/find";
 	}
 	
-	/* 아이디 찾기 관련 주석
-	  // 존재 확인
-    // 있으면 data = 0, data == 0이면 view에서 location.href="아이디 보여주는 페이지" 시키기
-    // 없으면 data = -1, data == -1이면 view에서 alert 시키기
-    // 아이디 찾기 DAO, Service 필요
-    // 존재하면 - 아이디를 보여줌 
-    // 존재하지 않으면 - 아이디가 존재하지 않음 msg 출력 후 로그인 페이지로 이동
-	*/
-	
-	// 아이디찾기 (이메일 이용)(ajax)
-	// url 패턴이 'path/findIdEAction'
-	// 결과를 findIde.jsp로 보냄
-	// 존재하면 0, 아이디 찾기 가능
-	// 존재하지 않으면 -1, 아이디찾기 불가능
+	// 이메일로 아이디 찾기 기능
+	/*
+	 * return { 0 : 일치
+	 * 		   -1 : 불일치
+	 * 					  }
+	 */
 	@RequestMapping(value = "/findIdEAction", method = RequestMethod.POST)
 	@ResponseBody
-	public String findIdEAction(Users users, Model model) throws Exception {
-		int result = usersService.findIdEAction(users);
-		
-		return result + "";
+	public String findIdEAction(Users users, Model model) throws Exception {	
+		return usersService.findIdEAction(users) + "";
 	}
-	// url 이 'path/findIdE'
-	// 결과가 존재할 시 값을 전달해 줌
+	
+	// 이메일 인증 시 아이디 제공 페이지
 	@RequestMapping(value = "/findIdE", method = RequestMethod.POST) 
 	public String findIdE(Users users, Model model) throws Exception {
-		
-		users = usersService.findIdE(users);
-		model.addAttribute("users", users);
-		
+		// 이메일로 찾은 유저 정보
+		model.addAttribute("users", usersService.findIdE(users));		
 		return "main/findIdE";
 	}
-	
 
-	// 아이디 찾기 기능 (phone)
-	// 아이디 찾기 - 휴대폰번호로 찾기 클릭
+	// 핸드폰 번호로 아이디 찾기 기능
+	/*
+	 * return { 0 : 일치
+	 * 		   -1 : 불일치
+	 * 					  }
+	 */
 	@RequestMapping(value = "/findIdPAction", method = RequestMethod.POST)
 	@ResponseBody
-	public String findIdPAction(Users users, Model model) throws Exception {
-		int result = usersService.findIdPAction(users);
-		
-		return result + "";
+	public String findIdPAction(Users users, Model model) throws Exception {	
+		return usersService.findIdPAction(users) + "";
 	}
 	
-	// url 패턴이 'path/findIdP'
-	// 결과가 존재할 시 전달
+	// 휴대폰 인증 시 아이디 제공 페이지
 	@RequestMapping(value = "/findIdP", method = RequestMethod.POST)
 	public String findIdP(Users users, Model model) throws Exception {
-		users = usersService.findIdP(users);
-		model.addAttribute("users", users);
-		
+		// 핸드폰으로 찾은 유저 정보
+		model.addAttribute("users", usersService.findIdP(users));		
 		return "main/findIdP";
 	}
 
-	/* 비밀번호 찾기 관련 주석
-	 // 가입된 아이디 기준으로 비밀번호 찾음
-	 // 존재 확인
-	 // 있으면 data = 0, data == 0이면 view에서 redirect(/sendPw) 시키기
-	 // 없으면 data = -1, data == -1이면 view에서 alert 시키기
-	*/
-
-	// 비밀번호 찾기
-	// 아이디, 이름, 이메일 입력후 form 제출하면 실행
-	// 임시 비밀번호 전송 기능
-   @RequestMapping(value = "/findPwEAction", method = RequestMethod.POST)
-   @ResponseBody
-   public String findPwEAction(Users users, Model model) throws Exception {
-	   int result = usersService.findPwEAction(users);
-	   
-      return result + "";
-   }
+	// 이메일로 비밀번호 찾기 기능 (비밀번호 임의 변경 및 랜덤 비밀번호 전송)
+	/*
+	 * return { 0 : 일치
+	 * 		    1 : 아이디 불일치
+	 * 			2 : 이메일 불일치
+	 * 		   -1 : 데이터베이스 오류
+	 * 					  		  }
+	 */
+	@RequestMapping(value = "/findPwEAction", method = RequestMethod.POST)
+	@ResponseBody
+	public String findPwEAction(Users users, Model model) throws Exception {
+		return usersService.findPwEAction(users) + "";
+	}
    
-   // url이 'path/findPwE' 경우
-   // 결과가 존재할 시 전달
-   @RequestMapping(value = "/findPwE", method = RequestMethod.POST)
+	// 인증 시 제공 페이지 (이메일)
+	@RequestMapping(value = "/findPwE", method = RequestMethod.POST)
 	public String findPwE(Users users, Model model) throws Exception {
-	   users = usersService.findPwE(users);
-	   model.addAttribute("users", users);
-	   
+		// 입력값으로 찾은 유저 정보
+		model.addAttribute("users", usersService.findPwE(users));
 		return "main/findPwE";
 	}	
    
-   // 비밀번호 찾기 기능 (phone)
-	// 비밀번호찾기 - 휴대폰번호로 찾기 클릭
-	// url 패턴이 'path/findPwP'
+	// 인증 시 제공 페이지 (핸드폰)
 	@RequestMapping(value = "/findPwP", method = RequestMethod.GET)
 	public String helpPwP(Model model) throws Exception {
 		return "main/findPwP";
 	}
  
 	// 로그아웃 기능
-	// url 패턴이 'path/logout'
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) throws Exception {
 		session.invalidate();
 		return "redirect:/";
 	}
-	
 
-	// --- 회원가입(join) 관련 ---
-
+	// 회원가입 약관 페이지 (1)
+	@RequestMapping(value = "/joinTerm", method = RequestMethod.GET)
+	public String join(Model model) throws Exception {
+		return "main/joinTerm";
+	}
 	
-	// 회원가입 버튼 눌렀을시 
-	// (회원가입 약관 페이지 출력)
-		@RequestMapping(value = "/joinTerm", method = RequestMethod.GET)
-		public String join(Model model) throws Exception {
-			return "main/joinTerm";
-		}
-	
-	// 회원가입 페이지
-	// 약관 페이지에서 next 눌러서 넘어가면 회원가입 페이지 출력
+	// 회원가입 페이지 (2)
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
-	public String joinTerm(Model model) throws Exception {
-		
+	public String joinTerm(Model model) throws Exception {		
 		return "main/join";
 	}
 	
-	// 아이디 중복 확인 기능 (Ajax)
-	// url 이 'path/checkId'
+	// 아이디 중복 확인 기능
+	/*
+	 * return { 0 : 중복 없음
+	 * 		   -1 : 중복
+	 * 					    }
+	 */
 	@RequestMapping(value = "/checkId", method = RequestMethod.GET)
 	@ResponseBody
 	public String checkId(String user_id) throws Exception {
-		int result = usersService.checkId(user_id);
-		// 아이디 중복 확인
-		// 맞으면 return 0	view에서 data == 0이면 valid
-		// 틀리면 return -1	view에서 data == -1이면 invalid
-		return result + "";
+		return usersService.checkId(user_id) + "";
 	}
 	
-	// 이메일 중복 확인 기능 (Ajax) 
-	// url이 'path/checkEmail'
+	// 이메일 중복 확인 기능
+	/*
+	 * return { 0 : 중복 없음
+	 * 		   -1 : 중복
+	 * 					    }
+	 */
 	@RequestMapping(value = "/checkEmail", method = RequestMethod.GET)
 	@ResponseBody
 	public String checkEmail(String user_email) throws Exception {
-		int result = usersService.checkEmail(user_email);
-		// 이메일 중복 확인 (아이디 중복 확인 기능과 동일함)
-		// 존재 - return 0, view 에서 data == 0 
-		// 틀리면 - return -1, view 에서 data == -1
-		return result + "";
+		return usersService.checkEmail(user_email) + "";
 	}
-	
-	
-	// 회원가입 완료
-	// url 패턴이 'path/joinSuccess'
-	// 회원가입 버튼 클릭 하면 정보 저장하고 회원가입 완료 페이지를 출력함
-	
+		
+	// 회원가입 완료 페이지 (3)
 	@RequestMapping(value = "/joinSuccess", method = RequestMethod.POST)
 	public String joinSuccess(Users users, String addr_1, String addr_2, String addr_3, String user_email_id, String user_email_domain) throws Exception {
-		// 주소 합침
 		users.setUser_addr(addr_1 + "_" +  addr_2 + "_" + addr_3);
-		// 이메일주소 id와 domain 합침
 		users.setUser_email(user_email_id +"@"+ user_email_domain);
+		// 유저 추가
 		usersService.joinSuccess(users);
-		// users 테이블에 삽입
 		return "main/joinSuccess";
 	}
 
-	// 책 메인 페이지 (all, 판매량순)
+	// 책 메인 페이지
 	/*
 	 * book_genre { -1 : 전체
 	 * 				 0 : 소설
@@ -235,17 +195,19 @@ public class MainController {
 	 * 				 2 : 여행		  }
 	 */
 	@RequestMapping(value = "/book", method = RequestMethod.GET)
-	public String book(Integer pageNum, Model model, String book_genre, String book_order) throws Exception {
+	public String book(Integer pageNum, Model model, String book_genre, String book_order) throws Exception {		
 		if (pageNum == null) {
 			pageNum = 1;
 		}
+		// 입력값 누락 처리
 		if (book_genre == null) {
 			book_genre = "-1";
 		}
 		if (book_order == null) {
 			book_order = "판매량순";
 		}
-		model.addAttribute("map", bookService.book(book_order, book_genre, pageNum));
+		// 모든 책 리스트 (16개씩)
+		model.addAttribute("map", bookService.book(book_order, book_genre, pageNum)); // list, paging
 		model.addAttribute("book_genre", book_genre);
 		model.addAttribute("book_order", book_order);
 		return "shop/books";
@@ -254,11 +216,6 @@ public class MainController {
 	// 관리자 메인 페이지
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String admin(HttpSession session, Model model) throws Exception {
-		Integer admin = (Integer) session.getAttribute("admin");
-		if (admin == null || admin != 1) {
-			model.addAttribute("msg", "관리자 권한이 없습니다");
-			return "redirect:/";
-		}
 		return "admin/admin";
 	}
 

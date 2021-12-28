@@ -44,7 +44,7 @@ public class BoardServiceImpl implements BoardService {
 	
 	// 글쓰기 (writeAction)
 	@Override
-	public void wrtieAction(Ask ask) throws Exception {
+	public void writeAction(Ask ask) throws Exception {
 		 dao.writeAsk(ask);
 	}
 
