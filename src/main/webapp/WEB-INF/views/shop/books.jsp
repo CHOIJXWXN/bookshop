@@ -24,6 +24,7 @@
       });
      
       // 판매량/신규순/평점순 정렬
+      
       $(".order_by li").hover(
         function(){
         $(this).find(".fa-check").stop().animate({"width":"20px"},200);
@@ -33,10 +34,8 @@
       }
       );
 
-      $(".order_by li").click(function(){
-        $(".fa-check").css({"width":"0"});
-        $(this).find(".fa-check").css({"width":"20px"});
-      });
+      
+      
     });
    </script> 
 </head>
@@ -65,22 +64,22 @@
         </div>
        <!-- [2-2] 페이지 타이틀 -->
        <header class="page_ttl">
-       	 <h3>ALL BOOKS</h3>
-<%--        	 <c:if test="${empty book_genre}">
+       	 <!-- <h3>ALL BOOKS</h3> -->
+	     <c:if test="${empty book_genre}">
          <h3>ALL BOOKS</h3>
          </c:if>
-       	 <c:if test="${book_genre = 0 }">
+       	 <c:if test="${book_genre eq 0 }">
          <h3>NOVEL</h3>
          </c:if>
-         <c:if test="${book_genre = 1 }">
-         <h3>POEM & ESSAY</h3>
+         <c:if test="${book_genre eq 1 }">
+         <h3>POEM&nbsp;&#183;&nbsp;ESSAY</h3>
          </c:if>
-         <c:if test="${book_genre = 2 }">
+         <c:if test="${book_genre eq 2 }">
          <h3>TRAVEL</h3>
          </c:if>
-         <c:if test="${book_genre = -1 }">
+         <c:if test="${book_genre eq -1 }">
          <h3>ALL BOOKS</h3>
-         </c:if> --%>
+         </c:if>
        </header>
        <!-- [2-3] 정렬 버튼 영역 -->
        <div class="order_btns_wrap">
@@ -97,9 +96,9 @@
          <!-- 시/소설/에세이 카테고리를 선택하면 띄우지 않음 -->
          <c:if test="${book_genre < 0}">
          <ul class="order_by">
-          <li><i class="fas fa-check"></i><a href="${path}/book?book_order=판매량순">판매량순</a></li>
-          <li><i class="fas fa-check"></i><a href="${path}/book?book_order=신규출간순">신규출간순</a></li>
-          <li><i class="fas fa-check"></i><a href="${path}/book?book_order=평점순">평점순</a></li>
+          <li id="by_sold"><i class="fas fa-check"></i><a href="${path}/book?book_order=판매량순">판매량순</a></li>
+          <li id="by_new"><i class="fas fa-check"></i><a href="${path}/book?book_order=신규출간순">신규출간순</a></li>
+          <li id="by_score"><i class="fas fa-check"></i><a href="${path}/book?book_order=평점순">평점순</a></li>
          </ul>
          </c:if>        
        </div>
@@ -124,9 +123,10 @@
          <div class="paging_box">
           <ul class="page_num">
           	<!-- 이전 버튼 -->
-          	<c:if test = "${map.paging.pageNumber != 1 }">
+          	<c:if test = "${map.paging.pageNumber > 5}">
             <li><a href="${path }/book?pageNum=${map.paging.before}&book_genre=${book_genre}&book_order=${book_order}"><img src="../../resources/images/page_prev.png" alt=""></a></li>
             </c:if>
+             <div class="num_wrap">
              <!-- 시작페이지번호 -->
              <c:forEach begin="${map.paging.minPage }" end="${map.paging.maxPage }" var="idx">
              <li>
@@ -136,6 +136,7 @@
                </c:if>
              </li>
              </c:forEach>
+             </div>
              <c:if test = "${map.paging.next }">
              <li><a href="${path }/book?pageNum=${map.paging.forward}&book_genre=${book_genre}&book_order=${book_order}"><img src="../../resources/images/page_next.png" alt=""></a></li>
              </c:if>
@@ -145,12 +146,23 @@
              
     </section>
     <!-- [3] 푸터 -->
-    <footer id="footer">
-      푸터영역
-    </footer> 
-    
+      <footer id="footer">
+        <ul class="btns_group">
+          <li><a href="#">AGREEMENT</a></li>
+          <li><a href="#">PRIVACY POLICY</a></li>
+          <li><a href="#">GUIDE</a></li>
+        </ul>
+        <ul class="cs_msg">
+          <li>CS CENTER 09:00 ~ 18:00(월~금, 공휴일 제외)</li>
+          <li>주문/교환/반품 문의&nbsp;|&nbsp;1:1 문의 게시판 이용</li>
+          <li>상품 관련 문의&nbsp;|&nbsp;1:1 문의 게시판 이용</li>
+        </ul>
+        <ul class="com_info">
+          <li>THE BOOK SHOP CEO.YOO CHOI LEE BUSINESS LICENSE. [00000000] ON-LINE REGISTER. 000 668, JUNGANG-DAERO, BUSANJIN-GU, BUSAN, REPUBLIC OF KOREA</li>
+          <li>teambook3lcy@gmail.com 개인정보관리책임자 YOO CHOI LEE COPYRIGHT © 2021 THE BOOK SHOP</li>
+        </ul>
+      </footer> 
   </div>
-  
   <script>
   $(document).ready(function(){
 	var msg = '${msg}';

@@ -1,6 +1,6 @@
 $(document).ready(function() {
-	$('.prev').hide();
-	$('.next').hide();
+	$('.m_prev').hide();
+	$('.m_next').hide();
 	// 검색 함수
 	function search(keyword, pageNum) {
 		$.ajax({
@@ -30,20 +30,20 @@ $(document).ready(function() {
 						$('.book_rewrap').append(str);
 					}
 					if (data.paging.pageNumber == 1) {
-					    $('.prev').show();
-						$('.prev span').hide();
+					    $('.m_prev').show();
+						$('.m_prev div').hide();
 					} else {
-					    $('.prev').show();
-						$('.prev span').show();
+					    $('.m_prev').show();
+						$('.m_prev div').show();
 					}				
-					$('.prev').attr('id', data.paging.pageNumber - 1);
-					$('.next').attr('id', data.paging.pageNumber + 1);
+					$('.m_prev').attr('id', data.paging.pageNumber - 1);
+					$('.m_next').attr('id', data.paging.pageNumber + 1);
 					if (data.paging.next) {
-					    $('.next').show();
-						$('.next span').show();
+					    $('.m_next').show();
+						$('.m_next div').show();
 					} else {
-					    $('.next').show();
-						$('.next span').hide();
+					    $('.m_next').show();
+						$('.m_next div').hide();
 					}
 				}
 			}
@@ -63,15 +63,15 @@ $(document).ready(function() {
 		}
 	});
 	
-	$('.prev').click(function() {
+	$('.m_prev').click(function() {
 		var keyword = $('#book_search').val();
-		var pageNum = $('.prev').attr('id');
+		var pageNum = $('.m_prev').attr('id');
 		search(keyword, pageNum);
 	});
 	
-	$('.next').click(function() {
+	$('.m_next').click(function() {
 		var keyword = $('#book_search').val();
-		var pageNum = $('.next').attr('id');
+		var pageNum = $('.m_next').attr('id');
 		search(keyword, pageNum);
 	});
 	

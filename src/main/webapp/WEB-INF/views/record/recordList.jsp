@@ -60,26 +60,20 @@
         <!-- [2-5] 페이지 번호 -->
         <div class='paging_box'>
            <ul class="page_num">
-                <li><a href="#"><img src="../../resources/images/page_prev.png" alt=""></a></li>
-                <li>
-                  <ul>
-                    <c:if test = "${map.paging.pageNumber != 1}">
-			        <li><a href="${path}/record/?pageNum=${map.paging.before}"><img src="../../resources/images/page_prev.png" alt=""></a></li>
-		            </c:if>
-		            <c:forEach begin="${map.paging.minPage}" end="${map.paging.maxPage}" var="idx">
-		            <li>
-		              <a href="${path}/record/?pageNum=${idx}" class="<c:out value="${map.paging.pageNumber == idx ? 'now' : ''}"/>">${idx}</a>
-		              <c:if test = "${map.paging.pageNumber == idx}">
-		              <div class="page_icon now"></div>
-		              </c:if>
-		            </li>
-		            </c:forEach>
-		            <c:if test = "${map.paging.next}">
-		            <li><a href="${path}/record/?pageNum=${map.paging.forward}"><img src="../../resources/images/page_next.png" alt=""></a></li>
-		            </c:if>
-                  </ul>
-                </li>
-                <li><a href="#"><img src="../../resources/images/page_next.png" alt=""></a></li>
+                <c:if test = "${map.paging.pageNumber > 5}">
+			    <li><a href="${path}/record/?pageNum=${map.paging.before}"><img src="../../resources/images/page_prev.png" alt=""></a></li>
+		        </c:if>
+	            <c:forEach begin="${map.paging.minPage}" end="${map.paging.maxPage}" var="idx">
+	            <li>
+	              <a href="${path}/record/?pageNum=${idx}" class="<c:out value="${map.paging.pageNumber == idx ? 'now' : ''}"/>">${idx}</a>
+	              <c:if test = "${map.paging.pageNumber == idx}">
+	              <div class="page_icon now"></div>
+	              </c:if>
+	            </li>
+	            </c:forEach>
+                <c:if test = "${map.paging.next}">
+		        <li><a href="${path}/record/?pageNum=${map.paging.forward}"><img src="../../resources/images/page_next.png" alt=""></a></li>
+		        </c:if>
            </ul>
        </div>   
        </article>    
@@ -92,13 +86,15 @@
             <h3>기록할 책을 검색해주세요</h3>
             <input type="text" id="book_search" class="book_search" placeholder="제목, 작가 키워드로 검색하세요."/>
             <div class="book_box" >
-            	<a class="prev">
-                    <span>&nbsp;prev</span>
+            	<a class="m_prev">
+                    <div class="prev_t"></div>
+                    <div class="prev_b"></div>
                 </a>
                  <div class="book_rewrap">
                  </div>
-                <a class="next">
-                    <span>next&nbsp;</span>
+                <a class="m_next">
+                    <div class="next_t"></div>
+                    <div class="next_b"></div>
                 </a>
             </div>  
         </div>

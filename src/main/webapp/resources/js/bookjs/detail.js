@@ -4,8 +4,8 @@ $(document).ready(function() {
 	
 	var pageNumber = 1;
 	
-	$('#prev').hide();
-	$('#next').hide();
+	$('#prev').parent('li').hide();
+	$('#next').parent('li').hide();
 
 	
 	
@@ -22,19 +22,19 @@ $(document).ready(function() {
 			var score = data.score / 10;	// 리뷰 평균 점수
 			
 			if(paging.pageNumber == 1) {
-			    $('#prev').css({"display":"none"});
+			    $('#prev').parent('li').css({"display":"none"});
 			}
 			else {
-				$('#prev').css({"display":"block"});
+				$('#prev').parent('li').css({"display":"block"});
 			}
 			
 			
 			
 			if(paging.next) {
-				$('#next').css({"display":"block"});
+				$('#next').parent('li').css({"display":"block"});
 			}
 			else {
-				$('#next').css({"display":"none"});
+				$('#next').parent('li').css({"display":"none"});
 			}
 			
 			pageNumber = paging.pageNumber;
@@ -127,7 +127,7 @@ $(document).ready(function() {
 		var book_id = $('input[type=hidden][name=book_id]').val();
 		var review_contents = $('#write_review_box').val();
 		var review_score = $('input[type=radio][name=rating]:checked').val();
-		if (review_contents = '') {
+		if (review_contents == '') {
 			alert('리뷰를 적으세요');
 		}
 		$.ajax({

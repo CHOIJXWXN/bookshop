@@ -25,42 +25,44 @@
 	
 	<!-- "주문" 20개씩 : 주문번호 / 회원id / 주문 상태 -->
 	<select id="getOrderListUnited" parameterType="hashmap" resultType="OrderPlus">
-	      SELECT DISTINCT(C.order_num), C.user_id, C.order_status, COUNT(C.order_num) AS cnt
-	      FROM (
-	         SELECT A.order_num AS 'order_num', B.user_id AS 'user_id', A.book_id AS 'book_id', A.book_cnt AS 'book_cnt', B.order_status AS 'order_status' 
-	         FROM ORDERLIST A, ORDERS B
-	         WHERE A.order_num = B.order_num
-	         AND A.order_num IN (
-	         	SELECT C.order_num FROM (
+		SELECT DISTINCT(C.order_num), C.user_id, C.order_status, COUNT(C.order_num) AS cnt
+		FROM (
+			SELECT A.order_num AS 'order_num', B.user_id AS 'user_id', A.book_id AS 'book_id', A.book_cnt AS 'book_cnt', B.order_status AS 'order_status' 
+			FROM ORDERLIST A, ORDERS B
+			WHERE A.order_num = B.order_num
+			AND A.order_num IN (
+				SELECT C.order_num FROM (
 					SELECT @ROWNUM := @ROWNUM + 1 AS ROWNUM, E.*
 					FROM (SELECT @ROWNUM := 0) D, ORDERS E ORDER BY E.order_num DESC) C
 				WHERE ROWNUM BETWEEN #{start} AND #{end}
-	         )
-	      ) C, BOOK D
-	      WHERE C.book_id = D.book_id   
-	      GROUP BY C.order_num
-	      ORDER BY C.order_num DESC
-   </select>
+			)
+		) C, BOOK D
+		WHERE C.book_id = D.book_id   
+		GROUP BY C.order_num
+		ORDER BY C.order_num DESC
+	</select>
    
-   <!-- 페이징 -->
-   <select id="getNextPageOrders" resultType="Orders">
-		SELECT A.*
-		FROM (SELECT @ROWNUM := @ROWNUM + 1 AS rownum, O.*
-				FROM (SELECT @ROWNUM := 0) R,
-					 (SELECT *
-					  FROM ORDERS
-					  ORDER BY order_num DESC) O) A
-		WHERE rownum = #{pageNumber};
-	</select>
 	<!-- 페이징 -->
-   <select id="getNextPageBook" resultType="Book">
+	<select id="getNextPageOrders" resultType="Orders">
 		SELECT A.*
 		FROM (SELECT @ROWNUM := @ROWNUM + 1 AS rownum, O.*
-				FROM (SELECT @ROWNUM := 0) R,
-					 (SELECT *
-					  FROM BOOK) O) A
-		WHERE rownum = #{pageNumber};
+			FROM (SELECT @ROWNUM := 0) R,
+			(SELECT *
+			FROM ORDERS
+			ORDER BY order_num DESC) O) A
+		WHERE rownum = #{pageNumber}
 	</select>
+	
+	<!-- 페이징 -->
+	<select id="getNextPageBook" resultType="Book">
+		SELECT A.*
+		FROM (SELECT @ROWNUM := @ROWNUM + 1 AS rownum, O.*
+			FROM (SELECT @ROWNUM := 0) R,
+			(SELECT *
+			FROM BOOK) O) A
+		WHERE rownum = #{pageNumber}
+	</select>
+	
 	<!-- 주문 상태 변경 -->
 	<update id="changeStatus">
 		UPDATE ORDERS

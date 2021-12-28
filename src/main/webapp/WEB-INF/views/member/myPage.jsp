@@ -26,12 +26,7 @@
 	                        주문 / 배송 조회
 	                    </a>
 	                </li>
-	                <li>
-	                    <a class="mn_btn" href="#">
-	                        <img src="../resources/images/mypage_refund.png" alt="icon" width="100" height="100">
-	                        교환 / 반품 / 취소
-	                    </a>
-	                </li>
+	                
 	                <li>
 	                    <a class="mn_btn" href="${path }/mypage/checkUser">
 	                        <img src="../resources/images/mypage_userinfo.gif" alt="icon" width="100" height="100">

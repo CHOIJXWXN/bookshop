@@ -9,7 +9,7 @@
 #order_set {
   float: left;
   width: 100%;
-  background-color: #EFF0F2;
+  background-color: #F2F2F2;
 /*   background-image: url("../images/main_bg_4.jpg");
   background-repeat: no-repeat;
   background-size: cover; */
@@ -28,17 +28,58 @@
     line-height: 85px;
     color: #1C1A1A;
 }
-#order_set .order_ttl .process {
+section .order_ttl .process {
     width: 100%;
     height: 155px;
     position: relative;
-    /* background-color: yellow; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-#order_set .order_ttl .process img {
-    position: absolute;
-    top: 45px;
-    left: 50%;
-    margin-left: -333px;
+.process_wrap {
+  width: 520px;
+  height: 55px;
+  border-top: 0.5px solid #707070;
+  position: relative;
+}
+.circle {
+  width: 536px;
+  height: 16px;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: -8px;
+  left: -8px;
+}
+.circle li {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #B5B1B1;
+  background-color: white;
+  box-sizing: border-box;
+}
+.circle li.now {
+  border: none;
+  background-color: #1C1A1A;
+}
+.pro_name {
+  width: 666px;
+  height: 30px;
+  position: absolute;
+  left: -68px;
+  bottom:0;
+  display: flex;
+  justify-content: space-between;
+}
+.pro_name li {
+  font-family: 'NotoSerifKR';
+  font-size: 18px;
+  line-height: 30px;
+  color: #B5B1B1;
+}
+.pro_name li.now {
+  color: #1C1A1A;
 }
 /* [2-2] 주문 상세내역 */
 /* 소제목 */

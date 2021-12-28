@@ -114,7 +114,7 @@
 		        ) C, BOOK D
 		    WHERE C.book_id = D.book_id
 		    AND D.available = 0
-		);
+		)
 	</select>
 	
 	<!-- 초기 흥미 장르 -->
