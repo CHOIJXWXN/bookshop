@@ -51,12 +51,12 @@ public class AdminController {
 	}
 	
 	// 배송상태 변경 기능
-	@RequestMapping(params = "status", value = "/changeStatus", method = RequestMethod.GET)
+	@RequestMapping(value = "/changeStatus", method = RequestMethod.GET)
 	public String start(@RequestParam List<String> order_num, String status, HttpServletRequest request, Model model) throws Exception {
 		// 각 주문번호마다 배송상태 변경
 		for (var i = 0; i < order_num.size(); i++) {
 			adminService.delivery(status, order_num.get(i));
-		}
+		}	
 		// 새로고침
 		String referer = request.getHeader("Referer");
 		return "redirect:" + referer;

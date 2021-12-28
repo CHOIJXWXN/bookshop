@@ -71,7 +71,6 @@ public class AdminDAOImpl implements AdminDAO {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("order_num", order_num);
 		map.put("tracking_num", tracking_num);
-		sqlSession.update(SESSION + ".changeStatus", order_num);
 		sqlSession.insert(SESSION + ".addDelivery", map); 
 	}
 

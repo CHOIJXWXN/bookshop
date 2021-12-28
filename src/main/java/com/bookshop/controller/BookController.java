@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bookshop.service.BookService;
-import com.bookshop.service.OrderService;
 import com.bookshop.vo.Book;
 import com.bookshop.vo.Review;
 
@@ -25,7 +24,6 @@ public class BookController {
 	
 	@Inject
 	BookService bookService;
-	OrderService orderService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(BookController.class);
 	
@@ -100,7 +98,7 @@ public class BookController {
       if(bookService.flag(review) == 0) {
     	  bookService.addReview(review);
       } else {
-    	  flag = 1;	//이미 존재할 때
+    	  flag = 1;
       }
       HashMap<String, Object> map = bookService.showReview(review.getBook_id(), pageNum); // list, paging, cnt, score    
       // 리뷰 작성 여부 플래그

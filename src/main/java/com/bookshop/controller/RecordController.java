@@ -31,14 +31,8 @@ public class RecordController {
 	
 	// 기록 메인 페이지
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String record(Integer pageNum, HttpSession session, Model model) throws Exception {
-		String user_id = (String) session.getAttribute("user_id");
-		if (pageNum == null) {
-			pageNum = 1;
-		}
-		// 모든 기록 리스트 및 페이징 (12개씩)
-		model.addAttribute("map", recordService.view(user_id, pageNum)); // list, paging
-		return "record/recordList";
+	public String record(Model model) throws Exception {
+		return "redirect:/record";
 	}
 	
 	// 책 검색 기능

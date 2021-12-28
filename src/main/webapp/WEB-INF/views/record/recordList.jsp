@@ -38,7 +38,7 @@
             <!-- 반복할 li태그  -->
             <c:forEach var="record" items="${map.list}">
            	<li>
-                <a href="./view?record_id=${record.record_id}">
+                <a href="${path}/record/view?record_id=${record.record_id}">
            	    <div class="img_wrap">
                 <img class="book_cover" src="../resources/images/bookcover/${record.book_cover}" alt="book_cover">
                 </div>
@@ -61,18 +61,18 @@
         <div class='paging_box'>
            <ul class="page_num">
                 <c:if test = "${map.paging.pageNumber > 5}">
-			    <li><a href="${path}/record/?pageNum=${map.paging.before}"><img src="../../resources/images/page_prev.png" alt=""></a></li>
+			    <li><a href="${path}/record?pageNum=${map.paging.before}"><img src="../../resources/images/page_prev.png" alt=""></a></li>
 		        </c:if>
 	            <c:forEach begin="${map.paging.minPage}" end="${map.paging.maxPage}" var="idx">
 	            <li>
-	              <a href="${path}/record/?pageNum=${idx}" class="<c:out value="${map.paging.pageNumber == idx ? 'now' : ''}"/>">${idx}</a>
+	              <a href="${path}/record?pageNum=${idx}" class="<c:out value="${map.paging.pageNumber == idx ? 'now' : ''}"/>">${idx}</a>
 	              <c:if test = "${map.paging.pageNumber == idx}">
 	              <div class="page_icon now"></div>
 	              </c:if>
 	            </li>
 	            </c:forEach>
                 <c:if test = "${map.paging.next}">
-		        <li><a href="${path}/record/?pageNum=${map.paging.forward}"><img src="../../resources/images/page_next.png" alt=""></a></li>
+		        <li><a href="${path}/record?pageNum=${map.paging.forward}"><img src="../../resources/images/page_next.png" alt=""></a></li>
 		        </c:if>
            </ul>
        </div>   

@@ -167,11 +167,8 @@ public class OrderController {
 			for (int i = 0; i < book_id.size(); i++) {
 				cart = new Cart("", book_id.get(i), book_cnt.get(i));
 				orderList = new OrderList(order.getOrder_num(), book_id.get(i), book_cnt.get(i));
-				orderService.sellTot(cart);
-				orderService.addOrderlist(orderList);
+				orderService.paid(cart, orderList);
 			}
-		} else {
-			result = 0;
 		}
 		return result + "";
 	}

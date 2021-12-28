@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.bookshop.dao.AdminDAO;
 import com.bookshop.dao.BookDAO;
+import com.bookshop.util.Xss;
 import com.bookshop.vo.AskList;
 import com.bookshop.vo.AskReply;
 import com.bookshop.vo.Book;
