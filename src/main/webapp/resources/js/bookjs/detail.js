@@ -1,17 +1,11 @@
-
-
 $(document).ready(function() {
 	
 	var pageNumber = 1;
 	
 	$('#prev').parent('li').hide();
 	$('#next').parent('li').hide();
-
-	
 	
 	function getReview(data) {
-	
-
 		if (data == null) {
 			alert('리뷰를 불러올 수 없습니다');
 			return;
@@ -21,19 +15,16 @@ $(document).ready(function() {
 			var cnt = data.cnt;				// 리뷰 총 개수
 			var score = data.score / 10;	// 리뷰 평균 점수
 			
-			if(paging.pageNumber == 1) {
+			if (paging.pageNumber == 1) {
 			    $('#prev').parent('li').css({"display":"none"});
 			}
 			else {
 				$('#prev').parent('li').css({"display":"block"});
 			}
-			
-			
-			
-			if(paging.next) {
+						
+			if (paging.next) {
 				$('#next').parent('li').css({"display":"block"});
-			}
-			else {
+			} else {
 				$('#next').parent('li').css({"display":"none"});
 			}
 			
@@ -46,8 +37,7 @@ $(document).ready(function() {
 			$('.review_status').append(str1);
 			$('.review_list').empty();
 			
-			for (var i = 0; i < list.length; i++) {
-			
+			for (var i = 0; i < list.length; i++) {		
 				// 회원 아이디의 3, 4번째 문자를 *로 치환 (abcdefg -> ab**efg)
 				var user_id = list[i].user_id;
 				var id1 = user_id.substr(0, 2);
@@ -71,14 +61,11 @@ $(document).ready(function() {
 				str2 += '</div>';
 				str2 += '</div>';
 				$('.review_list').append(str2);						
-			}						
-			
-			
+			}											
 		}
 	};
 	
-	function pagingAjax(page_Num) {
-	
+	function pagingAjax(page_Num) {	
 		if($('#tab3').is(':checked')) {
 			var book_id = $('input[type=hidden][name=book_id]').val();
 			$.ajax({
@@ -96,13 +83,12 @@ $(document).ready(function() {
 					alert('리뷰 보기에 실패했습니다');
 				}
 			});
-		}
-	
-	}
+		}	
+	};
 	
 	// 리뷰 라디오 체크 시 리뷰 불러오기
 	$('#tab3').change(function() {
-		if($(this).is(':checked')) {
+		if ($(this).is(':checked')) {
 			var book_id = $('input[type=hidden][name=book_id]').val();
 			$.ajax({
 				type : "GET",
@@ -205,23 +191,17 @@ $(document).ready(function() {
 			error : function(data) {
 				alert('이미 담긴 책입니다');
 			}
-		});
-		
-	
+		});	
 	});
 	
 	$('#next').click(function(e){
-		e.preventDefault();
-		
+		e.preventDefault();		
 		pagingAjax(pageNumber + 1);
-		
 	});
 	
 	$('#prev').click(function(e){
-		e.preventDefault();
-		
+		e.preventDefault();		
 		pagingAjax(pageNumber - 1);
-		
 	});
 		
 });

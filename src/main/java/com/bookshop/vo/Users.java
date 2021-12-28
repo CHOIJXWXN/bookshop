@@ -13,14 +13,14 @@ public class Users {
 	private int user_point;
 	private int user_admin;
 	private String user_init_genre;
-	
+	private String user_title;	
 	
 	public Users() {}
 
 
 	public Users(String user_id, String user_pw, String user_name, String user_birth, String user_nickname,
 			String user_email, String user_phone, String user_addr, int user_point, int user_admin,
-			String user_init_genre) {
+			String user_init_genre, String user_title) {
 		
 		this.user_id = user_id;
 		this.user_pw = user_pw;
@@ -33,6 +33,8 @@ public class Users {
 		this.user_point = user_point;
 		this.user_admin = user_admin;
 		this.user_init_genre = user_init_genre;
+		this.user_title = user_title;
+		
 	}
 
 
@@ -145,9 +147,12 @@ public class Users {
 		this.user_init_genre = user_init_genre;
 	}
 	
+	public String getUser_title() {
+		return user_title;
+	}
 	
-	
-	
-	
+	public void setUser_title(String user_title) {
+		this.user_title = user_title;
+	}	
 	
 }

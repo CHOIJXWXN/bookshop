@@ -18,17 +18,7 @@ public class MemberDAOImpl implements MemberDAO {
 	@Inject
 	SqlSession sqlSession;
 	
-	final String SESSION = "com.bookshop.mappers.member";
-
-
-	
-	// (마이페이지) 회원정보 불러오기
-	@Override
-	public Users getUserInfo(String user_id) throws Exception {
-				
-		return sqlSession.selectOne(SESSION + ".getUserInfo", user_id);
-	}
-		
+	final String SESSION = "com.bookshop.mappers.member";	
 		
 	// (마이페이지) 회원정보 수정
 	@Override
@@ -56,14 +46,6 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		return sqlSession.selectList(SESSION + ".getOrderList", order_num);
 	}
-	// book_id의 book info 가져오기
-	@Override
-	public Book getBook(String book_id) throws Exception {
-		
-		return sqlSession.selectOne(SESSION + ".getBook", book_id);
-		
-	}
-
 	
 	// 2) 다음 페이지 존재하는지 
 	@Override

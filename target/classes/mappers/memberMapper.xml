@@ -5,14 +5,6 @@
 
 <mapper namespace="com.bookshop.mappers.member">
 
-
-	<!-- 회원정보 불러오기 -->
-	<select id="getUserInfo" resultType="Users">
-		SELECT *
-		FROM USERS
-		WHERE user_id = #{user_id}
-	</select>
-
 	<!-- 회원정보 수정하기 -->
 	<update id="profile">
 		UPDATE USERS
@@ -39,13 +31,6 @@
 		SELECT book_id, book_cnt
 		FROM ORDERLIST
 		WHERE order_num = #{order_num}
-	</select>
-
-	<!-- Book 정보 가져오기 book_id pk -->
-	<select id="getBook" resultType="Book">
-		SELECT *
-		FROM book
-		WHERE book_id = #{book_id}
 	</select>
 
 	<!-- (마이페이지) 다음페이지 존재하는지 -->

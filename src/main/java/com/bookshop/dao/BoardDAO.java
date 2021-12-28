@@ -10,10 +10,6 @@ import com.bookshop.vo.Users;
 
 public interface BoardDAO {
 
-	
-	// 도서정보 불러오기
-	public Book getBookInfo(String book_id) throws Exception;
-	
 	// ASK 테이블에서 Book_id 받아오기
 	public String getBookid(int ask_id) throws Exception;
 	
@@ -40,10 +36,7 @@ public interface BoardDAO {
 	
 	// 댓글 갯수 update
 	public void updateAskreplyCount(int ask_id) throws Exception;
-	
-	// 유저 정보 불러오기
-	public Users getUserInfo(String user_id) throws Exception;
-	
+
 	// 답변상태 update
 	public void updateAsk_status(Ask ask) throws Exception;
 }

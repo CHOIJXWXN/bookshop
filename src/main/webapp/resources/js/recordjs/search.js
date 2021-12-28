@@ -1,6 +1,8 @@
 $(document).ready(function() {
+
 	$('.m_prev').hide();
 	$('.m_next').hide();
+	
 	// 검색 함수
 	function search(keyword, pageNum) {
 		$.ajax({

@@ -63,9 +63,9 @@ public class UsersDAOImpl implements UsersDAO {
 	
 	// 비밀번호 찾기(getUserInfo)
 	@Override
-	public Users getUserInfo(Users users) throws Exception {
+	public Users getUserInfo(String user_id) throws Exception {
 	
-		return sqlSession.selectOne(SESSION + ".getUserInfo", users);
+		return sqlSession.selectOne(SESSION + ".getUserInfo", user_id);
 	}
 	
 	// 임시 비밀번호로 수정(updatePw)
@@ -73,26 +73,5 @@ public class UsersDAOImpl implements UsersDAO {
 	public void updatePw(Users users) throws Exception {
 		sqlSession.selectOne(SESSION + ".updatePw", users);
 	}
-
-	@Override
-	public Users getAdminAuth(String user_id) throws Exception {
-		return sqlSession.selectOne(SESSION + ".getAdminAuth", user_id);
-	}
-	
-	
-
-	
-
-	
-
-
-
-	
-	
-	
-	
-
-	
-
 	
 }

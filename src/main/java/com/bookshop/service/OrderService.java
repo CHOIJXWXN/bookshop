@@ -14,11 +14,11 @@ public interface OrderService {
 	// 장바구니
 	public List<CartPlus> viewCart(String user_id) throws Exception;
 	// 특정 책 cartPlus
-	public CartPlus viewCertainCart(Cart cart) throws Exception;
+	public List<CartPlus> viewCertainCart(String user_id, List<String> checked_book_id) throws Exception;
 	// 장바구니에 추가
 	public int addCart(Cart cart) throws Exception;
 	// 장바구니에서 삭제
-	public void deleteCart(Cart cart) throws Exception;
+	public void deleteCart(String user_id, List<String> book_id) throws Exception;
 	// 장바구니 수정
 	public void updateCart(Cart cart) throws Exception;
 	

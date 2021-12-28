@@ -61,8 +61,7 @@ public class BookController {
 	
 	// 책 상세 페이지
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String detail(String book_id, RedirectAttributes ra, HttpSession session, Model model) throws Exception {
-		String user_id = (String) session.getAttribute("user_id");
+	public String detail(String book_id, RedirectAttributes ra, Model model) throws Exception {
 		// 입력값 누락 처리
 		Book book = bookService.view(book_id);
 		if (book == null) {
@@ -71,8 +70,6 @@ public class BookController {
 		}
 		// 해당 책 정보
 		model.addAttribute("book", book); 
-		// 유저 아이디
-		model.addAttribute("user_id", user_id); 
 		return "shop/bookDetail";
 	}
 	
@@ -86,24 +83,24 @@ public class BookController {
 		return bookService.showReview(book_id, pageNumber); // list, paging, cnt, score
 	}
 	
-   // 책 리뷰 추가 기능
-   @RequestMapping(value = "/addReview", method = RequestMethod.GET)
-   @ResponseBody
-   public HashMap<String, Object> addReview(Review review, Integer pageNum) throws Exception {
-	  if (pageNum == null) {
-         pageNum = 1;
-      }
-	  // 해당 유저가 해당 책의 리뷰를 작성했는 지 검증 (이미 존재하면 추가하지 않음)
-      int flag = 0;
-      if(bookService.flag(review) == 0) {
-    	  bookService.addReview(review);
-      } else {
-    	  flag = 1;
-      }
-      HashMap<String, Object> map = bookService.showReview(review.getBook_id(), pageNum); // list, paging, cnt, score    
-      // 리뷰 작성 여부 플래그
-      map.put("flag", flag);      
-      return map;
-   }
+	// 책 리뷰 추가 기능
+	@RequestMapping(value = "/addReview", method = RequestMethod.GET)
+	@ResponseBody
+	public HashMap<String, Object> addReview(Review review, Integer pageNum) throws Exception {
+		if (pageNum == null) {
+			pageNum = 1;
+		}
+		// 해당 유저가 해당 책의 리뷰를 작성했는 지 검증 (이미 존재하면 추가하지 않음)
+		int flag = 0;
+		if(bookService.flag(review) == 0) {
+			bookService.addReview(review);
+		} else {
+			flag = 1;
+		}
+		HashMap<String, Object> map = bookService.showReview(review.getBook_id(), pageNum); // list, paging, cnt, score    
+		// 리뷰 작성 여부 플래그
+		map.put("flag", flag);      
+		return map;
+	}
 
 }

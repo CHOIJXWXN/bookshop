@@ -7,7 +7,9 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.bookshop.dao.BookDAO;
 import com.bookshop.dao.MemberDAO;
+import com.bookshop.dao.UsersDAO;
 import com.bookshop.vo.Book;
 import com.bookshop.vo.OrderDetail;
 import com.bookshop.vo.OrderItem;
@@ -20,12 +22,16 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Inject
 	MemberDAO dao;
+	@Inject
+	UsersDAO udao;
+	@Inject
+	BookDAO bdao;
 
 	// 회원정보 수정 페이지
 	// 회원정보 불러오기
 	@Override
 	public Users getUserInfo(String user_id) throws Exception {		
-		return dao.getUserInfo(user_id);
+		return udao.getUserInfo(user_id);
 	}
 	
 	// 회원정보 수정
@@ -49,7 +55,7 @@ public class MemberServiceImpl implements MemberService {
 			List<OrderDetail> booklist = new ArrayList<OrderDetail>();
 			for (int j = 0; j < orderlist.size(); j++) {
 				// 책아이디별 책 정보 가져오기
-				Book book = dao.getBook(orderlist.get(j).getBook_id());
+				Book book = bdao.getBook(orderlist.get(j).getBook_id());
 				OrderDetail orderDetail = new OrderDetail(book, orderlist.get(j).getBook_cnt());
 				booklist.add(orderDetail);
 			}			

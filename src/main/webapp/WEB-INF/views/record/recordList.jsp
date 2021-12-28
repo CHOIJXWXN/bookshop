@@ -22,7 +22,7 @@
     <section id="diary">
        <!-- [2-1] 페이지 타이틀 -->
        <header class="page_ttl">
-         <h3>00의 독서일기</h3>
+         <h3>${map.title}</h3>
        </header>
        <!-- [2-2] 독서기록 목록 -->
        <article class="book_list">
@@ -101,6 +101,7 @@
       </div>
       <div class="modal_layer"></div>
     </div>
+  </div>
   <!-- 모달 스크립트 -->
   <!-- 모달 창 클릭했을 때 보이고 바깥 레이어 클릭했을 때 숨기기 -->
   <script>

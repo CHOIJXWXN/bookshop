@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.bookshop.service.BookService;
 import com.bookshop.service.RecordService;
 import com.bookshop.vo.Record;
+import com.bookshop.vo.Users;
 
 @Controller
 @RequestMapping(value = "/record/*")
@@ -35,6 +36,20 @@ public class RecordController {
 		return "redirect:/record";
 	}
 	
+	// 기록장 이름 설정 페이지
+	@RequestMapping(value = "/intro", method = RequestMethod.GET)
+	public String intro(Model model) throws Exception {
+		return "record/recordStart";
+	}
+	
+	// 기록장 이름 입력
+	@RequestMapping(value = "/addTitle", method = RequestMethod.GET)
+	public String addTitle(Users users, HttpSession session, Model model) throws Exception {
+		users.setUser_id((String) session.getAttribute("user_id"));
+		recordService.setTitle(users);
+		return "redirect:/record";
+	}
+	
 	// 책 검색 기능
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	@ResponseBody
@@ -50,7 +65,7 @@ public class RecordController {
 	public String write(String book_id, HttpSession session, RedirectAttributes ra, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
 		Record result = recordService.getRecord(user_id, book_id);
-		// 입력값 누락 처리
+		// 이전 이미 기록한 책인지 검증
 		if (result != null) {
 			ra.addFlashAttribute("msg", "이미 기록한 책입니다");
 			return "redirect:/record/";

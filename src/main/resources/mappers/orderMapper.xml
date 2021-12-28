@@ -13,11 +13,15 @@
    	</select>
    	
 	<!-- 특정 유저의 특정 책 장바구니 -->
-   	<select id="getCertainCartPlus" resultType="CartPlus">
+   	<select id="getCertainCartPlus" parameterType="hashmap" resultType="CartPlus">
    		SELECT B.book_id, B.book_cover, B.book_title, B.book_writer, A.book_cnt, B.book_price FROM CART A, BOOK B
      	WHERE user_id = #{user_id}
      	AND A.book_id = B.book_id
-     	AND A.book_id = ${book_id}
+     	AND A.book_id IN ( 
+     	<foreach collection="checked_book_id" item="item" separator=",">
+     	#{item}
+     	</foreach>
+     	)
    	</select>
    	
    	<!-- 상품을 장바구니에 추가 -->
@@ -27,9 +31,13 @@
    	</insert>
    	
    	<!-- 상품을 장바구니에서 삭제 -->
-   	<delete id="deleteCart">
+   	<delete id="deleteCart" parameterType="hashmap">
    		DELETE FROM CART
-   		WHERE user_id = #{user_id} AND book_id = #{book_id}
+   		WHERE user_id = #{user_id} AND book_id IN (
+   		<foreach collection="book_id" item="item" separator=",">
+     	#{item}
+     	</foreach>
+     	)
    	</delete>
    	
    	<!-- 장바구니 수량 변경 -->

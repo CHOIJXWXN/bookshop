@@ -8,11 +8,6 @@ import com.bookshop.vo.Orders;
 import com.bookshop.vo.Users;
 
 public interface MemberDAO {
-
-
-	
-	// (마이페이지) 회원정보 불러오기
-	public Users getUserInfo(String user_id) throws Exception;
 		
 	// (마이페이지) 회원정보 수정
 	public void profile(Users users) throws Exception;
@@ -22,7 +17,6 @@ public interface MemberDAO {
 	// user_id의 ORDERS 가져오기
 	public List<Orders> getOrders(String user_id, int pageNumber) throws Exception;
 	public List<OrderList> getOrderList(String order_num) throws Exception;
-	public Book getBook(String book_id) throws Exception;
 	
 	// 2) 다음 페이지 존재하는지
 	public Orders getPageIs(String user_id, int pageNum) throws Exception;

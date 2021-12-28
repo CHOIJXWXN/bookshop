@@ -8,7 +8,7 @@
 	<!-- 회원가입 SQL -->
 	<insert id ="join">
 		INSERT INTO USERS
-		VALUES (#{user_id}, SHA2(#{user_pw}, 256), #{user_name}, #{user_birth}, #{user_nickname}, #{user_email}, #{user_phone}, #{user_addr}, 0, 0, #{user_init_genre});
+		VALUES (#{user_id}, SHA2(#{user_pw}, 256), #{user_name}, #{user_birth}, #{user_nickname}, #{user_email}, #{user_phone}, #{user_addr}, 0, 0, #{user_init_genre}, NULL);
 	</insert>
 
 	<!-- 아이디 중복체크 SQL -->
@@ -62,12 +62,5 @@
 		SET 	user_pw = SHA2(#{user_pw}, 256)
 		WHERE 	user_id = #{user_id}
 	</update>
-
-	<!-- 관리자 여부 체크 -->
-	<select id="getAdminAuth" resultType="Users">
-		SELECT * FROM USERS
-		WHERE user_id = #{user_id}
-		AND user_admin = 1
-	</select>
 
 </mapper>

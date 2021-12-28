@@ -24,7 +24,7 @@
         $('#pay_btn').click(function() {
             if ($('#recipient').val() == '') {
             	alert('받으시는 분 이름을 적어주세요');
-            } else if (($('#addr1').val() == '' && $('#addr2').val() == '' && $('#addr3').val() == '') || $('#addr4').val() == '') {
+            } else if (($('#addr_1').val() == '' || $('#addr_2').val() == '' || $('#addr_3').val() == '') || $('#addr_4').val() == '') {
             	alert('받으시는 분 주소를 적어주세요');
             } else if ($('#r_phone_num').val() == '') {
             	alert('받으시는 분 연락처를 적어주세요');
@@ -196,11 +196,15 @@
     			var str = '';
     			str += '<div class="row_3" id="addr">';
     			str += '<label>*&nbsp;받으실 곳</label>';
-    			str += '<button class="find_post">우편번호 검색</button>';
-    			str += '<input type="text" id="addr_1" name="addr_1" readonly>';
-    			str += '<input type="text" id="addr_2" name="addr_2" readonly>';
-    			str += '<input type="text" id="addr_3" name="addr_3" placeholder="상세주소 입력">';
-    			str += '</div>';
+    			str += '<div class="wrap">';
+    			str += '<div class="wrap2">';
+    			str += '<input type="text" id="addr_1" name="addr_1" readonly="true" />';
+    			str += '<input type="button" id="findPost" onclick="DaumPostcode()" value="우편번호 검색" style="margin-left:4px;" />';
+ 				str += '</div>';
+ 				str += '<input type="text" id="addr_2" name="addr_2" readonly="true" />';
+ 				str += '<input type="text" id="addr_3" name="addr_3"/>';
+ 				str += '</div>';
+ 				str += '</div>';
     			$('#addr').replaceWith(str);	
     		} else if (this.value == 'indirect') {		// 주문자 정보 동일 체크
     			$('#recipient').val('${user.user_name}');
@@ -210,7 +214,7 @@
     			var str = '';
     			str += '<div class="row" id="addr">';
     			str += '<label>*&nbsp;받으실 곳</label>';
-    			str += '<input type="text" id="addr4" value="${user.user_addr}" readonly>';
+    			str += '<input type="text" id="addr_4" value="${user.user_addr}" readonly>';
     			str += '</div>';
     			$('#addr').replaceWith(str);	
     		}
