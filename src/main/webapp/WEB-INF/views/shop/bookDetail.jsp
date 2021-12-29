@@ -198,7 +198,7 @@
         </article>              
       </section>    
       <!-- 문의버튼 -->
-      <a href="#" class="ask_btn">
+      <a href="${path}/ask/writeAsk?book_id=${book.book_id}" class="ask_btn">
         <i class="fas fa-book"></i>
         <p>1 : 1<br />문의</p>
       </a>   

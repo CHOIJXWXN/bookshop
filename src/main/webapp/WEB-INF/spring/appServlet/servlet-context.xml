@@ -33,9 +33,14 @@
 			<beans:bean id="Admininterceptor" class="com.bookshop.interceptor.Admininterceptor"/>
 		</mvc:interceptor>
 		<mvc:interceptor>
+			<mvc:mapping path="/order"/>
 			<mvc:mapping path="/order/*"/>
+			<mvc:mapping path="/record"/>
 			<mvc:mapping path="/record/*"/>
+			<mvc:mapping path="/mypage"/>
 			<mvc:mapping path="/mypage/*"/>
+			<mvc:mapping path="/ask"/>
+			<mvc:mapping path="/ask/*"/>
 			<beans:bean id="Logininterceptor" class="com.bookshop.interceptor.Logininterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>

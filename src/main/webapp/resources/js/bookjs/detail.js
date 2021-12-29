@@ -115,6 +115,7 @@ $(document).ready(function() {
 		var review_score = $('input[type=radio][name=rating]:checked').val();
 		if (review_contents == '') {
 			alert('리뷰를 적으세요');
+			return;
 		}
 		$.ajax({
 			type : "GET",
@@ -175,6 +176,7 @@ $(document).ready(function() {
 		if (user_id == '') {
 			alert('로그인이 필요합니다');
 			location.href = '../login';
+			return;
 		}
 		$.ajax({
 			type : "GET",
