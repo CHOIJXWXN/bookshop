@@ -597,7 +597,7 @@
             </div>
             <div class="row">
               <label for="point">&nbsp;&nbsp;포인트 사용</label>
-              <input type="number" max="${user.user_point}" step="50" id="point_use" name="point" >
+              <input type="number" min=0 max="${user.user_point}" step="50" id="point_use" name="point" >
               <input type="checkbox" id="all_point" name="all_point">
               <label for="all_point">전액 사용(보유 포인트: ${user.user_point}원)</label>
             </div>
