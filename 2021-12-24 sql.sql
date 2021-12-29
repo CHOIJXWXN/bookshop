@@ -14,7 +14,8 @@ CREATE TABLE users (
     user_addr 		TEXT			NOT NULL,
     user_point 		INT 			DEFAULT 0,
     user_admin 		INT 			DEFAULT 0,
-    user_init_genre VARCHAR(20)		NOT NULL
+    user_init_genre VARCHAR(20)		NOT NULL,
+    user_title		VARCHAR(20)
 );
 
 # 상품 테이블 생성
@@ -36,7 +37,7 @@ CREATE TABLE book (
 # 장바구니 테이블 생성
 CREATE TABLE cart (
 	user_id 	VARCHAR(20),
-    book_id 	INT,
+    book_id 	VARCHAR(20),
     book_cnt 	INT				NOT NULL,
     PRIMARY KEY (user_id, book_id)
 );
@@ -60,7 +61,7 @@ CREATE TABLE orders (
 # 주문 목록 테이블 생성
 CREATE TABLE orderlist (
 	order_num   VARCHAR(15),			# 주문 번호
-    book_id 	VARCHAR(20),					# 주문 상품
+    book_id 	VARCHAR(20),			# 주문 상품
     book_cnt 	INT 		NOT NULL,	# 주문 상품 갯수
     PRIMARY KEY (order_num, book_id)
 );
@@ -79,8 +80,9 @@ CREATE TABLE ask (
     ask_contents	TEXT			NOT NULL,						# 문의 내용
     ask_date		DATE            NOT NULL,						# 문의 등록 날짜
     ask_sort		VARCHAR(20),									# 문의 유형 -> 상품문의 / 배송문의 / 기타문의
-    ask_status		VARCHAR(20)		DEFAULT '답번미완료',				# 문의 상태 -> 답변완료 / 답변미완료
-    available		INT				DEFAULT 0
+    ask_status		VARCHAR(20)		DEFAULT '답변미완료',				# 문의 상태 -> 답변완료 / 답변미완료
+    available		INT				DEFAULT 0,
+    askreply_count	INT 			DEFAULT 0
 );
 
 # 문의 댓글 테이블 생성
