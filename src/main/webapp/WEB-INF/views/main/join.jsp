@@ -64,6 +64,7 @@
               <div class="row">
                 <label for="user_pw">*&nbsp;비밀번호</label>
                 <input type="password" id="user_pw" name="user_pw"  placeholder="영문 대소문자/숫자/특수문자, 10자 ~ 16자">
+                
               </div>
               <!-- 비밀번호 확인 -->
               <!-- type ="text를 type="password" 로 변경 -->
@@ -72,12 +73,12 @@
                 <input type="password" id="user_pw2" name="user_pw2">
                 <p class="pass" id="pw_pass">확인되었습니다.</p>
                 <p class="fail" id="pw_fail">비밀번호가 다릅니다.</p>
-                <p class="fail" id="pw_check">비밀번호는 8~16자리의 영어 대소문자, 숫자, 특수문자 입력가능 합니다.</p>
+                 <p class="fail" id="pw_check">비밀번호는 8~16자리의 영어, 숫자, 특수문자 조합으로 입력가능 합니다.</p>
               </div>
               <!-- 이름 -->
               <div class="row">
                 <label for="user_name">*&nbsp;이름</label>
-                <input type="text" id="user_name" name="user_name">
+                <input type="text" id="user_name" name="user_name" placeholder="숫자, 특수문자는 입력하실 수 없습니다.">
               </div>
               <!-- 생년월일 -->
               <div class="row">
@@ -111,8 +112,7 @@
               <!-- 휴대폰번호 -->
               <div class="row">
                 <label for="phone_num">*&nbsp;휴대폰번호</label>
-                <input type="text" id="user_phone" name="user_phone" placeholder="- 없이 입력하세요">
-                <button type="button" class="authPhone" id="authPhone">인증</button>
+                <input type="tel" id="user_phone" name="user_phone" maxlength="11" placeholder="- 없이 입력하세요">
               </div>
               <!-- 주소 -->
                 <div class="row_3">

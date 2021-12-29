@@ -9,7 +9,6 @@ $(document).ready(function() {
     // email hide
      $('#email_pass').hide();
      $('#email_fail').hide(); 
-
   
   // [1] 약관동의 체크 
  $(function(){
@@ -53,91 +52,117 @@ $(document).ready(function() {
      var email_check_flag = false;
     // var phone_check_flag = false;
 
-    // id중복체크 checkId
-    $(function(){
-      $('#checkId').click(function(){
-         var user_id = $('#user_id').val();
-         var idReg = /^[a-z0-9]{4,16}$/;
-         
-         if(user_id == '') {
-             alert('아이디를 입력하세요.');
+     // id중복체크 checkId
+     $(function(){
+        $('#checkId').click(function(){
+           var user_id = $('#user_id').val();
+           var idReg = /^[a-z]+[a-z0-9]{4,16}$/;
+           
+           if(user_id == '') {
+               alert('아이디를 입력하세요.');
+                $('#user_id').focus();
+                $('#id_pass').hide();
+               return;
+           }
+             else if(!idReg.test(user_id)) {
+              alert("아이디는 4~14자리의 영어 소문자 와 숫자로만 입력가능 합니다.");
               $('#user_id').focus();
               $('#id_pass').hide();
-             return;
-         }
-       	else if(!idReg.test(user_id)) {
-           	alert("아이디는 4~14자리의 영어 소문자 와 숫자로만 입력가능 합니다.");
-            $('#user_id').focus();
-            $('#id_pass').hide();
-            return;
-        }
-         
-         $.ajax({
-             type: 'GET',
-             url: './checkId',
-             data: {user_id: user_id},
- 
-             dataType: 'text',
-             success: function(data) {
-             // 사용 가능한 id (database에 동일 id가 없음)
-             // service impl 에서 result 0 (null): data == 0, 
-               if(data == 0) {
-                 $('#id_pass').parent('div').removeClass('row');
-                 $('#id_pass').parent('div').addClass('row_msg');
-                 $('#id_pass').show();
-                 $('#id_fail').hide();
-                 id_check_flag = true;
-               }
-             // 사용중인 id (database에 동일 id 있음)
-             // service impl result 1 (!null): data == 1
-                else if(data == 1) {
-                 $('#id_fail').parent('div').removeClass('row');
-                 $('#id_fail').parent('div').addClass('row_msg');
-                 $('#id_pass').hide();
-                 $('#id_fail').show();
-                 $('#user_id').attr('value', '');
-                 id_check_flag = false;
-             }
-             // 데이터베이스 오류
-                  else {
-                   alert('데이터베이스 오류가 발생했습니다.');
-                 }
-          },
-          error : function() { // 통신에 실패했을 경우
-              alert('중복확인 실패');
+              return;
           }
-      // ajax
-      });
-     // checkId click function
-     });
- });  
+           
+           $.ajax({
+               type: 'GET',
+               url: './checkId',
+               data: {user_id: user_id},
+   
+               dataType: 'text',
+               success: function(data) {
+               // 사용 가능한 id (database에 동일 id가 없음)
+               // service impl 에서 result 0 (null): data == 0, 
+                 if(data == 0) {
+                   $('#id_pass').parent('div').removeClass('row');
+                   $('#id_pass').parent('div').addClass('row_msg');
+                   $('#id_pass').show();
+                   $('#id_fail').hide();
+                   id_check_flag = true;
+                 }
+               // 사용중인 id (database에 동일 id 있음)
+               // service impl result 1 (!null): data == 1
+                  else if(data == 1) {
+                   $('#id_fail').parent('div').removeClass('row');
+                   $('#id_fail').parent('div').addClass('row_msg');
+                   $('#id_pass').hide();
+                   $('#id_fail').show();
+                   $('#user_id').attr('value', '');
+               }
+               // 데이터베이스 오류
+                    else {
+                     alert('데이터베이스 오류가 발생했습니다.');
+                   }
+            },
+            error : function() { // 통신에 실패했을 경우
+                alert('중복확인 실패');
+            }
+        // ajax
+        });
+       // checkId click function
+       });
+   });  
+  
 
      
-  // 비밀번호 일치 확인 (user_pw2를 가지는 태그 변경)   
+// 비밀번호 일치 확인 (user_pw2를 가지는 태그 변경)   
  $(function(){
-      $('#user_pw2').change(function(){
-         var user_pw = $('#user_pw').val();
-         var user_pw2 = $('#user_pw2').val();
-         var pwReg = /^[A-za-z0-9~!@#$%^&*()_+|<>?:{}]{8,16}$/;
+    $('#pw_pass').hide();
+   	$('#pw_fail').hide();
+    $('#pw_check').hide();
+
+    $('#user_pw').keyup(function() {
+        var user_pw = $('#user_pw').val();
+        var pwReg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
+        var blank = /[\s]/g;
         
-        if(!pwReg.test(user_pw)) {
+        $('#user_pw').val($('#user_pw').val().replace(blank, ''));
+        
+        if(!pwReg.test(user_pw)){
             $('#pw_pass').parent('div').removeClass('row');
             $('#pw_pass').parent('div').addClass('row_msg');
-       		$('#pw_pass').hide();
-        	$('#pw_fail').hide();
-       		$('#pw_check').show();
-        	pw_check_flag = false;
-       }
- 
- 	   else if(user_pw != user_pw2) {
- 	   		 $('#pw_pass').parent('div').removeClass('row');
-             $('#pw_pass').parent('div').addClass('row_msg');
-             $('#pw_pass').hide();
-             $('#pw_fail').show();
-             $('#pw_check').hide();
-             pw_check_flag = false;
-         }
-         
+            $('#pw_fail').hide();
+            $('#pw_pass').hide();
+            $('#pw_check').show();
+        } else if (pwReg.test(user_pw)){
+            $('#pw_pass').parent('div').removeClass('row');
+            $('#pw_pass').parent('div').addClass('row_msg');
+            $('#pw_fail').hide();
+            $('#pw_pass').hide();
+            $('#pw_check').hide();
+        }
+    // user_pw.keyup.function
+    });
+
+    $('#user_pw2').keyup(function(){
+        var user_pw = $('#user_pw').val();
+        var user_pw2 = $('#user_pw2').val();
+        var blank = /[\s]/g;
+
+        $('#user_pw2').val($('#user_pw2').val().replace(blank, ''));
+ 	    if(user_pw != user_pw2) {
+ 	        $('#pw_pass').parent('div').removeClass('row');
+            $('#pw_pass').parent('div').addClass('row_msg');
+            $('#pw_pass').hide();
+            $('#pw_fail').show();
+            $('#pw_check').hide();
+            pw_check_flag = false;
+        }
+        else if (user_pw2 == '') {
+            $('#pw_pass').parent('div').removeClass('row');
+            $('#pw_pass').parent('div').addClass('row_msg');
+            $('#pw_fail').hide();
+            $('#pw_pass').hide();
+            $('#pw_check').hide();
+            pw_check_flag = false;
+        }
        else if (user_pw == user_pw2) {
              $('#pw_pass').parent('div').removeClass('row');
              $('#pw_pass').parent('div').addClass('row_msg');
@@ -146,23 +171,56 @@ $(document).ready(function() {
              $('#pw_check').hide();
              pw_check_flag = true;
          }
-      
-     // user_pw2 change function    
+     // user_pw2 keyup function    
      });
    //function
  });
-     
- 
+
+ // 이름에 특수문자, 숫자 들어가지 않도록
+ $(function() {
+      // 특수문자 정규식 변수
+      var replaceChar = /[~!@\#$%^&*\()\-=+_'\;<>0-9\/.\`:\"\\,\[\]?|{}\s]/gi;
+      // 완성형 아닌 한글 정규식
+      var replaceNotFullKorean = /[ㄱ-ㅎㅏ-ㅣ]/gi;
+      
+      $('#user_name').on('focusout', function() {
+        var user_name = $('#user_name').val();
+        if (user_name.length > 0) {
+            if (user_name.match(replaceChar) || user_name.match(replaceNotFullKorean)) {
+                user_name = user_name.replace(replaceChar, '').replace(replaceNotFullKorean, '');
+            }
+            $('#user_name').val(user_name);
+        }
+      }).on("keyup", function() {
+            $('#user_name').val($('#user_name').val().replace(replaceChar, ''));
+          //keyup.function  
+         });
+      //이름 관련 functon   
+});
+
+// 생년 월일 숫자 8글자만 입력가능
+$(function() {
+    $('#user_birth').keyup(function() { 
+        var blank = /[\s]/g;
+        $('#user_birth').val($('#user_birth').val().replace(blank, ''));  
+    // user_birth.keyup.function
+    });
+
+//생년월일 관련 function
+});
+
  // 이메일 중복 확인(checkEmail)
  $(function(){
      $('#user_email_domain_S').change(function(){
-        if($('#user_email_domain_S').val == '') {
-            $('#user_email_domain').val('');
-            $('#user_email_domain').attr('readonly', false);
+        if($('#user_email_domain_S').val() == '') {
+        $('#user_email_domain').val('');
+       	$('#user_email_domain').attr('readonly', false);
+       
         } else {
             $('#user_email_domain').val($('#user_email_domain_S').val());
             $('#user_email_domain').attr('readonly', true);
         }
+        
      // user_email_domain_S.change.fucntion
      });
 
@@ -207,6 +265,7 @@ $(document).ready(function() {
                  $('#email_pass').hide();
                  $('#email_fail').show();
                  $('#user_email').attr('value', '');
+                 var email_check_flag = false;
               }
               else {
                   alert('데이터베이스 오류가 발생했습니다.');
@@ -222,7 +281,10 @@ $(document).ready(function() {
      // function
     });
 
-    // 휴대폰 번호 인증
+    // 휴대폰 번호 숫자만 입력
+    $('#user_phone').keyup(function() {
+        $('#user_phone').val($('#user_phone').val().replace(/[^0-9]/g, ''));
+    });
  
 
 
