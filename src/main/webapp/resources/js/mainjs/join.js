@@ -62,11 +62,13 @@ $(document).ready(function() {
          if(user_id == '') {
              alert('아이디를 입력하세요.');
               $('#user_id').focus();
+              $('#id_pass').hide();
              return;
          }
        	else if(!idReg.test(user_id)) {
            	alert("아이디는 4~14자리의 영어 소문자 와 숫자로만 입력가능 합니다.");
             $('#user_id').focus();
+            $('#id_pass').hide();
             return;
         }
          
@@ -94,6 +96,7 @@ $(document).ready(function() {
                  $('#id_pass').hide();
                  $('#id_fail').show();
                  $('#user_id').attr('value', '');
+                 id_check_flag = false;
              }
              // 데이터베이스 오류
                   else {
@@ -155,6 +158,7 @@ $(document).ready(function() {
      $('#user_email_domain_S').change(function(){
         if($('#user_email_domain_S').val == '') {
             $('#user_email_domain').val('');
+            $('#user_email_domain').attr('readonly', false);
         } else {
             $('#user_email_domain').val($('#user_email_domain_S').val());
             $('#user_email_domain').attr('readonly', true);
