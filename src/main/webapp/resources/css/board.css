@@ -9,7 +9,7 @@ section {
     float: left;
     width: 100%;
     height: 100vh;
-    background-image: url("../images/main_bg_4.jpg");
+    background-image: url("../images/main_bg_6.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -50,12 +50,11 @@ section {
     width: 12%;
 }
 .book_img {
-    width: 15%;
+    width: 12%;
 }
 .book_img .img_box {
-    width: 80%;
+    width: 100%;
     height: 100%;
-    margin-left: 10%;
     text-align: center;
     overflow: hidden;
     padding: 5px 0;
@@ -65,15 +64,17 @@ section {
     height: 100%;
 }
 .ask_category {
-    width: 13%;
-}
-.board_ttl {
-    width: 40%;
-    
+    width: 10%;
 }
 
+.board_ttl {
+    width: 39%;
+}
+.reply_status {
+    width: 10%;
+}
 .board_date {
-    width: 20%;
+    width: 17%;
 }
 
 /* 각 게시글 행 스타일 */

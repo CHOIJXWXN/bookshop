@@ -21,12 +21,9 @@
           <!-- 사이드 퀵메뉴 -->
         <div id="sidebar">
             <p id="nav_title">My Page</p>
-            <a href="${path }/mypage/delivery" class="on">
+            <a href="${path }/mypage/delivery" class="active">
                 <span>주문 / 배송 조회&nbsp;&nbsp;</span>
             </a>
-           <!--  <a href="prodManage.html">
-                <span>교환 / 반품 / 취소&nbsp;&nbsp;</span>
-            </a> -->
             <a href="${path }/mypage/checkUser">
                 <span>회원 정보 수정&nbsp;&nbsp;</span>
             </a>
@@ -55,7 +52,7 @@
                 <!-- 주문번호, 주문날짜 -->
                <div class="order_num">
                     <span>${items.orders.order_date }</span>
-                    <a href="#"><p>${items.orders.order_num }</p></a>
+                    <p>${items.orders.order_num }</p>
                </div>
                <div class="book_list">
                    <!-- 주문한 책 리스트 반복 s -->
@@ -86,7 +83,7 @@
                             <a href="${path }/book/detail?book_id=${item.book.book_id}#book_tab_mn">리뷰쓰기</a>
                             </c:if>
                        		<c:if test="${items.orders.order_status eq '배송중' }">
-                            <a href="https://tracker.delivery/#/kr.epost/111111" target="_blank" class="delivery">배송조회</a>
+                            <a href="https://tracker.delivery/#/kr.epost/${items.tracking_num }" target="_blank" class="delivery">배송조회</a>
                             </c:if>
                        </div>
                    </div>

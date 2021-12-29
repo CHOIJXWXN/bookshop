@@ -6,9 +6,16 @@
 <mapper namespace="com.bookshop.mappers.member">
 
 	<!-- 회원정보 수정하기 -->
+	<!-- 비밀변호 변경시 -->
+	<update id="profile_pw">
+		UPDATE USERS
+		SET user_pw = SHA2(#{user_pw}, 256), user_name = #{user_name}, user_birth = #{user_birth}, user_nickname = #{user_nickname}, user_phone = #{user_phone}, user_addr = #{user_addr}, user_title = #{user_title}
+		WHERE user_id = #{user_id}
+	</update>
+	<!-- 비밀변호 변경x -->
 	<update id="profile">
 		UPDATE USERS
-		SET user_pw = SHA2(#{user_pw}, 256), user_name = #{user_name}, user_birth = #{user_birth}, user_nickname = #{user_nickname}, user_phone = #{user_phone}, user_addr = #{user_addr}
+		SET user_name = #{user_name}, user_birth = #{user_birth}, user_nickname = #{user_nickname}, user_phone = #{user_phone}, user_addr = #{user_addr}, user_title = #{user_title}
 		WHERE user_id = #{user_id}
 	</update>
 
@@ -65,6 +72,12 @@
 		FROM ORDERS
 		WHERE user_id = #{user_id}
 		ORDER BY order_num DESC;
+	</select>
+	
+	<select id="getTracking_num" resultType="String">
+		SELECT tracking_num
+		FROM   DELIVERY
+		WHERE  order_num = #{order_num}
 	</select>
 
 </mapper>

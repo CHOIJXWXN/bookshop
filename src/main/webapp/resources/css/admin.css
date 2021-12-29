@@ -3,14 +3,18 @@
 #wrap {
     width: 100%;
   }
-  
+body {
+	margin: 0;
+	padding: 0;
+	background-image: url("../images/main_bg_6.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+	
+} 
   /* [2]메인화면*/
  section {
     float: left;
     width: 100%;
-    background-image: url("../images/main_bg_4.jpg");
-    background-repeat: repeat-y;
-    background-size: cover;
     position: relative;
   }
 
@@ -28,8 +32,11 @@
 }
 
 #title {
+    text-align: center;
+    font-family: 'NotoSerifKR';
     font-size: 40px;
-    font-weight: bold;
+    line-height: 62px;
+    color: #1C1A1A;
 }
 
 #quick_mn {
@@ -40,27 +47,33 @@
     align-items: center;
     justify-content: center;
 }
-ul {
+#quick_mn > ul {
     display: flex;
-    width: 800px;
-    height: 300px;
+    width: 640px;
+    height: 200px;
     margin: 0;
-    flex-direction: row;
     align-items: center;
-    justify-content: space-evenly;
-    list-style: none;
-    padding-left: 0px;
+    justify-content: space-between;
 }
 .menu {
+	width: 200px;
+    height: 200px;
     border: 1px #ccc solid;
 }
 .mn_btn {
+    display: block;
+    color: #1C1A1A;
+    font-family: "Pretendard-Regular";
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
-    width: 200px;
-    height: 200px;
-    text-decoration: none;
-    color: black;
+    padding: 40px;
+    font-size: 16px;
+    line-height: 50px;
 }
+.menu:hover {
+      background-color: white;
+      font-weight: bolder;
+      transition: 0.5s all ease;
+      box-shadow: 0 0 3px #777;
+  }

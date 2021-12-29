@@ -30,8 +30,13 @@ public class MemberServiceImpl implements MemberService {
 	// 회원정보 수정 페이지
 	// 회원정보 불러오기
 	@Override
-	public Users getUserInfo(String user_id) throws Exception {		
-		return udao.getUserInfo(user_id);
+	public Users getUserInfo(String user_id) throws Exception {	
+		
+		Users users = udao.getUserInfo(user_id);
+		
+		users.preXss();
+		
+		return users;
 	}
 	
 	// 회원정보 수정
@@ -59,7 +64,7 @@ public class MemberServiceImpl implements MemberService {
 				OrderDetail orderDetail = new OrderDetail(book, orderlist.get(j).getBook_cnt());
 				booklist.add(orderDetail);
 			}			
-			OrderItem orderItem = new OrderItem(orders.get(i), booklist);
+			OrderItem orderItem = new OrderItem(orders.get(i), booklist, dao.getTracking_num(orders.get(i).getOrder_num()));
 			ResultList.add(orderItem);
 		}	
 		return ResultList;
