@@ -255,7 +255,8 @@ $('#user_nickname').keyup(function(){
     $('#user_email_domain').keyup(function(){
         var blank = /[\s]/g;
         $('#user_email_domain').val($('#user_email_domain').val().replace(blank, ''));
-       /*
+       
+        /* 이메일 도메인 유효성 검증
         var user_email_domain =  $('#user_email_domain').val();
          var eamil_reg_flag = false;
         var email_reg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -300,11 +301,12 @@ $('#user_nickname').keyup(function(){
             email_check_flag = false;
             return;
         }
+        /* 도메인 검증
         else if (!eamil_reg_flag) {
             alert('이메일 주소를 다시 확인하세요');
             email_check_flag = false;
             return;
-        }
+        }*/
  
          $.ajax({
              type: 'GET',
