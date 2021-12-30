@@ -30,9 +30,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Book getBookInfo(String book_id) throws Exception {
 		
-		Book book = bdao.getBook(book_id);
-		
-		return book;
+		return bdao.getBook(book_id);
 	}
 	// book_id 불러오기
 	@Override
@@ -66,12 +64,11 @@ public class BoardServiceImpl implements BoardService {
 	// AskView 불러오기
 	@Override
 	public HashMap<String, Object> boardView(int ask_id) throws Exception {
-		Ask ask = dao.getAsk(ask_id);
 		List<AskReply> askreplyList = dao.getAskReplyList(ask_id);
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		// 문의내용 불러오기
-		map.put("ask", ask);
+		map.put("ask", dao.getAsk(ask_id));
 		map.put("askreplyList", askreplyList);
 		
 		return map;
@@ -106,23 +103,21 @@ public class BoardServiceImpl implements BoardService {
 	// 유저 정보 불러오기
 	@Override
 	public Users getUserInfo(String user_id) throws Exception {
-		Users users = udao.getUserInfo(user_id);
-		return users;
+		
+		return udao.getUserInfo(user_id);
 	}
 	
 	// 답변 상태 update admin 
 	@Override
 	public void updateAskstatusA(Ask ask) throws Exception {
-		String ask_status = "답변완료";
-		ask.setAsk_status(ask_status);
+		ask.setAsk_status("답변완료");
 		dao.updateAsk_status(ask);
 	}
 	
 	// 답변상태 user
 	@Override
 	public void updateAskstatusU(Ask ask) throws Exception {
-		String ask_status = "답변미완료";
-		ask.setAsk_status(ask_status);
+		ask.setAsk_status("답변미완료");
 		dao.updateAsk_status(ask);
 	}
 	

@@ -98,12 +98,9 @@ public class BoardController {
 			return "redirect:/ask/";
 		}
 		
-		// Ask ask = boardService.boardView(ask_id);
 		HashMap<String, Object> map = boardService.boardView(ask_id);
 		
 		// 2) 도서 아이디, 책제목, 작가 / 주문번호를 넘겨줌 
-		// model.addAttribute("book", boardService.getBookInfo(ask.getBook_id()));
-		// model.addAttribute("ask", ask);
 		model.addAttribute("book", boardService.getBookInfo(boardService.getBookid(ask_id)));
 		model.addAttribute("map", map);
 		model.addAttribute("user", boardService.getUserInfo(user_id));
