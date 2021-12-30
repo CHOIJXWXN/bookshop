@@ -8,19 +8,19 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
 $(document).ready(function() {
-	  $('.nav_1').hover(function() {		  
+	$('.nav_1').hover(function() {		  
         $('.books_sub_mn').stop().slideDown(300);
         $('.books_sub_mn').css('display', 'flex');
     }, function() {
   	  $('.books_sub_mn').stop().slideUp(300);
     });
-	  
-	  $('.my_mn').hover(function() {
-		  $('#my_mn').stop().slideDown(300);
-		  $('#my_mn').css('display', 'flex');
-	  }, function() {
-		  $('#my_mn').stop().slideUp(300);
-	  });
+	
+	$('.my_mn').hover(function() {
+		$('#my_mn').stop().slideDown(300);
+		$('#my_mn').css('display', 'flex');
+	}, function() {
+		$('#my_mn').stop().slideUp(300);
+	});
 });
 </script>
 </head>
@@ -65,7 +65,7 @@ $(document).ready(function() {
           </a>
           </c:if>
           <!-- case2) 로그인 상태 -->
-         <c:if test="${admin == 0}">
+         <c:if test="${not empty user_id and empty admin}">
          <div class="my_mn">
            <img src="${path}/resources/images/mypage.png" alt="">
            <ul id="my_mn" style="display: none;">

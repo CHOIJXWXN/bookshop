@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 import javax.inject.Inject;
+import javax.servlet.ServletContext;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,6 +25,8 @@ public class AdminServiceImpl implements AdminService {
 	AdminDAO dao;
 	@Inject
 	BookDAO bdao;	
+	@Inject
+	ServletContext servletContext;
 
 	// 주문 관리 페이지
 	// 주문리스트, 배송준비중 건수, 배송중 건수, 배송완료 건수, 모든 주문 건수
@@ -51,9 +54,9 @@ public class AdminServiceImpl implements AdminService {
 		dao.changeStatus(order_status, order_num);
 		if (order_status.equals("배송중")) {
 			Random random = new Random();
-			String first = random.nextInt(100000) + "";
-			String last = random.nextInt(100000) + "";
-			dao.addDelivery(order_num, first+last);		// 10자리 난수 문자열
+			String first = random.nextInt(9000000) + 1000000 + "";
+			String last = random.nextInt(900000) + 100000 + "";
+			dao.addDelivery(order_num, first + last);				// 13자리 난수 문자열
 		}
 	}
 
@@ -85,7 +88,7 @@ public class AdminServiceImpl implements AdminService {
 			return;
 		}
 		
-		book_cover.transferTo(new File("../resources/images/book_cover/" + book.getBook_id() + ".jpg"));
+		book_cover.transferTo(new File(servletContext.getRealPath("/") + "resources/images/bookcover/" + book.getBook_id() + ".jpg"));
 	}
 	
 	// 상품 번호 중복 확인
