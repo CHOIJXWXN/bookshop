@@ -1,5 +1,6 @@
 package com.bookshop.service;
 
+import java.util.List;
 import java.util.Properties;
 
 import javax.inject.Inject;
@@ -88,7 +89,7 @@ public class UsersServiceImpl implements UsersService {
 	
 	// 유저 정보 (핸드폰)
 	@Override
-	public Users findIdP(Users users) throws Exception {		
+	public List<Users> findIdP(Users users) throws Exception {		
 		return dao.getIdP(users);
 	}
 

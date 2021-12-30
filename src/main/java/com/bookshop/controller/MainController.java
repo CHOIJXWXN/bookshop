@@ -106,7 +106,7 @@ public class MainController {
 	@RequestMapping(value = "/findIdP", method = RequestMethod.POST)
 	public String findIdP(Users users, Model model) throws Exception {
 		// 핸드폰으로 찾은 유저 정보
-		model.addAttribute("users", usersService.findIdP(users));		
+		model.addAttribute("list", usersService.findIdP(users));		
 		return "main/findIdP";
 	}
 
