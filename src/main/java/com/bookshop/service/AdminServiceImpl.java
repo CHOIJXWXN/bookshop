@@ -54,9 +54,9 @@ public class AdminServiceImpl implements AdminService {
 		dao.changeStatus(order_status, order_num);
 		if (order_status.equals("배송중")) {
 			Random random = new Random();
-			String first = random.nextInt(100000) + "";
-			String last = random.nextInt(100000) + "";
-			dao.addDelivery(order_num, first+last);		// 10자리 난수 문자열
+			String first = random.nextInt(9000000) + 1000000 + "";
+			String last = random.nextInt(900000) + 100000 + "";
+			dao.addDelivery(order_num, first + last);				// 13자리 난수 문자열
 		}
 	}
 
