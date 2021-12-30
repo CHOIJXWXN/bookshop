@@ -25,8 +25,7 @@
 	                        <img src="../resources/images/mypage_delivery.png" alt="icon" width="100" height="100">
 	                        주문 / 배송 조회
 	                    </a>
-	                </li>
-	                
+	                </li>              
 	                <li>
 	                    <a class="mn_btn" href="${path }/mypage/checkUser">
 	                        <img src="../resources/images/mypage_userinfo.gif" alt="icon" width="100" height="100">

@@ -34,6 +34,12 @@
     </div>
     <script>
     	$(document).ready(function(){
+    		
+    		var msg = '${msg}';
+    		if(msg != null && msg != '') {
+    			alert(msg);
+    		}
+    		
     		$('#user_pw_check').click(function() {
     			
     			var user_pw = $('#user_pw').val();
@@ -55,17 +61,14 @@
     				dataType : 'text',
     				success : function(data) {
     					// 비밀번호가 일치할 때
-    					if(data == 0) {
+    					if(data == 0 || data == 1) {
+    						sessionStorage.setItem('profileFlag', 0);
     						location.href = "./profile";
     					}
     					// 비밀번호가 일치하지 않을 때
     					else if(data == -1) {
     						alert('비밀번호가 일치하지 않습니다.');
     						$('#user_pw').attr('value', '');
-    					}
-    					// 관리자일 때
-    					else if(data == 1) {
-    						location.href = "./profile";
     					}
     					// 데이터베이스 오류
     					else {

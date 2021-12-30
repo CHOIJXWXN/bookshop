@@ -70,7 +70,7 @@
                 <div class="row2">
                     <h3>ISBN</h3>
                     <div class="input_box">
-                        <input type="number" name="book_id" id="book_id" />
+                        <input type="number" name="book_id" id="book_id" max="99999999999999999999" />
                     </div>
                 </div>
                 <div class="row2 row_img">

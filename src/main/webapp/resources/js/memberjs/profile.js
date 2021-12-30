@@ -1,4 +1,12 @@
+ 
  $(document).ready(function(){
+ 	
+ 	if (sessionStorage.getItem('profileFlag') != 0) {
+    	alert('비밀번호 확인이 필요합니다');
+    	location.href='./checkUser';
+    } else {
+    	sessionStorage.removeItem('profileFlag');
+    }
  
         var pw_check_flag = true;
 
@@ -34,18 +42,26 @@
           $(".pw_check").addClass("row");        
           pw_check_flag = true;
         }
+        
+        
       
      }
       
       
       $("#user_pw").keyup(function(){   
         var pw_check_flag = false;  
-      	checkPassword();  
+      	checkPassword();
+      	if($("#user_pw").val() == "") {
+        	$(".pw").find(".form_check").removeClass("on");
+        	$(".pw").removeClass("row_msg");
+        	$(".pw").addClass("row");
+        }  
+      	
       });
       
       $("#user_pw2").keyup(function(){  
         var pw_check_flag = false;    
-      	checkPassword();  
+      	checkPassword(); 
       });
       
       
@@ -67,6 +83,7 @@
 			event.preventDefault();
 			return;
 		}
+		sessionStorage.setItem('profileFlag', 0);
 		
 	});
       

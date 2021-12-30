@@ -52,7 +52,7 @@ public class MemberController {
 	
 	// 회원정보 수정 페이지
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
-	public String profile(Model model, HttpSession session) throws Exception {	
+	public String profile(RedirectAttributes ra, Model model, HttpSession session) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
 		Users users = memberService.getUserInfo(user_id);
 		// 주소 분리
@@ -65,7 +65,7 @@ public class MemberController {
 		model.addAttribute("addr_1", addr_1);
 		model.addAttribute("addr_2", addr_2);
 		model.addAttribute("addr_3", addr_3);				
-		return "member/profile";
+		return "member/profile";	
 	}
 	
 	// 회원정보 수정 기능
