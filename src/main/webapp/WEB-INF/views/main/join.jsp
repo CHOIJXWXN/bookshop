@@ -19,7 +19,8 @@
     $(document).ready(function() {
     	if (sessionStorage.getItem('joinFlag') != 0) {
     		alert('회원가입 동의가 필요합니다');
-    		location.href('./joinTerm');
+    		location.href = './joinTerm';
+    		return;
     	} else {
     		sessionStorage.removeItem('joinFlag');
     	}

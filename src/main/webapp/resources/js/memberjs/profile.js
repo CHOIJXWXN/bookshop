@@ -4,6 +4,7 @@
  	if (sessionStorage.getItem('profileFlag') != 0) {
     	alert('비밀번호 확인이 필요합니다');
     	location.href='./checkUser';
+    	return;
     } else {
     	sessionStorage.removeItem('profileFlag');
     }
