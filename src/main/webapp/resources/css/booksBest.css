@@ -1,4 +1,4 @@
-@charset "utf-8";
+@charset "UTF-8";
 
 
 #wrap {
@@ -103,8 +103,49 @@
   height: 20vh;
   background: #1C1A1A;
   opacity: 0.47;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+#footer .btns_group {
+  width: 18%;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+#footer .btns_group a {
+  font-family: "Pretendard-Regular";
+  font-size: 13px;
+  color: whitesmoke;
+  line-height: 40px;
+}
+#footer .cs_msg {
+  width: 60%;
+  height: 75px;
+  display: flex;
+  flex-direction: column;
+}
+#footer .cs_msg li {
   text-align: center;
-  color: white;
+  font-family: "Pretendard-Regular";
+  font-size: 14px;
+  color: whitesmoke;
+  line-height: 25px;
+}
+#footer .com_info {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+#footer .com_info li {
+  text-align: center;
+  font-family: "Pretendard-Regular";
+  font-size: 13px;
+  color: whitesmoke;
+  line-height: 20px;
 }
 /* 검색모달 */
 .search_modal {

@@ -138,9 +138,22 @@
       </c:if>
     </section>
     <!-- [3] 푸터 -->
-    <footer id="footer">
-      푸터영역
-    </footer> 
+     <footer id="footer">
+        <ul class="btns_group">
+          <li><a href="#">AGREEMENT</a></li>
+          <li><a href="#">PRIVACY POLICY</a></li>
+          <li><a href="#">GUIDE</a></li>
+        </ul>
+        <ul class="cs_msg">
+          <li>CS CENTER 09:00 ~ 18:00(월~금, 공휴일 제외)</li>
+          <li>주문/교환/반품 문의&nbsp;|&nbsp;1:1 문의 게시판 이용</li>
+          <li>상품 관련 문의&nbsp;|&nbsp;1:1 문의 게시판 이용</li>
+        </ul>
+        <ul class="com_info">
+          <li>THE BOOK SHOP CEO.YOO CHOI LEE BUSINESS LICENSE. [00000000] ON-LINE REGISTER. 000 668, JUNGANG-DAERO, BUSANJIN-GU, BUSAN, REPUBLIC OF KOREA</li>
+          <li>teambook3lcy@gmail.com 개인정보관리책임자 YOO CHOI LEE COPYRIGHT © 2021 THE BOOK SHOP</li>
+        </ul>
+      </footer>  
     <!-- 검색모달 -->
     <div class="search_modal" style="display:none">
         <div class="search_wrap">
