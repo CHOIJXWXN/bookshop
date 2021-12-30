@@ -133,20 +133,8 @@ public class BoardController {
 	}
 	
 	// 댓글 삭제
-	// url 패턴이 'path/ask/deleteAskReply'
-	@RequestMapping(value="/deleteAskReply", method= RequestMethod.GET)
-	@ResponseBody
-	public List<AskReply> deleteAskReply(AskReply askreply, HttpSession session) throws Exception {
-		String user_id = (String) session.getAttribute("user_id");
-		
-		// 댓글 작성자에 로그인 되어있는 user_id 값을 넣어줌
-		askreply.setWriter(user_id);
-		
-		List<AskReply> list = boardService.deleteAskReply(askreply);
-		
-		boardService.updateAskreplyCount(askreply.getAsk_id());
-		return list;
-	}
+	
+	
 	
 	
 	

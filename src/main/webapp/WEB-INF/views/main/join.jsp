@@ -15,7 +15,16 @@
     <%-- 카카오 주소검색 API --%>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="${path }/resources/js/mainjs/kakao.js" charset="UTF-8"></script>
-    
+    <script>
+    $(document).ready(function() {
+    	if (sessionStorage.getItem('joinFlag') != 0) {
+    		alert('회원가입 동의가 필요합니다');
+    		location.href('./joinTerm');
+    	} else {
+    		sessionStorage.removeItem('joinFlag');
+    	}
+    });
+    </script>
   </head>
 	<body>
     <div id="wrap">
@@ -56,6 +65,7 @@
                 <input type="text" id="user_id" name="user_id" placeholder="영문소문자/숫자, 4 ~ 16 자리">
                 <p class="pass" id="id_pass">사용가능한 아이디입니다.</p>
                 <p class="fail" id="id_fail">이미 가입된 아이디입니다.</p>
+                <p class="fail" id="id_check">아이디는 4~14자리의 영어 소문자 와 숫자로만 입력가능 합니다.</p>
                 <button type="button" class="checkId" id="checkId">중복확인</button>
               </div>
              
@@ -83,12 +93,12 @@
               <!-- 생년월일 -->
               <div class="row">
                 <label for="user_birth">&nbsp;&nbsp;생년월일</label>
-                <input type="text" id="user_birth" name="user_birth" placeholder="ex)19801223">
+                <input type="date" id="user_birth" name="user_birth" >
               </div>
               <!-- 닉네임 -->
               <div class="row">
                 <label for="nickname">&nbsp;&nbsp;닉네임</label>
-                <input type="text" id="user_nickname" name="user_nickname">
+                <input type="text" id="user_nickname" name="user_nickname"  maxlength="10" placeholder="최대 10글자">
               </div>
                <!-- 이메일 -->
                <!-- 이메일 확인 알림을 위한 p 태그 추가 -->
@@ -96,7 +106,7 @@
                 <label for="user_email">*&nbsp;이메일</label>
                 <!-- 이메일 도메인 주소넣기 위해 input창 추가, 넓이 120으로 축소 
                 <input type="text" id="user_email" name="user_email" style="width: 240px">-->
-                <input type="text" id="user_email_id" name="user_email_id" style="width: 110px">
+                <input type="text" id="user_email_id" name="user_email_id" maxlength="30" style="width: 110px">
                 <span>@</span>
                 <input type="text" id="user_email_domain" name="user_email_domain" style="width: 110px">
                 <select name="user_email_domain_S" id="user_email_domain_S" class="book_num">
@@ -111,7 +121,7 @@
               </div>
               <!-- 휴대폰번호 -->
               <div class="row">
-                <label for="phone_num">*&nbsp;휴대폰번호</label>
+                <label for="phone_num">*&nbsp;전화번호</label>
                 <input type="tel" id="user_phone" name="user_phone" maxlength="11" placeholder="- 없이 입력하세요">
               </div>
               <!-- 주소 -->

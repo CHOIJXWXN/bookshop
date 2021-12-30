@@ -76,10 +76,6 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 	
 	// 댓글 삭제
-	@Override
-	public void deleteAskReply(int askreply_id) throws Exception {
-		sqlSession.delete(SESSION + ".deleteAskReply", askreply_id);
-	}
 	
 	// 댓글 갯수 update
 	@Override

@@ -89,18 +89,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	public List<AskReply> delete(AskReply askreply) throws Exception {
-		dao.deleteAskReply(askreply.getAskreply_id());
+		// (댓글 삭제 제외) dao.deleteAskReply(askreply.getAskreply_id());
 		dao.updateAskreplyCount(askreply.getAsk_id());
 		return dao.getAskReplyList(askreply.getAsk_id());
 	}
 	
 	// 댓글 삭제
-	@Override
-	public List<AskReply> deleteAskReply(AskReply askreply) throws Exception {
-		// 삭제처리 해주고 나서 전달
-		dao.deleteAskReply(askreply.getAskreply_id());
-		return dao.getAskReplyList(askreply.getAsk_id());
-	}
+	
 	
 	// 댓글 개수 추가
 	@Override
