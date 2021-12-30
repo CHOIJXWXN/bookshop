@@ -39,7 +39,12 @@
                 success : function(data) {
                     // 로그인 정보 일치 -> 로그인 성공, 메인페이지이동
                     if(data == 0 || data == 1) {
-                        location.href = '../';
+                    	if ($('input[name=pre_page]').val() != '') {
+                    		location.href = $('input[name=pre_page]').val();
+                    		sessionStorage.removeItem('pre_page');
+                    	} else {
+                    		location.href = '../';
+                    	}
                     }
                     // 로그인 실패 -> 로그인 정보 불일치 알림 띄우기
                     else if (data == -1) {

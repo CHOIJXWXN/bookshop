@@ -29,6 +29,10 @@
 	
 	<mvc:interceptors>
 		<mvc:interceptor>
+			<mvc:mapping path="/*"/>
+			<beans:bean id="Prepageinterceptor" class="com.bookshop.interceptor.Prepageinterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
 			<mvc:mapping path="/admin/*"/>
 			<mvc:mapping path="/admin"/>
 			<beans:bean id="Admininterceptor" class="com.bookshop.interceptor.Admininterceptor"/>

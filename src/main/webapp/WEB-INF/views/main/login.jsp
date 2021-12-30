@@ -34,6 +34,7 @@
                     <input type="checkbox" name="save_id" id="save_id">
                     <label for="save_id">아이디 저장</label>
                 </div>
+                <input type="hidden" name="pre_page" value="${pre_page}">
                 <!-- msg 공간 추가 -->
                 <p id="msg_id" style="color:red;">아이디를 입력하세요.</p>
                 <p id="msg_pw" style="color:red;">비밀번호를 입력하세요.</p>

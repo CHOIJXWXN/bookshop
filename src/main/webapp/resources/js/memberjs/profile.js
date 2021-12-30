@@ -1,4 +1,12 @@
+ 
  $(document).ready(function(){
+ 	
+ 	if (sessionStorage.getItem('profileFlag') != 0) {
+    	alert('비밀번호 확인이 필요합니다');
+    	location.href='./checkUser';
+    } else {
+    	sessionStorage.removeItem('profileFlag');
+    }
  
         var pw_check_flag = true;
 
@@ -67,6 +75,7 @@
 			event.preventDefault();
 			return;
 		}
+		sessionStorage.setItem('profileFlag', 0);
 		
 	});
       
