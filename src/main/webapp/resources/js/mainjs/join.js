@@ -40,6 +40,7 @@ $(document).ready(function() {
              alert("모든 약관 동의 후 회원가입 가능합니다.");
              return;
          } else {
+            sessionStorage.setItem('joinFlag', 0);
              location.href = "../join";
          }
      });
@@ -253,8 +254,20 @@ $('#user_nickname').keyup(function(){
     });
     $('#user_email_domain').keyup(function(){
         var blank = /[\s]/g;
-         $('#user_email_domain').val($('#user_email_domain').val().replace(blank, ''));
+        $('#user_email_domain').val($('#user_email_domain').val().replace(blank, ''));
+       /*
+        var user_email_domain =  $('#user_email_domain').val();
+         var eamil_reg_flag = false;
+        var email_reg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
+        if(!user_email_domain.match(email_reg)) {
+             eamil_reg_flag = false;
+         }else if(user_email_domain.match(email_reg)) {
+              eamil_reg_flag = true;
+        }*/
+        
     });
+
      $('#user_email_domain_S').change(function(){
         if($('#user_email_domain_S').val() == '') {
         $('#user_email_domain').val('');
@@ -268,6 +281,7 @@ $('#user_nickname').keyup(function(){
      // user_email_domain_S.change.fucntion
      });
 
+     
 
      $('#checkEmail').click(function(){
          var user_email = $('#user_email_id').val() + '@' + $('#user_email_domain').val();
@@ -277,11 +291,18 @@ $('#user_nickname').keyup(function(){
          if(user_email_id == '') {
              alert('이메일을 입력하세요.');
              $('#user_email_id').focus();
+             email_check_flag = false;
              return;
          }
         if(user_email_domain == '') {
             alert('이메일을 입력하세요.');
             $('#user_email_domain').focus();
+            email_check_flag = false;
+            return;
+        }
+        else if (!eamil_reg_flag) {
+            alert('이메일 주소를 다시 확인하세요');
+            email_check_flag = false;
             return;
         }
  
