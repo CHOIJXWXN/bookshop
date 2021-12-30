@@ -34,18 +34,26 @@
           $(".pw_check").addClass("row");        
           pw_check_flag = true;
         }
+        
+        
       
      }
       
       
       $("#user_pw").keyup(function(){   
         var pw_check_flag = false;  
-      	checkPassword();  
+      	checkPassword();
+      	if($("#user_pw").val() == "") {
+        	$(".pw").find(".form_check").removeClass("on");
+        	$(".pw").removeClass("row_msg");
+        	$(".pw").addClass("row");
+        }  
+      	
       });
       
       $("#user_pw2").keyup(function(){  
         var pw_check_flag = false;    
-      	checkPassword();  
+      	checkPassword(); 
       });
       
       
