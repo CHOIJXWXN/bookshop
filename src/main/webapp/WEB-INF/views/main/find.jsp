@@ -315,13 +315,13 @@
           <!-- 제목 -->
           <h2>FIND PASSWORD</h2>
           <div id="findId_tab_box">
-            <label for="pw_tab1">
+            <!-- <label for="pw_tab1">
               <img class="pw_email_icon" src="../../resources/images/findIdPw_icon.png" alt="">
               이메일로 찾기
-            </label>
+            </label> -->
             <input type="radio" id="pw_tab1" name="pw_tab" checked/>            
-            <label for="pw_tab2"><img class="pw_phone_icon" src="../../resources/images/findIdPw_icon.png" alt="">휴대폰 번호로 찾기</label>
-            <input type="radio" id="pw_tab2" name="pw_tab" /> 
+           <!--  <label for="pw_tab2"><img class="pw_phone_icon" src="../../resources/images/findIdPw_icon.png" alt="">휴대폰 번호로 찾기</label> -->
+            <input type="radio" id="pw_tab2" name="pw_tab" disabled/> 
             <!-- ------------------------------------ -->
             <!-- 위의 탭박스 선택에 따라 아래 탭 컨텐츠 달라짐 -->
             <!-- 이메일로 찾기 선택시 -->

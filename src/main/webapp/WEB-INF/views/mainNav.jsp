@@ -16,9 +16,6 @@ $(document).ready(function() {
     });
 	  
 	  $('.my_mn').hover(function() {
-		  <c:if test="${admin == 1}">
-		  $('#my_mn').height(130);
-		  </c:if>
 		  $('#my_mn').stop().slideDown(300);
 		  $('#my_mn').css('display', 'flex');
 	  }, function() {
@@ -45,7 +42,12 @@ $(document).ready(function() {
 	            </ul>
               </li>
               <li class="nav_2"><a href="${path }/record/">Diary</a></li>
+              <c:if test="${admin != 1}">
               <li class="nav_3"><a href="${path }/ask/">Board</a></li>
+              </c:if>
+              <c:if test="${admin == 1}">
+              <li class="nav_3"><a href="${path }/admin/">Admin</a></li>
+              </c:if>
             </ul>
             <!-- BOOKS HOVER : 서브메뉴 보이기 -->
             
@@ -63,17 +65,23 @@ $(document).ready(function() {
           </a>
           </c:if>
           <!-- case2) 로그인 상태 -->
-         <c:if test="${not empty user_id }">
+         <c:if test="${admin == 0}">
          <div class="my_mn">
            <img src="${path}/resources/images/mypage.png" alt="">
            <ul id="my_mn" style="display: none;">
 	         <li><a href="${path}/mypage/">MYPAGE</a></li>
 	         <li><a href="${path}/order/cart">CART</a></li>
 	         <li><a href="${path}/logout">LOGOUT</a></li>
-	         <!-- 관리자일 때만 보이는 메뉴 -->
-	         <c:if test="${admin == 1}">
-	         <li><a href="${path}/admin/">ADMIN</a></li>
-	         </c:if>
+           </ul>
+         </div>
+         </c:if>
+         <!-- case3) 관리자 상태 -->
+         <c:if test="${admin == 1}">
+         <div class="my_mn">
+           <img src="${path}/resources/images/mypage.png" alt="">
+           <ul id="my_mn" style="display: none; height: 60px">
+	         <li><a href="${path}/mypage/">MYPAGE</a></li>
+	         <li><a href="${path}/logout">LOGOUT</a></li>
            </ul>
          </div>
          </c:if>

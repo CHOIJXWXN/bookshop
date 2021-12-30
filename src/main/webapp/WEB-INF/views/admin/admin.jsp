@@ -18,7 +18,7 @@
       <jsp:include page="../mainNav.jsp"/>
       <section>
         <div id="container">
-          <h1 id="title">관리자 페이지</h1>
+          <h1 id="title">관리자페이지</h1>
           <div id="quick_mn">
             <ul>
               <li class="menu">

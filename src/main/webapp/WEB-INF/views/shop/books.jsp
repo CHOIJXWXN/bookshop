@@ -23,16 +23,20 @@
         $(".category").stop().animate({"width":"0"},400);
       });
      
-      // 판매량/신규순/평점순 정렬
       
-      $(".order_by li").hover(
-        function(){
-        $(this).find(".fa-check").stop().animate({"width":"20px"},200);
-      },
-      function(){
-        $(this).find(".fa-check").stop().animate({"width":"0"},200);
+      
+      
+   // 판매량/신규순/평점순 정렬
+      var book_order = '${book_order}';
+      if(book_order == '판매량순') {
+    	  $('.order_by li').eq(0).find(".fa-check").css({"width":"20px"});
       }
-      );
+      if(book_order == '신규출간순') {
+    	  $('.order_by li').eq(1).find(".fa-check").css({"width":"20px"});
+      }
+      if(book_order == '평점순') {
+    	  $('.order_by li').eq(2).find(".fa-check").css({"width":"20px"});
+      }
 
       
       

@@ -1,5 +1,7 @@
 package com.bookshop.vo;
 
+import com.bookshop.util.Xss;
+
 public class Users {
 	
 	private String user_id;
@@ -153,6 +155,20 @@ public class Users {
 	
 	public void setUser_title(String user_title) {
 		this.user_title = user_title;
-	}	
+	}
+	
+	public void preXss() {
+		if(user_id != null) Xss.setXss(user_id);
+	    if(user_pw != null) Xss.setXss(user_pw);
+	    if(user_name != null) Xss.setXss(user_name);
+	    if(user_birth != null) Xss.setXss(user_birth);
+	    if(user_nickname != null) Xss.setXss(user_nickname);
+	    if(user_email != null) Xss.setXss(user_email);
+	    if(user_phone != null) Xss.setXss(user_phone);
+	    if(user_addr != null) Xss.setXss(user_addr);
+	    if(user_init_genre != null) Xss.setXss(user_init_genre);
+	    if(user_title != null) Xss.setXss(user_title);
+	 }
+
 	
 }

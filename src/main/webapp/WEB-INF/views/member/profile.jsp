@@ -50,13 +50,14 @@
                   <input type="text" id="user_id" name="user_id" value="${users.user_id}" readonly="true" style="outline:none">
                 </div>
                 <!-- 비밀번호 -->
-                <div class="row">
-                  <label for="user_pw">*&nbsp;변경 비밀번호</label>
+                <div class="row pw">
+                  <label for="user_pw">&nbsp;&nbsp;새 비밀번호</label>
                   <input type="password" id="user_pw" name="user_pw" placeholder="영문 대소문자/숫자/특수문자, 10자 ~ 16자">
+                  <p class="form_check">비밀번호는 8~16자리의 영어 대소문자, 숫자, 특수문자 입력가능 합니다.</p>
                 </div>
                 <!-- 비밀번호 확인 -->
                 <div class="row pw_check">
-                  <label for="user_pw2">*&nbsp;비밀번호 확인</label>
+                  <label for="user_pw2">&nbsp;&nbsp;비밀번호 확인</label>
                   <input type="password" id="user_pw2" name="user_pw2">
                   <p class="pass">확인되었습니다.</p>
                   <p class="fail">비밀번호가 다릅니다.</p>
@@ -80,16 +81,14 @@
                  <div class="row">
                   <label for="user_email">*&nbsp;이메일</label>
                   <input type="text" id="user_email" name="user_email" value="${users.user_email}" readonly="true" style="outline:none">
- 
                 </div>
                 <!-- 휴대폰번호 -->
                 <div class="row">
                   <label for="phone_num">*&nbsp;휴대폰번호</label>
-                  <input type="text" id="user_phone" name="user_phone" value="${users.user_phone}">
-                  <button class="phonenum_check">인증</button>
+                  <input type="tel" id="user_phone" name="user_phone" minlength="11" maxlength="11" value="${users.user_phone}">
                 </div>
                 <!-- 주소 -->
-                <div class="row_3 final">
+                <div class="row_3">
                   <label >*&nbsp;주소</label>
                   <div class="wrap">
                     <div class="wrap2">
@@ -101,6 +100,13 @@
                     <input type="text" id="addr_3" name="addr_3" value="${addr_3}" />
                   </div>          
                 </div>
+                <!-- 독서기록 이름 -->
+                <c:if test="${not empty users.user_title}">
+                <div class="row" style="border-top:0;">
+                  <label for="user_title">*&nbsp;독서기록 이름</label>
+                  <input type="text" id="user_title" name="user_title" value="${users.user_title}" >
+                </div>
+                </c:if>
                 
                 
               </div>

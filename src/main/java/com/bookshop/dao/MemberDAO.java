@@ -27,5 +27,7 @@ public interface MemberDAO {
 	// 4) 주문목록 건수 가져오기
 	public int getOrderCnt(String user_id) throws Exception;
 	
+	public String getTracking_num(String order_num) throws Exception;
+	
 	
 }
