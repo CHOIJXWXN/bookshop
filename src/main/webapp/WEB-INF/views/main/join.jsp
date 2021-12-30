@@ -15,7 +15,16 @@
     <%-- 카카오 주소검색 API --%>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="${path }/resources/js/mainjs/kakao.js" charset="UTF-8"></script>
-    
+    <script>
+    $(document).ready(function() {
+    	if (sessionStorage.getItem('joinFlag') != 0) {
+    		alert('회원가입 동의가 필요합니다');
+    		location.href('./joinTerm');
+    	} else {
+    		sessionStorage.removeItem('joinFlag');
+    	}
+    });
+    </script>
   </head>
 	<body>
     <div id="wrap">
