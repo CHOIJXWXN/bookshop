@@ -51,7 +51,7 @@ $(document).ready(function() {
 	                        str += '<div class="reply_date" id="reply_date">';
 	                        str += '<p>' + data[i].askreply_date + '</p>'; 
 	                        str += '</div>';
-	                        str += '<div class="delete"> <button type="button" id="delete_btn" class="delete_btn" onclick="deleteAskReply('+ data[i].askreply_id +')">삭제</button></div>';
+	                        // str += '<div class="delete"> <button type="button" id="delete_btn" class="delete_btn" onclick="deleteAskReply('+ data[i].askreply_id +')">삭제</button></div>';
 	                        str += '</div>'
 	                        $('#replybody').append(str);
 	                        
@@ -68,54 +68,7 @@ $(document).ready(function() {
  // document.ready.function    
 });
 </script>
-<script>
 
-// 댓글 삭제
-function deleteAskReply(askreply_id) {
-    var ask_id = '${map.ask.ask_id }';
-    $.ajax({
-        type: 'GET',
-        url: './deleteAskReply',
-        data: {
-            askreply_id: askreply_id,
-            ask_id: ask_id
-        },
-
-        dataType: 'JSON',
-        success: function(data) {
-           
-             $('#replybody').empty();
-
-            for (var i = 0; data.length; i++ ) {
-                var str = '';
-                str += '<div class="reply_row" >';
-                str += '<div class="reply_contents" id="reply_contents">';
-                str += '<p>' + data[i].askreply_contents + '</p>';
-                str += '</div>';
-                str += '<div class="reply_writer" id="reply_writer">';
-                str += '<p>' + data[i].writer + '</p>';
-                str += '</div>';
-                str += '<div class="reply_date" id="reply_date">';
-                str += '<p>' + data[i].askreply_date + '</p>'; 
-                str += '</div>';
-                if('${user_id}' == data[i].writer) {
-                    str += '<div class="delete">';
-                    str += '<button type="button" id="delete_btn" class="delete_btn" onclick="deleteAskReply('+ data[i].askreply_id +')">삭제</button>'; 
-                    str += '</div>';
-                }
-                str += '</div>'
-                $('#replybody').append(str);
-                
-            // 반복문    
-            }
-        // success
-        }
-   // ajax     
-   });
-
-// function deleteAskReply
-}
-</script>
   
   </head>
   <body>
@@ -172,11 +125,12 @@ function deleteAskReply(askreply_id) {
                      <div class="reply_date" id="reply_date">
                         <p><!-- 작성 날짜 -->${askreply.askreply_date}</p>
                      </div>
+                     <!-- 댓글 삭제 버튼 없앰
                      <c:if test="${user_id == askreply.writer }">
                      <div class="delete">
                         <button type="button" id="delete_btn" class="delete_btn" onclick="deleteAskReply(${askreply.askreply_id})">삭제</button>
                      </div>
-                     </c:if>
+                     </c:if>  -->
                		</div>
                   </c:forEach>
                    <!-- 댓글 수 만큼 반복 끝-->
@@ -188,7 +142,7 @@ function deleteAskReply(askreply_id) {
                 <h2>Write</h2>
                 <textarea id="write_reply" placeholder="댓글을 남겨주세요."></textarea>
              </div>
-             <!-- 삭제버튼 -->
+             
              <div class="btn_box">
              	<!-- 회원 로그인시 목록가기 -->
              	<c:if test="${user.user_admin eq 0}">

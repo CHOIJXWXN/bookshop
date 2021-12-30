@@ -30,6 +30,7 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/admin/*"/>
+			<mvc:mapping path="/admin"/>
 			<beans:bean id="Admininterceptor" class="com.bookshop.interceptor.Admininterceptor"/>
 		</mvc:interceptor>
 		<mvc:interceptor>
