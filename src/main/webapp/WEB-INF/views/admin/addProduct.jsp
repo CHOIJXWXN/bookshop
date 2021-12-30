@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="${path}/resources/css/reset.css" />
     <link rel="stylesheet" href="${path}/resources/css/mainNav.css" />
     <link rel="stylesheet" href="${path}/resources/css/addProduct.css" />
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="${path}/resources/js/adminjs/addProduct.js"></script>
   </head>
   <body>
     <div id="wrap">
@@ -53,7 +55,7 @@
                 <div class="row">
                     <h3>가격</h3>
                     <div class="input_box">
-                        <input type="text" name="book_price" id="book_price" />
+                        <input type="number" name="book_price" id="book_price" />
                     </div>
                 </div>
                 <div class="row">
@@ -68,13 +70,14 @@
                 <div class="row2">
                     <h3>ISBN</h3>
                     <div class="input_box">
-                        <input type="text" name="book_id" id="book_id" />
+                        <input type="number" name="book_id" id="book_id" />
                     </div>
                 </div>
                 <div class="row2 row_img">
-                    <h3>표지이미지</h3>
+                 
+                   <h3>표지이미지</h3>
                     <!-- 업로드 버튼 -->
-                    <input type="file" name="book_cover_file" id="book_cover_file" placeholder="업로드" multiple>
+                    <input type="file" name="book_cover_file" id="book_cover_file" placeholder="업로드" accept="image/jpeg, image/png, image/jpg">
                 </div>
                 <div class="row2">
                     <h3>카테고리</h3>
@@ -107,5 +110,14 @@
       </section>
       </form>
     </div>
+    
+    <script>
+	$(document).ready(function() {		
+		var msg = '${msg}';
+		if(msg != null && msg != '') {
+			alert(msg);
+		}
+	})
+	</script>
   </body>
 </html>

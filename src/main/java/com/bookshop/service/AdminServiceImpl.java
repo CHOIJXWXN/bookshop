@@ -1,6 +1,8 @@
 package com.bookshop.service;
 
 import java.io.File;
+import java.net.URL;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -78,11 +80,23 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void addProduct(Book book, MultipartFile book_cover) throws Exception {
 		dao.addBook(book);
+		
 		if (book_cover.isEmpty()) {
 			return;
 		}
-		book_cover.transferTo(new File("../resources/images/bookcover/" + book.getBook_id() + ".jpg"));
+		
+		book_cover.transferTo(new File("../resources/images/book_cover/" + book.getBook_id() + ".jpg"));
 	}
+	
+	// 상품 번호 중복 확인
+	@Override
+	public int checkBookId(String book_id) throws Exception {
+		if (bdao.getBook(book_id) == null) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}	
 
 	// 문의 관리 페이지
 	// 모든 문의 리스트
@@ -90,7 +104,6 @@ public class AdminServiceImpl implements AdminService {
 
 	public List<AskList> getAdminAskList(int pageNum) throws Exception {		
 		return dao.getAdminAskList(pageNum);
-	}	
-
+	}
 
 }
