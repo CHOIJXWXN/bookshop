@@ -1,6 +1,7 @@
 package com.bookshop.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -31,7 +32,7 @@ public class MainController {
 	
 	// 메인 페이지
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String main(Model model) throws Exception {
+	public String main(Model model, HttpServletRequest request) throws Exception {
 		return "main/main";
 	}	
 	
