@@ -1,6 +1,6 @@
 package com.bookshop.controller;
 
-import java.util.HashMap;
+import java.io.File;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -86,9 +86,15 @@ public class AdminController {
 	
 	// 상품 입력 기능
 	@RequestMapping(value = "/addProductAction", method = RequestMethod.POST)
-	public String addProductAction(Book book, MultipartFile book_cover_file, Model model) throws Exception {
-		adminService.addProduct(book, book_cover_file);
-		return "redirect:/admin/product";
+	public String addProductAction(Book book, MultipartFile book_cover_file, RedirectAttributes ra, Model model) throws Exception {
+		if (adminService.checkBookId(book.getBook_id()) == 0) {
+			adminService.addProduct(book, book_cover_file);
+			return "redirect:/admin/product";
+		} else {
+			ra.addFlashAttribute("msg", "이미 존재하는 ISBN입니다");
+			return "redirect:/admin/addProduct";
+		}
+		
 	}
 
 	// 상품 삭제

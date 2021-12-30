@@ -16,12 +16,18 @@
     <div id="wrap">
       <jsp:include page="../mainNav.jsp"/>
       <section>
-        <div id="section">
+       <div id="all_box">
           <div id="sidebar">
             <p id="nav_title">Administrator</p>
-            <a href="${path}/admin/order">주문 관리</a>
-            <a href="${path}/admin/product">상품 관리</a>
-            <a href="${path}/admin/ask" class="active">문의 관리</a>
+            <a href="${path}/admin/order">
+              <span>주문 관리&nbsp;&nbsp;</span>
+            </a>
+            <a href="${path}/admin/product">
+              <span>상품 관리&nbsp;&nbsp;</span>
+            </a>
+            <a href="${path}/admin/ask" class="active">
+              <span>문의 관리&nbsp;&nbsp;</span>
+            </a>
         </div>
         <div id="container">
             <h3>QnA</h3>

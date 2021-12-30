@@ -26,6 +26,8 @@ public interface AdminService {
 	public void deleteProduct(String book_id) throws Exception;
 	// 해당 상품 입력
 	public void addProduct(Book book, MultipartFile book_cover) throws Exception;	
+	// 상품 번호 중복 확인
+	public int checkBookId(String book_id) throws Exception;
 	
 	// 문의 관리 페이지
 	// 모든 문의 리스트

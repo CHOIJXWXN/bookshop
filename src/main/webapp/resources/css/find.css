@@ -82,13 +82,24 @@ input[type="radio"] {
 }
 
 /* 아이디, 이름, 이메일, 휴대폰번호 정보 입력 폼 */
-#findId_tab_box section {
+#findId_tab_box .email,
+#findId_tab_box .phone {
   width: 100%;
   height: 300px;
   position: absolute;
   top: 0;
   left: 0;
   margin-top: 90px;
+  display: none;
+}
+#findId_tab_box .pw_email,
+#findId_tab_box .pw_phone {
+  width: 100%;
+  height: 300px;
+  margin-top: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
   display: none;
 }
 #findId_tab_box .email {

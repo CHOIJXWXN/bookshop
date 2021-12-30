@@ -3,61 +3,82 @@
 #wrap {
     width: 100%;
   }
-
+  
+body {
+	margin: 0;
+	padding: 0;
+	background-image: url("../images/main_bg_6.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;	
+} 
   /* [2]메인화면*/
  section {
     float: left;
     width: 100%;
-    background-image: url("../images/main_bg_4.jpg");
-    background-repeat: repeat-y;
-    background-size: cover;
     position: relative;
   }
 
 /* ===============frame=============== */
 
 
-#section {
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
+section {
+    width: 100%;
 }
-
-#sidebar {
+#all_box {
+	width: 100%;
     display: flex;
-    width: 20%;
-    height: 100%;
-    flex-direction: column;
-    margin-top: 200px;
+    margin-top: 250px;
+}
+#sidebar {
+    float: left;
+    width: 180px;
+    height: 200px;
+    margin-left: 13%;
 }
 #nav_title {
-    width: 120px;
+    width: 180px;
     height: 50px;
-    font-weight: bold;
+    font-size: 25px;
     margin-bottom: 0;
     line-height: 50px;
-    border-bottom: 1px black solid;
+    border-bottom: 1px #1C1A1A solid;
+    box-sizing: border-box;
+    font-family: 'Goudy Bookletter 1911', serif;
+    padding-left: 5px;
 }
 #sidebar a {
-    width: 80px;
+    display: block;
+    width: 180px;
     height: 50px;
+    border-bottom: 0.5px solid #707070; 
+}
+#sidebar span {
+    font-family: "Pretendard-Regular";
+    font-weight: 600;
+    font-size: 15px;
     line-height: 50px;
-    text-decoration: none;
-    color: #ccc;
-    border-bottom: 1px #ccc solid; 
+    color: #B5B1B1;
 }
-#sidebar .active {
-    color: black;
-    border-bottom: 1px black solid;
+#sidebar a:hover span{
+    padding-left: 10px;
+    font-size: 17px;
+    color: #1C1A1A;
 }
-#sidebar .active::after {
+#sidebar a:hover span::after {
+    content: ">";
+}
+#sidebar a.active span {
+    padding-left: 10px;
+    font-size: 17px;
+    color: #1c1a1a;
+}
+#sidebar a.active span::after {
     content: " >";
 }
 
 #container {
-    width: 1000px;
-    margin-top: 200px;
-    margin-bottom: 50px;
+    width: 53%;
+    margin-left: 200px;
 }
 
 h3 {

@@ -118,10 +118,23 @@
       </article>
       </c:if>
       <c:if test="${empty user_id}">
-      
-      <!-- 로그인 하지 않은 유저에게 띄울 추천 화면 -->
-      <!-- ex) 가입하면 취향에 맞는 책을 추천해줄 수 있다는 문구 같은 거 -->
-      
+      <article class="book_list">
+        <div class="recommend_msg">
+          <div class="join_msg">
+            <h3>BOOKSHOP의 회원이 되시면 취향에 맞는 책을 추천해드려요!</h3>
+            <p>
+              다양한 책을 추천받고<br>
+              나만의 공간에 독서기록을 남겨보세요.<br>
+              독서 경험이 쌓일수록 <br>
+              이 곳은 당신에게 특별한 공간이 될거에요!
+            </p>
+            <a class="join_btn" href="../joinTerm">GO TO JOIN</a>
+          </div>
+          <div class="img_box">
+            <img src="../../resources/images/book_store_2.jpg" alt="">
+          </div>
+        </div>
+       </article>      
       </c:if>
     </section>
     <!-- [3] 푸터 -->

@@ -23,8 +23,13 @@ public class MemberDAOImpl implements MemberDAO {
 	// (마이페이지) 회원정보 수정
 	@Override
 	public void profile(Users users) throws Exception {
-			
-		sqlSession.update(SESSION + ".profile", users);
+		
+		if(users.getUser_pw() == "") {
+			sqlSession.update(SESSION + ".profile", users);
+		} else {
+			sqlSession.update(SESSION + ".profile_pw", users);
+		}
+		
 			
 	}
 
@@ -72,6 +77,12 @@ public class MemberDAOImpl implements MemberDAO {
 	public int getOrderCnt(String user_id) throws Exception {
 		
 		return sqlSession.selectOne(SESSION + ".getOrderCnt", user_id);
+	}
+
+	// 5) 운송장번호 가져오기
+	@Override
+	public String getTracking_num(String order_num) throws Exception {
+		return sqlSession.selectOne(SESSION + ".getTracking_num", order_num);
 	}
 
 

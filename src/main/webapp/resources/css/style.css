@@ -25,8 +25,8 @@ body {
 }
 .bg_icon {
   position: absolute;
-  bottom: 20px;
-  right: 230px;
+  bottom: 2%;
+  right: 14%;
   z-index: -1;
   animation: rotate_image 35s linear infinite;
   transform-origin: 50% 50%;
@@ -48,7 +48,7 @@ body {
   width: 33.333%;
   height: 500px;
   font-family: 'RIDIBatang';
-  font-size: 17px;
+  font-size: 1rem;
   line-height: 25px;
   color: #1C1A1A;
   text-align: center;
@@ -84,7 +84,7 @@ body {
 .go_record p {
   float: left;
   font-family: 'RIDIBatang';
-  font-size: 17px;
+  font-size: 1rem;
   line-height: 40px;
   color: #1C1A1A;
 }
@@ -110,7 +110,7 @@ body {
 .go_store p {
   float: left;
   font-family: 'RIDIBatang';
-  font-size: 17px;
+  font-size: 1rem;
   line-height: 40px;
   color: #1C1A1A;
 }
@@ -121,6 +121,8 @@ body {
 }
 .mn_box img {
   width: 100%;
+  height: 100%;
+  object-fit : cover;
 }
 /* 호버시 커버 */
 .img_cover {
@@ -129,7 +131,7 @@ body {
   background-color: rgb(255, 255, 255, 0.6);
   position: absolute;
   top: 0;
-  left: 300px;
+  left: 100%;
   overflow: hidden;
 }
 .img_cover h3 {
@@ -142,14 +144,14 @@ body {
   opacity: 0.8;
 }
 .img_cover .record {
-  font-size: 95px;
+  font-size: 6rem;
   top: 236px;
-  left: 110px;
+  left: 36%;
 }
 .img_cover .shop {
-  font-size: 110px;
-  top: 235px;
-  left: 105px;
+  font-size: 7.2rem;
+  top: 233px;
+  left: 34%;
 }
 /* 푸터 */
 #footer {
