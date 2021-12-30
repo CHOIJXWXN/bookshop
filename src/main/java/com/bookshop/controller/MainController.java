@@ -33,8 +33,6 @@ public class MainController {
 	// 메인 페이지
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String main(Model model, HttpServletRequest request) throws Exception {
-		String root_path = request.getSession().getServletContext().getRealPath("/");
-		System.out.println(root_path);
 		return "main/main";
 	}	
 	
