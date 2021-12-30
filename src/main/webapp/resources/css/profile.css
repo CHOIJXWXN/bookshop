@@ -19,7 +19,7 @@ section {
     width: 180px;
     height: 200px;
     margin-top: 250px;
-    margin-left: 250px;
+    margin-left: 13%;
     /* background-color: lightgoldenrodyellow; */
 }
 #nav_title {
@@ -70,11 +70,11 @@ section {
 /* 회원정보 수정 */
 /* 필수입력사항 가이드메시지 */
 .guide_msg {
-    width: 1100px;
+    width: 57%;
     height: 30px;
     position: absolute;
     top: 290px;
-    left: 530px;
+    left: 27.6%;
   }
   .guide_msg p {
     float: right;
@@ -86,10 +86,10 @@ section {
   }
   /* 회원가입폼 전체 영역 */
   #join_form {
-    width: 1100px;
+    width: 57%;
     position: absolute;
     top: 320px;
-    left: 530px;
+    left: 27.6%;
   }
   
   /* ****입력칸 스타일 공통***** */
@@ -118,11 +118,13 @@ section {
     height: 170px;
     background-color: white;
     border-top: 0.05px solid #707070;
+    border-bottom: 0.05px solid #707070;
     padding-bottom: 2px;
     padding-top: 2px;
     background-clip: content-box;
     display: flex;
   }
+  
   .row_3 .wrap {
       width: 70%;
       height: 170px;
@@ -177,13 +179,13 @@ section {
   }
   /* 입력칸 크기 */
   .row input {
-    width: 390px;
+    width: 36%;
     height: 45px;
     padding-left: 15px;
     font-family: "Pretendard-Regular";
   }
   .row_msg input {
-    width: 390px;
+    width: 36%;
     height: 45px;
     padding-left: 15px;
     font-family: "Pretendard-Regular";
@@ -194,7 +196,7 @@ section {
     font-family: "Pretendard-Regular";
   }
   #addr_1 {
-      width: 230px;
+      width: 30%;
       outline:none;
   }
   #findPost {
@@ -208,11 +210,11 @@ section {
       cursor: pointer;
   }
   #addr_2 {
-      width: 390px;
+      width: 51.5%;
       outline:none;
   }
   #addr_3 {
-    width: 390px;
+    width: 51.5%;
   }
   .row input[type="radio"] {
     width: 30px;
@@ -225,8 +227,8 @@ section {
   input:read-only {background-color: #EFEFEF; border:0.5px solid #707070;}  
 
 /* 중복알림 메시지 */
-.pw_check p {
-	display: none;
+.row p {
+	display:none;
 }
 .row_msg p {
   display: none;
@@ -268,29 +270,27 @@ p.on {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    }
-    .final {
-      border-bottom: 1px solid #707070;
-    }
-    /* 회원가입 버튼 */
-    .submit_btn {
-      width: 100%;
-      height: 50px;
-      margin-top: 100px;
-     text-align: center;
-    }
-    input[type="submit"] {
-      width: 370px;
-      height: 50px;
-      background-color: #1C1A1A;
-      color: #F8F5F5;
-      font-family: "Pretendard-Regular";
-      font-size: 16px;
-      line-height: 50px;
-      color: #F8F5F5; 
-      cursor: pointer;
-    }
-    input[type="submit"]:hover {
-    	box-shadow: 0 0 6px #999;
-    	transition: 0.5s all ease;
-    }
+}
+/* 회원가입 버튼 */
+  .submit_btn {
+    width: 100%;
+    height: 50px;
+    margin-top: 100px;
+    text-align: center;
+}
+  input[type="submit"] {
+    width: 370px;
+    height: 50px;
+    background-color: #1C1A1A;
+    color: #F8F5F5;
+    font-family: "Pretendard-Regular";
+    font-size: 16px;
+    line-height: 50px;
+    color: #F8F5F5; 
+    cursor: pointer;
+}
+  input[type="submit"]:hover {
+  	box-shadow: 0 0 6px #999;
+  	transition: 0.5s all ease;
+}
+

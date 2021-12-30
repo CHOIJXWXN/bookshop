@@ -5,13 +5,18 @@
   width: 100%;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url("../images/diary_bg_4.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+	
+}
 /* [2]메인화면 */
 #diary {
   float: left;
   width: 100%;
-  background-image: url("../images/diary_bg_4.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
   position: relative;
 }
 

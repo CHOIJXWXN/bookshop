@@ -9,19 +9,19 @@ section {
     float: left;
     width: 100%;
     height: 100vh;
-    background-image: url("../images/main_bg_4.jpg");
+    background-image: url("../images/main_bg_6.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
   }
-  /* 사이드바 퀵메뉴 */
-  #sidebar {
-    float: left;
-    width: 180px;
-    height: 200px;
-    margin-top: 250px;
-    margin-left: 13%;
-    /* background-color: lightgoldenrodyellow; */
+/* 사이드바 퀵메뉴 */
+#sidebar {
+   float: left;
+   width: 180px;
+   height: 200px;
+   margin-top: 250px;
+   margin-left: 13%;
+   /* background-color: lightgoldenrodyellow; */
 }
 #nav_title {
     width: 180px;
@@ -46,18 +46,23 @@ section {
     line-height: 50px;
     color: #B5B1B1;;
 }
-#sidebar a.on span{
-	padding-left: 10px;
-	font-size: 17px;
-    color: #1C1A1A;
-}
 #sidebar a:hover span{
     padding-left: 10px;
     font-size: 17px;
     color: #1C1A1A;
+    font-weight: 600;
 }
 #sidebar a:hover span::after {
     content: ">";
+}
+#sidebar a.active span {
+    padding-left: 10px;
+    font-size: 17px;
+    color: #1c1a1a;
+    font-weight: 600;
+}
+#sidebar a.active span::after {
+    content: " >";
 }
   
 /* 주문 목록 테이블 */
@@ -157,10 +162,9 @@ section {
 }
 .order_num p {
     font-family: "Pretendard-Regular";
-    text-decoration: underline;
     font-size: 17px;
     line-height: 35px;
-    color: #6B52F1F0;
+    color: #1C1A1A;
 }
 /* 주문한 책 리스트 반복 */
 .row .book_list {
@@ -271,40 +275,44 @@ section {
   }
 
   /* 페이지넘버  */
-  .pagenum_wrap {
-      float: left;
-      width: 100%;
-      height: 50px;
-      margin-top: 30px;
-      margin-bottom: 200px;
-  }
-  .pagenum_wrap ul {
-      width: 230px;
-      float: right;
-      display: flex;
-      justify-content: space-between;
-      margin-right: 35%;
-  }
-  .pagenum_wrap ul a {     
-      display: block;
-      font-family: 'Goudy Bookletter 1911', serif;
+.pagenum_wrap {
+    float: left;
+    width: 100%;
+    height: 50px;
+    margin-top: 30px;
+    margin-bottom: 200px;
+}
+.pagenum_wrap ul {
+    width: 260px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    margin-right: 34%;
+}
+.pagenum_wrap ul li {
+	width: 50%;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+}
+.pagenum_wrap ul a {   
+	text-align: center;
+    display: block;
+    font-family: 'Goudy Bookletter 1911', serif;
     font-size: 22px;
     line-height: 50px;
     color: #1C1A1A;
     width: 70px;
-      height: 50px;
-  }
-  .pagenum_wrap ul a:hover {
-      background-color: whitesmoke;
-  }
+    height: 50px;
+}
 
-  .pagenum_wrap ul .prev:hover span::before {
+.pagenum_wrap ul .prev:hover span::before {
         content: "<";
 }
 .pagenum_wrap ul .next:hover {
     padding-right: 10px;
 }
-    .pagenum_wrap ul .next:hover span::after {
+.pagenum_wrap ul .next:hover span::after {
     content: ">";
 }
 
