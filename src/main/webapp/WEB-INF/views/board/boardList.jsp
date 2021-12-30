@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="${path }/resources/css/mainNav.css" />
     <link rel="stylesheet" href="${path }/resources/css/board.css" />
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="${path }/resources/js/memberjs/profile.js" charset="UTF-8"></script>
   </head>
   <body>
     <div id="wrap">

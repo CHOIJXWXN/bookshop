@@ -1,10 +1,12 @@
+@charset "utf-8";
+
 /* ===============frame=============== */
 body {
     margin: 0;
     padding: 0;
-    background-image: url("../images/main_bg_4.jpg");
-    background-repeat: repeat-y;
-    background-size: cover;
+    background-image: url("../images/main_bg_6.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;	
 }
 #wrap {
     width: 100%;

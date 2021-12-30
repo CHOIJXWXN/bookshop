@@ -35,6 +35,13 @@
     <script>
     	$(document).ready(function(){
     		
+    		$('#user_pw').keydown(function(keyNum){
+    			if(keyNum.keyCode == 13){ 
+    				$('#user_pw_check').click();
+    			}
+    		});
+    		
+    		
     		var msg = '${msg}';
     		if(msg != null && msg != '') {
     			alert(msg);
