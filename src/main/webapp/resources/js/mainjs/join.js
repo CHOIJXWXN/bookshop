@@ -265,7 +265,6 @@ $(function() {
                  $('#email_pass').hide();
                  $('#email_fail').show();
                  $('#user_email').attr('value', '');
-                 var email_check_flag = false;
               }
               else {
                   alert('데이터베이스 오류가 발생했습니다.');
