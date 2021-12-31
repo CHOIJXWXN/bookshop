@@ -5,7 +5,7 @@ body {
 	margin: 0;
 	padding: 0;
 	background-image: url("../images/main_bg_6.jpg");
-    background-repeat: repeat-y;
+    background-repeat: no-repeat;
     background-size: cover;
 }
 #wrap {
@@ -16,7 +16,6 @@ body {
  section {
     float: left;
     width: 100%;
-    
     position: relative;
   }
 

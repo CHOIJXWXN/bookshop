@@ -13,68 +13,98 @@
   background-image: url("../images/diary_bg_4.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+ 
+}
+form {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(5px 5px 5px #000);
 }
 .start_form {
     margin-top: 50px;
-    width: 500px;
-    height: 650px;
+    width: 50%;
+    height: 630px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: whitesmoke;
+    box-shadow: 0 0 6px #999;
+}
+.img_box {
+    width: 45%;
+    height: 630px;
+    background-image: url("../images/book_intro_bg1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.7; 
+    filter: alpha(opacity=70);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img_box p {
+    font-family: 'RIDIBatang';
+    color: black;
+    font-size: 16px;
+    line-height: 25px;
+    text-align: center;
+}
+
+.contents {
+    width: 55%;
+    height: 630px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url("../images/record_start_cover3.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-
 }
-.fa-book-open {
-    color: #A5A58D;
-    position: relative;
-    top: 90px;
-    font-size: 18px;
-}
-.start_form h3 {
+.contents h2 {
+    width: 100%;
+    height: 70px;
+    font-family: 'Goudy Bookletter 1911', serif;
+    font-size: 38px;
+    margin-top: 80px;
+    color: #1C1A1A;
+    line-height: 70px;
     text-align: center;
+}
+.contents p {
     font-family: 'RIDIBatang';
-    font-size: 30px;
-    line-height: 40px;
-    color: #1C1A1A;
-    margin-top: 120px;
-}
-.start_form p {
+    color: #444;
+    font-size: 15px;
+    line-height: 30px;
     text-align: center;
-    font-family: 'NotoSerifKR';
-    font-size: 18px;
-    line-height: 28px;
-    color: #1C1A1A;
-    margin-top: 60px;
 }
 .start_form input[type="text"] {
-    width: 70%;
+    width: 75%;
     height: 50px;
     background-color: transparent;
     border: none;
     border-bottom: 1px solid #1C1A1A;
     outline: none;
-    margin-top: 60px;
+    margin-top: 160px;
     font-family: 'RIDIBatang';
     font-size: 20px;
     line-height: 50px;
     color: #1C1A1A;
     text-align: center;
 }
+.start_form input[type="text"]::placeholder {
+    font-family: "Pretendard-Regular";
+    font-size: 15px;
+    line-height: 40px;
+}
 .start_form .btns_wrap {
     width: 100%;
     height: 50px;
-    margin-top: 70px;
+    margin-top: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 .start_form .btns_wrap .start_btn {
     width: 45%;
@@ -85,12 +115,21 @@
 	border: 0.6px solid #1C1A1A;
     font-family: 'NotoSerifKR';
 	font-size: 18px;
-	line-height: 50px;
+	line-height: 45px;
 	color: #1C1A1A;
+    cursor: pointer;
 }
 .start_form .btns_wrap .start_btn button:hover {
     background-color: #EEEFEA;
     transition: 0.5s all ease;
     box-shadow: 0 0 6px #707070;
 }
+.fa-book-open {
+    color: #1C1A1A;
+    position: relative;
+    top: 70px;
+    font-size: 22px;
+}
+
+
 

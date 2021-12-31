@@ -15,6 +15,8 @@
     <%-- 카카오 주소검색 API --%>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="${path }/resources/js/mainjs/kakao.js" charset="UTF-8"></script>
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
   </head>
   <body>
     <div id="wrap">
@@ -52,8 +54,8 @@
                 <!-- 비밀번호 -->
                 <div class="row pw">
                   <label for="user_pw">&nbsp;&nbsp;새 비밀번호</label>
-                  <input type="password" id="user_pw" name="user_pw" placeholder="영문 대소문자/숫자/특수문자, 10자 ~ 16자">
-                  <p class="form_check">비밀번호는 8~16자리의 영어 대소문자, 숫자, 특수문자 입력가능 합니다.</p>
+                  <input type="password" id="user_pw" name="user_pw" placeholder="영문 대소문자/숫자/특수문자 조합, 8자 ~ 16자">
+                  <p class="form_check">비밀번호는 8~16자리의 영어, 숫자, 특수문자 조합으로 설정 가능합니다.</p>
                 </div>
                 <!-- 비밀번호 확인 -->
                 <div class="row pw_check">
@@ -65,17 +67,18 @@
                 <!-- 이름 -->
                 <div class="row">
                   <label for="user_name">*&nbsp;이름</label>
-                  <input type="text" id="user_name" name="user_name" value="${users.user_name}">
+                  <input type="text" id="user_name" name="user_name" placeholder="숫자, 특수문자는 입력하실 수 없습니다." value="${users.user_name}">
                 </div>
                 <!-- 생년월일 -->
-                <div class="row">
+                <div class="row row_birth">
                   <label for="user_birth">&nbsp;&nbsp;생년월일</label>
-                  <input type="text" id="user_birth" name="user_birth" value="${users.user_birth}">
+                  <input type="date" id="user_birth" name="user_birth" value="${users.user_birth}">
+                   <i class="fas fa-calendar-alt"></i>
                 </div>
                 <!-- 닉네임 -->
                 <div class="row">
                   <label for="nickname">&nbsp;&nbsp;닉네임</label>
-                  <input type="text" id="user_nickname" name="user_nickname" value="${users.user_nickname}">
+                  <input type="text" id="user_nickname" name="user_nickname" maxlength="10" placeholder="최대 10글자" value="${users.user_nickname}">
                 </div>
                  <!-- 이메일 -->
                  <div class="row">
@@ -84,7 +87,7 @@
                 </div>
                 <!-- 휴대폰번호 -->
                 <div class="row">
-                  <label for="phone_num">*&nbsp;휴대폰번호</label>
+                  <label for="phone_num">*&nbsp;전화번호</label>
                   <input type="tel" id="user_phone" name="user_phone" minlength="11" maxlength="11" value="${users.user_phone}">
                 </div>
                 <!-- 주소 -->
