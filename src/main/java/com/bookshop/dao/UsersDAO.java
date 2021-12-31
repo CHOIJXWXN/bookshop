@@ -1,5 +1,7 @@
 package com.bookshop.dao;
 
+import java.util.List;
+
 import com.bookshop.vo.Users;
 
 public interface UsersDAO {
@@ -31,7 +33,7 @@ public interface UsersDAO {
 	public Users getIdE(Users users) throws Exception;
 	
 	// 아이디 찾기 (phone 이용)
-	public Users getIdP(Users users) throws Exception;
+	public List<Users> getIdP(Users users) throws Exception;
 	
 	// 비밀번호 찾기(회원정보 확인)
 	public Users getUserInfo(String user_id) throws Exception;

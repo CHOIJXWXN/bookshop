@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="${path }/resources/css/mainNav.css" />
     <link rel="stylesheet" href="${path }/resources/css/board.css" />
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="${path }/resources/js/memberjs/profile.js" charset="UTF-8"></script>
   </head>
   <body>
     <div id="wrap">
@@ -43,15 +42,15 @@
                     <p style="text-align:right;">&#91;&nbsp;${ask.ask_sort }&nbsp;&#93;&nbsp;</p>
                 </div>
                  <div class="board_ttl">
-                    <a href="${path}/ask/boardView?ask_id=${ask.ask_id}"><p style="text-align: left;"> ${ask.book_title }</p>
-                    	<!-- 댓글이 존재하면 댓글 갯수 표시 -->
+                    <a href="${path}/ask/boardView?ask_id=${ask.ask_id}"><p style="text-align: left;"> ${ask.book_title }</p> 
+                    	<!-- 댓글이 존재하면 댓글 갯수 표시 
                     	<c:if test="${ask.askreply_count ne 0}">
                     		<b><c:out value="${ask.askreply_count }"></c:out></b>
-                    	</c:if>
-                    </a>            
+                    	</c:if>-->  
+                    </a>     
                  </div>
                  <div class="reply_status">
-                    <p>답변대기</p>
+                    <p>${ask.ask_status}</p>
                 </div>
                  <div class="board_date">
                     <p>${ask.ask_date }</p>

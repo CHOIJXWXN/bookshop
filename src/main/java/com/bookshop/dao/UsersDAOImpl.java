@@ -1,6 +1,9 @@
 package com.bookshop.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -56,9 +59,9 @@ public class UsersDAOImpl implements UsersDAO {
 	
 	// 아이디 찾기 (getIdP) 이용
 	@Override
-	public Users getIdP(Users users) throws Exception {
+	public List<Users> getIdP(Users users) throws Exception {
 		
-		return sqlSession.selectOne(SESSION + ".getIdP", users);
+		return sqlSession.selectList(SESSION + ".getIdP", users);
 	}
 	
 	// 비밀번호 찾기(getUserInfo)

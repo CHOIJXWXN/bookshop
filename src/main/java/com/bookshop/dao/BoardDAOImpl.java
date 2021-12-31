@@ -32,7 +32,7 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public List<AskList> getAskList(String writer, int pageNumber) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		int start = (pageNumber - 1) * 5;
+		int start = 5 * (pageNumber - 1);
 		map.put("start", start);
 		map.put("writer", writer);
 		
