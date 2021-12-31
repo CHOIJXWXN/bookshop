@@ -40,6 +40,7 @@ $(document).ready(function() {
              alert("모든 약관 동의 후 회원가입 가능합니다.");
              return;
          } else {
+            sessionStorage.setItem('joinFlag', 0);
              location.href = "../join";
          }
      });
@@ -48,41 +49,39 @@ $(document).ready(function() {
   
  // [2] 회원가입 관련 
 
-     var id_check_flag = false;
-     var pw_check_flag = false;
-     var email_check_flag = false;
-    // var phone_check_flag = false;
+    var id_check_flag = false;
+    var pw_check_flag = false;
+    var email_check_flag = false;
 
      // id중복체크 checkId
-     $(function(){
-       var id_idreg_flag = false;
+    $(function(){
+        // 아이디 정규성 검사 
+        var id_idreg_flag = false;
          $('#user_id').keyup(function (){
             var idReg = /^[a-z0-9]{4,15}$/;
             var user_id = $('#user_id').val();
-         if(!idReg.test(user_id)) {
-            // alert("아이디는 4~14자리의 영어 소문자 와 숫자로만 입력가능 합니다.");
-            $('#id_pass').parent('div').removeClass('row');
-            $('#id_pass').parent('div').addClass('row_msg');
-            $('#id_pass').hide();
-            $('#id_fail').hide();
-            $('#id_check').show();
-            $('#user_id').focus();
-             id_idreg_flag = false;
-             id_check_flag = false;
-        }
-        else if(idReg.test(user_id)) {
-            // alert("아이디는 4~14자리의 영어 소문자 와 숫자로만 입력가능 합니다.");
-            $('#id_pass').parent('div').removeClass('row');
-            $('#id_pass').parent('div').addClass('row_msg');
-            $('#id_pass').hide();
-            $('#id_fail').hide();
-            $('#id_check').hide();
-            $('#user_id').focus();
-            id_idreg_flag = true;
-            id_check_flag = false;
-        }
-    // user_id keyup function
-    });
+            if(!idReg.test(user_id)) {
+                $('#id_pass').parent('div').removeClass('row');
+                $('#id_pass').parent('div').addClass('row_msg');
+                $('#id_pass').hide();
+                $('#id_fail').hide();
+                $('#id_check').show();
+                $('#user_id').focus();
+                id_idreg_flag = false;
+                id_check_flag = false;
+            }
+            else if(idReg.test(user_id)) {
+                $('#id_pass').parent('div').removeClass('row');
+                $('#id_pass').parent('div').addClass('row_msg');
+                $('#id_pass').hide();
+                $('#id_fail').hide();
+                $('#id_check').hide();
+                $('#user_id').focus();
+                id_idreg_flag = true;
+                id_check_flag = false;
+            }
+        // user_id keyup function
+        });
         $('#checkId').click(function(){
            var user_id = $('#user_id').val();
 
@@ -137,10 +136,8 @@ $(document).ready(function() {
         });
        // checkId click function
        });
-
-   });  
-  
-
+    // 아이디 관련 function
+    });  
      
 // 비밀번호 일치 확인 (user_pw2를 가지는 태그 변경)   
  $(function(){
@@ -213,7 +210,7 @@ $(document).ready(function() {
       // 완성형 아닌 한글 정규식
       var replaceNotFullKorean = /[ㄱ-ㅎㅏ-ㅣ]/gi;
       
-      $('#user_name').on('focusout', function() {
+      $('#user_name').focusout(function() {
         var user_name = $('#user_name').val();
         if (user_name.length > 0) {
             if (user_name.match(replaceChar) || user_name.match(replaceNotFullKorean)) {
@@ -221,40 +218,34 @@ $(document).ready(function() {
             }
             $('#user_name').val(user_name);
         }
-      }).on("keyup", function() {
+      }).keyup(function() {
             $('#user_name').val($('#user_name').val().replace(replaceChar, ''));
           //keyup.function  
          });
       //이름 관련 functon   
 });
 
-// 생년 월일 숫자 8글자만 입력가능
-$(function() {
-    $('#user_birth').keyup(function() { 
-        var blank = /[\s]/g;
-        $('#user_birth').val($('#user_birth').val().replace(blank, ''));  
-    // user_birth.keyup.function
-    });
-
-//생년월일 관련 function
-});
-
-// 닉네임
+// 닉네임 빈칸 입력 방지(띄어쓰기 X)
 $('#user_nickname').keyup(function(){
     var blank = /[\s]/g;
-     $('#user_nickname').val($('#user_nickname').val().replace(blank, ''));
+    $('#user_nickname').val($('#user_nickname').val().replace(blank, ''));
+// user_nickname.keyup.function    
 });
 
  // 이메일 중복 확인(checkEmail)
  $(function(){
+
     $('#user_email_id').keyup(function(){
         var blank = /[\s]/g;
-         $('#user_email_id').val($('#user_email_id').val().replace(blank, ''));
+        $('#user_email_id').val($('#user_email_id').val().replace(blank, ''));
+    // user_email_id.keyup.function
     });
     $('#user_email_domain').keyup(function(){
         var blank = /[\s]/g;
-         $('#user_email_domain').val($('#user_email_domain').val().replace(blank, ''));
+        $('#user_email_domain').val($('#user_email_domain').val().replace(blank, ''));
+    // user_email_domain.keyup.function
     });
+
      $('#user_email_domain_S').change(function(){
         if($('#user_email_domain_S').val() == '') {
         $('#user_email_domain').val('');
@@ -264,27 +255,52 @@ $('#user_nickname').keyup(function(){
             $('#user_email_domain').val($('#user_email_domain_S').val());
             $('#user_email_domain').attr('readonly', true);
         }
-        
      // user_email_domain_S.change.fucntion
      });
 
+     // 이메일 정규성 검사
+     /*
+     var email_reg =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+     var user_email_id = $('#user_email_id').val();
+     var user_email_domain = $('#user_email_domain').val();
+     var email_reg_flag = false;
+     email = user_email_id+"@"+user_email_domain;
+     $("#mail").val(email);  
+    
+     if(!email_reg.test(email)){
+       email_reg_flag = false;
+       email_check_flag = false;
+    } else if (email_reg.test(email)) {
+        email_reg_flag = true;
+        email_check_flag = false;
+    }
+     */
 
      $('#checkEmail').click(function(){
          var user_email = $('#user_email_id').val() + '@' + $('#user_email_domain').val();
          var user_email_id = $('#user_email_id').val();
          var user_email_domain = $('#user_email_domain').val();
          
+
          if(user_email_id == '') {
              alert('이메일을 입력하세요.');
              $('#user_email_id').focus();
+             email_check_flag = false;
              return;
          }
         if(user_email_domain == '') {
             alert('이메일을 입력하세요.');
             $('#user_email_domain').focus();
+            email_check_flag = false;
             return;
         }
- 
+        /* 이메일 정규성 확인 
+        if(!email_reg_flag) {
+            alert('이메일 주소를 다시 입력해주세요.')
+            email_check_flag = false;
+            return;
+        } */
+
          $.ajax({
              type: 'GET',
              url: './checkEmail',
@@ -369,14 +385,7 @@ $('#user_nickname').keyup(function(){
             event.preventDefault();
             return;
         }
-        
-        /*
-        if(!phone_check_flag) {
-            alert('휴대폰 인증을 해주세요');
-            event.preventDefault();
-            return;
-        }
-        */
+
 
        // submit function  
        });

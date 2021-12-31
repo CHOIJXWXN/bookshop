@@ -1,5 +1,7 @@
 package com.bookshop.service;
 
+import java.util.List;
+
 import com.bookshop.vo.Users;
 
 public interface UsersService {
@@ -23,7 +25,7 @@ public interface UsersService {
 	// 아이디 찾기 (휴대폰)
 	public int findIdPAction(Users users) throws Exception;	
 	// 유저 정보 (휴대폰)
-	public Users findIdP(Users users) throws Exception;
+	public List<Users> findIdP(Users users) throws Exception;
 	// 비밀번호 수정 및 전송
 	public int findPwEAction(Users users) throws Exception;
 	// 유저 정보 (이메일)

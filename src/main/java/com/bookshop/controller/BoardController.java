@@ -39,11 +39,9 @@ public class BoardController {
 			pageNumber = 1;
 		}
 		// 2) 회원 아이디에 일치하는 문의 목록들을 5개씩 리스트로 가져옴.
-			List<AskList> list = boardService.getAskList(user_id, pageNumber); 
-			model.addAttribute("list", list);
-			
-			model.addAttribute("pageNumber", pageNumber);
+			model.addAttribute("list", boardService.getAskList(user_id, pageNumber));
 			model.addAttribute("isNext", boardService.getNextPage(user_id, pageNumber));
+			model.addAttribute("pageNumber", pageNumber);
 			
 			return "board/boardList";
 		
