@@ -7,14 +7,16 @@
 
 	<!-- 특정 유저 장바구니 -->
    	<select id="getCartPlus" resultType="CartPlus">
-   		SELECT B.book_id, B.book_cover, B.book_title, B.book_writer, A.book_cnt, B.book_price FROM CART A, BOOK B
+   		SELECT B.book_id, B.book_cover, B.book_title, B.book_writer, A.book_cnt, B.book_price
+   		FROM CART A, BOOK B
      	WHERE user_id = #{user_id}
      	AND A.book_id = B.book_id
    	</select>
    	
 	<!-- 특정 유저의 특정 책 장바구니 -->
    	<select id="getCertainCartPlus" parameterType="hashmap" resultType="CartPlus">
-   		SELECT B.book_id, B.book_cover, B.book_title, B.book_writer, A.book_cnt, B.book_price FROM CART A, BOOK B
+   		SELECT B.book_id, B.book_cover, B.book_title, B.book_writer, A.book_cnt, B.book_price
+   		FROM CART A, BOOK B
      	WHERE user_id = #{user_id}
      	AND A.book_id = B.book_id
      	AND A.book_id IN ( 
@@ -62,7 +64,7 @@
    	</insert>
    	<insert id="addOrderlist">
    		INSERT INTO ORDERLIST
-   		VALUES (#{order_num}, #{book_id}, #{book_cnt});
+   		VALUES (#{order_num}, #{book_id}, #{book_cnt})
    	</insert>
    	
    	<!-- 포인트 차감 -->
