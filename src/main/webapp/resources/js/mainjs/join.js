@@ -10,6 +10,7 @@ $(document).ready(function() {
     // email hide
      $('#email_pass').hide();
      $('#email_fail').hide(); 
+     $('#email_regfail').hide();
   
   // [1] 약관동의 체크 
  $(function(){
@@ -234,19 +235,55 @@ $('#user_nickname').keyup(function(){
 
  // 이메일 중복 확인(checkEmail)
  $(function(){
-
+    var email_idreg_flag = false;
+    var email_domreg_flag = false;
+    // 이메일 아이디 입력 부분
     $('#user_email_id').keyup(function(){
+        // 빈칸 입력 방지
         var blank = /[\s]/g;
         $('#user_email_id').val($('#user_email_id').val().replace(blank, ''));
+       
+        // 정규성 검사
+        var email_id_reg =/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*$/i;
+        var user_email_id = $('#user_email_id').val();
+        if(!email_id_reg.test(user_email_id)) {
+          
+            email_idreg_flag = false;
+            email_check_flag = false;
+        } else if(email_id_reg.test(user_email_id)) {
+          
+            email_idreg_flag = true;
+            email_check_flag = false;
+        }
+
     // user_email_id.keyup.function
     });
+
+    // 도메인 직접 입력부분
     $('#user_email_domain').keyup(function(){
+        // 빈칸 입력 방지
         var blank = /[\s]/g;
         $('#user_email_domain').val($('#user_email_domain').val().replace(blank, ''));
+
+        // 정규성 검사
+        // ([-_.]?[0-9a-zA-Z])*
+     var email_domian_reg = /^([a-z0-9\-]+\.)+[a-z]{2,6}$/i;
+     var user_email_domain = $('#user_email_domain').val(); 
+
+    if(!email_domian_reg.test(user_email_domain)) {
+  
+        email_domreg_flag = false;
+        email_check_flag = false;
+    } else if(email_domian_reg.test(user_email_domain)) {
+     
+        email_domreg_flag = true;
+        email_check_flag = false;
+    }
     // user_email_domain.keyup.function
     });
 
-     $('#user_email_domain_S').change(function(){
+    // 이메일 도메인 선택입력 부분
+    $('#user_email_domain_S').change(function(){
         if($('#user_email_domain_S').val() == '') {
         $('#user_email_domain').val('');
        	$('#user_email_domain').attr('readonly', false);
@@ -255,26 +292,28 @@ $('#user_nickname').keyup(function(){
             $('#user_email_domain').val($('#user_email_domain_S').val());
             $('#user_email_domain').attr('readonly', true);
         }
+    // 정규성 검사
+    // /^([a-z0-9\-]+\.)+[a-z]{2,6}$/i;
+    // /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+     var email_domian_reg = /^([a-z0-9\-]+\.)+[a-z]{2,6}$/i;
+     var user_email_domain = $('#user_email_domain').val(); 
+
+    if(!email_domian_reg.test(user_email_domain)) {
+    
+        email_domreg_flag = false;
+        email_check_flag = false;
+    } else if(email_domian_reg.test(user_email_domain)) {
+        
+        email_domreg_flag = true;
+        email_check_flag = false;
+    }
+
      // user_email_domain_S.change.fucntion
      });
 
-     // 이메일 정규성 검사
-     /*
-     var email_reg =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-     var user_email_id = $('#user_email_id').val();
-     var user_email_domain = $('#user_email_domain').val();
-     var email_reg_flag = false;
-     email = user_email_id+"@"+user_email_domain;
-     $("#mail").val(email);  
     
-     if(!email_reg.test(email)){
-       email_reg_flag = false;
-       email_check_flag = false;
-    } else if (email_reg.test(email)) {
-        email_reg_flag = true;
-        email_check_flag = false;
-    }
-     */
+    // var email_reg =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+     
 
      $('#checkEmail').click(function(){
          var user_email = $('#user_email_id').val() + '@' + $('#user_email_domain').val();
@@ -284,22 +323,39 @@ $('#user_nickname').keyup(function(){
 
          if(user_email_id == '') {
              alert('이메일을 입력하세요.');
+             $('#email_pass').hide();
+             $('#email_fail').hide(); 
+             $('#email_regfail').hide();
              $('#user_email_id').focus();
              email_check_flag = false;
              return;
          }
         if(user_email_domain == '') {
             alert('이메일을 입력하세요.');
+            $('#email_pass').hide();
+            $('#email_fail').hide(); 
+            $('#email_regfail').hide();
             $('#user_email_domain').focus();
             email_check_flag = false;
             return;
         }
-        /* 이메일 정규성 확인 
-        if(!email_reg_flag) {
+        // 이메일 정규성 확인 
+        if(!email_idreg_flag) {
             alert('이메일 주소를 다시 입력해주세요.')
+            $('#email_pass').hide();
+            $('#email_fail').hide(); 
+            $('#email_regfail').hide();
             email_check_flag = false;
             return;
-        } */
+        } 
+        if(!email_domreg_flag) {
+            alert('이메일 주소를 다시 입력해주세요.')
+            $('#email_pass').hide();
+            $('#email_fail').hide(); 
+            $('#email_regfail').hide();
+            email_check_flag = false;
+            return;
+        } 
 
          $.ajax({
              type: 'GET',

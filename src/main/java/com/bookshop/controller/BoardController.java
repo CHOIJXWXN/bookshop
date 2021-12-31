@@ -84,9 +84,17 @@ public class BoardController {
 	// 문의 view
 	// url 패턴이 'path/ask/boardView'
 	@RequestMapping(value="/boardView", method= RequestMethod.GET)
-	public String boardView(Integer ask_id, Model model, HttpSession session, RedirectAttributes ra) throws Exception {
+	public String boardView(Integer ask_id, Ask ask, Model model, HttpSession session, RedirectAttributes ra) throws Exception {
 		
 		String user_id = (String) session.getAttribute("user_id");
+		Ask ask_writer = (Ask) boardService.boardView(ask_id).get("ask");
+		
+		
+		if(!ask_writer.getWriter().equals(user_id) && session.getAttribute("admin") == null) {
+			ra.addFlashAttribute("msg", "접근할 수 없는 페이지입니다.");
+			return "redirect:/ask/";
+		}
+		
 		// 1) 로그인이 되어있지 않으면 로그인 페이지로 이동시키고 로그인이 필요하다고 알려줌
 		if(user_id == null) {
 			ra.addFlashAttribute("msg", "로그인이 필요합니다.");
@@ -98,12 +106,10 @@ public class BoardController {
 			return "redirect:/ask/";
 		}
 		
-		// Ask ask = boardService.boardView(ask_id);
+		
 		HashMap<String, Object> map = boardService.boardView(ask_id);
 		
 		// 2) 도서 아이디, 책제목, 작가 / 주문번호를 넘겨줌 
-		// model.addAttribute("book", boardService.getBookInfo(ask.getBook_id()));
-		// model.addAttribute("ask", ask);
 		model.addAttribute("book", boardService.getBookInfo(boardService.getBookid(ask_id)));
 		model.addAttribute("map", map);
 		model.addAttribute("user", boardService.getUserInfo(user_id));
