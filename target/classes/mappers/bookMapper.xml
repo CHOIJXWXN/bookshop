@@ -117,52 +117,71 @@
 		)
 	</select>
 	
-	<!-- 초기 흥미 장르 -->
-	<select id="getInitGenre" resultType="string">
-		SELECT user_init_genre
-		FROM USERS
-		WHERE user_id = #{user_id}
-	</select>
-	
-	<!-- 리뷰 기반 추천 장르 -->
-	<select id="getGenreRecomm" resultType="string">
-		SELECT B.book_genre
-		FROM REVIEW A, BOOK B
-		WHERE A.user_id = #{user_id}
-		  AND A.book_id = B.book_id
-		  AND A.review_score <![CDATA[>=]]> 3
-		  AND B.available = 0
-		GROUP BY B.book_genre
-		ORDER BY COUNT(B.book_id) DESC
-		LIMIT 1
-	</select>
-	<!-- 장르 상위 4개 -->
-	<select id="getGenreRecommFour" resultType="Book">
+	<!-- 초기 흥미 장르 임의 4개 -->
+	<select id="getInitGenre" resultType="Book">
 		SELECT *
 		FROM BOOK
-		WHERE book_genre = #{book_genre}
+		WHERE book_genre = (SELECT user_init_genre
+			FROM USERS
+			WHERE user_id = #{user_id})
+		AND available = 0
+		ORDER BY RAND()
+		LIMIT 4		
+	</select>
+	
+	<!-- 리뷰/기록 기반 추천 장르 임의 4개 -->
+	<select id="getGenreRecomm" resultType="Book">
+		SELECT *
+		FROM BOOK
+		WHERE book_genre = (SELECT E.book_genre
+			FROM
+				(SELECT A.book_id, A.record_score AS score
+					FROM RECORD A
+					WHERE A.user_id = #{user_id}
+				UNION
+				SELECT B.book_id, B.review_score AS score
+					FROM REVIEW B
+					LEFT JOIN RECORD C
+					ON B.book_id = C.book_id
+					AND B.user_id = C.user_id
+					WHERE C.book_id IS NULL
+					AND B.user_id = #{user_id}
+				) D, BOOK E
+			WHERE D.book_id = E.book_id
+			AND E.available = 0
+			AND D.score <![CDATA[>=]]> 3
+			GROUP BY E.book_genre
+			ORDER BY COUNT(E.book_id) DESC
+			LIMIT 1)
 		AND available = 0
 		ORDER BY RAND()
 		LIMIT 4
 	</select>
 	
-	<!-- 리뷰 기반 추천 작가 -->
-	<select id="getWriterRecomm" resultType="string">
-		SELECT B.book_writer
-		FROM REVIEW A, BOOK B
-		WHERE A.user_id = #{user_id}
-		  AND A.book_id = B.book_id
-		  AND A.review_score <![CDATA[>=]]> 3
-		  AND B.available = 0
-		GROUP BY B.book_writer
-		ORDER BY COUNT(B.book_id) DESC
-		LIMIT 1
-	</select>
-	<!-- 작가 상위 2개 -->
-	<select id="getWriterRecommTwo" resultType="Book">
+	<!-- 리뷰/기록 기반 추천 작가 임의 2개 -->
+	<select id="getWriterRecomm" resultType="Book">
 		SELECT *
 		FROM BOOK
-		WHERE book_writer = #{book_writer}
+		WHERE book_writer = (SELECT E.book_writer
+			FROM
+				(SELECT A.book_id, A.record_score AS score
+					FROM RECORD A
+					WHERE A.user_id = #{user_id}
+				UNION
+				SELECT B.book_id, B.review_score AS score
+					FROM REVIEW B
+					LEFT JOIN RECORD C
+					ON B.book_id = C.book_id
+					AND B.user_id = C.user_id
+					WHERE C.book_id IS NULL
+					AND B.user_id = #{user_id}
+				) D, BOOK E
+			WHERE D.book_id = E.book_id
+			AND E.available = 0
+			AND D.score <![CDATA[>=]]> 3
+			GROUP BY E.book_writer
+			ORDER BY COUNT(E.book_id) DESC
+			LIMIT 1)
 		AND available = 0
 		ORDER BY RAND()
 		LIMIT 2

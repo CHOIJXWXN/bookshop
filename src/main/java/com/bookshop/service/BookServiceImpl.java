@@ -75,25 +75,16 @@ public class BookServiceImpl implements BookService {
 	public HashMap<String, Object> best(String user_id) throws Exception {
 		int flag = 0;
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		String book_genre = "";
-		String book_writer = "";
+		List<Book> genreList = dao.getGenreRecomm(user_id);
+		List<Book> writerList = dao.getWriterRecomm(user_id);
 		if (!user_id.equals("")) {
-			book_genre = dao.getGenreRecomm(user_id);
-			book_writer = dao.getWriterRecomm(user_id);
-			if (book_genre == null || book_genre.equals("")) {
-				book_genre = dao.getInitGenre(user_id);
-			}
-			map.put("genreList", dao.getGenreRecommFour(book_genre));
-			if (book_writer == null || book_writer.equals("")) {
-				flag = 0;
+			if (genreList == null) {
+				map.put("genreList", dao.getInitGenre(user_id));
 			} else {
-				if (dao.getWriterRecommTwo(book_writer).size() == 1) {
-					flag = 1;
-				} else {
-					flag = 2;
-				}
-				map.put("writerList", dao.getWriterRecommTwo(book_writer));
+				map.put("genreList", genreList);
 			}
+			flag = writerList.size();
+			map.put("writerList", writerList);
 		}
 		map.put("bestSeller", dao.getBestSeller());		
 		map.put("flag", flag);

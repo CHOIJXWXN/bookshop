@@ -17,11 +17,9 @@ public interface BookDAO {
 	public List<Book> searchGenreBook(String keyword, String book_genre, int pageNum) throws Exception;
 	public int getSearchGenreBookCnt(String keyword, String book_genre) throws Exception;
 	public List<Book> getBestSeller() throws Exception;
-	public String getInitGenre(String user_id) throws Exception;
-	public String getGenreRecomm(String user_id) throws Exception;
-	public String getWriterRecomm(String user_id) throws Exception;
-	public List<Book> getGenreRecommFour(String book_genre) throws Exception;
-	public List<Book> getWriterRecommTwo(String book_writer) throws Exception;
+	public List<Book> getInitGenre(String user_id) throws Exception;
+	public List<Book> getGenreRecomm(String user_id) throws Exception;
+	public List<Book> getWriterRecomm(String user_id) throws Exception;
 	public Book getBook(String book_id) throws Exception;
 	public List<Review> getReview(String book_id, int pageNum) throws Exception;
 	public int getReviewCnt(String book_id) throws Exception;
