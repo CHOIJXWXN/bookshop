@@ -242,7 +242,6 @@
 	IMP.init("imp21304345");
 	function requestPay() {
       // IMP.request_pay(param, callback) 결제창 호출
-      alert('${orderNum}');
       IMP.request_pay({ // param
           pg: "html5_inicis",
           pay_method: "card",
