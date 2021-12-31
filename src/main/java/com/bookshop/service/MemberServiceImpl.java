@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.bookshop.dao.BookDAO;
 import com.bookshop.dao.MemberDAO;
 import com.bookshop.dao.UsersDAO;
+import com.bookshop.util.Xss;
 import com.bookshop.vo.Book;
 import com.bookshop.vo.OrderDetail;
 import com.bookshop.vo.OrderItem;
@@ -35,7 +36,7 @@ public class MemberServiceImpl implements MemberService {
 		Users users = udao.getUserInfo(user_id);
 		
 		users.preXss();
-		
+				
 		return users;
 	}
 	

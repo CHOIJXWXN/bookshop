@@ -55,10 +55,7 @@
       $("#user_pw").keyup(function(){   
         var pw_check_flag = false;  
       	checkPassword();
-      	if($("#user_pw").val() == "") {
-        	$(".pw").find(".form_check").removeClass("on");
-        	$(".pw").removeClass("row_msg");
-        	$(".pw").addClass("row");
+      	
         }  
       	
       });

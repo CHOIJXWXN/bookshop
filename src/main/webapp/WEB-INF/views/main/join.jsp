@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="${path }/resources/css/reset.css" />
     <link rel="stylesheet" href="${path }/resources/css/mainNav.css" />
     <link rel="stylesheet" href="${path }/resources/css/join.css" />
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="${path }/resources/js/mainjs/join.js" charset="UTF-8"></script>
     <%-- 카카오 주소검색 API --%>
@@ -74,7 +76,7 @@
               <!-- type ="text를 type="password" 로 변경 -->
               <div class="row">
                 <label for="user_pw">*&nbsp;비밀번호</label>
-                <input type="password" id="user_pw" name="user_pw"  placeholder="영문 대소문자/숫자/특수문자, 10자 ~ 16자">
+                <input type="password" id="user_pw" name="user_pw"  placeholder="영문 대소문자/숫자/특수문자 조합, 8자 ~ 16자">
                 
               </div>
               <!-- 비밀번호 확인 -->
@@ -84,7 +86,7 @@
                 <input type="password" id="user_pw2" name="user_pw2">
                 <p class="pass" id="pw_pass">확인되었습니다.</p>
                 <p class="fail" id="pw_fail">비밀번호가 다릅니다.</p>
-                 <p class="fail" id="pw_check">비밀번호는 8~16자리의 영어, 숫자, 특수문자 조합으로 입력가능 합니다.</p>
+                <p class="fail" id="pw_check">비밀번호는 8~16자리의 영어, 숫자, 특수문자 조합으로 입력가능 합니다.</p>
               </div>
               <!-- 이름 -->
               <div class="row">
@@ -92,9 +94,10 @@
                 <input type="text" id="user_name" name="user_name" placeholder="숫자, 특수문자는 입력하실 수 없습니다.">
               </div>
               <!-- 생년월일 -->
-              <div class="row">
+              <div class="row row_birth">
                 <label for="user_birth">&nbsp;&nbsp;생년월일</label>
-                <input type="date" id="user_birth" name="user_birth" >
+                <input type="date" id="user_birth" name="user_birth" placeholder="yyyy-mm-dd">
+                <i class="fas fa-calendar-alt"></i>
               </div>
               <!-- 닉네임 -->
               <div class="row">

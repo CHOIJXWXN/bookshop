@@ -16,7 +16,7 @@ section {
   }
 .container {
     margin: 0 auto;
-    width: 1100px;
+    width: 57%;
     margin-top: 150px;
 }
 /* 제목 */
@@ -46,11 +46,11 @@ section {
     line-height: 60px;
     color: #FAFAF8;
 }
-.board_id {
-    width: 12%;
+.board_date {
+    width: 20%;
 }
 .book_img {
-    width: 12%;
+    width: 13%;
 }
 .book_img .img_box {
     width: 100%;
@@ -63,19 +63,18 @@ section {
 .book_img .img_box img {
     height: 100%;
 }
+
 .ask_category {
-    width: 10%;
+    width: 8%;
 }
 
 .board_ttl {
-    width: 39%;
+    width: 37%;
 }
 .reply_status {
-    width: 10%;
+    width: 22%;
 }
-.board_date {
-    width: 17%;
-}
+
 
 /* 각 게시글 행 스타일 */
 .row {
