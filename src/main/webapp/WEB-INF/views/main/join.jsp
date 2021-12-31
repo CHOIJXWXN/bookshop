@@ -108,6 +108,7 @@
                 <!-- 이메일 도메인 주소넣기 위해 input창 추가, 넓이 120으로 축소 
                 <input type="text" id="user_email" name="user_email" style="width: 240px">-->
                 <input type="text" id="user_email_id" name="user_email_id" maxlength="30" style="width: 110px">
+                
                 <span>@</span>
                 <input type="text" id="user_email_domain" name="user_email_domain" style="width: 110px">
                 <select name="user_email_domain_S" id="user_email_domain_S" class="book_num">
@@ -116,6 +117,7 @@
                   <option value="hanmail.com">hanmail.com</option>
                   <option value="gmail.com">gmail.com</option>
               	</select>
+              	<p class="fail" id="email_regfail">이메일을 정확하게 입력해주세요.</p>
              	<p class="pass" id="email_pass">사용가능한 이메일입니다.</p>
                	<p class="fail" id="email_fail">이미 존재하는 이메일입니다.</p>
                 <button type="button" class="checkEmail" id="checkEmail">중복확인</button>

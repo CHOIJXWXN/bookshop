@@ -66,6 +66,7 @@ public class BoardServiceImpl implements BoardService {
 	public HashMap<String, Object> boardView(int ask_id) throws Exception {
 		List<AskReply> askreplyList = dao.getAskReplyList(ask_id);
 		
+		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		// 문의내용 불러오기
 		map.put("ask", dao.getAsk(ask_id));

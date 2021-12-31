@@ -1,5 +1,7 @@
 package com.bookshop.vo;
 
+import com.bookshop.util.Xss;
+
 public class AskReply {
 	
 	private int askreply_id;			
@@ -58,6 +60,5 @@ public class AskReply {
 		this.askreply_date = askreply_date;
 	}
 	
-
-
+	
 }

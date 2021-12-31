@@ -64,6 +64,7 @@ $(document).ready(function() {
 				$('#write_reply').val('');
 	         // upload_reply.click.fucntion   
 	        })
+	
       
  // document.ready.function    
 });
