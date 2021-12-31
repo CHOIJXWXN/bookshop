@@ -19,16 +19,21 @@
       <!-- [2] 메인화면 -->
       <section id="record_start">
         <form action="./addTitle" method="GET">
-        <div class="start_form">
-            <i class="fas fa-book-open fa-2x"></i>
-            <h3>독서 기록</h3>
-            <p>
-             나의 독서 기록장에<br>특별한 이름을 지어주세요 :)
-            </p>
-            <input type="text" class="record_name" name="user_title">
+         <div class="start_form">
+          <div class="img_box">
+            <!-- <p>
+              문구넣기
+            </p> -->
+          </div>
+          <div class="contents">
+            <i class="fas fa-book-open"></i>
+            <h2>BOOK DIARY</h2>
+            <p>독서기록 시작하기</p>
+            <input type="text" class="record_name" name="user_title" placeholder="나의 독서 기록장에 특별한 이름을 지어주세요:)">
             <ul class="btns_wrap">
-                <li class="start_btn"><button>START</button></li>
-            </ul>
+              <li class="start_btn"><button>Get Started</button></li>
+           </ul>
+          </div>           
         </div>
         </form>
       </section>    

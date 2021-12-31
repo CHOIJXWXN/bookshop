@@ -1,4 +1,3 @@
- 
  $(document).ready(function(){
  	
  	if (sessionStorage.getItem('profileFlag') != 0) {
@@ -16,7 +15,11 @@
       function checkPassword(){
       	var user_pw = $("#user_pw").val();
         var user_pw2 = $("#user_pw2").val();
-        var pwReg = /^[A-za-z0-9~!@#$%^&*()_+|<>?:{}]{8,16}$/;
+        var pwReg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
+        var blank = /[\s]/g;
+        
+        $('#user_pw').val($('#user_pw').val().replace(blank, ''));
+        $('#user_pw2').val($('#user_pw2').val().replace(blank, ''));
         
         if(!pwReg.test(user_pw)) {
           $(".pw").removeClass("row");
@@ -65,6 +68,36 @@
       	checkPassword(); 
       });
       
+      
+    // 이름에 특수문자, 숫자 들어가지 않는지 검증
+     // 특수문자 정규식 변수
+      var replaceChar = /[~!@\#$%^&*\()\-=+_'\;<>0-9\/.\`:\"\\,\[\]?|{}\s]/gi;
+      // 완성형 아닌 한글 정규식
+      var replaceNotFullKorean = /[ㄱ-ㅎㅏ-ㅣ]/gi;
+      
+      $('#user_name').on('focusout', function() {
+        var user_name = $('#user_name').val();
+        if (user_name.length > 0) {
+            if (user_name.match(replaceChar) || user_name.match(replaceNotFullKorean)) {
+                user_name = user_name.replace(replaceChar, '').replace(replaceNotFullKorean, '');
+            }
+            $('#user_name').val(user_name);
+        }
+      }).on("keyup", function() {
+            $('#user_name').val($('#user_name').val().replace(replaceChar, '')); 
+         });
+      
+    // 닉네임 공백 제외
+    $('#user_nickname').keyup(function(){
+	    var blank = /[\s]/g;
+	    $('#user_nickname').val($('#user_nickname').val().replace(blank, ''));
+	});
+	
+	// 휴대폰 번호 숫자만 입력
+	$('#user_phone').keyup(function() {
+        $('#user_phone').val($('#user_phone').val().replace(/[^0-9]/g, ''));
+    });
+    
       
     // form 태그가 sumbit 이벤트를 발생시켰을 때
 	$('form').submit(function(event){

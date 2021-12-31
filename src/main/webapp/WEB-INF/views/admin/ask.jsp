@@ -11,6 +11,21 @@
     <link rel="stylesheet" href="${path}/resources/css/reset.css" />
     <link rel="stylesheet" href="${path}/resources/css/mainNav.css" />
     <link rel="stylesheet" href="${path}/resources/css/admin_ask.css" />
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  	<script>
+  		$(document).ready(function() {
+  			
+  			var order_status = $('.ask_status').text();
+  			
+  			if(order_status == '답변미완료') {
+  				$('.ask_status').addClass('notdone');
+  			}
+  			else if(order_status == '답변완료') {
+  				$('.ask_status').addClass('done');
+  			}
+  			
+  		});
+  	</script>
   </head>
   <body>
     <div id="wrap">
@@ -30,7 +45,7 @@
             </a>
         </div>
         <div id="container">
-            <h3>QnA</h3>
+            <h3 class="title">QnA</h3>
             <table>
               <tr>
                 <th>No</th>
@@ -46,7 +61,7 @@
                 <td><a href="${path}/ask/boardView?ask_id=${ask.ask_id}">[${ask.ask_sort}] ${ask.book_title}</a></td> <!-- [ask_sort],[book_title]  -->
                 <td>${ask.writer }</td> <!-- ask_writer -->
                 <td>${ask.ask_date}</td>	<!-- ask_date --> 
-              	<td class="notdone">${ask.ask_status}</td>
+              	<td class="ask_status">${ask.ask_status}</td>
               </tr>
               </c:forEach>
               

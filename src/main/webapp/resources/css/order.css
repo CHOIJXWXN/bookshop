@@ -352,6 +352,9 @@ margin-top: 92px;
   height: 45px;
   padding-left: 15px;
 }
+#addr_4 {
+	margin-left: 6px;
+}
 .row input[type="number"] {
   width: 390px;
   height: 45px;
