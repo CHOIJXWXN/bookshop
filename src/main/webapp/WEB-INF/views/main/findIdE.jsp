@@ -26,7 +26,13 @@
                 <input type="radio" name="id_list" id="id_list" checked />
                 <label for="id_list">
                 <c:if test="${users.user_id ne null && users.user_id!=''}">
-                ${fn:substring(users.user_id,0,fn:length(users.user_id)-4)}****</c:if>
+                <c:if test="${fn:length(user.user_id >= 8}">
+                ${fn:substring(users.user_id,0,fn:length(users.user_id)-4)}****
+                </c:if>
+                <c:if test="${fn:length(user.user_id < 8}">
+                ${fn:substring(users.user_id,0,fn:length(users.user_id)-2)}**
+                </c:if>
+                </c:if>
                 </label>
             </div>
             <ul class="btns_wrap">

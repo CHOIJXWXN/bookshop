@@ -9,9 +9,9 @@
 	<select id="getRecord" parameterType="hashmap" resultType="RecordPlus">
 		SELECT B.record_id, A.book_cover, A.book_title, A.book_writer, A.book_pub, B.record_init_date, B.record_fin_date, B.record_score, B.record_contents
 		FROM BOOK A, (
-			SELECT * FROM RECORD
-			WHERE user_id = #{user_id}
-			ORDER BY record_date DESC
+			SELECT R.* FROM RECORD R
+			WHERE R.user_id = #{user_id}
+			ORDER BY R.record_date DESC
 			LIMIT #{start}, 12
 		) B
 		WHERE A.book_id = B.book_id

@@ -41,8 +41,7 @@
                     <a href="${path}/ask/boardView?ask_id=${ask.ask_id}"><p style="text-align: right;">&#91;&nbsp;${ask.ask_sort }&nbsp;&#93;&nbsp;</p> </a>
                 </div>
                  <div class="board_ttl">
-                    <a href="${path}/ask/boardView?ask_id=${ask.ask_id}"><p style="text-align: left;">&nbsp;${ask.book_title }</p> 
-                    </a>     
+                    <a href="${path}/ask/boardView?ask_id=${ask.ask_id}"><p style="text-align: left;">&nbsp;${ask.book_title }</p></a>     
                  </div>
                  <div class="reply_status">
                     <p>${ask.ask_status}</p>
@@ -65,7 +64,14 @@
              </div>
              </section>
          </div>
-         
+  <script>
+	$(document).ready(function() {		
+		var msg = '${msg}';
+		if(msg != null && msg != '') {
+			alert(msg);
+		}
+	})
+</script>
 
   </body>
 </html>
