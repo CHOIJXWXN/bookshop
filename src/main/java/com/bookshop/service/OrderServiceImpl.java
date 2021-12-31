@@ -86,7 +86,9 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public HashMap<String, Object> orderInfo(String user_id) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("order", dao.getOrderInfo(user_id));
+		Orders order = dao.getOrderInfo(user_id);
+		order.setOrder_addr(order.getOrder_addr().replaceAll("_", " "));
+		map.put("order", order);
 		map.put("point", mdao.getPoint(user_id));
 		return map;
 	}

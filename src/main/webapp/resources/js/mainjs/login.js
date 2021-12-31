@@ -39,9 +39,15 @@
                 success : function(data) {
                     // 로그인 정보 일치 -> 로그인 성공, 메인페이지이동
                     if(data == 0 || data == 1) {
-                    	if ($('input[name=pre_page]').val() != '') {
-                    		location.href = $('input[name=pre_page]').val();
-                    		sessionStorage.removeItem('pre_page');
+                    	var pre_page = $('input[name=pre_page]').val();
+                    	if (pre_page != '') {
+                    		if (pre_page == '/findIdP' || pre_page == '/findIdE' || pre_page == '/findPwEAction') {
+                    			location.href = '../';
+                    			sessionStorage.removeItem('pre_page');
+                    		} else {
+	                    		location.href = pre_page;
+	                    		sessionStorage.removeItem('pre_page');
+	                    	}
                     	} else {
                     		location.href = '../';
                     	}

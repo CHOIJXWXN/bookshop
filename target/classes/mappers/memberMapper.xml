@@ -22,14 +22,14 @@
 	<!-- Orders 가져오기 -->
 	<select id="getOrders" resultType="Orders">
 		SELECT A.*
-		FROM (SELECT @ROWNUM := @ROWNUM + 1 AS rownum, O.*
-			  FROM (SELECT @ROWNUM := 0) R,
-				 (SELECT *
-				  FROM ORDERS
-				  WHERE user_id = #{user_id}
-				  ORDER BY order_num DESC) O
+		FROM (SELECT R.@ROWNUM := R.@ROWNUM + 1 AS rownum, O.*
+			  FROM (SELECT R.@ROWNUM := 0) R,
+				 (SELECT B.*
+				  FROM ORDERS B
+				  WHERE B.user_id = #{user_id}
+				  ORDER BY B.order_num DESC) O
 			  ) A
-		WHERE rownum >= #{pageNumber}
+		WHERE A.rownum >= #{pageNumber}
 		LIMIT 2
 	</select>
 
@@ -43,13 +43,13 @@
 	<!-- (마이페이지) 다음페이지 존재하는지 -->
 	<select id="getPageIs" resultType="Orders">
 		SELECT A.*
-		FROM (SELECT @ROWNUM := @ROWNUM + 1 AS rownum, O.*
-			FROM (SELECT @ROWNUM := 0) R,
-			(SELECT *
-			FROM ORDERS
-			WHERE user_id = #{user_id}
-			ORDER BY order_num DESC) O) A
-		WHERE rownum = #{pageNumber}
+		FROM (SELECT R.@ROWNUM := R.@ROWNUM + 1 AS rownum, O.*
+			FROM (SELECT R.@ROWNUM := 0) R,
+			(SELECT B.*
+			FROM ORDERS B
+			WHERE B.user_id = #{user_id}
+			ORDER BY B.order_num DESC) O) A
+		WHERE A.rownum = #{pageNumber}
 	</select>
 
 	<!-- 보유 포인트 가져오기 -->
@@ -63,7 +63,7 @@
 	<select id="getOrderCnt" resultType="_int">
 		SELECT COUNT(order_num)
 		FROM ORDERS
-		WHERE user_id = #{user_id};
+		WHERE user_id = #{user_id}
 	</select>
 
 	<!-- 최신 주문번호 가져오기 -->
@@ -71,7 +71,7 @@
 		SELECT *
 		FROM ORDERS
 		WHERE user_id = #{user_id}
-		ORDER BY order_num DESC;
+		ORDER BY order_num DESC
 	</select>
 	
 	<select id="getTracking_num" resultType="String">
