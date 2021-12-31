@@ -27,8 +27,8 @@
             <a href="${path}/admin/order">
                 <span>주문관리&nbsp;&nbsp;</span>
             </a>
-            <a href="${path}/admin/product">
-                <span class="on">상품관리&nbsp;&nbsp;</span>
+            <a href="${path}/admin/product"  class="active">
+                <span>상품관리&nbsp;&nbsp;</span>
             </a>
             <a href="${path}/admin/ask">
                 <span>문의관리&nbsp;&nbsp;</span>

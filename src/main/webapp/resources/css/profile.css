@@ -288,7 +288,7 @@ p.on {
     color: #F8F5F5; 
     cursor: pointer;
 }
-  input[type="submit"]:hover {
+input[type="submit"]:hover {
   	box-shadow: 0 0 6px #999;
   	transition: 0.5s all ease;
 }
@@ -309,7 +309,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   color: #707070;
   position: absolute;
   top: 37%;
-  left: 60%;
+  left: 58%;
   z-index: 7000;
   font-size: 18px;
 }

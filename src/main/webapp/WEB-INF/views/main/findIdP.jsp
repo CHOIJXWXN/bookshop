@@ -24,11 +24,13 @@
             <p>${users.user_phone }</p>
             <c:forEach var="users" items="${list }">
             <div class="row">
-                <input type="radio" name="id_list" id="id_list" checked />
-                <label for="id_list">
-                <c:if test="${users.user_id ne null && users.user_id!=''}">
-                ${fn:substring(users.user_id,0,fn:length(users.user_id)-4)}****</c:if>
-                </label>
+            	<div>
+	                <input type="radio" name="id_list" id="id_list" checked />
+	                <label for="id_list">
+	                <c:if test="${users.user_id ne null && users.user_id!=''}">
+	                ${fn:substring(users.user_id,0,fn:length(users.user_id)-4)}****</c:if>
+	                </label>
+                </div>
             </div>
             </c:forEach>
             <ul class="btns_wrap">

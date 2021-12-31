@@ -21,40 +21,32 @@
          <div class="container">
              <h2>QnA</h2>
              <div class="table_h">
-                 <h3 class="board_id">No.</h3>
+                 <h3 class="board_date">문의 날짜</h3>
                  <h3 class="book_img"></h3>
                  <h3 class="ask_category"></h3>
                  <h3 class="board_ttl" style="text-align:left; padding-left: 100px; box-sizing: border-box">제목</h3>
                  <h3 class="reply_status">답변</h3>
-                 <h3 class="board_date">날짜</h3>
              </div>
              <!-- 아래로 문의 리스트 5개씩 -->
              <!-- 여기부터 반복(5개) -->
              <c:forEach var="ask" items="${list }">
              <div class="row">
-                 <div class="board_id">
-                     <p>${ask.ask_id }</p>
+             	 <div class="board_date">
+                    <p>${ask.ask_date }</p>
                  </div>
                  <div class="book_img">
-                  <div class="img_box"><img src="${path}/resources/images/bookcover/${ask.book_cover }" alt=""></div>
+                  <div class="img_box"><a href="#"><img src="${path}/resources/images/bookcover/${ask.book_cover }" alt=""></a></div>
                  </div>
                  <div class="ask_category">
-                    <p style="text-align:right;">&#91;&nbsp;${ask.ask_sort }&nbsp;&#93;&nbsp;</p>
+                    <a href="${path}/ask/boardView?ask_id=${ask.ask_id}"><p style="text-align: right;">&#91;&nbsp;${ask.ask_sort }&nbsp;&#93;&nbsp;</p> </a>
                 </div>
                  <div class="board_ttl">
-                    <a href="${path}/ask/boardView?ask_id=${ask.ask_id}"><p style="text-align: left;"> ${ask.book_title }</p> 
-                    	<!-- 댓글이 존재하면 댓글 갯수 표시 
-                    	<c:if test="${ask.askreply_count ne 0}">
-                    		<b><c:out value="${ask.askreply_count }"></c:out></b>
-                    	</c:if>-->  
+                    <a href="${path}/ask/boardView?ask_id=${ask.ask_id}"><p style="text-align: left;">&nbsp;${ask.book_title }</p> 
                     </a>     
                  </div>
                  <div class="reply_status">
                     <p>${ask.ask_status}</p>
                 </div>
-                 <div class="board_date">
-                    <p>${ask.ask_date }</p>
-                 </div>
              </div>
              </c:forEach>
              <!-- 여기까지 반복(5개) -->                    

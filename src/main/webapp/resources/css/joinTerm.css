@@ -1,5 +1,13 @@
 @charset "UTF-8";
 
+body {
+	margin: 0;
+	padding: 0;
+	background-image: url("../images/main_bg_6.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 #wrap {
   width: 100%;
 }
