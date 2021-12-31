@@ -100,9 +100,9 @@
 	
 	<!-- 베스트 셀러 리스트 -->
 	<select id="getBestSeller" resultType="Book">
-		SELECT *
-		FROM BOOK
-		WHERE book_id IN (
+		SELECT E.*
+		FROM BOOK E
+		WHERE E.book_id IN (
 		    SELECT C.book_id FROM (
 		        SELECT B.book_id
 		        FROM ORDERS A, ORDERLIST B
