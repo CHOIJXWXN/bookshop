@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -27,10 +27,10 @@
                 <input type="radio" name="id_list" id="id_list" checked />
                 <label for="id_list">
                 <c:if test="${users.user_id ne null && users.user_id!=''}">
-                <c:if test="${fn:length(user.user_id >= 8}">
+                <c:if test="${fn:length(user.user_id) gt 8}">
                 ${fn:substring(users.user_id,0,fn:length(users.user_id)-4)}****
                 </c:if>
-                <c:if test="${fn:length(user.user_id < 8}">
+                <c:if test="${fn:length(user.user_id) < 8}">
                 ${fn:substring(users.user_id,0,fn:length(users.user_id)-2)}**
                 </c:if>
                 </c:if>

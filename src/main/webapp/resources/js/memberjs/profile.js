@@ -56,8 +56,6 @@
         var pw_check_flag = false;  
       	checkPassword();
       	
-        }  
-      	
       });
       
       $("#user_pw2").keyup(function(){  
