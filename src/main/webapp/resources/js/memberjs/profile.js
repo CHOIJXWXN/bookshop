@@ -24,10 +24,8 @@
         if(!pwReg.test(user_pw)) {
           $(".pw").removeClass("row");
           $(".pw").addClass("row_msg");
-          $(".pw").find(".form_check").addClass("on");
           pw_check_flag = false;
         } else if(pwReg.test(user_pw)){
-          $(".pw").find(".form_check").removeClass("on");
           $(".pw").removeClass("row_msg");
           $(".pw").addClass("row");
           pw_check_flag = true;
@@ -37,13 +35,11 @@
         if(user_pw != user_pw2) {
           $(".pw_check").removeClass("row");
           $(".pw_check").addClass("row_msg");
-          $(".pw_check").find(".fail").addClass("on");
           pw_check_flag = false;
         } else {
         // 비밀번호 일치
-          $(".pw_check").find(".fail").removeClass("on");
-          $(".pw_check").removeClass("row_msg");
-          $(".pw_check").addClass("row");        
+          $(".pw_check").removeClass("row_msg"); 
+          $(".pw_check").addClass("row");    
           pw_check_flag = true;
         }
         
@@ -55,12 +51,20 @@
       $("#user_pw").keyup(function(){   
         var pw_check_flag = false;  
       	checkPassword();
+      	if($('#user_pw').val() == "") {
+      		$('.pw').removeClass('row_msg');
+            $('.pw').addClass('row');
+      	}
       	
       });
       
       $("#user_pw2").keyup(function(){  
         var pw_check_flag = false;    
       	checkPassword(); 
+      	if($('#user_pw').val() == "") {
+      		$('.pw').removeClass('row_msg');
+            $('.pw').addClass('row');
+      	}
       });
       
       

@@ -58,7 +58,8 @@ $(document).ready(function() {
     $(function(){
         // 아이디 정규성 검사 
         var id_idreg_flag = false;
-         $('#user_id').keyup(function (){
+        
+         function checkId(){
             var idReg = /^[a-z0-9]{4,15}$/;
             var user_id = $('#user_id').val();
             if(!idReg.test(user_id)) {
@@ -72,8 +73,8 @@ $(document).ready(function() {
                 id_check_flag = false;
             }
             else if(idReg.test(user_id)) {
-                $('#id_pass').parent('div').removeClass('row');
-                $('#id_pass').parent('div').addClass('row_msg');
+                $('#id_pass').parent('div').removeClass('row_msg');
+                $('#id_pass').parent('div').addClass('row');
                 $('#id_pass').hide();
                 $('#id_fail').hide();
                 $('#id_check').hide();
@@ -82,7 +83,21 @@ $(document).ready(function() {
                 id_check_flag = false;
             }
         // user_id keyup function
-        });
+        }
+        
+        
+        $("#user_id").keyup(function(){   
+        
+      	checkId();
+      	if($('#user_id').val() == "") {
+            $('#id_check').hide();
+      		$('#id_pass').parent('div').removeClass('row_msg');
+            $('#id_pass').parent('div').addClass('row');
+      	}
+      	
+      });
+        
+        
         $('#checkId').click(function(){
            var user_id = $('#user_id').val();
 
@@ -139,70 +154,71 @@ $(document).ready(function() {
        });
     // 아이디 관련 function
     });  
+ 
      
 // 비밀번호 일치 확인 (user_pw2를 가지는 태그 변경)   
  $(function(){
     $('#pw_pass').hide();
    	$('#pw_fail').hide();
     $('#pw_check').hide();
+    
+    $("#user_pw").keyup(function(){ 
+      
+      	checkPw();
+      	if($('#user_pw').val() == "") {
+            $('#pw_check').hide();
+      		$('#pw_check').parent('div').removeClass('row_msg');
+            $('#pw_check').parent('div').addClass('row');
+      	}
+      	
+   });
+      
+     $("#user_pw2").keyup(function(){   
+        
+      	checkPw();
+      	if($('#user_pw').val() == "") {
+            $('#pw_check').hide();
+      		$('#pw_check').parent('div').removeClass('row_msg');
+            $('#pw_check').parent('div').addClass('row');
+      	}
+      	
+      });
 
-    $('#user_pw').keyup(function() {
+    function checkPw() {
+    
         var user_pw = $('#user_pw').val();
+        var user_pw2 = $('#user_pw2').val();
         var pwReg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
         var blank = /[\s]/g;
         
         $('#user_pw').val($('#user_pw').val().replace(blank, ''));
+        $('#user_pw2').val($('#user_pw2').val().replace(blank, ''));
         
         if(!pwReg.test(user_pw)){
             $('#pw_check').parent('div').removeClass('row');
             $('#pw_check').parent('div').addClass('row_msg');
-            $('#pw_fail').hide();
-            $('#pw_pass').hide();
             $('#pw_check').show();
         } else if (pwReg.test(user_pw)){
-            $('#pw_check').parent('div').removeClass('row');
-            $('#pw_check').parent('div').addClass('row_msg');
-            $('#pw_fail').hide();
-            $('#pw_pass').hide();
+            $('#pw_check').parent('div').removeClass('row_msg');
+            $('#pw_check').parent('div').addClass('row');
             $('#pw_check').hide();
         }
-    // user_pw.keyup.function
-    });
-
-    $('#user_pw2').keyup(function(){
-        var user_pw = $('#user_pw').val();
-        var user_pw2 = $('#user_pw2').val();
-        var blank = /[\s]/g;
-
-        $('#user_pw2').val($('#user_pw2').val().replace(blank, ''));
- 	    if(user_pw != user_pw2) {
- 	        $('#pw_pass').parent('div').removeClass('row');
-            $('#pw_pass').parent('div').addClass('row_msg');
-            $('#pw_pass').hide();
+        
+        if(user_pw != user_pw2) {
+ 	        $('#pw_fail').parent('div').removeClass('row');
+            $('#pw_fail').parent('div').addClass('row_msg');
             $('#pw_fail').show();
-            $('#pw_check').hide();
             pw_check_flag = false;
-        }
-        else if (user_pw2 == '') {
-            $('#pw_pass').parent('div').removeClass('row');
-            $('#pw_pass').parent('div').addClass('row_msg');
-            $('#pw_fail').hide();
-            $('#pw_pass').hide();
-            $('#pw_check').hide();
-            pw_check_flag = false;
-        }
-       else if (user_pw == user_pw2) {
-             $('#pw_pass').parent('div').removeClass('row');
-             $('#pw_pass').parent('div').addClass('row_msg');
-             $('#pw_pass').show();
+       } else if (user_pw == user_pw2) {
+             $('#pw_fail').parent('div').removeClass('row_msg');
+             $('#pw_fail').parent('div').addClass('row');
              $('#pw_fail').hide();
-             $('#pw_check').hide();
              pw_check_flag = true;
-         }
-     // user_pw2 keyup function    
-     });
-   //function
- });
+       }
+    // user_pw.keyup.function
+    }
+
+   
 
  // 이름에 특수문자, 숫자 들어가지 않도록
  $(function() {
@@ -237,8 +253,24 @@ $('#user_nickname').keyup(function(){
  $(function(){
     var email_idreg_flag = false;
     var email_domreg_flag = false;
+    
     // 이메일 아이디 입력 부분
-    $('#user_email_id').keyup(function(){
+     $("#user_email_id").keyup(function(){ 
+      
+      	emailId();
+      	if($('#user_email_id').val() == "") {
+            $('#email_pass').hide();
+            $('#email_fail').hide(); 
+            $('#email_regfail').hide();
+      		$('#email_pass').parent('div').removeClass('row_msg');
+            $('#email_pass').parent('div').addClass('row');
+      	}
+      	
+   });
+    
+    
+    
+    function emailId(){
         // 빈칸 입력 방지
         var blank = /[\s]/g;
         $('#user_email_id').val($('#user_email_id').val().replace(blank, ''));
@@ -257,10 +289,23 @@ $('#user_nickname').keyup(function(){
         }
 
     // user_email_id.keyup.function
-    });
+    }
 
     // 도메인 직접 입력부분
-    $('#user_email_domain').keyup(function(){
+     $("#user_email_domain").keyup(function(){ 
+      
+      	emailDomain();
+      	if($('#user_email_domain').val() == "") {
+            $('#email_pass').hide();
+            $('#email_fail').hide(); 
+            $('#email_regfail').hide();
+      		$('#email_pass').parent('div').removeClass('row_msg');
+            $('#email_pass').parent('div').addClass('row');
+      	}
+      	
+   });
+    
+    function emailDomain(){
         // 빈칸 입력 방지
         var blank = /[\s]/g;
         $('#user_email_domain').val($('#user_email_domain').val().replace(blank, ''));
@@ -280,7 +325,7 @@ $('#user_nickname').keyup(function(){
         email_check_flag = false;
     }
     // user_email_domain.keyup.function
-    });
+    }
 
     // 이메일 도메인 선택입력 부분
     $('#user_email_domain_S').change(function(){
@@ -449,5 +494,6 @@ $('#user_nickname').keyup(function(){
     });
      
  // 최상위 ready function
+});
 });
  

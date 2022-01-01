@@ -67,7 +67,10 @@ $(document).ready(function() {
           <!-- case2) 로그인 상태 -->
          <c:if test="${not empty user_id and empty admin}">
          <div class="my_mn">
+           <div>
+           <span>ididid님 반갑습니다.</span>
            <img src="${path}/resources/images/mypage.png" alt="">
+           </div>
            <ul id="my_mn" style="display: none;">
 	         <li><a href="${path}/mypage/">MYPAGE</a></li>
 	         <li><a href="${path}/order/cart">CART</a></li>
@@ -78,7 +81,10 @@ $(document).ready(function() {
          <!-- case3) 관리자 상태 -->
          <c:if test="${admin == 1}">
          <div class="my_mn">
+           <div>
+           <span>ididid님 반갑습니다.</span>
            <img src="${path}/resources/images/mypage.png" alt="">
+           </div>
            <ul id="my_mn" style="display: none; height: 60px">
 	         <li><a href="${path}/mypage/">MYPAGE</a></li>
 	         <li><a href="${path}/logout">LOGOUT</a></li>
