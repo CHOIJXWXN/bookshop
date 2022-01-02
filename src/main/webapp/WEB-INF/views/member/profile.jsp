@@ -61,7 +61,6 @@
                 <div class="row pw_check">
                   <label for="user_pw2">&nbsp;&nbsp;비밀번호 확인</label>
                   <input type="password" id="user_pw2" name="user_pw2">
-                  <p class="pass">확인되었습니다.</p>
                   <p class="fail">비밀번호가 다릅니다.</p>
                 </div>
                 <!-- 이름 -->

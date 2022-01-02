@@ -168,6 +168,12 @@ $(document).ready(function() {
 		$('#book_total_price').text(price * cnt + shippingCost + '원');
 	});
 	
+	
+	$('.cart_modal').hide();
+	// cart 모달 닫기
+	$('.fa-times-circle').click(function(){
+          $('.cart_modal').hide();
+    });
 	// add to cart 버튼 클릭 시 비동기 추가
 	$('#addCart').click(function() {
 		var user_id = $('input[name=user_id]').val();
@@ -188,7 +194,7 @@ $(document).ready(function() {
 			},
 			dataType : "text",
 			success : function(data) {
-				alert('장바구니에 추가되었습니다');
+				$('.cart_modal').show();
 			},
 			error : function(data) {
 				alert('이미 담긴 책입니다');

@@ -230,7 +230,6 @@ section {
 	display:none;
 }
 .row_msg p {
-  display: none;
   font-family: "Pretendard-Regular";
   font-size: 12px;
   line-height: 20px;
@@ -242,9 +241,7 @@ section {
 .row_msg p.pass {
   color: #134C0B;
 }
-p.on {
-  display: inline-block;
-}
+
 /* 휴대폰 인증 버튼 */
 .phonenum_check {
 	width: 100px;

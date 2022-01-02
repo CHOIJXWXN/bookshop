@@ -77,16 +77,14 @@
               <div class="row">
                 <label for="user_pw">*&nbsp;비밀번호</label>
                 <input type="password" id="user_pw" name="user_pw"  placeholder="영문 대소문자/숫자/특수문자 조합, 8자 ~ 16자">
-                
+                <p class="fail" id="pw_check">비밀번호는 8~16자리의 영어, 숫자, 특수문자 조합으로 입력가능 합니다.</p>
               </div>
               <!-- 비밀번호 확인 -->
               <!-- type ="text를 type="password" 로 변경 -->
               <div class="row">
                 <label for="user_pw2">*&nbsp;비밀번호 확인</label>
                 <input type="password" id="user_pw2" name="user_pw2">
-                <p class="pass" id="pw_pass">확인되었습니다.</p>
-                <p class="fail" id="pw_fail">비밀번호가 다릅니다.</p>
-                <p class="fail" id="pw_check">비밀번호는 8~16자리의 영어, 숫자, 특수문자 조합으로 입력가능 합니다.</p>
+                <p class="fail" id="pw_fail">비밀번호가 다릅니다.</p> 
               </div>
               <!-- 이름 -->
               <div class="row">
