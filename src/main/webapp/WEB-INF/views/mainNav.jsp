@@ -30,7 +30,7 @@ $(document).ready(function() {
         <!-- (1) 로고 -->
         <div class="header_wrap">
           <h2 class="logo">
-            <a href="${path }/">LOGO</a>            
+            <a href="${path }/"><img src="${path}/resources/images/logo3.png" alt="logo"></a>            
           </h2>
           <!-- (2) 네비 메뉴 -->
           <nav>
@@ -68,7 +68,7 @@ $(document).ready(function() {
          <c:if test="${not empty user_id and empty admin}">
          <div class="my_mn">
            <div>
-           <span>ididid님 반갑습니다.</span>
+           <span>${user_id }님 반갑습니다.</span>
            <img src="${path}/resources/images/mypage.png" alt="">
            </div>
            <ul id="my_mn" style="display: none;">
@@ -82,7 +82,7 @@ $(document).ready(function() {
          <c:if test="${admin == 1}">
          <div class="my_mn">
            <div>
-           <span>ididid님 반갑습니다.</span>
+           <span>${user_id }님 반갑습니다.</span>
            <img src="${path}/resources/images/mypage.png" alt="">
            </div>
            <ul id="my_mn" style="display: none; height: 60px">

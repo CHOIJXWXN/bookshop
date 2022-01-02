@@ -14,8 +14,8 @@
 			WHERE A.order_num = B.order_num
 			AND A.order_num IN (
 				SELECT C.order_num FROM (
-					SELECT D.@ROWNUM := D.@ROWNUM + 1 AS ROWNUM, E.*
-					FROM (SELECT D.@ROWNUM := 0) D, ORDERS E ORDER BY E.order_num DESC) C
+					SELECT @ROWNUM := @ROWNUM + 1 AS ROWNUM, E.*
+					FROM (SELECT @ROWNUM := 0) D, ORDERS E ORDER BY E.order_num DESC) C
 				WHERE C.ROWNUM BETWEEN #{start} AND #{end}
 			)
 		) F, BOOK D
@@ -32,9 +32,9 @@
 			WHERE A.order_num = B.order_num
 			AND A.order_num IN (
 				SELECT C.order_num FROM (
-					SELECT D.@ROWNUM := D.@ROWNUM + 1 AS ROWNUM, E.*
-					FROM (SELECT D.@ROWNUM := 0) D, ORDERS E ORDER BY E.order_num DESC) C
-				WHERE D.ROWNUM BETWEEN #{start} AND #{end}
+					SELECT @ROWNUM := @ROWNUM + 1 AS ROWNUM, E.*
+					FROM (SELECT @ROWNUM := 0) D, ORDERS E ORDER BY E.order_num DESC) C
+				WHERE ROWNUM BETWEEN #{start} AND #{end}
 			)
 		) F, BOOK D
 		WHERE F.book_id = D.book_id   
@@ -45,19 +45,19 @@
 	<!-- 페이징 -->
 	<select id="getNextPageOrders" resultType="Orders">
 		SELECT A.*
-		FROM (SELECT R.@ROWNUM := R.@ROWNUM + 1 AS rownum, O.*
-			FROM (SELECT R.@ROWNUM := 0) R,
-			(SELECT O.*
+		FROM (SELECT @ROWNUM := @ROWNUM + 1 AS rownum, O.*
+			FROM (SELECT @ROWNUM := 0) R,
+			(SELECT *
 			FROM ORDERS
-			ORDER BY O.order_num DESC) O) A
+			ORDER BY order_num DESC) O) A
 		WHERE A.rownum = #{pageNumber}
 	</select>
 	
 	<!-- 페이징 -->
 	<select id="getNextPageBook" resultType="Book">
 		SELECT A.*
-		FROM (SELECT R.@ROWNUM := R.@ROWNUM + 1 AS rownum, O.*
-			FROM (SELECT R.@ROWNUM := 0) R,
+		FROM (SELECT @ROWNUM := @ROWNUM + 1 AS rownum, O.*
+			FROM (SELECT @ROWNUM := 0) R,
 			(SELECT B.*
 			FROM BOOK B) O) A
 		WHERE A.rownum = #{pageNumber}
@@ -122,8 +122,8 @@
 	<!-- 페이징 -->
 	<select id="getNextPageAsk" resultType="AskList">
 		SELECT A.*
-		FROM (SELECT R.@ROWNUM := R.@ROWNUM + 1 AS rownum, O.*
-			FROM (SELECT R.@ROWNUM := 0) R,
+		FROM (SELECT @ROWNUM := @ROWNUM + 1 AS rownum, O.*
+			FROM (SELECT @ROWNUM := 0) R,
 			(SELECT B.*
 			FROM ASK B
             ORDER by B.ask_id DESC) O) A
