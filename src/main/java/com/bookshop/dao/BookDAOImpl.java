@@ -93,28 +93,18 @@ public class BookDAOImpl implements BookDAO {
 		return sqlSession.selectList(SESSION + ".getBestSeller");
 	}
 	@Override
-	public String getInitGenre(String user_id) throws Exception {
-		return sqlSession.selectOne(SESSION + ".getInitGenre", user_id);
-	}
-	
-	@Override
-	public String getGenreRecomm(String user_id) throws Exception {
-		return sqlSession.selectOne(SESSION + ".getGenreRecomm", user_id);
+	public List<Book> getInitGenre(String user_id) throws Exception {
+		return sqlSession.selectList(SESSION + ".getInitGenre", user_id);
 	}
 
 	@Override
-	public String getWriterRecomm(String user_id) throws Exception {
-		return sqlSession.selectOne(SESSION + ".getWriterRecomm", user_id);
+	public List<Book> getGenreRecomm(String user_id) throws Exception {
+		return sqlSession.selectList(SESSION + ".getGenreRecomm", user_id);
 	}
 
 	@Override
-	public List<Book> getGenreRecommFour(String book_genre) throws Exception {
-		return sqlSession.selectList(SESSION + ".getGenreRecommFour", book_genre);
-	}
-
-	@Override
-	public List<Book> getWriterRecommTwo(String book_writer) throws Exception {
-		return sqlSession.selectList(SESSION + ".getWriterRecommTwo", book_writer);
+	public List<Book> getWriterRecomm(String user_id) throws Exception {
+		return sqlSession.selectList(SESSION + ".getWriterRecomm", user_id);
 	}
 
 	@Override

@@ -10,7 +10,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <link rel="stylesheet" href="${path }/resources/css/reset.css" />
     <link rel="stylesheet" href="${path }/resources/css/mainNav.css" />
-    <link rel="stylesheet" href="${path }/resources/css/style.css" />
+    <link rel="stylesheet" href="${path }/resources/css/error404.css" />
   </head>
   <body>
     <div id="wrap">
@@ -24,10 +24,6 @@
         <h5 class="err_msg"> 서버 문제가 발생했습니다. <br><br>지속적으로 발생시 관리자에게 문의바랍니다. </h5>
         <a class="err_cnt" href="#">관리자에게 문의하기</a>
       </section>
-      <!-- 푸터 -->
-      <footer id="footer">
-        푸터영역
-      </footer>
     </div>
     <script>
 	$(document).ready(function() {

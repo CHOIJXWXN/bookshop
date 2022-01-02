@@ -88,7 +88,7 @@
 		  </c:if>   
 		  
 		  <!-- 장르 추천 2개 / 작가 추천 2개인 경우 -->
-		  <c:if test="${map.flag eq 2}">
+		  <c:if test="${map.flag >= 2}">
 		  <!-- 장르 -->
 		  <c:forEach var="book" varStatus="status" items="${map.genreList}">
 		  <!-- 장르 네 개 중 첫번째와 마지막 생략 -->
@@ -150,7 +150,7 @@
           <li>상품 관련 문의&nbsp;|&nbsp;1:1 문의 게시판 이용</li>
         </ul>
         <ul class="com_info">
-          <li>THE BOOK SHOP CEO.YOO CHOI LEE BUSINESS LICENSE. [00000000] ON-LINE REGISTER. 000 668, JUNGANG-DAERO, BUSANJIN-GU, BUSAN, REPUBLIC OF KOREA</li>
+          <li>LOOKBOOK CEO.YOO CHOI LEE BUSINESS LICENSE. [00000000] ON-LINE REGISTER. 000 668, JUNGANG-DAERO, BUSANJIN-GU, BUSAN, REPUBLIC OF KOREA</li>
           <li>teambook3lcy@gmail.com 개인정보관리책임자 YOO CHOI LEE COPYRIGHT © 2021 THE BOOK SHOP</li>
         </ul>
       </footer>  

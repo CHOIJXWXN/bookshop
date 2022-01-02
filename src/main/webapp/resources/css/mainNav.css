@@ -22,20 +22,22 @@ a {
   margin: 0 auto;
   width: 78%;
   height: 85px;
-  /* background-color: whitesmoke;   */
   position: relative;
 }
 /* 로고 */
 .header_wrap .logo {
   float: left;
-  width: 110px;
-  height: 48px;
-  border: 1px solid #707070;
-  margin: 16px 0 0 10px;
-  font-family: 'Prata', serif;
-  font-size: 24px;
-  line-height: 48px;
-  text-align: center;
+  width: 150px;
+  height: 80px;
+  margin: 0 0 0 10px;
+}
+.header_wrap .logo a {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.header_wrap .logo img {
+  height: 100%;
 }
 /* 네비메뉴 */
 #header nav {
@@ -143,11 +145,20 @@ a {
 }
 
 #header .my_mn {
+  float: right;
   display: flex;
-  float: right;
   flex-direction: column;
-  float: right;
   align-items: flex-end;
+}
+#header .my_mn > div {
+	display: flex;
+}
+#header .my_mn > div  span {
+	font-family: "Pretendard-Regular";
+	font-size: 15px;
+	color: #1C1A1A;
+	line-height: 80px;
+	padding-right: 5px;
 }
 #header .my_mn ul {
   display: flex;
