@@ -10,7 +10,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <link rel="stylesheet" href="${path }/resources/css/reset.css" />
     <link rel="stylesheet" href="${path }/resources/css/mainNav.css" />
-    <link rel="stylesheet" href="${path }/resources/css/style.css" />
+    <link rel="stylesheet" href="${path }/resources/css/error404.css" />
   </head>
   <body>
     <div id="wrap">
@@ -22,10 +22,6 @@
         </h4>
         <h5 class="err_msg"> 해당 페이지를 찾을 수 없습니다. </h5>
       </section>
-      <!-- 푸터 -->
-      <footer id="footer">
-        푸터영역
-      </footer>
     </div>
     <script>
 	$(document).ready(function() {

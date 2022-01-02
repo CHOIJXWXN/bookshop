@@ -31,8 +31,8 @@
 	<!-- 다음 페이지가 존재확인 -->
 	<select id="getNextPage" parameterType="hashmap" resultType="AskList">
 		SELECT C.*
-		FROM (SELECT R.@ROWNUM := R.@ROWNUM + 1 AS rownum, O.*
-			FROM (SELECT R.@ROWNUM := 0) R,
+		FROM (SELECT @ROWNUM := @ROWNUM + 1 AS rownum, O.*
+			FROM (SELECT @ROWNUM := 0) R,
 				(SELECT A.ask_id, B.book_title, A.ask_sort, A.ask_date, B.book_cover, A.askreply_count, A.writer
 					FROM ASK A, BOOK B
 					WHERE A.book_id = B.book_id

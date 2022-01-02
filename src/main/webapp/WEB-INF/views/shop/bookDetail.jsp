@@ -84,10 +84,20 @@
               <input type="hidden" name="book_price" value="${book.book_price}">
               
               <!-- (5) 장바구니 & 구매하기 버튼 -->
-              <ul class="buy_btns">
-                <li><button type="button" id="addCart" class="addCart">Add to Cart</button></li>
-   	 		    <li><input type="submit" name="direct" value="Buy Now"/></li>   	 		
-              </ul>
+              <div class="buy_btns">
+                <div class="add_cart"><button type="button" id="addCart" class="addCart">Add to Cart</button></div>
+   	 		    <div class="buy_now"><input type="submit" name="direct" class="buyNow" value="Buy Now"/></div>  
+   	 		    <!-- 장바구니 추가 모달 --> 	 
+   	 		    <div class="cart_modal">
+	                <div class="modal_wrap">
+	                  <i class="fas fa-times-circle"></i>
+	                  <div class="msg_box">
+	                    <h5>장바구니에 담겼습니다.</h5>   
+	                    <a href="../order/cart"><i class="fas fa-shopping-basket"></i>Go to Cart</a>
+	                  </div>
+	                </div>
+                </div>		
+              </div>
 
             </div>
          </form>

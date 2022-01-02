@@ -126,12 +126,6 @@ $(document).ready(function() {
                      <div class="reply_date" id="reply_date">
                         <p><!-- 작성 날짜 -->${askreply.askreply_date}</p>
                      </div>
-                     <!-- 댓글 삭제 버튼 없앰
-                     <c:if test="${user_id == askreply.writer }">
-                     <div class="delete">
-                        <button type="button" id="delete_btn" class="delete_btn" onclick="deleteAskReply(${askreply.askreply_id})">삭제</button>
-                     </div>
-                     </c:if>  -->
                		</div>
                   </c:forEach>
                    <!-- 댓글 수 만큼 반복 끝-->
