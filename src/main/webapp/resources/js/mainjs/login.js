@@ -41,7 +41,11 @@
                     if(data == 0 || data == 1) {
                     	var pre_page = $('input[name=pre_page]').val();
                     	if (pre_page != '') {
-                    		if (pre_page == '/findIdP' || pre_page == '/findIdE' || pre_page == '/findPwEAction') {
+                    		if (pre_page == '/findIdP' 		 || pre_page == '/findIdE'
+                    		 || pre_page == '/findIdPAction' || pre_page == '/findIdEAction'
+                    		 || pre_page == '/findPwP'		 || pre_page == '/findPwE'
+                    		 || pre_page == '/findPwPAction' || pre_page == '/findPwEAction'
+                    		 || pre_page == '/joinSuccess') {
                     			location.href = '../';
                     			sessionStorage.removeItem('pre_page');
                     		} else {
