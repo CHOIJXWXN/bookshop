@@ -127,9 +127,11 @@
          <div class="paging_box">
           <ul class="page_num">
           	<!-- 이전 버튼 -->
+          	<li>
           	<c:if test = "${map.paging.pageNumber > 5}">
-            <li><a href="${path }/book?pageNum=${map.paging.before}&book_genre=${book_genre}&book_order=${book_order}"><img src="../../resources/images/page_prev.png" alt=""></a></li>
+            <a href="${path }/book?pageNum=${map.paging.before}&book_genre=${book_genre}&book_order=${book_order}"><img src="../../resources/images/page_prev.png" alt=""></a>
             </c:if>
+            </li>
              <div class="num_wrap">
              <!-- 시작페이지번호 -->
              <c:forEach begin="${map.paging.minPage }" end="${map.paging.maxPage }" var="idx">
@@ -141,9 +143,11 @@
              </li>
              </c:forEach>
              </div>
+             <li>
              <c:if test = "${map.paging.next }">
-             <li><a href="${path }/book?pageNum=${map.paging.forward}&book_genre=${book_genre}&book_order=${book_order}"><img src="../../resources/images/page_next.png" alt=""></a></li>
+             <a href="${path }/book?pageNum=${map.paging.forward}&book_genre=${book_genre}&book_order=${book_order}"><img src="../../resources/images/page_next.png" alt=""></a>
              </c:if>
+             </li>
            </ul>
          </div>
        </article>
