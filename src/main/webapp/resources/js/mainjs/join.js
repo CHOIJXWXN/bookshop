@@ -217,8 +217,8 @@ $(document).ready(function() {
        }
     // user_pw.keyup.function
     }
-
-   
+    // 비밀번호 관련 function.
+  });  
 
  // 이름에 특수문자, 숫자 들어가지 않도록
  $(function() {
@@ -267,8 +267,6 @@ $('#user_nickname').keyup(function(){
       	}
       	
    });
-    
-    
     
     function emailId(){
         // 빈칸 입력 방지
@@ -495,5 +493,3 @@ $('#user_nickname').keyup(function(){
      
  // 최상위 ready function
 });
-});
- 
