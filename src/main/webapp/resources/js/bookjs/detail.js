@@ -38,17 +38,11 @@ $(document).ready(function() {
 			$('.review_list').empty();
 			
 			for (var i = 0; i < list.length; i++) {		
-				// 회원 아이디의 3, 4번째 문자를 *로 치환 (abcdefg -> ab**efg)
-				var user_id = list[i].user_id;
-				var id1 = user_id.substr(0, 2);
-				var id2 = '**';
-				var id3 = user_id.substr(4, user_id.length - 4);
-				var id = id1 + id2 + id3;
 				
 				var str2 = '';
 				str2 += '<div class="review_row">';
 				str2 += '<div class="review_writer">';
-				str2 += '<span>' + id + '</span>';
+				str2 += '<span>' + list[i].user_id + '</span>';
 				str2 += '<span>' + list[i].review_date + '</span>';
 				str2 += '</div>';
 				str2 += '<div class="review_star">';
