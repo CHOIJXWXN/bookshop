@@ -58,9 +58,9 @@
               <c:forEach var="ask" items="${list }">
               <tr>
                 <td>${ask.ask_id }</td> <!-- ask_id -->
-                <td><a href="${path}/ask/boardView?ask_id=${ask.ask_id}">[${ask.ask_sort}] ${ask.book_title}</a></td> <!-- [ask_sort],[book_title]  -->
+                <td class="ask_ttl"><a href="${path}/ask/boardView?ask_id=${ask.ask_id}">[${ask.ask_sort}] ${ask.book_title}</a></td> <!-- [ask_sort],[book_title]  -->
                 <td>${ask.writer }</td> <!-- ask_writer -->
-                <td>${ask.ask_date}</td>	<!-- ask_date --> 
+                <td>${ask.ask_date}</td><!-- ask_date --> 
               	<td class="ask_status">${ask.ask_status}</td>
               </tr>
               </c:forEach>

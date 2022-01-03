@@ -167,33 +167,41 @@ section {
     margin-left: -200px;
     background-color: rgba(28, 26, 26, 0.9);
     z-index: 9999;
-    border-radius: 35px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 0 0 4px #333;
   }
   .ask_modal h3 {
     text-align: center;
     font-family: 'NotoSerifKR';
-    font-size: 20px;
+    font-size: 18px;
     color: #fbf5f5;
-    line-height: 43px; 
-    margin-top: 50px;
+    line-height: 34px; 
+  }
+  .ask_modal .btn_wrap {
+  	width: 70%;
+  	height: 45px;
+  	display: flex;
+  	justify-content: space-between;
   }
   .ask_modal a {
     text-align: center;
     display: block;
-    width: 160px;
-    height: 50px;
+    width: 130px;
+    height: 45px;
     font-family: "Pretendard-Regular";
     font-size: 18px;
     color: #fbf5f5;
-    line-height: 50px;
+    line-height: 45px;
     border: 1px solid #efefef;
     border-radius: 30px;
-    margin-left: 120px;
-    margin-top: 30px;
+    cursor: pointer;
   }
   .ask_modal a:hover {
     background-color: #efefef;
     color: #1C1A1A;
-    text-decoration: none;
-    transition: 0.5s all ease;
+    transition: 0.3s all ease;
   }

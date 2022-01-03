@@ -23,9 +23,13 @@ $(document).ready(function() {
 			$('.page_num').empty();
 			var paging = data.searchPaging;
 			var str2 = '';
-			if (paging.before > 0) {
+			if (paging.before <= 0) {
+				str2 += '<li></li>';
+			}
+			else if (paging.before > 0) {
 				str2 += '<li><a class="search" id="' + paging.before + '" href=""><img src="../../resources/images/page_prev.png" alt=""></a></li>';
 			}
+			str2 += '<div class="num_wrap">';
 			for (var i = paging.minPage; i <= paging.maxPage; i++) {
 				str2 += '<li>';
 				if (paging.pageNumber == i) {
@@ -38,7 +42,11 @@ $(document).ready(function() {
 				}
 				str2 += '</li>';
 			}
-			if (paging.next) {
+			str2 += '</div>';
+			if (!paging.next) {
+				str2 += '<li></li>';
+			}
+			else if (paging.next) {
 				str2 += '<li><a class="search" id="' + paging.forward + '" href=""><img src="../../resources/images/page_next.png" alt=""></a></li>';
 			}
 			$('.page_num').append(str2);

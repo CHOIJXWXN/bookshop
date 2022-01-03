@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -25,6 +26,10 @@
          <h3>${map.title}</h3>
        </header>
        <!-- [2-2] 독서기록 목록 -->
+       <c:if test="${fn:length(map.list) eq 0}">
+          <h3>가나다</h3>
+       </c:if>
+       <c:if test="${fn:length(map.list) != 0}">
        <article class="book_list">
          <!-- 기록 추가하기 -->
          <div class='add_book'>
@@ -34,7 +39,8 @@
              </a>
          </div>
          <!-- 기록한 책 리스트 -->
-         <ul class="book_wrap">      
+         <ul class="book_wrap">  
+              
             <!-- 반복할 li태그  -->
             <c:forEach var="record" items="${map.list}">
            	<li>
@@ -76,7 +82,8 @@
 		        </c:if>
            </ul>
        </div>   
-       </article>    
+       </article>
+       </c:if>    
     </section>
     <!-- 검색모달 -->
     <div id="modal">

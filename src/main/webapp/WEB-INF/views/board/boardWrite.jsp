@@ -71,15 +71,12 @@
       <!-- 1번 모달) 글쓰는 도중 list버튼(목록으로 돌아가기) 눌렀을 때 -->
       <div id="go_back_list" class="ask_modal" style="display:none">
         <h3>작성중인 문의글이 저장되지 않습니다.</h3>
+        <div class="btn_wrap">
+        <a class="go_back_cancel">취소</a>
         <a href="../ask/">목록보기</a>
+        </div>
       </div>
-      <%-- 문의 카테고리(제목)가 null인 경우가 없을거 같아서 주석처리함  -->
-      <!-- 2번 모달) 문의 카테고리를 선택하지 않았을 때  -->
-      <div id="category_null" class="ask_modal" style="display:none">
-        <h3>문의종류를 선택해주세요.</h3>
-        <a href="javascript:history.back();">확인</a>
-      </div> --%>
-      <!-- 3번 모달) 문의 내용을 작성하지 않았을 때 -->
+      <!-- 2번 모달) 문의 내용을 작성하지 않았을 때 -->
       <div id="contents_null" class="ask_modal" style="display:none">
         <h3>문의내용을 작성해주세요.</h3>
         <!-- <a href="javascript:history.back();">확인</a>  -->
@@ -140,6 +137,13 @@
         		$('#contents_null').hide();
         		event.preventDefault();
         	});
+    	    
+	    	// go_back_list 모둘 취소 클릭시
+	    	   $('.go_back_cancel').click(function (event){
+	    		event.preventDefault();
+	        	$('#go_back_list').hide();
+	        	
+	        });
     	    
     	// document.ready.function   
     	});

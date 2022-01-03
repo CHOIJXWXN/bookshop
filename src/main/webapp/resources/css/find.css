@@ -203,14 +203,14 @@ input[type="button"]:hover {
   width: 400px;
   height: 220px;
   margin-left: -200px;
-  background-color: rgba(28, 26, 26, 0.84);
+  background-color: rgba(28, 26, 26, 0.9);
   z-index: 9999;
   border-radius: 25px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  box-shadow: 0 0 6px #333;
+  box-shadow: 0 0 4px #333;
 }
 #not_exist_msg h3 {
   text-align: center;
@@ -222,12 +222,12 @@ input[type="button"]:hover {
 #not_exist_msg a {
   text-align: center;
   display: block;
-  width: 120px;
-  height: 40px;
+  width: 130px;
+  height: 45px;
   font-family: "Pretendard-Regular";
   font-size: 18px;
   color: #fbf5f5;
-  line-height: 40px;
+  line-height: 45px;
   border: 1px solid #efefef;
   border-radius: 30px;
 }
