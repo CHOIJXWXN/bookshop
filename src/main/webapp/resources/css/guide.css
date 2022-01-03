@@ -1,0 +1,55 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #F2F2F2;
+}
+
+#wrap {
+    width: 100%;
+  }
+
+  /* [2]메인화면*/
+  section {
+    float: left;
+    width: 100%;
+  }
+ #agreement_box {
+     margin: 0 auto;
+     width: 1000px;
+     margin-top: 200px;
+     border: 1px solid #1C1A1A;
+     margin-bottom: 200px;
+ }
+ #agreement_box h3 {
+     width: 98%;
+     height: 50px;
+     text-align: left;
+     font-family: "Pretendard-Regular";
+     font-size: 18px;
+     line-height: 50px;
+     color: #1C1A1A;
+     padding-left: 10px;
+     border-bottom: 0.5px solid #1C1A1A;
+     margin-left: 1%;
+     box-sizing: border-box;
+ }
+ .contents {
+     width: 100%;
+     padding: 10px 15px;
+     box-sizing: border-box;
+ }
+ .contents > p {
+     width: 96%;
+     margin-left: 2%;
+    font-family: "Pretendard-Regular";
+    font-size: 16px;
+    line-height: 22px;
+    color: #1C1A1A;
+    margin-top: 10px;
+    margin-bottom: 70px;
+ }
+ .fa-circle {
+     font-size: 8px;
+     color: #1C1A1A;
+     margin-right: 5px;
+ }

@@ -27,7 +27,21 @@
        </header>
        <!-- [2-2] 독서기록 목록 -->
        <c:if test="${fn:length(map.list) eq 0}">
-          <h3>가나다</h3>
+           <div class="no_record_box">
+                 <div class="img_box">
+                 	<img class="no_record_icon" src="../resources/images/no_record_icon.png" alt="">
+                 </div>
+                 <h3>
+                  아직 기록된 책이 없습니다.<br>
+                  첫번째 독서기록을 남겨주세요!<br>
+                  기록하기 버튼을 누르면 기록할 책을 검색할 수 있어요.<br>
+                  
+                 </h3>
+                 <a href="#" id="add_record2">
+                    <span>책 기록하기<i class="fas fa-pencil-alt"></i></span>             
+                </a>
+                <p>기록이 쌓일수록&nbsp;${user_id }님의 취향에 딱 맞는 책을 추천해드려요 :)</p>
+           </div>
        </c:if>
        <c:if test="${fn:length(map.list) != 0}">
        <article class="book_list">
@@ -39,8 +53,7 @@
              </a>
          </div>
          <!-- 기록한 책 리스트 -->
-         <ul class="book_wrap">  
-              
+         <ul class="book_wrap">     
             <!-- 반복할 li태그  -->
             <c:forEach var="record" items="${map.list}">
            	<li>
@@ -62,7 +75,6 @@
             </c:forEach>
          </ul>  
          <!-- 페이징 -->
-
         <!-- [2-5] 페이지 번호 -->
         <div class='paging_box'>
            <ul class="page_num">
@@ -83,7 +95,7 @@
            </ul>
        </div>   
        </article>
-       </c:if>    
+       </c:if>
     </section>
     <!-- 검색모달 -->
     <div id="modal">
@@ -115,6 +127,11 @@
     $(document).ready(function () {
         $("#modal").hide();
         $("#add_record").click(function(e){
+            e.preventDefault();
+            $("#modal").show();
+         });
+        
+        $("#add_record2").click(function(e){
             e.preventDefault();
             $("#modal").show();
          });
