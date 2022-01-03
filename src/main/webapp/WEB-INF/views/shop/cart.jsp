@@ -45,7 +45,7 @@
     			book_id = ["none"];
     		}
     		$.ajax({
-				type : "GET",
+				type : "POST",
 				url : "./deleteCart",
 				data : {
 					book_id : book_id,

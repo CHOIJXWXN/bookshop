@@ -74,7 +74,7 @@ public class BookController {
 	}
 	
 	// 책 리뷰 탭 기능
-	@RequestMapping(value = "/review", method = RequestMethod.GET)
+	@RequestMapping(value = "/review", method = RequestMethod.POST)
 	@ResponseBody
 	public HashMap<String, Object> review(String book_id, Integer pageNumber) throws Exception {
 		if (pageNumber == null) {
@@ -84,7 +84,7 @@ public class BookController {
 	}
 	
 	// 책 리뷰 추가 기능
-	@RequestMapping(value = "/addReview", method = RequestMethod.GET)
+	@RequestMapping(value = "/addReview", method = RequestMethod.POST)
 	@ResponseBody
 	public HashMap<String, Object> addReview(Review review, Integer pageNum) throws Exception {
 		if (pageNum == null) {

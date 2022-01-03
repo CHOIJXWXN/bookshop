@@ -69,7 +69,7 @@ $(document).ready(function() {
 		if($('#tab3').is(':checked')) {
 			var book_id = $('input[type=hidden][name=book_id]').val();
 			$.ajax({
-				type : "GET",
+				type : "POST",
 				url : "./review",
 				data : {
 					book_id : book_id,
@@ -91,7 +91,7 @@ $(document).ready(function() {
 		if ($(this).is(':checked')) {
 			var book_id = $('input[type=hidden][name=book_id]').val();
 			$.ajax({
-				type : "GET",
+				type : "POST",
 				url : "./review",
 				data : {
 					book_id : book_id
@@ -118,7 +118,7 @@ $(document).ready(function() {
 			return;
 		}
 		$.ajax({
-			type : "GET",
+			type : "POST",
 			url : "./addReview",
 			data : {
 				user_id : user_id,
@@ -185,7 +185,7 @@ $(document).ready(function() {
 			return;
 		}
 		$.ajax({
-			type : "GET",
+			type : "POST",
 			url : "/order/addCart",
 			data : {
 				user_id : user_id,

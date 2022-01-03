@@ -63,7 +63,7 @@
                   </tr>
               </table>
             </div>
-            <form action="./changeStatus" method="GET">
+            <form action="./changeStatus" method="POST">
             <div id="order_info_list">
               <div>
                 <h2 class="title title2">주문목록 / 배송조회 내역 총 ${map.tot} 건</h2>

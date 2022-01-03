@@ -6,7 +6,7 @@ $(document).ready(function() {
 	// 검색 함수
 	function search(keyword, pageNum) {
 		$.ajax({
-			type : "GET",
+			type : "POST",
 			url : "../record/search",
 			data : {
 				keyword : keyword,

@@ -24,7 +24,7 @@
       <section id="book_detail">
         <!-- [2-1] 책 썸네일 & 가격정보 -->
         <article id="book_info">
-          <form action="/order/" method="GET">
+          <form action="/order/" method="POST">
           <!-- 책 썸네일 -->
             <div class="book_img_box">
               <div class="book_thum">
