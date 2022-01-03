@@ -51,6 +51,10 @@
               <!--(2) 책 가격 -->
               <ul class="book_price_info">
                 <li>
+                  <h4>작가</h4>
+                  <p id="writer">${book.book_writer}</p>
+                </li>
+                <li>
                   <h4>판매가</h4>
                   <p id="price">${book.book_price} 원</p>
                 </li>
@@ -167,9 +171,9 @@
                       </div>
                       <!-- 책 요약 -->
                       <ul class="book_info">
-                        <li>${book.book_title}</li>
-                        <li>${book.book_writer}</li>
-                        <li>${book.book_pub}</li>
+                        <li><p class="ttl">${book.book_title}</p></li>
+                        <li><span class="writer">${book.book_writer}</span></li>
+                        <li><span class="pub">${book.book_pub}</span></li>
                       </ul>
                       <!-- 리뷰 title -->
                       <div class="review_msg">

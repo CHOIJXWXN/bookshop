@@ -262,11 +262,12 @@
   width: 340px;
   height: 70px;
   display: flex;
-  justify-content: space-around;
+ /*  justify-content: space-around; */
+ justify-content: center;
   align-items: center;
 }
 .num_wrap li {
-  width: 30px;
+  width: 68px;
   height: 70px;
   text-align: center;
   position: relative;
