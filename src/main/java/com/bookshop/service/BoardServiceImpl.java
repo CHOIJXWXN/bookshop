@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.bookshop.dao.BoardDAO;
 import com.bookshop.dao.BookDAO;
 import com.bookshop.dao.UsersDAO;
+import com.bookshop.util.Xss;
 import com.bookshop.vo.Ask;
 import com.bookshop.vo.AskList;
 import com.bookshop.vo.AskReply;
@@ -66,6 +67,9 @@ public class BoardServiceImpl implements BoardService {
 	public HashMap<String, Object> boardView(int ask_id) throws Exception {
 		List<AskReply> askreplyList = dao.getAskReplyList(ask_id);
 		
+		for(AskReply askReply: askreplyList) {
+			askReply.setAskreply_contents(Xss.setXss(askReply.getAskreply_contents()));
+		}
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		// 문의내용 불러오기

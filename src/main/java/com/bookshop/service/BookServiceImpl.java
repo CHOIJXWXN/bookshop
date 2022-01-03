@@ -78,7 +78,7 @@ public class BookServiceImpl implements BookService {
 		List<Book> genreList = dao.getGenreRecomm(user_id);
 		List<Book> writerList = dao.getWriterRecomm(user_id);
 		if (!user_id.equals("")) {
-			if (genreList == null) {
+			if (genreList.size() == 0) {
 				map.put("genreList", dao.getInitGenre(user_id));
 			} else {
 				map.put("genreList", genreList);
@@ -104,8 +104,11 @@ public class BookServiceImpl implements BookService {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		int reviewCnt = dao.getReviewCnt(book_id);
 		List<Review> list = dao.getReview(book_id, pageNumber);
+		String user_id = "";
 		for (int i = 0; i < list.size(); i++) {
 			list.get(i).setReview_contents(Xss.setXss(list.get(i).getReview_contents()));
+			user_id = list.get(i).getUser_id();
+			list.get(i).setUser_id(user_id.substring(0,2) + "**" + user_id.substring(4));
 		}
 		Integer avgScore = dao.getBookScore(book_id);
 		if (avgScore == null) {

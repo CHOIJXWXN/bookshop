@@ -25,16 +25,7 @@
             <c:forEach var="users" items="${list }">
             <div class="row">
                 <input type="radio" name="id_list" id="id_list" checked />
-                <label for="id_list">
-                <c:if test="${users.user_id ne null && users.user_id!=''}">
-                <c:if test="${fn:length(user.user_id) gt 8}">
-                ${fn:substring(users.user_id,0,fn:length(users.user_id)-4)}****
-                </c:if>
-                <c:if test="${fn:length(user.user_id) < 8}">
-                ${fn:substring(users.user_id,0,fn:length(users.user_id)-2)}**
-                </c:if>
-                </c:if>
-                </label>
+                <label for="id_list">${users.user_id} </label>
             </div>
             </c:forEach>
             <ul class="btns_wrap">

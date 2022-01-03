@@ -75,7 +75,7 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	public int findIdPAction(Users users) throws Exception {
 		int result = 0;
-		if(dao.getIdP(users) == null) {
+		if(dao.getIdP(users).size() == 0) {
 			result = -1;
 		}		
 		return result;
@@ -84,13 +84,42 @@ public class UsersServiceImpl implements UsersService {
 	// 유저 정보 (이메일)
 	@Override
 	public Users findIdE(Users users) throws Exception {
-		return dao.getIdE(users);
+		Users user = dao.getIdE(users);
+		String user_id = user.getUser_id();
+		if(user_id != null && !"".equals(user_id)) {
+			if(user_id.length() >= 8) {
+				 String id = user_id.substring(0,user_id.length() -4);
+				 user_id = id + "****"; 
+			} else if (user_id.length() < 8) {
+				String id = user_id.substring(0,user_id.length() - 2);
+				user_id = id + "**";
+			}
+			user.setUser_id(user_id);
+		}
+		return user;
 	}
 	
 	// 유저 정보 (핸드폰)
 	@Override
-	public List<Users> findIdP(Users users) throws Exception {		
-		return dao.getIdP(users);
+	public List<Users> findIdP(Users users) throws Exception {	
+		List<Users> user = dao.getIdP(users);
+		String user_id = "";
+		for (int i = 0; i < user.size(); i++) {
+			user_id = user.get(i).getUser_id();
+			if(user_id != null && !"".equals(user_id)) {
+				if(user_id.length() >= 8) {
+					 String id = user_id.substring(0,user_id.length() -4);
+					 user_id = id + "****"; 
+				} else if (user_id.length() < 8) {
+					String id = user_id.substring(0,user_id.length() - 2);
+					user_id = id + "**";
+				}
+			
+			}
+			user.get(i).setUser_id(user_id);
+		}
+		
+		return user;
 	}
 
 	// 비밀번호 수정 및 전송

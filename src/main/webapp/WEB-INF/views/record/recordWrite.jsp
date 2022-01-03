@@ -22,7 +22,7 @@
       <!-- [2] 메인화면 -->
       <!-- 전체화면 -->
       <section id="write_record">
-        <form action="./addRecord" method="GET">
+        <form action="./addRecord" method="POST">
         <!-- 레코드박스 -->
         <div class="record_box">
             <div class="book_info">

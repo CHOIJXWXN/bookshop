@@ -43,7 +43,7 @@ public class RecordController {
 	}
 	
 	// 기록장 이름 입력
-	@RequestMapping(value = "/addTitle", method = RequestMethod.GET)
+	@RequestMapping(value = "/addTitle", method = RequestMethod.POST)
 	public String addTitle(Users users, HttpSession session, Model model) throws Exception {
 		users.setUser_id((String) session.getAttribute("user_id"));
 		recordService.setTitle(users);
@@ -51,7 +51,7 @@ public class RecordController {
 	}
 	
 	// 책 검색 기능
-	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	@ResponseBody
 	public HashMap<String, Object> search(String keyword, Integer pageNum, Model model) throws Exception {
 		if (pageNum == null) {
@@ -77,7 +77,7 @@ public class RecordController {
 	}
 	
 	// 기록 입력 기능
-	@RequestMapping(value = "/addRecord", method = RequestMethod.GET)
+	@RequestMapping(value = "/addRecord", method = RequestMethod.POST)
 	public String addRecord(Record record, HttpSession session, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
 		record.setUser_id(user_id);
@@ -86,7 +86,7 @@ public class RecordController {
 	}
 	
 	// 기록 수정 페이지
-	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String edit(Record record, Model model) throws Exception {
 		recordService.edit(record);
 		return "redirect:/record/view?record_id=" + record.getRecord_id();

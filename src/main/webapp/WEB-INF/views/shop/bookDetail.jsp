@@ -13,6 +13,17 @@
     <link rel="stylesheet" href="${path}/resources/css/bookDetail.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <c:if test="${not empty review}">
+    <script>
+    $(document).ready(function() {
+    	var offset = $('label').offset();
+		$('html, body').animate({
+            scrollTop: offset.top
+        }, 1000);
+		$('#tab3').prop('checked', true);
+    });
+    </script>
+    </c:if>
     <script src="${path}/resources/js/bookjs/detail.js"></script>
   </head>
   <body>
@@ -24,7 +35,7 @@
       <section id="book_detail">
         <!-- [2-1] 책 썸네일 & 가격정보 -->
         <article id="book_info">
-          <form action="/order/" method="GET">
+          <form action="/order/" method="POST">
           <!-- 책 썸네일 -->
             <div class="book_img_box">
               <div class="book_thum">

@@ -1,6 +1,5 @@
 package com.bookshop.controller;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -41,12 +40,6 @@ public class OrderController {
 		for (var i = 0; i < book_id.size(); i++) {
 			orderService.updateCart(new Cart(user_id, book_id.get(i), book_cnt.get(i)));
 		}
-//		HashMap<String, Object> map = new HashMap<String, Object>();
-//		map.put("selectList", orderService.viewCertainCart(user_id, checked_book_id));
-//		map.put("user", memberService.getUserInfo(user_id));
-//		map.put("orderNum", orderService.newOrderNum());
-//		model.addAttribute("map", map);
-		
 		// 선택된 상품 리스트
 		model.addAttribute("selectList", orderService.viewCertainCart(user_id, checked_book_id));
 		// 유저 정보
@@ -64,12 +57,6 @@ public class OrderController {
 		for (var i = 0; i < book_id.size(); i++) {
 			orderService.updateCart(new Cart(user_id, book_id.get(i), book_cnt.get(i)));
 		}
-//		HashMap<String, Object> map = new HashMap<String, Object>();
-//		map.put("allList", orderService.viewCart(user_id));
-//		map.put("user", memberService.getUserInfo(user_id));
-//		map.put("orderNum", orderService.newOrderNum());
-//		model.addAttribute("map", map);
-		
 		// 해당 유저의 장바구니 모든 상품 리스트
 		model.addAttribute("allList", orderService.viewCart(user_id));
 		// 유저 정보
@@ -80,14 +67,9 @@ public class OrderController {
 	}
 	
 	// 주문 페이지 (바로 주문)
-	@RequestMapping(params = "direct", value = "/", method = RequestMethod.GET)
+	@RequestMapping(params = "direct", value = "/", method = RequestMethod.POST)
 	public String order(CartPlus cartPlus, HttpSession session, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
-//		HashMap<String, Object> map = new HashMap<String, Object>();
-//		map.put("direct", cartPlus);
-//		map.put("user", memberService.getUserInfo(user_id));
-//		map.put("orderNum", orderService.newOrderNum());
-//		model.addAttribute("map", map);
 		// 선택된 상품 정보
 		model.addAttribute("direct", cartPlus);
 		// 유저 정보
@@ -98,14 +80,14 @@ public class OrderController {
 	}
 	
 	// 장바구니 상품 추가 기능
-	@RequestMapping(value = "/addCart", method = RequestMethod.GET)
+	@RequestMapping(value = "/addCart", method = RequestMethod.POST)
 	@ResponseBody
 	public String addCart(Cart cart) throws Exception {
 		return orderService.addCart(cart) + "";
 	}
 	
 	// 장바구니 상품 삭제 기능
-	@RequestMapping(value = "/deleteCart", method = RequestMethod.GET)
+	@RequestMapping(value = "/deleteCart", method = RequestMethod.POST)
 	@ResponseBody
 	public String deleteCart(@RequestParam List<String> book_id, String user_id) throws Exception {
 		if (book_id.contains("none")) {
@@ -123,22 +105,6 @@ public class OrderController {
 		// 해당 유저의 장바구니 리스트
 		model.addAttribute("list", orderService.viewCart(user_id));
 		return "shop/cart";
-	}
-	
-	// 선택 상품 주문 기능
-	@RequestMapping(value = "/getOrderSelect", method = RequestMethod.GET)
-	public String getOrderSelect(CartPlus cartPlus, Model model) throws Exception {
-		// 선택된 cartPlus
-		model.addAttribute("cartPlus", cartPlus);
-		return "redirect:/order/";
-	}
-	
-	// 전체 상품 주문 기능
-	@RequestMapping(value = "/getOrderAll", method = RequestMethod.GET)
-	public String getOrderAll(String user_id, Model model) throws Exception {
-		// 해당 유저의 전체 cartPlus
-		model.addAttribute("cartPlus", orderService.viewCart(user_id));
-		return "redirect:/order/";
 	}
 	
 	// 결제 기능
