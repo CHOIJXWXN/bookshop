@@ -58,7 +58,7 @@
         <div class="guide_msg">
           <p>* 필수 입력 사항입니다.</p>
         </div>
-        <form method="POST" action="./joinSuccess">
+        <form id ="join_form_en" method="POST" action="./joinSuccess">
           <div id="join_form">
             <div class="container">
               <!-- 입력 폼 -->
