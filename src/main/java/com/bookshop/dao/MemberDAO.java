@@ -29,5 +29,7 @@ public interface MemberDAO {
 	
 	public String getTracking_num(String order_num) throws Exception;
 	
+	public void deleteAccount(String user_id) throws Exception;
+	
 	
 }

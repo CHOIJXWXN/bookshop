@@ -84,6 +84,14 @@ public class MemberController {
 		return "redirect:/mypage/profile";
 	}
 	
+	// 회원 탈퇴 기능
+	@RequestMapping(value = "/deleteAccount", method = RequestMethod.POST)
+	public String deleteAccount(HttpSession session) throws Exception {	
+		String user_id = (String) session.getAttribute("user_id");
+		memberService.delete(user_id);
+		return "redirect:/";
+	}
+	
 	// 주문 배송 조회 페이지 
 	@RequestMapping(value = "/delivery", method = RequestMethod.GET)
 	public String delivery(Integer pageNumber, Model model, HttpSession session) throws Exception{		
