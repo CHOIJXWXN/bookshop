@@ -78,7 +78,7 @@
         // btn_findIdE.click.function
         });
         
-        // 휴대폰 번호를 이용하여 비밀번호 찾기
+        // 휴대폰 번호를 이용하여 아이디 찾기
         $('#btn_findIdP').click(function(event) {
             var user_name = $('#user_name_IdP').val();
             var user_phone = $('#user_phone_IdP').val();
@@ -104,10 +104,10 @@
 
             $.ajax({
                 type: 'POST',
-                url: 'findIdPAction',
+                url: './findIdPAction',
                 data: {
-                    user_name: user_name,
-                    user_phone: user_phone
+                	user_name: user_name,
+                	user_phone: user_phone
                 },
 
                 dataType: 'text',
