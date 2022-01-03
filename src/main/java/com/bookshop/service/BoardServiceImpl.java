@@ -122,7 +122,7 @@ public class BoardServiceImpl implements BoardService {
 	// 답변상태 user
 	@Override
 	public void updateAskstatusU(Ask ask) throws Exception {
-		ask.setAsk_status("답변미완료");
+		ask.setAsk_status("답변대기");
 		dao.updateAsk_status(ask);
 	}
 	

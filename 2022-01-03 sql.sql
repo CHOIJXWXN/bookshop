@@ -79,7 +79,7 @@ CREATE TABLE ask (
     ask_contents	TEXT			NOT NULL,						# 문의 내용
     ask_date		DATE            NOT NULL,						# 문의 등록 날짜
     ask_sort		VARCHAR(20),									# 문의 유형 -> 상품문의 / 배송문의 / 기타문의
-    ask_status		VARCHAR(20)		DEFAULT '답번미완료',				# 문의 상태 -> 답변완료 / 답변미완료
+    ask_status		VARCHAR(20)		DEFAULT '답변대기',				# 문의 상태 -> 답변완료 / 답변미완료
     askreply_count	INT				DEFAULT 0,
     available		INT				DEFAULT 0
 );
