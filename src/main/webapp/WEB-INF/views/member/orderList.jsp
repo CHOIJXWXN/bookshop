@@ -80,7 +80,7 @@
                             <a href="${path }/ask/writeAsk?book_id=${item.book.book_id}&order_num=${items.orders.order_num }" class="ask">문의</a>
                             </c:if>
                        		<c:if test="${items.orders.order_status eq '배송완료' }">
-                            <a href="${path }/book/detail?book_id=${item.book.book_id}#book_tab_mn">리뷰쓰기</a>
+                            <a href="${path }/book/detail?book_id=${item.book.book_id}&review=true">리뷰쓰기</a>
                             </c:if>
                        		<c:if test="${items.orders.order_status eq '배송중' }">
                             <a href="https://tracker.delivery/#/kr.epost/${items.tracking_num }" target="_blank" class="delivery">배송조회</a>
