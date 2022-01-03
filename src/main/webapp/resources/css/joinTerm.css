@@ -175,5 +175,9 @@ section .join1_header .process {
   background-color: #1C1A1A;
   transition: 0.3s all ease;
 }
-
+.fa-circle {
+     font-size: 8px;
+     color: #1C1A1A;
+     margin-right: 5px;
+ }
 
