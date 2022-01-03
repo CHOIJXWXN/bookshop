@@ -78,7 +78,7 @@ public class BookServiceImpl implements BookService {
 		List<Book> genreList = dao.getGenreRecomm(user_id);
 		List<Book> writerList = dao.getWriterRecomm(user_id);
 		if (!user_id.equals("")) {
-			if (genreList == null) {
+			if (genreList.size() == 0) {
 				map.put("genreList", dao.getInitGenre(user_id));
 			} else {
 				map.put("genreList", genreList);
