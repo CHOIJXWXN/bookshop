@@ -243,5 +243,23 @@ public class MainController {
 		model.addAttribute("map", recordService.view(user_id, pageNum)); // list, paging, title
 		return "record/recordList";
 	}
+	
+	// 약관동의 페이지(AGREEMENT)
+	@RequestMapping(value = "/agreement", method = RequestMethod.GET)
+	public String agreement(Model model) throws Exception {
+		return "member/agreement";		
+	}
+	
+	// 개인정보처리방침 페이지(PRIVACY)
+	@RequestMapping(value = "/privacy", method = RequestMethod.GET)
+	public String privacy(Model model) throws Exception {
+		return "member/privacy";		
+	}
+	
+	// 가이드 페이지(GUIDE)
+	@RequestMapping(value = "/guide", method = RequestMethod.GET)
+	public String guide(Model model) throws Exception {
+		return "member/guide";		
+	}
 
 }

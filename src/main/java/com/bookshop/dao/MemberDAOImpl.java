@@ -85,8 +85,15 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne(SESSION + ".getTracking_num", order_num);
 	}
 
-
-	
-	
+	@Override
+	public void deleteAccount(String user_id) throws Exception {
+		sqlSession.delete(SESSION + ".deleteUser", user_id);
+		sqlSession.delete(SESSION + ".deleteCart", user_id);
+		sqlSession.delete(SESSION + ".deleteOrder", user_id);
+		sqlSession.delete(SESSION + ".deleteAsk", user_id);
+		sqlSession.delete(SESSION + ".deleteAskreply", user_id);
+		sqlSession.delete(SESSION + ".deleteReview", user_id);
+		sqlSession.delete(SESSION + ".deleteRecord", user_id);
+	}
 	
 }

@@ -108,9 +108,11 @@
                   <label for="user_title">*&nbsp;독서기록 이름</label>
                   <input type="text" id="user_title" name="user_title" value="${users.user_title}" >
                 </div>
-                </c:if>
-                
-                
+                </c:if>     
+              </div>
+              <!-- 회원탈퇴 -->
+              <div class="quit_box">
+              	<button type="button" id="delete_user">회원탈퇴</button>
               </div>
               <div class="submit_btn">
                 <input type="submit" value="수정하기"/>
@@ -120,6 +122,20 @@
           </form>
 
       </section>
+      <!-- --------------모달---------------- -->
+	  <div id="quit_confirm_msg" style="display: none">
+		    <h3><i class="fas fa-exclamation-triangle"></i>회원탈퇴</h3>
+		    <p>
+		    	1. 회원 탈퇴 시 회원님의 정보는 소비자 보호에 관한 법률에 의거한 고객정보 보호정책에 따라 관리됩니다.<br><br>
+		    	2. 탈퇴 시 회원님께서 보유하셨던 포인트는 삭제됩니다.&nbsp;(보유 포인트 : ${users.user_point}원)<br>
+		    	<br>
+		    </p>
+		    <p class="confirm_msg">정말로 탈퇴하시겠습니까?</p>
+		    <div class="btn_wrap">
+		        <a class="go_back_cancel">이전으로</a>
+		        <a class="leave" href="../mypage/deleteAccount">탈퇴하기</a>
+	        </div>
+	  </div>
     </div>
     <script>
     $(document).ready(function(){
@@ -127,5 +143,23 @@
     	if(msg != null && msg != '') alert(msg);
     });
     </script>
+    <script>
+     	$(document).ready(function() {
+     		
+     		// 회원탈퇴 클릭시 탈퇴확인 모달 띄우기
+    	    $('#delete_user').click(function(){
+    	        $('#quit_confirm_msg').show();
+    	    });
+			    	    
+    	      	    
+	    	// 모달에서 취소 클릭시
+	    	   $('.go_back_cancel').click(function (event){
+	    		event.preventDefault();
+	    		$('#quit_confirm_msg').hide();
+	        	
+	        }); 
+    	});
+
+    </script> 
   </body>
 </html>

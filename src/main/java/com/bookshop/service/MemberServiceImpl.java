@@ -88,5 +88,11 @@ public class MemberServiceImpl implements MemberService {
 	public int getOrderCnt(String user_id) throws Exception {
 		return dao.getOrderCnt(user_id);	
 	}
+
+	// 계정 삭제
+	@Override
+	public void delete(String user_id) throws Exception {
+		dao.deleteAccount(user_id);
+	}
 		
 }
