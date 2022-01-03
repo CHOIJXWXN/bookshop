@@ -79,5 +79,38 @@
 		FROM   DELIVERY
 		WHERE  order_num = #{order_num}
 	</select>
+	
+	<!-- 탈퇴하기 (유저 / 장바구니 / 주문 / 문의 / 문의댓글 / 리뷰 / 기록) -->
+	<delete id="deleteUser">
+		DELETE FROM USERS
+		WHERE user_id = #{user_id}
+	</delete>
+	<delete id="deleteCart">
+		DELETE FROM CART
+		WHERE user_id = #{user_id}
+	</delete>
+	<delete id="deleteOrder">
+		DELETE FROM ORDERS
+		WHERE user_id = #{user_id}
+	</delete>
+	<delete id="deleteAsk">
+		DELETE FROM ASK
+		WHERE writer = #{user_id}
+	</delete>
+	<delete id="deleteAskreply">
+		DELETE FROM ASKREPLY
+		WHERE ask_id
+		IN (SELECT ask_id
+			FROM ASK
+			WHERE writer = #{user_id})
+	</delete>
+	<delete id="deleteReview">
+		DELETE FROM REVIEW
+		WHERE user_id = #{user_id}
+	</delete>
+	<delete id="deleteRecord">
+		DELETE FROM RECORD
+		WHERE user_id = #{user_id}
+	</delete>
 
 </mapper>
