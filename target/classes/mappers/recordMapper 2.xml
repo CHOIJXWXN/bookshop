@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bookshop.mappers.record">
+	
+	<!-- 기록 12개씩 최근순 -->
+	<select id="getRecord" parameterType="hashmap" resultType="RecordPlus">
+		SELECT B.record_id, A.book_cover, A.book_title, A.book_writer, A.book_pub, B.record_init_date, B.record_fin_date, B.record_score, B.record_contents
+		FROM BOOK A, (
+			SELECT R.* FROM RECORD R
+			WHERE R.user_id = #{user_id}
+			ORDER BY R.record_date DESC
+			LIMIT #{start}, 12
+		) B
+		WHERE A.book_id = B.book_id
+	</select>
+	
+	<!-- 특정 유저의 기록 총 개수 -->
+	<select id="getRecordCnt" resultType="_int">
+		SELECT COUNT(*)
+		FROM RECORD
+		WHERE user_id = #{user_id}
+	</select>
+	
+	<!-- 기록 입력 -->
+	<insert id="addRecord">
+		INSERT INTO RECORD
+		VALUES(null, #{user_id}, #{book_id}, #{record_init_date}, #{record_fin_date}, #{record_score}, #{record_contents}, NOW())	
+	</insert>
+	
+	<!-- 기록 수정 -->
+	<update id="updateRecord">
+		UPDATE RECORD
+		SET record_init_date = #{record_init_date},
+			record_fin_date = #{record_fin_date},
+			record_score = #{record_score},
+			record_contents = #{record_contents}
+		WHERE record_id = #{record_id}
+	</update>
+	
+	<!-- 기록 삭제 -->
+	<delete id="deleteRecord">
+		DELETE FROM RECORD
+		WHERE record_id = #{record_id}
+	</delete>
+	
+	<!-- 특정 유저의 특정 책에 대한 기록 -->
+	<select id="getCertainRecord" parameterType="hashmap" resultType="Record">
+		SELECT *
+		FROM RECORD
+		WHERE user_id = #{user_id}
+		AND book_id = #{book_id}
+	</select>
+	
+	<!-- 특정 기록 -->
+	<select id="getCertainRecordPlus" resultType="RecordPlus">
+		SELECT B.record_id, A.book_cover, A.book_title, A.book_writer, A.book_pub, B.record_init_date, B.record_fin_date, B.record_score, B.record_contents
+		FROM BOOK A, RECORD B
+		WHERE A.book_id = B.book_id
+		AND B.record_id = #{record_id}
+	</select>
+	
+	<!-- 기록장 이름 -->
+	<select id="getRecordTitle" resultType="string">
+		SELECT user_title
+		FROM USERS
+		WHERE user_id = #{user_id}
+	</select>
+	
+	<!-- 기록장 이름 추가 -->
+	<update id="addRecordTitle">
+		UPDATE USERS
+		SET user_title = #{user_title}
+		WHERE user_id = #{user_id}
+	</update>
+	
+	<!-- 특정 기록 작성자 -->
+	<select id="getRecordById" resultType="Record">
+		SELECT *
+		FROM RECORD
+		WHERE record_id = #{record_id}
+	</select>
+
+</mapper>

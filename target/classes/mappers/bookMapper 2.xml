@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bookshop.mappers.book">
+
+	<!-- 전체 책 개수 -->
+	<select id="getBookCnt" resultType="_int">
+		SELECT COUNT(*)
+		FROM BOOK
+		WHERE available = 0
+	</select>
+	
+	<!-- 장르별 책 개수 -->
+	<select id="getGenreBookCnt" resultType="_int">
+		SELECT COUNT(*)
+		FROM BOOK
+		WHERE book_genre = #{book_genre}
+		AND available = 0
+	</select>
+	
+	<!-- 판매량 순으로 16개  -->
+	<select id="getBookListSell" resultType="Book">
+		SELECT *
+		FROM BOOK
+		WHERE available = 0
+		ORDER BY book_sell_tot DESC
+		LIMIT #{start}, 16
+	</select>
+	
+	<!-- 신규출간 순으로 16개  -->
+	<select id="getBookListNew" resultType="Book">
+		SELECT *
+		FROM BOOK
+		WHERE available = 0
+		ORDER BY book_date DESC
+		LIMIT #{start}, 16
+	</select>
+	
+	<!-- 리뷰 순으로 16개  -->
+	<select id="getBookListReview" resultType="Book">
+		SELECT A.book_id, A.book_title, A.book_cover, A.book_price
+		FROM BOOK A LEFT JOIN REVIEW B 
+		ON A.book_id = B.book_id
+		WHERE A.available = 0 
+		GROUP BY A.book_id 
+		ORDER BY COUNT(B.review_id) DESC 
+		LIMIT #{start}, 16
+	</select>
+	
+	<!-- 장르별 판매량 순으로 16개 -->
+	<select id="getGenreBookList" resultType="Book" parameterType="hashmap">
+		SELECT * 
+		FROM BOOK
+		WHERE book_genre = #{book_genre} AND available = 0
+		ORDER BY book_sell_tot DESC
+		LIMIT #{start}, 16
+	</select>
+	
+	<!-- 키워드 검색 -->
+	<select id="searchBook" parameterType="hashmap" resultType="Book">
+		SELECT *
+		FROM BOOK
+		WHERE (book_title LIKE CONCAT('%', #{keyword}, '%')
+		OR book_writer LIKE CONCAT('%', #{keyword}, '%'))
+		AND available = 0
+		LIMIT #{start}, #{cnt}
+	</select>
+	
+	<!-- 검색된 책 개수 -->
+	<select id="getSearchBookCnt" resultType="_int">
+		SELECT COUNT(*)
+		FROM BOOK
+		WHERE (book_title LIKE CONCAT('%', #{keyword}, '%')
+		OR book_writer LIKE CONCAT('%', #{keyword}, '%'))
+		AND available = 0
+	</select>
+	
+	<!-- 장르별 키워드 검색 -->
+	<select id="searchGenreBook" parameterType="hashmap" resultType="Book">
+		SELECT *
+		FROM BOOK
+		WHERE (book_title LIKE CONCAT('%', #{keyword}, '%')
+		OR book_writer LIKE CONCAT('%', #{keyword}, '%'))
+		AND book_genre = #{book_genre}
+		AND available = 0
+		LIMIT #{start}, 16
+	</select>
+	
+	<!-- 검색된 장르별 책 개수 -->
+	<select id="getSearchGenreBookCnt" parameterType="hashmap" resultType="_int">
+		SELECT COUNT(*)
+		FROM BOOK
+		WHERE (book_title LIKE CONCAT('%', #{keyword}, '%')
+		OR book_writer LIKE CONCAT('%', #{keyword}, '%'))
+		AND book_genre = #{book_genre}
+		AND available = 0
+	</select>
+	
+	<!-- 베스트 셀러 리스트 -->
+	<select id="getBestSeller" resultType="Book">
+		SELECT E.*
+		FROM BOOK E
+		WHERE E.book_id IN (
+		    SELECT C.book_id FROM (
+		        SELECT B.book_id
+		        FROM ORDERS A, ORDERLIST B
+		        WHERE A.order_num = B.order_num
+		        AND DATEDIFF(NOW(), A.order_date) <![CDATA[<=]]> 30
+		        GROUP BY B.book_id
+		        ORDER BY SUM(B.book_cnt) DESC
+		        LIMIT 0, 8
+		        ) C, BOOK D
+		    WHERE C.book_id = D.book_id
+		    AND D.available = 0
+		)
+	</select>
+	
+	<!-- 초기 흥미 장르 임의 4개 -->
+	<select id="getInitGenre" resultType="Book">
+		SELECT *
+		FROM BOOK
+		WHERE book_genre = (SELECT user_init_genre
+			FROM USERS
+			WHERE user_id = #{user_id})
+		AND available = 0
+		ORDER BY RAND()
+		LIMIT 4		
+	</select>
+	
+	<!-- 리뷰/기록 기반 추천 장르 임의 4개 -->
+	<select id="getGenreRecomm" resultType="Book">
+		SELECT *
+		FROM BOOK
+		WHERE book_genre = (SELECT E.book_genre
+			FROM
+				(SELECT A.book_id, A.record_score AS score
+					FROM RECORD A
+					WHERE A.user_id = #{user_id}
+				UNION
+				SELECT B.book_id, B.review_score AS score
+					FROM REVIEW B
+					LEFT JOIN RECORD C
+					ON B.book_id = C.book_id
+					AND B.user_id = C.user_id
+					WHERE C.book_id IS NULL
+					AND B.user_id = #{user_id}
+				) D, BOOK E
+			WHERE D.book_id = E.book_id
+			AND E.available = 0
+			AND D.score <![CDATA[>=]]> 3
+			GROUP BY E.book_genre
+			ORDER BY COUNT(E.book_id) DESC
+			LIMIT 1)
+		AND available = 0
+		ORDER BY RAND()
+		LIMIT 4
+	</select>
+	
+	<!-- 리뷰/기록 기반 추천 작가 임의 2개 -->
+	<select id="getWriterRecomm" resultType="Book">
+		SELECT *
+		FROM BOOK
+		WHERE book_writer = (SELECT E.book_writer
+			FROM
+				(SELECT A.book_id, A.record_score AS score
+					FROM RECORD A
+					WHERE A.user_id = #{user_id}
+				UNION
+				SELECT B.book_id, B.review_score AS score
+					FROM REVIEW B
+					LEFT JOIN RECORD C
+					ON B.book_id = C.book_id
+					AND B.user_id = C.user_id
+					WHERE C.book_id IS NULL
+					AND B.user_id = #{user_id}
+				) D, BOOK E
+			WHERE D.book_id = E.book_id
+			AND E.available = 0
+			AND D.score <![CDATA[>=]]> 3
+			GROUP BY E.book_writer
+			ORDER BY COUNT(E.book_id) DESC
+			LIMIT 1)
+		AND available = 0
+		ORDER BY RAND()
+		LIMIT 2
+	</select>
+	
+	<!-- 책 아이디로 책 가져오기 -->
+	<select id="getBook" resultType="Book">
+		SELECT *
+		FROM BOOK
+		WHERE book_id = #{book_id}
+	</select>
+	
+	<!-- 책 아이디로 리뷰 3개씩 -->
+	<select id="getReview" resultType="Review">
+		SELECT *
+		FROM REVIEW
+		WHERE book_id = #{book_id}
+		ORDER BY review_id DESC
+		LIMIT #{start}, 3
+	</select>
+	
+	<!-- 특정 책의 리뷰 개수 -->
+	<select id="getReviewCnt" resultType="_int">
+		SELECT COUNT(*)
+		FROM REVIEW
+		WHERE book_id = #{book_id}
+	</select>
+	
+	<!-- 특정 책의 리뷰 평균 평점  -->
+   	<select id="getBookScore" resultType="int">
+   		SELECT AVG(review_score) * 10
+      	FROM REVIEW
+      	WHERE book_id = #{book_id}
+   	</select>
+   
+ 	<!-- 리뷰 추가 -->
+   	<insert id="addReview">
+      	INSERT INTO REVIEW (user_id, book_id, review_score, review_contents, review_date)
+      	VALUES (#{user_id}, #{book_id}, #{review_score}, #{review_contents}, NOW())
+   	</insert>
+   	
+   	<!-- 특정 유저의 특정 책 리뷰 존재 여부 -->
+   	<select id="getReviewFlag" resultType="_int">
+   		SELECT COUNT(*)
+   		FROM REVIEW
+   		WHERE user_id = #{user_id}
+   		AND book_id = #{book_id}
+   	</select>
+	
+</mapper>

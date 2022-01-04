@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bookshop.mappers.member">
+
+	<!-- 회원정보 수정하기 -->
+	<!-- 비밀변호 변경시 -->
+	<update id="profile_pw">
+		UPDATE USERS
+		SET user_pw = SHA2(#{user_pw}, 256), user_name = #{user_name}, user_birth = #{user_birth}, user_nickname = #{user_nickname}, user_phone = #{user_phone}, user_addr = #{user_addr}, user_title = #{user_title}
+		WHERE user_id = #{user_id}
+	</update>
+	<!-- 비밀변호 변경x -->
+	<update id="profile">
+		UPDATE USERS
+		SET user_name = #{user_name}, user_birth = #{user_birth}, user_nickname = #{user_nickname}, user_phone = #{user_phone}, user_addr = #{user_addr}, user_title = #{user_title}
+		WHERE user_id = #{user_id}
+	</update>
+
+	<!-- Orders 가져오기 -->
+	<select id="getOrders" resultType="Orders">
+		SELECT A.*
+		FROM (SELECT @ROWNUM := @ROWNUM + 1 AS rownum, O.*
+			  FROM (SELECT @ROWNUM := 0) R,
+				 (SELECT B.*
+				  FROM ORDERS B
+				  WHERE B.user_id = #{user_id}
+				  ORDER BY B.order_num DESC) O
+			  ) A
+		WHERE A.rownum >= #{pageNumber}
+		LIMIT 2
+	</select>
+
+	<!-- ORDERLIST 가져오기 -->
+	<select id="getOrderList" resultType="OrderList">
+		SELECT book_id, book_cnt
+		FROM ORDERLIST
+		WHERE order_num = #{order_num}
+	</select>
+
+	<!-- (마이페이지) 다음페이지 존재하는지 -->
+	<select id="getPageIs" resultType="Orders">
+		SELECT A.*
+		FROM (SELECT @ROWNUM := @ROWNUM + 1 AS rownum, O.*
+			FROM (SELECT @ROWNUM := 0) R,
+			(SELECT B.*
+			FROM ORDERS B
+			WHERE B.user_id = #{user_id}
+			ORDER BY B.order_num DESC) O) A
+		WHERE A.rownum = #{pageNumber}
+	</select>
+
+	<!-- 보유 포인트 가져오기 -->
+	<select id="getPoint" resultType="_int">
+		SELECT user_point
+		FROM USERS
+		WHERE user_id = #{user_id}
+	</select>
+
+	<!-- 주문목록 건수 가져오기 -->
+	<select id="getOrderCnt" resultType="_int">
+		SELECT COUNT(order_num)
+		FROM ORDERS
+		WHERE user_id = #{user_id}
+	</select>
+
+	<!-- 최신 주문번호 가져오기 -->
+	<select id="getRecentOrderNum" resultType="String">
+		SELECT *
+		FROM ORDERS
+		WHERE user_id = #{user_id}
+		ORDER BY order_num DESC
+	</select>
+	
+	<select id="getTracking_num" resultType="String">
+		SELECT tracking_num
+		FROM   DELIVERY
+		WHERE  order_num = #{order_num}
+	</select>
+	
+	<!-- 탈퇴하기 (유저 / 장바구니 / 주문 / 문의 / 문의댓글 / 리뷰 / 기록) -->
+	<delete id="deleteUser">
+		DELETE FROM USERS
+		WHERE user_id = #{user_id}
+	</delete>
+	<delete id="deleteCart">
+		DELETE FROM CART
+		WHERE user_id = #{user_id}
+	</delete>
+	<delete id="deleteOrder">
+		DELETE FROM ORDERS
+		WHERE user_id = #{user_id}
+	</delete>
+	<delete id="deleteAsk">
+		DELETE FROM ASK
+		WHERE writer = #{user_id}
+	</delete>
+	<delete id="deleteAskreply">
+		DELETE FROM ASKREPLY
+		WHERE ask_id
+		IN (SELECT ask_id
+			FROM ASK
+			WHERE writer = #{user_id})
+	</delete>
+	<delete id="deleteReview">
+		DELETE FROM REVIEW
+		WHERE user_id = #{user_id}
+	</delete>
+	<delete id="deleteRecord">
+		DELETE FROM RECORD
+		WHERE user_id = #{user_id}
+	</delete>
+
+</mapper>
