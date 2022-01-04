@@ -86,8 +86,12 @@ public class BoardServiceImpl implements BoardService {
 	public List<AskReply> insertAskReply(AskReply askreply) throws Exception {
 			// 작성하는 DAO 실행 -> 댓글 내용을 먼저 insert 하고 return 으로 작성 내용을 불러옴
 			dao.insertAskReply(askreply);
+			List<AskReply> list = dao.getAskReplyList(askreply.getAsk_id());
 			
-		return dao.getAskReplyList(askreply.getAsk_id());
+			for(AskReply ar : list)
+				ar.setAskreply_contents(Xss.setXss(ar.getAskreply_contents()));
+			
+		return list;
 	}
 	
 	public List<AskReply> delete(AskReply askreply) throws Exception {

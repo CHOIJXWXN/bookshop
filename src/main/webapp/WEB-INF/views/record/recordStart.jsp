@@ -29,7 +29,7 @@
             <i class="fas fa-book-open"></i>
             <h2>BOOK DIARY</h2>
             <p>독서기록 시작하기</p>
-            <input type="text" class="record_name" name="user_title" placeholder="나의 독서 기록장에 특별한 이름을 지어주세요:)">
+            <input type="text" class="record_name" name="user_title" maxlength="20" placeholder="나의 독서 기록장에 특별한 이름을 지어주세요:)">
             <ul class="btns_wrap">
               <li class="start_btn"><button>Get Started</button></li>
            </ul>

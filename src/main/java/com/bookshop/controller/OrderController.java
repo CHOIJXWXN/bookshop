@@ -37,7 +37,7 @@ public class OrderController {
 	public String select(@RequestParam List<String> checked_book_id, @RequestParam List<String> book_id, @RequestParam List<Integer> book_cnt, HttpSession session, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
 		// 각 상품의 수량 수정
-		for (var i = 0; i < book_id.size(); i++) {
+		for (int i = 0; i < book_id.size(); i++) {
 			orderService.updateCart(new Cart(user_id, book_id.get(i), book_cnt.get(i)));
 		}
 		// 선택된 상품 리스트
@@ -54,7 +54,7 @@ public class OrderController {
 	public String all(@RequestParam List<String> book_id, @RequestParam List<Integer> book_cnt, HttpSession session, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
 		// 각 상품의 수량 수정
-		for (var i = 0; i < book_id.size(); i++) {
+		for (int i = 0; i < book_id.size(); i++) {
 			orderService.updateCart(new Cart(user_id, book_id.get(i), book_cnt.get(i)));
 		}
 		// 해당 유저의 장바구니 모든 상품 리스트

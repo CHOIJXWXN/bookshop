@@ -61,12 +61,15 @@ public class BookController {
 	
 	// 책 상세 페이지
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String detail(String book_id, RedirectAttributes ra, Model model) throws Exception {
+	public String detail(String book_id, String review, RedirectAttributes ra, Model model) throws Exception {
 		// 입력값 누락 처리
 		Book book = bookService.view(book_id);
 		if (book == null) {
 			ra.addFlashAttribute("msg", "해당 책이 존재하지 않습니다");
 			return "redirect:/book";
+		}
+		if (review != null) {
+			model.addAttribute("review", review);
 		}
 		// 해당 책 정보
 		model.addAttribute("book", book); 

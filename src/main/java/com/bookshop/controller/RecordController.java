@@ -62,13 +62,13 @@ public class RecordController {
 	
 	// 기록 입력 페이지
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
-	public String write(String book_id, HttpSession session, RedirectAttributes ra, Model model) throws Exception {
+	public String write(String book_id, RedirectAttributes ra, HttpSession session, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
 		Record result = recordService.getRecord(user_id, book_id);
 		// 이전 이미 기록한 책인지 검증
 		if (result != null) {
 			ra.addFlashAttribute("msg", "이미 기록한 책입니다");
-			return "redirect:/record/";
+			return "redirect:/record";
 		} else {
 			// 해당 책 정보
 			model.addAttribute("book", bookService.view(book_id));
@@ -101,7 +101,17 @@ public class RecordController {
 	
 	// 기록 상세 페이지
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public String view(int record_id, Model model) throws Exception {
+	public String view(int record_id, RedirectAttributes ra, HttpSession session, Model model) throws Exception {
+		String user_id = (String) session.getAttribute("user_id");
+		Record record = recordService.getRecordById(record_id);
+		if (record == null) {
+			ra.addFlashAttribute("msg", "존재하지 않는 기록입니다");
+			return "redirect:/record";
+		}
+		if (!user_id.equals(record.getUser_id())) {
+			ra.addFlashAttribute("msg", "접근할 수 없는 기록입니다");
+			return "redirect:/record";
+		}
 		// 기록 정보
 		model.addAttribute("recordPlus", recordService.viewOne(record_id));
 		return "record/recordView";
