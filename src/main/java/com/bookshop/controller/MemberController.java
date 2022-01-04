@@ -85,10 +85,11 @@ public class MemberController {
 	}
 	
 	// 회원 탈퇴 기능
-	@RequestMapping(value = "/deleteAccount", method = RequestMethod.POST)
+	@RequestMapping(value = "/deleteAccount", method = RequestMethod.GET)
 	public String deleteAccount(HttpSession session) throws Exception {	
 		String user_id = (String) session.getAttribute("user_id");
 		memberService.delete(user_id);
+		session.invalidate();
 		return "redirect:/";
 	}
 	
