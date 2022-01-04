@@ -1,4 +1,11 @@
 $(document).ready(function() {
+	
+	document.addEventListener('keydown', function(event) {
+  		if (event.keyCode === 13) {
+    	event.preventDefault();
+  		}
+	}, true);
+	
     // id hide
      $('#id_pass').hide();
      $('#id_fail').hide();
