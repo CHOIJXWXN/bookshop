@@ -134,7 +134,7 @@ input[type="date"] {
 }
 input[type="date"]::-webkit-clear-button, 
 input[type="date"]::-webkit-inner-spin-button { 
-    display: none; 
+    display:none;
 } 
 
 .date_wrap span {
