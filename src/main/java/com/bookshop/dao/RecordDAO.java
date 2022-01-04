@@ -17,5 +17,6 @@ public interface RecordDAO {
 	public RecordPlus getCertainRecordPlus(int record_id) throws Exception;
 	public String getRecordTitle(String user_id) throws Exception;
 	public void addRecordTitle(Users users) throws Exception;
+	public Record getRecordById(int record_id) throws Exception;
 
 }

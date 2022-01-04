@@ -271,6 +271,11 @@
 	       	  if (book_cnt.length == 0) {
 	       		  book_cnt = [0];
 	       	  }
+	       		var order_addr = '';
+	       	  if($('#addr_1').length > 0)
+	       		  order_addr = $('#addr_1').val() + '_' + $('#addr_2').val() + '_' + $('#addr_3').val();
+	       	  else
+	       		  order_addr = $('#addr_4').val();
         	  $.ajax({
         		  url: "./paid",
             	  method: "POST",
@@ -280,7 +285,7 @@
                 	  order_num: "${orderNum}",
                 	  user_id: "${user_id}",
                 	  order_name: $('#recipient').val(),
-                	  order_addr: $('#addr_1').val() + '_' + $('#addr_2').val() + '_' + $('#addr_3').val(),
+                	  order_addr: order_addr,
                 	  order_phone: $('#r_phone_num').val(),
                 	  order_tot: parseInt($('#book_price').text()),
                 	  ship_cost: parseInt($('#shippingCost').text()),
@@ -295,7 +300,7 @@
             	  success : function(data) {
             		  if (data == 1) {
             			  location.href = "./orderSuccess";
-            			  alert('성공'); 			// 성공 시 orderSuccess로 이동
+            			  // 성공 시 orderSuccess로 이동
             		  } else if (data == 0) {
             			  alert('실패');			// 실패 시 알림
             		  } else if (data == -1) {

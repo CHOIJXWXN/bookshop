@@ -241,6 +241,7 @@ public class MainController {
 		}
 		// 모든 기록 리스트 및 페이징 (12개씩)
 		model.addAttribute("map", recordService.view(user_id, pageNum)); // list, paging, title
+		
 		return "record/recordList";
 	}
 	

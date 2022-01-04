@@ -134,8 +134,11 @@ input[type="date"] {
 }
 input[type="date"]::-webkit-clear-button, 
 input[type="date"]::-webkit-inner-spin-button { 
-    display: none; 
-} 
+    display:none;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+	margin-left: -15px;
+}
 
 .date_wrap span {
     font-family: "Pretendard-Regular";

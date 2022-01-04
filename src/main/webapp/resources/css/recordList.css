@@ -291,11 +291,12 @@ input::placeholder {
 
 .book_box .book_rewrap {
     width: 750px;
-    display: flex;
-    justify-content: space-between;
+    /* display: flex;
+    justify-content: space-between; */
 }
 .book_box .book_wrap {
     width: 250px;
+    float: left;
     
 }
 .img_wrap {
