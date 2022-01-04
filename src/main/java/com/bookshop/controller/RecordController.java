@@ -39,6 +39,8 @@ public class RecordController {
 	// 기록장 이름 설정 페이지
 	@RequestMapping(value = "/intro", method = RequestMethod.GET)
 	public String intro(Model model) throws Exception {
+		model.addAttribute("msg", "접근할 수 없는 기록입니다.");
+		
 		return "record/recordStart";
 	}
 	
