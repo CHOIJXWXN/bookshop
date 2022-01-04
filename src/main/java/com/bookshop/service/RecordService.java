@@ -21,6 +21,8 @@ public interface RecordService {
 	// 기록 상세 페이지
 	// 기록 가져오기
 	public Record getRecord(String user_id, String book_id) throws Exception;
+	// 기록 권한 여부
+	public Record getRecordById(int record_id) throws Exception;
 	// 기록 보기
 	public RecordPlus viewOne(int record_id) throws Exception;
 	// 기록 수정

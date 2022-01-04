@@ -18,7 +18,7 @@
     $(document).ready(function() {
     	var offset = $('label').offset();
 		$('html, body').animate({
-            scrollTop: offset.top
+            scrollTop: offset.top - 100
         }, 1000);
 		$('#tab3').prop('checked', true);
     });

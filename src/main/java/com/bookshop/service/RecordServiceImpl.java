@@ -54,7 +54,13 @@ public class RecordServiceImpl implements RecordService {
 	public Record getRecord(String user_id, String book_id) throws Exception {
 		return dao.getCertainRecord(user_id, book_id);
 	}
-
+	
+	// 기록 권한 여부
+	@Override
+	public Record getRecordById(int record_id) throws Exception {
+		return dao.getRecordById(record_id);
+	}
+	
 	// 기록 보기
 	@Override
 	public RecordPlus viewOne(int record_id) throws Exception {

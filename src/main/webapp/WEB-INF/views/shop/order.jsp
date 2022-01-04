@@ -300,7 +300,7 @@
             	  success : function(data) {
             		  if (data == 1) {
             			  location.href = "./orderSuccess";
-            			  alert('성공'); 			// 성공 시 orderSuccess로 이동
+            			  // 성공 시 orderSuccess로 이동
             		  } else if (data == 0) {
             			  alert('실패');			// 실패 시 알림
             		  } else if (data == -1) {

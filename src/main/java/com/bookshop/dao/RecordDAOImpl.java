@@ -71,4 +71,9 @@ public class RecordDAOImpl implements RecordDAO {
 		sqlSession.update(SESSION + ".addRecordTitle", users);
 	}
 
+	@Override
+	public Record getRecordById(int record_id) throws Exception {
+		return sqlSession.selectOne(SESSION + ".getRecordById", record_id);
+	}
+
 }

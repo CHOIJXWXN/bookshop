@@ -75,5 +75,12 @@
 		SET user_title = #{user_title}
 		WHERE user_id = #{user_id}
 	</update>
+	
+	<!-- 특정 기록 작성자 -->
+	<select id="getRecordById" resultType="Record">
+		SELECT *
+		FROM RECORD
+		WHERE record_id = #{record_id}
+	</select>
 
 </mapper>

@@ -16,9 +16,9 @@
 	class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 	id="dataSource">
 	<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
-	<property name="url" value="jdbc:mysql://127.0.0.1:3306/bookshop?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Asia/Seoul"></property>
-	<property name="username" value="root"></property>
-	<property name="password" value="1234"></property>
+	<property name="url" value="jdbc:mysql://teambook3lcy.com:3306/leesumin1127?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Asia/Seoul"></property>
+	<property name="username" value="leesumin1127"></property>
+	<property name="password" value="tjwlgns11"></property>
 	</bean>
 	
 	<!-- SqlSessionFactory -->
