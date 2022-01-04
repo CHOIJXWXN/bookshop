@@ -267,11 +267,38 @@ section {
     -moz-appearance: none;
     appearance: none;
 }
-/* 회원가입 버튼 */
+/* 회원탈퇴 */
+.quit_box {
+	width: 100%;
+	height: 50px;
+	display: flex;
+	justify-content: end;
+}
+#delete_user {
+	width: 100px;
+	height: 40px;
+	font-family: "Pretendard-Regular";
+	font-size: 14px;
+	color: #1C1A1A;
+	line-height: 38px;
+	text-align: center;
+	background-color: transparent;
+	ouline: none;
+	border: 1px solid #1C1A1A;
+	margin-top: 10px;
+	cursor: pointer;
+}
+#delete_user:hover {
+	background-color: #1C1A1A;
+	color: white;
+	box-shadow: 0 0 3px #333;
+	transition: 0.3s all ease;
+}
+/* submit 버튼 */
   .submit_btn {
     width: 100%;
     height: 50px;
-    margin-top: 100px;
+    margin-top: 50px;
     text-align: center;
 }
   input[type="submit"] {
@@ -286,7 +313,7 @@ section {
     cursor: pointer;
 }
 input[type="submit"]:hover {
-  	box-shadow: 0 0 6px #999;
+  	box-shadow: 0 0 6px #333;
   	transition: 0.5s all ease;
 }
 /* 달력 아이콘 변경 */
@@ -309,5 +336,86 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   left: 58%;
   z-index: 7000;
   font-size: 18px;
+}
+/* 모달 */
+/* --------------모달---------------- */
+#quit_confirm_msg {
+  position: fixed;
+  top: 250px;
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  margin-left: -200px;
+  background-color: white;
+  z-index: 9999;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 4px #333;
+  overflow: hidden;
+}
+#quit_confirm_msg h3 {
+  width: 100%;
+  height: 40px;
+  background-color: rgba(28, 26, 26, 0.9);
+  text-align: left;
+  font-family: "Pretendard-Regular";
+  font-size: 18px;
+  color: #fbf5f5;
+  line-height: 40px; 
+}
+.fa-exclamation-triangle {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+#quit_confirm_msg p {
+	width: 85%;
+	font-family: "Pretendard-Regular";
+    font-size: 18px;
+    color: #1C1A1A;
+    line-height: 25px; 
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.confirm_msg {
+	margin-top: 10px;
+	margin-bottom: 15px;
+	text-align: center;
+}
+#quit_confirm_msg .btn_wrap {
+  width: 70%;
+  height: 47px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+#quit_confirm_msg a {
+  text-align: center;
+  display: block;
+  width: 130px;
+  height: 45px;
+  font-family: "Pretendard-Regular";
+  font-size: 18px;
+  line-height: 45px;
+  border: 1px solid #1C1A1A;
+  border-radius: 30px;
+  cursor: pointer
+}
+.go_back_cancel {
+  color: #1C1A1A;
+}
+.leave {
+  background-color: #1C1A1A;
+  color: white;
+}
+.go_back_cancel:hover {
+  background-color: white;
+  box-shadow: 0 0 6px #999;
+  transition: 0.2s all ease;
+}
+.leave:hover {
+  box-shadow: 0 0 6px #333;
+  transition: 0.2s all ease;
 }
 

@@ -22,5 +22,7 @@ public interface MemberService {
 	public int getPoint(String user_id) throws Exception;
 	// 주문목록 건수
 	public int getOrderCnt(String user_id) throws Exception;
+	// 계정 삭제
+	public void delete(String user_id) throws Exception;
 	
 }
