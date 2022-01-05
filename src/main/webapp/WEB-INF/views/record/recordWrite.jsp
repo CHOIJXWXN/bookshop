@@ -97,7 +97,7 @@
           });
           
           $('form').submit(function(event) {
-        	  if ($('.note-editable p').text() == '') {      		  
+        	  if ($('.note-editable').text() == '') {      		  
         		  alert('기록이 비어있습니다');
         		  event.preventDefault();
         	  }
