@@ -26,8 +26,8 @@
 			  FROM (SELECT @ROWNUM := 0) R,
 				 (SELECT B.*
 				  FROM ORDERS B
-				  WHERE B.user_id = #{user_id}
-				  ORDER BY B.order_num DESC) O
+				  WHERE B.user_id = #{user_id}) O
+			  ORDER BY O.order_num DESC
 			  ) A
 		WHERE A.rownum >= #{pageNumber}
 		LIMIT 2
@@ -47,8 +47,8 @@
 			FROM (SELECT @ROWNUM := 0) R,
 			(SELECT B.*
 			FROM ORDERS B
-			WHERE B.user_id = #{user_id}
-			ORDER BY B.order_num DESC) O) A
+			WHERE B.user_id = #{user_id}) O
+			ORDER BY O.order_num DESC) A
 		WHERE A.rownum = #{pageNumber}
 	</select>
 
