@@ -11,12 +11,12 @@ public class AskList {
 	private String writer;
 	private int askreply_id;
 	private String ask_status;
+	private String book_id;
 	
 	public AskList() {}
 
 	public AskList(int ask_id, String book_title, String ask_sort, String ask_date, String book_cover,
-			int askreply_count, String writer, int askreply_id, String ask_status) {
-	
+			int askreply_count, String writer, int askreply_id, String ask_status, String book_id) {
 		this.ask_id = ask_id;
 		this.book_title = book_title;
 		this.ask_sort = ask_sort;
@@ -26,6 +26,7 @@ public class AskList {
 		this.writer = writer;
 		this.askreply_id = askreply_id;
 		this.ask_status = ask_status;
+		this.book_id = book_id;
 	}
 
 	public int getAsk_id() {
@@ -100,16 +101,16 @@ public class AskList {
 		this.ask_status = ask_status;
 	}
 
+	public String getBook_id() {
+		return book_id;
+	}
+
+	public void setBook_id(String book_id) {
+		this.book_id = book_id;
+	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
+
 
 	
 	

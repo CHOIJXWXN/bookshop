@@ -35,7 +35,7 @@
                     <p>${ask.ask_date }</p>
                  </div>
                  <div class="book_img">
-                  <div class="img_box"><a href="#"><img src="${path}/resources/images/bookcover/${ask.book_cover }" alt=""></a></div>
+                  <div class="img_box"><a href="${path}/book/detail?book_id=${ask.book_id}"><img src="${path}/resources/images/bookcover/${ask.book_cover }" alt=""></a></div>
                  </div>
                  <div class="ask_category">
                     <a href="${path}/ask/boardView?ask_id=${ask.ask_id}"><p style="text-align: right;">&#91;&nbsp;${ask.ask_sort }&nbsp;&#93;&nbsp;</p> </a>

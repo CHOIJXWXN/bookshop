@@ -36,14 +36,6 @@ public class RecordController {
 		return "redirect:/record";
 	}
 	
-	// 기록장 이름 설정 페이지
-	@RequestMapping(value = "/intro", method = RequestMethod.GET)
-	public String intro(Model model) throws Exception {
-		model.addAttribute("msg", "접근할 수 없는 기록입니다.");
-		
-		return "record/recordStart";
-	}
-	
 	// 기록장 이름 입력
 	@RequestMapping(value = "/addTitle", method = RequestMethod.POST)
 	public String addTitle(Users users, HttpSession session, Model model) throws Exception {
@@ -64,12 +56,11 @@ public class RecordController {
 	
 	// 기록 입력 페이지
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
-	public String write(String book_id, RedirectAttributes ra, HttpSession session, Model model) throws Exception {
+	public String write(String book_id, HttpSession session, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
 		Record result = recordService.getRecord(user_id, book_id);
 		// 이전 이미 기록한 책인지 검증
 		if (result != null) {
-			ra.addFlashAttribute("msg", "이미 기록한 책입니다");
 			return "redirect:/record";
 		} else {
 			// 해당 책 정보

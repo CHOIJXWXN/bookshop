@@ -233,15 +233,15 @@ public class MainController {
 	@RequestMapping(value = "/record", method = RequestMethod.GET)
 	public String record(Integer pageNum, HttpSession session, Model model) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
+		// 기록장 이름 설정 페이지
 		if (recordService.title(user_id) == null) {
-			return "redirect:/record/intro";
+			return "record/recordStart";
 		}
 		if (pageNum == null) {
 			pageNum = 1;
 		}
 		// 모든 기록 리스트 및 페이징 (12개씩)
-		model.addAttribute("map", recordService.view(user_id, pageNum)); // list, paging, title
-		
+		model.addAttribute("map", recordService.view(user_id, pageNum)); // list, paging, title		
 		return "record/recordList";
 	}
 	
