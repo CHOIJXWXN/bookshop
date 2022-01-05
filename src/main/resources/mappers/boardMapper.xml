@@ -20,7 +20,7 @@
 	
 	<!-- 문의 글 list -->
 	<select id="getAskList" resultType="AskList" parameterType="hashmap">
-		SELECT A.ask_id, B.book_title, A.ask_sort, A.ask_date, B.book_cover, A.askreply_count, A.writer, A.ask_status
+		SELECT A.ask_id, B.book_title, A.ask_sort, A.ask_date, B.book_cover, A.askreply_count, A.writer, A.ask_status, A.book_id
 		FROM ASK A, BOOK B
 		WHERE A.book_id = B.book_id
 		AND A.writer = #{writer}
