@@ -140,9 +140,9 @@
     <!-- [3] 푸터 -->
      <footer id="footer">
         <ul class="btns_group">
-          <li><a href="#">AGREEMENT</a></li>
-          <li><a href="#">PRIVACY POLICY</a></li>
-          <li><a href="#">GUIDE</a></li>
+          <li><a href="../agreement">AGREEMENT</a></li>
+          <li><a href="../privacy">PRIVACY POLICY</a></li>
+          <li><a href="../guide">GUIDE</a></li>
         </ul>
         <ul class="cs_msg">
           <li>CS CENTER 09:00 ~ 18:00(월~금, 공휴일 제외)</li>
