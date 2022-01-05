@@ -44,7 +44,7 @@ function login() {
                          || pre_page == '/findIdPAction' || pre_page == '/findIdEAction'
                          || pre_page == '/findPwP'		 || pre_page == '/findPwE'
                          || pre_page == '/findPwPAction' || pre_page == '/findPwEAction'
-                         || pre_page == '/joinSuccess') {
+                         || pre_page == '/joinSuccess'	 || pre_page == '/login') {
                             location.href = '../';
                             sessionStorage.removeItem('pre_page');
                         } else {
