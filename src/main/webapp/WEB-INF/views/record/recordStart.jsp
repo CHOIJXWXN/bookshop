@@ -18,7 +18,7 @@
       <jsp:include page="../mainNav.jsp"/> 
       <!-- [2] 메인화면 -->
       <section id="record_start">
-        <form action="./addTitle" method="POST">
+        <form action="record/addTitle" method="POST">
          <div class="start_form">
           <div class="img_box">
             <!-- <p>

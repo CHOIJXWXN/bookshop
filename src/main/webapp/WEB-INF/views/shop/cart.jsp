@@ -22,11 +22,14 @@
     		$('button[name=all]').attr('disabled', true);
     	}
     	
-    	$('input[type=checkbox]').click(function() {
-    		if ($('input[type=checkbox]:checked').length > 0) {
-    			$('button[name=select]').attr('disabled', false);
-    		}
-    	})
+   		$('input[type=checkbox]').click(function() {
+       		if ($('input[type=checkbox]:checked').length > 0) {
+       			$('button[name=select]').attr('disabled', false);
+       		}
+	   		if ($('.chk_box:checked') && $('input[type=checkbox]:checked').length == 1) {
+	   			$('button[name=select]').attr('disabled', true);
+	   		}
+       	})
     	
     	$('input.chk_box').click(function() {
     		if ($('input.chk_box:checked').length == 0) {
