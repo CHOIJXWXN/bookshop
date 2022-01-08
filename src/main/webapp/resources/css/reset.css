@@ -1,4 +1,7 @@
 @charset "utf-8";
+
+/* Goudy Bookletter */
+@import url("https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&display=swap");
 /* 폰트 */
 @import url("https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy&display=swap");
 /* 프리텐다드 */
@@ -9,8 +12,6 @@
   font-weight: 400, 600;
   font-style: normal;
 }
-/* Goudy Bookletter */
-@import url("https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&display=swap");
 /* 본명조 */
 @font-face {
   font-family: 'NotoSerifKR';

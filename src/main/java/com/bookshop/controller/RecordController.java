@@ -40,6 +40,9 @@ public class RecordController {
 	@RequestMapping(value = "/addTitle", method = RequestMethod.POST)
 	public String addTitle(Users users, HttpSession session, Model model) throws Exception {
 		users.setUser_id((String) session.getAttribute("user_id"));
+		
+		users.setUser_title(users.getUser_title().trim());
+	
 		recordService.setTitle(users);
 		return "redirect:/record";
 	}

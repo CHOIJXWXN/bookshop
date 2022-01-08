@@ -7,6 +7,13 @@
     } else {
     	sessionStorage.removeItem('profileFlag');
     }
+    
+    
+    document.addEventListener('keydown', function(event) {
+  		if (event.keyCode === 13) {
+    	event.preventDefault();
+  		}
+	}, true);
  
         var pw_check_flag = true;
 
